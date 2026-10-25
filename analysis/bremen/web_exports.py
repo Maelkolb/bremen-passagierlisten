@@ -4,7 +4,6 @@ from .codes import KLDB_SECTORS_SHORT, TRAINING_LEVELS
 from .export import write_web_json
 from .paths import WEB_DATA
 
-BREMEN = {"name": "Bremen", "lat": 53.0758196, "lon": 8.8071646}
 SANKEY_PORTS = ["New York", "Buenos Aires", "Baltimore", "Halifax", "Rio de Janeiro", "Santos", "Galveston"]
 PARQUET_ROW_GROUP = 64_000
 
@@ -32,6 +31,8 @@ WERKBANK_COLUMNS = {
     "herkunft_land_heute": "herkunft_land",
     "herkunft_lat": "herkunft_lat",
     "herkunft_lon": "herkunft_lon",
+    "herkunft_geo_precision": "herkunft_genauigkeit",
+    "herkunft_sicher": "herkunft_sicher",
     "occupation": "beruf",
     "occupation_cleaned": "beruf_norm",
     "hisco": "hisco",
@@ -39,6 +40,12 @@ WERKBANK_COLUMNS = {
     "niveau": "niveau",
     "emigration_destination": "ziel",
     "ziel_ort": "ziel_ort",
+    "ziel_ort_gruppe": "ziel_ort_gruppe",
+    "ziel_land": "ziel_land",
+    "ziel_lat": "ziel_lat",
+    "ziel_lon": "ziel_lon",
+    "ziel_geo_precision": "ziel_genauigkeit",
+    "ziel_sicher": "ziel_sicher",
     "US_state_cleaned": "us_staat",
     "reiseart": "reiseart",
     "gruppe_id": "gruppe_id",
@@ -72,50 +79,6 @@ def kennzahlen(df: pl.DataFrame) -> dict:
     }
 
 
-def index_of(values: pl.Series) -> dict:
-    return {value: i for i, value in enumerate(values.to_list())}
-
-
-def atlas(df: pl.DataFrame) -> dict:
-    base = df.filter(pl.col("reiseart") == "Überfahrt", pl.col("jahr").is_not_null()).with_columns(pl.col("sektor").fill_null(-1))
-    ports = (
-        base.filter(pl.col("ankunft_lat").is_not_null())
-        .group_by("port_of_arrival_cleaned")
-        .agg(pl.col("ankunft_lat").first().alias("lat"), pl.col("ankunft_lon").first().alias("lon"), pl.len().alias("n"))
-        .sort("n", descending=True)
-    )
-    port_index = index_of(ports["port_of_arrival_cleaned"])
-    port_counts = (
-        base.filter(pl.col("port_of_arrival_cleaned").is_in(ports["port_of_arrival_cleaned"].implode()))
-        .group_by("port_of_arrival_cleaned", "jahr", "sektor").agg(pl.len().alias("n"))
-        .with_columns(pl.col("port_of_arrival_cleaned").replace_strict(port_index, return_dtype=pl.Int32).alias("i"))
-    )
-    payload = {
-        "bremen": BREMEN,
-        "sektoren": {str(k): v for k, v in KLDB_SECTORS_SHORT.items()},
-        "haefen": {"name": ports["port_of_arrival_cleaned"].to_list(), "lat": ports["lat"].to_list(), "lon": ports["lon"].to_list()},
-        "hafen_zaehlung": {c: port_counts[c].to_list() for c in ["i", "jahr", "sektor", "n"]},
-    }
-    if "herkunft_lat" in df.columns:
-        origins = point_layer(base.filter(pl.col("herkunft_geo_precision") == "ort"), "herkunft_ort", "herkunft_lat", "herkunft_lon")
-        payload |= {"herkunft": origins[0], "herkunft_zaehlung": origins[1]}
-    if "ziel_lat" in df.columns:
-        targets = point_layer(base.filter(pl.col("ziel_geo_precision") == "ort"), "ziel_ort", "ziel_lat", "ziel_lon")
-        payload |= {"ziele": targets[0], "ziel_zaehlung": targets[1]}
-    return payload
-
-
-def point_layer(df: pl.DataFrame, name: str, lat: str, lon: str) -> tuple[dict, dict]:
-    rounded = df.with_columns(pl.col(lat).round(3), pl.col(lon).round(3))
-    places = rounded.group_by(lat, lon).agg(pl.col(name).mode().first().alias("name"), pl.len().alias("n")).sort("n", descending=True)
-    places = places.with_row_index("i")
-    counts = rounded.join(places.select(lat, lon, "i"), on=[lat, lon]).group_by("i", "jahr", "sektor").agg(pl.len().alias("n")).sort("i", "jahr")
-    return (
-        {"name": places["name"].to_list(), "lat": places[lat].to_list(), "lon": places[lon].to_list()},
-        {c: counts[c].to_list() for c in ["i", "jahr", "sektor", "n"]},
-    )
-
-
 def sankey(df: pl.DataFrame) -> dict:
     base = df.filter(pl.col("reiseart") == "Überfahrt", pl.col("sektor").is_not_null(), pl.col("zeitraum").is_not_null())
     flows = base.with_columns(
@@ -130,7 +93,19 @@ def sankey(df: pl.DataFrame) -> dict:
     }
 
 
+UNCERTAIN_METHODS = ["fuzzy", "praefix"]
+
+
+def certainty(prefix: str) -> pl.Expr:
+    return (
+        (pl.col(f"{prefix}_geo_precision") == "ort")
+        & ~pl.col(f"{prefix}_geo_method").is_in(UNCERTAIN_METHODS).fill_null(False)
+        & ~pl.col(f"{prefix}_geo_ambiguous").fill_null(False)
+    ).fill_null(False).alias(f"{prefix}_sicher")
+
+
 def werkbank_parquet(df: pl.DataFrame) -> tuple[int, int]:
+    df = df.with_columns([certainty(prefix) for prefix in ["herkunft", "ziel"] if f"{prefix}_geo_method" in df.columns])
     present = {source: target for source, target in WERKBANK_COLUMNS.items() if source in df.columns}
     table = df.select([pl.col(s).alias(t) for s, t in present.items()]).with_columns(
         pl.col("id").cast(pl.Int32),
@@ -139,7 +114,7 @@ def werkbank_parquet(df: pl.DataFrame) -> tuple[int, int]:
         pl.col("nr").cast(pl.Int32),
         pl.col("gruppe_id").cast(pl.Int32),
     )
-    for column in ["herkunft_lat", "herkunft_lon"]:
+    for column in ["herkunft_lat", "herkunft_lon", "ziel_lat", "ziel_lon"]:
         if column in table.columns:
             table = table.with_columns(pl.col(column).cast(pl.Float32))
     table = table.sort(["abfahrt", "liste", "id"], nulls_last=True)
@@ -152,7 +127,6 @@ def werkbank_parquet(df: pl.DataFrame) -> tuple[int, int]:
 def run(df: pl.DataFrame) -> dict:
     figures = kennzahlen(df)
     write_web_json("kennzahlen", figures)
-    write_web_json("atlas", atlas(df))
     write_web_json("sankey", sankey(df))
     size, columns = werkbank_parquet(df)
     return {"kennzahlen": figures, "parquet_bytes": size, "parquet_columns": columns}

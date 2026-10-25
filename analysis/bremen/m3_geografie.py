@@ -14,6 +14,8 @@ MIN_Z = 3.0
 UNCERTAIN_METHODS = ["fuzzy", "praefix"]
 RELIGIOUS_OCCUPATION = r"(?i)ordens|nonne|kloster|novizin|missionar|pater|priester|^schwester$|^rel\.?\s?schwester"
 RELIGIOUS_MAJORITY = 0.5
+SECTOR_CATEGORIES = {1: "Landwirtschaft", 2: "Handwerk und Industrie", 3: "Handwerk und Industrie", 6: "Handel und Büro", 7: "Handel und Büro", 8: "Haushalt und Pflege"}
+CORRIDOR_CATEGORIES = ["Orden", "Landwirtschaft", "Handwerk und Industrie", "Handel und Büro", "Haushalt und Pflege", "gemischt"]
 
 
 def has_origin(df: pl.DataFrame) -> bool:
@@ -88,6 +90,7 @@ def group_units(df: pl.DataFrame) -> pl.DataFrame:
         ~pl.col("ziel_geo_method").is_in(UNCERTAIN_METHODS),
         ~pl.col("herkunft_geo_ambiguous").fill_null(False),
         ~pl.col("ziel_geo_ambiguous").fill_null(False),
+        pl.col("herkunft_ort") != pl.col("ziel_ort_gruppe"),
     )
     return located.group_by("gruppe_id").agg(
         pl.col("herkunft_ort").first(),
@@ -104,7 +107,16 @@ def group_units(df: pl.DataFrame) -> pl.DataFrame:
         pl.col("occupation_cleaned").drop_nulls().first().alias("beruf"),
         (pl.col("geschlecht") == "w").sum().alias("frauen"),
         pl.col("occupation_cleaned").str.contains(RELIGIOUS_OCCUPATION).fill_null(False).sum().alias("ordensleute"),
+        pl.col("sektor").filter(pl.col("occupation_cleaned") != "Hausfrau").drop_nulls().alias("sektoren"),
+        pl.col("gruppe_groesse").first(),
     )
+
+
+def corridor_category(religious_share: pl.Expr, sector: pl.Expr) -> pl.Expr:
+    expr = pl.lit("gemischt")
+    for code, label in SECTOR_CATEGORIES.items():
+        expr = pl.when(sector == code).then(pl.lit(label)).otherwise(expr)
+    return pl.when(religious_share > RELIGIOUS_MAJORITY).then(pl.lit("Orden")).otherwise(expr)
 
 
 def log_odds_with_prior(pairs: pl.DataFrame, origin: str, target: str) -> pl.DataFrame:
@@ -136,7 +148,11 @@ def corridors(units: pl.DataFrame) -> pl.DataFrame:
         pl.col("beruf").drop_nulls().mode().first().alias("haeufigster_beruf"),
         (pl.col("frauen").sum() / pl.col("personen").sum()).alias("frauenanteil"),
         (pl.col("ordensleute").sum() / pl.col("personen").sum()).alias("anteil_ordensleute"),
+        pl.col("sektoren").list.explode(keep_nulls=False, empty_as_null=False).mode().first().alias("haeufigster_sektor"),
+        (pl.col("gruppe_groesse") >= 3).mean().alias("anteil_familiengruppen"),
+        pl.col("jahr").alias("jahre_der_gruppen"),
     )
+    pairs = pairs.with_columns(corridor_category(pl.col("anteil_ordensleute"), pl.col("haeufigster_sektor")).alias("kategorie"))
     pairs = pairs.with_columns(pl.concat_str(["herkunft_ort", "herkunft_land_heute"], separator="|").alias("origin_key"))
     scored = log_odds_with_prior(pairs, "origin_key", "ziel_ort_gruppe")
     chained = (pl.col("y") >= MIN_CORRIDOR_GROUPS) & (pl.col("jahre") >= MIN_CORRIDOR_YEARS) & (pl.col("z") >= MIN_Z)
@@ -188,7 +204,7 @@ def run(df: pl.DataFrame) -> dict:
     coverage_destination = precision_coverage(base, "ziel_geo_precision")
 
     write_table("m3_schwerpunkte_jahr", yearly_centroids)
-    write_table("m3_korridore", scored.filter(pl.col("y") >= MIN_CORRIDOR_GROUPS))
+    write_table("m3_korridore", scored.filter(pl.col("y") >= MIN_CORRIDOR_GROUPS).drop("jahre_der_gruppen"))
     write_table("m3_region_hafen", region_ports)
     write_web_json("geografie", {
         "abdeckung_herkunft": coverage_origin,
@@ -199,7 +215,7 @@ def run(df: pl.DataFrame) -> dict:
         "regionen": regions,
         "orte": places,
         "ziele": destinations,
-        "korridore": scored.filter("kettenmigration").head(60),
+        "korridore": scored.filter("kettenmigration").head(60).drop("jahre_der_gruppen"),
         "korridor_anteil": chain_share,
         "region_hafen": region_ports.head(40),
     })

@@ -1,5 +1,5 @@
 import "./styles.css";
-import { renderAtlas } from "./sections/atlas";
+import { renderAtlasTeaser } from "./sections/atlas-teaser";
 import { renderHero } from "./sections/hero";
 import { renderQuellen } from "./sections/quellen";
 import { renderReportage } from "./sections/reportage";
@@ -9,7 +9,7 @@ import { renderWerkbank } from "./sections/werkbank";
 const sections: [string, (root: HTMLElement) => Promise<void>][] = [
   ["hero", renderHero],
   ["reportage-body", renderReportage],
-  ["atlas-body", renderAtlas],
+  ["atlas-body", renderAtlasTeaser],
   ["sankey-body", renderSankey],
   ["werkbank-body", renderWerkbank],
   ["quellen-body", renderQuellen],

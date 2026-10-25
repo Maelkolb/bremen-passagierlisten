@@ -2,7 +2,7 @@ import * as echarts from "echarts";
 import { exportCsv, literal, openDatabase, queryRows, type Database } from "../db";
 import { load } from "../data";
 import { escapeHtml, fmt } from "../format";
-import { koelnerPhonetik, normalizedSurname } from "../phonetik";
+import { contains, hasWildcard, occupationCondition, surnameCondition, toLike } from "../search";
 import { axisStyle, baseOption, onThemeChange, tokens } from "../theme";
 
 interface Criteria {
@@ -10,6 +10,7 @@ interface Criteria {
   aehnlich: boolean;
   vorname: string;
   herkunft: string;
+  ziel: string;
   hafen: string;
   beruf: string;
   hisco: string;
@@ -23,8 +24,8 @@ interface Criteria {
 const PAGE_SIZE = 50;
 const FIRST_YEAR = 1830;
 const LAST_YEAR = 1945;
-const SIMILARITY = 0.9;
-const INTERNAL_COLUMNS = ["nachname_norm", "phonetik", "herkunft_lat", "herkunft_lon"];
+const INTERNAL_COLUMNS = ["nachname_norm", "phonetik", "herkunft_lat", "herkunft_lon", "herkunft_genauigkeit", "herkunft_sicher", "ziel_lat", "ziel_lon", "ziel_genauigkeit", "ziel_sicher"];
+const URL_FIELDS = ["nachname", "vorname", "herkunft", "ziel", "beruf", "schiff", "hafen", "sektor", "hisco", "von", "bis", "reiseart"];
 
 const DETAIL_FIELDS: [string, string][] = [
   ["nachname", "Nachname"], ["vorname", "Vorname"], ["geschlecht", "Geschlecht"], ["alter", "Alter"],
@@ -43,11 +44,12 @@ export async function renderWerkbank(root: HTMLElement): Promise<void> {
   const [kennzahlen, berufe] = await Promise.all([load("kennzahlen"), load("berufe")]);
   const sectors = berufe.sektoren_kurz as Record<string, string>;
   root.innerHTML = `
-    <p class="lede mb-6">Alle ${fmt(kennzahlen.datensaetze)} Einträge, durchsuchbar direkt im Browser. Platzhalter: <code>*</code> für beliebig viele, <code>?</code> für ein Zeichen. Umlaute werden gleich behandelt (Müller findet auch Mueller).</p>
+    <p class="lede mb-6">Alle ${fmt(kennzahlen.datensaetze)} Einträge, durchsuchbar direkt im Browser. Platzhalter: <code>*</code> für beliebig viele, <code>?</code> für ein Zeichen. Umlaute werden gleich behandelt (Müller findet auch Mueller). Orte in Anführungszeichen ("Münster") werden genau gesucht.</p>
     <form id="wb-form" class="grid gap-4 md:grid-cols-4" autocomplete="off">
       <label class="field"><span>Nachname</span><input class="input" name="nachname" placeholder="z. B. Müller oder Schm*" /></label>
       <label class="field"><span>Vorname</span><input class="input" name="vorname" placeholder="z. B. Johann" /></label>
       <label class="field"><span>Herkunftsort oder Region</span><input class="input" name="herkunft" placeholder="z. B. Wien" /></label>
+      <label class="field"><span>Reiseziel</span><input class="input" name="ziel" placeholder="z. B. Chicago" /></label>
       <label class="field"><span>Beruf</span><input class="input" name="beruf" placeholder="z. B. Bäcker" /></label>
       <label class="field"><span>Ankunftshafen</span><select class="select" name="hafen"><option value="">alle</option></select></label>
       <label class="field"><span>Schiff</span><input class="input" name="schiff" list="wb-ships" placeholder="z. B. Columbus" /><datalist id="wb-ships"></datalist></label>
@@ -104,6 +106,7 @@ export async function renderWerkbank(root: HTMLElement): Promise<void> {
       });
       columns = new Set((await queryRows<any>(database, "DESCRIBE p")).map((r) => r.column_name));
       await fillOptions(database, form);
+      prefillFromUrl(form);
       root.querySelector("#wb-status")!.setAttribute("hidden", "");
       root.querySelector("#wb-results")!.removeAttribute("hidden");
       await search();
@@ -203,6 +206,11 @@ export async function renderWerkbank(root: HTMLElement): Promise<void> {
     button.textContent = "Auswahl als CSV herunterladen";
   });
 
+  const deepLink = location.hash === "#werkbank" || location.search.length > 1;
+  if (deepLink) {
+    start().then(() => document.getElementById("werkbank")?.scrollIntoView());
+    return;
+  }
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
@@ -224,6 +232,7 @@ function readCriteria(form: HTMLFormElement): Criteria {
     aehnlich: data.get("aehnlich") === "on",
     vorname: text("vorname"),
     herkunft: text("herkunft"),
+    ziel: text("ziel"),
     hafen: text("hafen"),
     beruf: text("beruf"),
     hisco: text("hisco"),
@@ -235,32 +244,35 @@ function readCriteria(form: HTMLFormElement): Criteria {
   };
 }
 
-const hasWildcard = (value: string) => /[*?]/.test(value);
-const toLike = (value: string) => value.replace(/[%_]/g, "").replace(/\*/g, "%").replace(/\?/g, "_");
-const contains = (value: string) => literal(hasWildcard(value) ? toLike(value) : `%${toLike(value)}%`);
+function prefillFromUrl(form: HTMLFormElement): void {
+  const params = new URLSearchParams(location.search);
+  for (const name of URL_FIELDS) {
+    const value = params.get(name);
+    const field = form.querySelector<HTMLInputElement | HTMLSelectElement>(`[name=${name}]`);
+    if (value !== null && field) field.value = value;
+  }
+  if (params.get("aehnlich") === "1") form.querySelector<HTMLInputElement>("[name=aehnlich]")!.checked = true;
+}
 
-function normalizedPattern(value: string): string {
-  return value.split(/([*?])/).map((part) => (part === "*" || part === "?" ? part : normalizedSurname(part))).join("");
+function placeCondition(value: string, fields: string[], exactFields: string[]): string {
+  const quoted = value.match(/^"(.+)"$/);
+  if (quoted) return `(${exactFields.map((f) => `${f} = ${literal(quoted[1])}`).join(" OR ")})`;
+  return `(${fields.map((f) => `${f} ILIKE ${contains(value)}`).join(" OR ")})`;
 }
 
 function whereClause(c: Criteria, columns: Set<string>): string {
   const parts: string[] = [];
-  if (c.nachname) {
-    if (hasWildcard(c.nachname)) {
-      parts.push(`(nachname ILIKE ${literal(toLike(c.nachname))} OR nachname_norm LIKE ${literal(toLike(normalizedPattern(c.nachname)))})`);
-    } else if (c.aehnlich) {
-      const code = koelnerPhonetik(c.nachname) ?? "";
-      parts.push(`(phonetik = ${literal(code)} OR jaro_winkler_similarity(nachname_norm, ${literal(normalizedSurname(c.nachname))}) >= ${SIMILARITY})`);
-    } else {
-      parts.push(`nachname_norm = ${literal(normalizedSurname(c.nachname))}`);
-    }
-  }
+  if (c.nachname) parts.push(surnameCondition(c.nachname, c.aehnlich));
   if (c.vorname) parts.push(`vorname ILIKE ${literal(hasWildcard(c.vorname) ? toLike(c.vorname) : `${toLike(c.vorname)}%`)}`);
   if (c.herkunft) {
     const fields = ["wohnort", "region", "herkunft_ort"].filter((f) => columns.has(f));
-    parts.push(`(${fields.map((f) => `${f} ILIKE ${contains(c.herkunft)}`).join(" OR ")})`);
+    parts.push(placeCondition(c.herkunft, fields, ["wohnort", "herkunft_ort"].filter((f) => columns.has(f))));
   }
-  if (c.beruf) parts.push(`(beruf ILIKE ${contains(c.beruf)} OR beruf_norm ILIKE ${contains(c.beruf)})`);
+  if (c.ziel) {
+    const fields = ["ziel", "ziel_ort", "ziel_ort_gruppe"].filter((f) => columns.has(f));
+    parts.push(placeCondition(c.ziel, fields, fields));
+  }
+  if (c.beruf) parts.push(occupationCondition(c.beruf));
   if (c.hafen) parts.push(`ankunftshafen = ${literal(c.hafen)}`);
   if (c.schiff) parts.push(`schiff ILIKE ${contains(c.schiff)}`);
   if (c.hisco) parts.push(`hisco = ${Number(c.hisco)}`);

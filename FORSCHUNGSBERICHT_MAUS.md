@@ -14,7 +14,7 @@ Die Einträge wurden von Ehrenamtlichen der *MAUS – Gesellschaft für Familien
 - **Geschlecht und Alter.** 1907 kamen auf 100 Frauen 282 Männer, 1939 87. Das Medianalter stieg von 24 (1921) auf 38 Jahre (1939).
 - **Reisegruppen.** In Gruppen ab drei Personen reisten 22,0 % der Auswanderer 1907–1914 und 12,7 % 1930–1939.
 - **Routen.** 76,1 % aller datierten Einträge führen nach New York.
-- **Herkunft und Ketten.** Der Mittelpunkt der europäischen Herkunftsorte lag 1907 bei 48,4° N, 19,8° O und 1939 bei 51,4° N, 11,5° O. 727 Herkunft-Ziel-Korridore erfüllen die Kriterien wiederkehrender, überzufälliger Kettenmigration.
+- **Herkunft und Ketten.** Der Mittelpunkt der europäischen Herkunftsorte lag 1907 bei 48,4° N, 19,8° O und 1939 bei 51,4° N, 11,5° O. 717 Herkunft-Ziel-Korridore erfüllen die Kriterien wiederkehrender, überzufälliger Kettenmigration.
 
 ## 1 Quellenkritik und Überlieferungsdichte
 
@@ -144,7 +144,7 @@ Shannon-Entropie *H* der Verteilung über Berufsbezeichnungen bzw. HISCO-Codes. 
 | HISCO-Codes | Zwanziger Jahre 1919–1929 | 181.185 | 248 | 3,57 | 3,55 (3,52–3,58) | 35 |
 | HISCO-Codes | Dreißiger Jahre 1930–1939 | 105.218 | 223 | 3,35 | 3,34 (3,31–3,37) | 28 |
 
-Die Segelschiffzeit ist zu dünn belegt für einen Vergleich; die häufigsten Angaben dort sind Matrose (40), Landmann (32), Ackersmann (15), Leichtmatrose (15), Ökonom (12), Zimmermann (12), Tischler (11), Schuhmacher (11), Kaufmann (8), Schneider (8).
+Die Segelschiffzeit ist zu dünn belegt für einen Vergleich; die häufigsten Angaben dort sind Matrose (40), Landmann (32), Leichtmatrose (15), Ackersmann (15), Ökonom (12), Zimmermann (12), Schuhmacher (11), Tischler (11), Kaufmann (8), Schneider (8).
 
 ### Steigende und fallende Berufe
 
@@ -326,12 +326,12 @@ Schwerpunkt (sphärisches Mittel) und Standarddistanz (quadratisches Mittel der 
 
 ### Kettenmigration
 
-Einheit ist die rekonstruierte Reisegruppe, nicht die Person; eine große Familie zählt einmal. Berücksichtigt sind Reisegruppen mit sicher zugeordnetem Herkunftsort in Europa und Zielort in Übersee (Ortsgenauigkeit, ohne unscharfe oder mehrdeutige Treffer); Rück- und Geschäftsreisen mit europäischem Ziel fallen so heraus. Für jedes Paar aus Herkunftsort und Zielort wurde das gewichtete log-odds-Verhältnis mit informativem Dirichlet-Prior (Monroe, Colaresi und Quinn 2008; Priorstärke 500) gegen alle anderen Herkunftsorte berechnet, dazu die punktweise Transinformation (PMI). Als Korridor der Kettenmigration gilt ein Paar mit mindestens fünf Reisegruppen in mindestens drei verschiedenen Jahrgängen und z ≥ 3. Das trifft auf 727 von 73.905 Paaren zu, gebildet aus 195.134 Reisegruppen.
+Einheit ist die rekonstruierte Reisegruppe, nicht die Person; eine große Familie zählt einmal. Berücksichtigt sind Reisegruppen mit sicher zugeordnetem Herkunftsort in Europa und Zielort in Übersee (Ortsgenauigkeit, ohne unscharfe oder mehrdeutige Treffer, ohne gleichnamige Herkunfts- und Zielorte, die meist auf Verwechslungen beruhen); Rück- und Geschäftsreisen mit europäischem Ziel fallen so heraus. Jeder Korridor erhält eine Kategorie: *Orden*, wenn mehr als die Hälfte der Reisenden Ordensleute sind, sonst den häufigsten Berufsbereich der Reisenden (ohne Hausfrauen). Für jedes Paar aus Herkunftsort und Zielort wurde das gewichtete log-odds-Verhältnis mit informativem Dirichlet-Prior (Monroe, Colaresi und Quinn 2008; Priorstärke 500) gegen alle anderen Herkunftsorte berechnet, dazu die punktweise Transinformation (PMI). Als Korridor der Kettenmigration gilt ein Paar mit mindestens fünf Reisegruppen in mindestens drei verschiedenen Jahrgängen und z ≥ 3. Das trifft auf 717 von 73.836 Paaren zu, gebildet aus 194.955 Reisegruppen.
 
 | Herkunft | Ziel | Gruppen | Personen | Jahre | Jahrgänge | z | PMI | häufigster Beruf | Frauen |
 |---|---|---:|---:|---|---:|---:|---:|---|---:|
 | Münster (DE) | Springfield (US) | 104 | 105 | 1921–1930 | 8 | 38,0 | 6,6 | Schwester | 99 % |
-| Bremen (DE) | New York City (US) | 2.905 | 3.454 | 1860–1939 | 25 | 34,1 | 0,6 | Hausfrau | 52 % |
+| Bremen (DE) | New York City (US) | 2.905 | 3.454 | 1860–1939 | 25 | 34,0 | 0,6 | Hausfrau | 52 % |
 | Hiltrup (DE) | Reading (US) | 70 | 70 | 1921–1927 | 6 | 34,0 | 8,6 | Schwester | 81 % |
 | Budapest (HU) | Montevideo (UY) | 166 | 217 | 1925–1934 | 10 | 31,2 | 3,8 | Hausfrau | 48 % |
 | Lehe (DE) | Hoboken (US) | 114 | 137 | 1908–1936 | 12 | 28,5 | 4,3 | Hausfrau | 75 % |
@@ -351,21 +351,21 @@ Einheit ist die rekonstruierte Reisegruppe, nicht die Person; eine große Famili
 | Bremerhaven (DE) | Hoboken (US) | 67 | 86 | 1922–1937 | 10 | 19,8 | 4,0 | Hausfrau | 74 % |
 | Solingen (DE) | Bridgeport (US) | 35 | 55 | 1923–1935 | 9 | 19,7 | 6,0 | Hausfrau | 44 % |
 | Hamburg (DE) | Valparaíso (CL) | 73 | 113 | 1925–1939 | 13 | 19,5 | 3,5 | Kaufmann | 52 % |
-| Breslau (PL) | Shanghai (CN) | 52 | 95 | 1936–1939 | 3 | 19,3 | 4,4 | Kaufmann | 46 % |
+| Breslau (PL) | Shanghai (CN) | 52 | 95 | 1936–1939 | 3 | 19,2 | 4,4 | Kaufmann | 46 % |
 | Hamburg (DE) | Buenos Aires (AR) | 587 | 898 | 1907–1938 | 19 | 18,8 | 1,0 | Kaufmann Angestellt | 43 % |
 | Neunkirchen (DE) | Kenosha (US) | 27 | 42 | 1925–1927 | 3 | 18,5 | 7,8 | Bergmann | 38 % |
 | Thalheim (DE) | Philadelphia (US) | 104 | 130 | 1921–1934 | 10 | 18,4 | 3,4 | Weber | 29 % |
 
-Unter den 25 stärksten Korridoren werden 8 überwiegend von Ordensleuten getragen (Berufsangabe Schwester, Ordensschwester, Nonne, Missionar; Anteil über 50 %), etwa Münster → Springfield, Hiltrup → Reading, Olpe → Lafayette, Oppeln → Springfield, Obersasbach → Milwaukee, Paderborn → Wilmette. Insgesamt gilt das für 21 der 727 Korridore. Wahrscheinlich sind es Entsendungen zwischen Mutterhäusern und Niederlassungen von Orden in Nordamerika; sie erfüllen die statistischen Kriterien wiederkehrender Wanderung, beruhen aber nicht auf Familiennetzen. Daneben stehen Verbindungen der Unterweserorte (Lehe, Bremerhaven, Wesermünde) nach Hoboken und New York, gewerbliche Korridore (Weber aus Thalheim nach Dover und Philadelphia, Bergleute aus Herdorf und Neunkirchen) und die Flucht nach Shanghai, deren Einträge aus Berlin und Breslau sich auf 1938 und 1939 konzentrieren.
+Unter den 25 stärksten Korridoren werden 8 überwiegend von Ordensleuten getragen (Berufsangabe Schwester, Ordensschwester, Nonne, Missionar; Anteil über 50 %), etwa Münster → Springfield, Hiltrup → Reading, Olpe → Lafayette, Oppeln → Springfield, Obersasbach → Milwaukee, Paderborn → Wilmette. Insgesamt gilt das für 21 der 717 Korridore. Wahrscheinlich sind es Entsendungen zwischen Mutterhäusern und Niederlassungen von Orden in Nordamerika; sie erfüllen die statistischen Kriterien wiederkehrender Wanderung, beruhen aber nicht auf Familiennetzen. Daneben stehen Verbindungen der Unterweserorte (Lehe, Bremerhaven, Wesermünde) nach Hoboken und New York, gewerbliche Korridore (Weber aus Thalheim nach Dover und Philadelphia, Bergleute aus Herdorf und Neunkirchen) und die Flucht nach Shanghai, deren Einträge aus Berlin und Breslau sich auf 1938 und 1939 konzentrieren.
 
 Anteil der Reisegruppen, die in einem dieser Korridore reisten:
 
 | Zeitraum | Gruppen | in Korridoren |
 |---|---:|---:|
 | Segelschiffzeit 1830–1869 | 16 | 18,8 % |
-| Vorkriegsjahre 1907–1914 | 26.020 | 9,0 % |
-| Zwanziger Jahre 1919–1929 | 115.164 | 21,8 % |
-| Dreißiger Jahre 1930–1939 | 53.934 | 22,6 % |
+| Vorkriegsjahre 1907–1914 | 26.017 | 9,0 % |
+| Zwanziger Jahre 1919–1929 | 115.090 | 21,8 % |
+| Dreißiger Jahre 1930–1939 | 53.832 | 22,6 % |
 
 Überrepräsentierte Kombinationen aus Region (Angabe der Liste) und Ankunftshafen, gleiche Methode, mindestens 20 Reisegruppen; Regionen im Land des Ankunftshafens (Heimreisen) ausgenommen:
 
@@ -526,7 +526,7 @@ Eine Reise ist eine Kombination aus Schiff und Abfahrtsdatum.
 | Zwanziger Jahre 1919–1929 | 767 | 343.268 | 394 | 448 | 909 | 1.616 |
 | Dreißiger Jahre 1930–1939 | 2.240 | 292.099 | 10 | 130 | 469 | 1.749 |
 
-Der niedrige Median der Dreißigerjahre kommt von 1.371 Reisen mit weniger als 20 Einträgen (61 % aller Reisen, aber nur 2,7 % der Einträge). Es sind vor allem Fahrten kleinerer Schiffe in Nord- und Ostsee, nach West- und Südeuropa sowie Frachtschiffe nach Übersee; häufigste Ziele: Kingston upon Hull (97), San Francisco (75), Baltimore (58), Valparaiso (53), Finnland (52), Antwerpen (42). 56 % der Einträge dieser Jahre entfallen auf Reisen mit mindestens 500 Passagieren.
+Der niedrige Median der Dreißigerjahre kommt von 1.371 Reisen mit weniger als 20 Einträgen (61 % aller Reisen, aber nur 2,7 % der Einträge). Es sind vor allem Fahrten kleinerer Schiffe in Nord- und Ostsee, nach West- und Südeuropa sowie Frachtschiffe nach Übersee; häufigste Ziele: Kingston upon Hull (97), San Francisco (76), Baltimore (58), Finnland (52), Valparaiso (46), Antwerpen (42). 56 % der Einträge dieser Jahre entfallen auf Reisen mit mindestens 500 Passagieren.
 
 | Schiff | Einträge | Reisen | Jahre | größte Reise | Reederei |
 |---|---:|---:|---|---:|---|
@@ -582,4 +582,4 @@ Verteilung der Überfahrten (ohne US-Staatsangehörige und Kreuzfahrten) über d
 
 - **Reproduktion.** `python analysis/run_all.py --rebuild` lädt die Zenodo-Datei (MD5-Prüfung), baut die angereicherte Tabelle, rechnet alle Module, schreibt die Tabellen nach `analysis/output/`, die Webdaten nach `web/public/data/` und diesen Bericht.
 
-- **Webdatenbank.** `web/public/data/passagiere.parquet` enthält alle Einträge in 39 Spalten, wörterbuchkodiert und ZSTD-komprimiert, 21,4 MB.
+- **Webdatenbank.** `web/public/data/passagiere.parquet` enthält alle Einträge in 47 Spalten, wörterbuchkodiert und ZSTD-komprimiert, 23,9 MB.

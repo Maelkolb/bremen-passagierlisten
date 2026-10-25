@@ -13,6 +13,7 @@ Datengrundlage: Perschl, Schmidt, Gassner, Rehbein (2025), *A Dataset of 735,000
 | `analysis/output/` | Ergebnistabellen als CSV |
 | `data/enrichment/` | Nachschlagetabellen der Anreicherung |
 | `web/` | Website (Vite, TypeScript, Tailwind, ECharts, MapLibre und deck.gl, DuckDB-Wasm) |
+| `web/atlas.html` | eigenständiger Atlas der Auswanderung (`web/src/atlas/`) |
 | `web/public/data/` | JSON-Aggregate und `passagiere.parquet` (alle Einträge) für die Website |
 
 ## Analyse neu rechnen
@@ -50,6 +51,20 @@ Entwicklung mit automatischem Neuladen: `npm run dev`. Alternativ jeder statisch
 
 Für eine spätere Veröffentlichung genügt es, den Inhalt von `web/dist` auf einen beliebigen statischen Host zu legen (GitHub Pages, Netlify, Vercel, eigener Server). Alle Pfade sind relativ.
 
+## Atlas
+
+`atlas.html` ist eine eigene Anwendung neben der Reportage. Sie zeigt alle Ergebnisse mit räumlichem Bezug und hat fünf Ansichten:
+
+- **Herkunft**: Orte, Dichte im Sechseckraster oder Überrepräsentation einer Auswahl je Ort (Lagequotient)
+- **Ziele**: Ankunftshäfen und genannte Reiseziele
+- **Wege**: stärkste Verbindungen von Herkunftsort zu Reiseziel
+- **Ketten**: 717 Korridore der Kettenmigration in sechs Kategorien
+- **Wandel**: Differenzkarte zweier Zeiträume mit Schwerpunkt je Jahr und Standardabweichungsellipsen
+
+Alle Ansichten folgen einer Zeitleiste mit Abspielfunktion und den Filtern für Reiseart, Berufsbereich, Geschlecht, Alter, Staatsangehörigkeit, Nachname (auch Kölner Phonetik) und Beruf. Ein Klick auf einen Ort öffnet sein Profil mit Zielen bzw. Herkünften, Berufen, Nachnamen und Häfen; von dort führt ein Link zu den Einträgen in der Werkbank. Der Rundgang (`atlas.html#kapitel=1`) erzählt die Ergebnisse in sieben Kapiteln; seine Zahlen stammen aus `web/public/data/atlas/kapitel.json`.
+
+Die Grundansicht kommt aus `web/public/data/atlas/basis.json` und erscheint sofort. Alle gefilterten Ansichten rechnet DuckDB-Wasm im Browser aus `passagiere.parquet`. Der Zustand steht in der Adresse (`#ansicht=ketten&von=1919&bis=1929`), sodass sich jede Ansicht verlinken lässt.
+
 ## Lizenz und Dank
 
-Daten: CC BY 4.0 (Zenodo-Datensatz), Ortskoordinaten: GeoNames (CC BY 4.0), Küstenlinien: Natural Earth (gemeinfrei). Die Transkription verdanken wir den Ehrenamtlichen der MAUS Bremen, der Handelskammer Bremen und dem Staatsarchiv Bremen ([passagierlisten.de](https://passagierlisten.de/)).
+Daten: CC BY 4.0 (Zenodo-Datensatz), Ortskoordinaten: GeoNames (CC BY 4.0), Küsten, Seen und Flüsse: Natural Earth (gemeinfrei). Die Transkription verdanken wir den Ehrenamtlichen der MAUS Bremen, der Handelskammer Bremen und dem Staatsarchiv Bremen ([passagierlisten.de](https://passagierlisten.de/)).

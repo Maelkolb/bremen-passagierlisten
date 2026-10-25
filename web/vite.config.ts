@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, "index.html"),
         bericht: resolve(__dirname, "bericht.html"),
+        atlas: resolve(__dirname, "atlas.html"),
       },
     },
   },

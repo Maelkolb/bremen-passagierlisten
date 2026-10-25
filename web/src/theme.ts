@@ -12,6 +12,7 @@ export interface Tokens {
   sea: string;
   land: string;
   landLine: string;
+  river: string;
   series: string[];
   sequential: string[];
   serif: string;
@@ -33,6 +34,7 @@ export function tokens(): Tokens {
     sea: read("--sea"),
     land: read("--land"),
     landLine: read("--land-line"),
+    river: read("--river"),
     series: [1, 2, 3, 4, 5, 6, 7, 8].map((i) => read(`--s${i}`)),
     sequential: [0, 1, 2, 3, 4, 5].map((i) => read(`--seq-${i}`)),
     serif: read("--font-serif"),

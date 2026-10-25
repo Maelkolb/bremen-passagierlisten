@@ -2,7 +2,7 @@ import argparse
 import sys
 import time
 
-from bremen import m1_quellen, m2_berufe, m3_geografie, m4_demografie, m5_schifffahrt, report, web_exports
+from bremen import atlas_export, m1_quellen, m2_berufe, m3_geografie, m4_demografie, m5_schifffahrt, report, web_exports
 from bremen.load import prepared
 
 MODULES = [
@@ -31,6 +31,7 @@ def main() -> None:
         results[name] = module.run(df)
         print(f"{name}: {time.time() - step:.1f} s")
 
+    results["atlas"] = atlas_export.run(df, results)
     report.write(df, results)
     print(f"Fertig in {time.time() - started:.1f} s")
 
