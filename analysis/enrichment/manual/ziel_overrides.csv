@@ -1,0 +1,106 @@
+ziel_text,us_state,hafen_land,ziel,ziel_typ,ziel_ort,genauigkeit,konfidenz,bemerkung,quelle
+NY,,,gn:5128581,ort,,,,Kürzel als Ortsangabe = Stadt New York,GeoNames 5128581
+N.Y.,,,gn:5128581,ort,,,,Kürzel als Ortsangabe = Stadt New York,GeoNames 5128581
+NYC,,,gn:5128581,ort,,,,,GeoNames 5128581
+N.Y.C.,,,gn:5128581,ort,,,,,GeoNames 5128581
+NY City,,,gn:5128581,ort,,,,,GeoNames 5128581
+NYCity,,,gn:5128581,ort,,,,,GeoNames 5128581
+New York C.,,,gn:5128581,ort,,,,,GeoNames 5128581
+New Jork,,,gn:5128581,ort,,,,Schreibvariante,GeoNames 5128581
+Neu York,,,gn:5128581,ort,,,,dt. Schreibung,GeoNames 5128581
+Neuyork,,,gn:5128581,ort,,,,dt. Schreibung,GeoNames 5128581
+Newyork,,,gn:5128581,ort,,,,,GeoNames 5128581
+WI,,,adm1:US.WI,bundesstaat,,,0.8,Staatskürzel allein,admin1CodesASCII US.WI
+Brookllyn,,,gn:5110302,ort,,,0.85,Schreibfehler,GeoNames 5110302
+Philadelphiadelphia,,,gn:4560349,ort,,,0.85,Schreibfehler (Doppelung),GeoNames 4560349
+Joungstown,,,gn:5177568,ort,,,0.85,Schreibfehler Youngstown (nur OH-Belege),GeoNames 5177568
+Arkon,OH,,gn:5145476,ort,,,0.85,Buchstabendreher Akron,GeoNames 5145476
+Keesport,PA,,gn:5200499,ort,,,0.85,abgeschnittenes McKeesport,GeoNames 5200499
+Elisabeth,NY,,gn:5097598,ort,,,0.7,Staatsangabe NY für Elizabeth NJ (Hafennähe),GeoNames 5097598
+Elizabethport,,,gn:5097598,ort,Elizabethport (Elizabeth),,0.85,Stadtteil von Elizabeth NJ,GeoNames 5097598
+West Hoboken,,,gn:5105634,ort,West Hoboken (Union City),,0.85,1925 mit Union Hill zu Union City NJ vereinigt,GeoNames 5105634; Wikipedia 'West Hoboken'
+W. Hoboken,,,gn:5105634,ort,West Hoboken (Union City),,0.85,wie West Hoboken,GeoNames 5105634
+Union Hill,NJ,,gn:5105634,ort,Union Hill (Union City),,0.85,1925 Teil von Union City NJ,GeoNames 5105634
+Rochelle,NY,,gn:5128549,ort,,,0.8,abgekürztes New Rochelle,GeoNames 5128549
+Fort Slocum,,,gn:5128549,ort,Fort Slocum (New Rochelle),,0.8,Armeeposten auf Davids Island vor New Rochelle,GeoNames 5128549
+Stanford,CT,,gn:4843564,ort,,,0.75,Schreibvariante Stamford CT,GeoNames 4843564
+Ind. Harbor,,,gn:4921838,ort,,,0.85,Indiana Harbor (East Chicago IN),GeoNames 4921838
+Ind Harbor,,,gn:4921838,ort,,,0.85,Indiana Harbor (East Chicago IN),GeoNames 4921838
+Indiana Harbor,,,gn:4921838,ort,,,0.9,,GeoNames 4921838
+Indian Harbor,,,gn:4921838,ort,,,0.8,Schreibvariante Indiana Harbor,GeoNames 4921838
+Harbor,IN,,gn:4921838,ort,,,0.7,'Harbor' mit IN = Indiana Harbor,GeoNames 4921838
+East Chicago,IL,,gn:4919857,ort,,,0.8,East Chicago liegt in Indiana,GeoNames 4919857
+Grantwood,NY,,gn:5098556,ort,,,0.75,Grantwood ist Teil von Cliffside Park NJ,GeoNames 5098556
+Woodcliff,NY,,gn:5106548,ort,,,0.7,Woodcliff Lake NJ,GeoNames 5106548
+Arlington,NJ,,gn:5099967,ort,Arlington (Kearny),,0.75,Arlington ist Ortsteil von Kearny NJ,GeoNames 5099967
+Kohler,WI,,gn:5281340,ort,,,0.85,Dorf der Kohler Co. im Sheboygan County,GeoNames 5281340
+Tuckahoe,NY,,gn:5141528,ort,,,0.8,Village Tuckahoe im Westchester County,GeoNames 5141528
+Wheeling,VA,,gn:5280854,ort,,,0.8,Wheeling liegt seit 1863 in West Virginia,GeoNames 5280854
+Endicott,NJ,,gn:5116602,ort,,,0.75,Endicott NY (kein Ort in NJ),GeoNames 5116602
+West Seneca,NJ,,gn:5143992,ort,,,0.75,West Seneca NY (kein Ort in NJ),GeoNames 5143992
+Atlantic City,NY,,gn:4500546,ort,,,0.8,Atlantic City NJ,GeoNames 4500546
+Rockaway,NY,,gn:5116917,ort,Rockaway (Queens),,0.7,Rockaway-Halbinsel in Queens; Punkt Far Rockaway,GeoNames 5116917
+Long Island,NJ,,gn:5125123,region,Long Island,bundesstaat,0.8,Long Island NY bei falscher Staatsangabe,GeoNames 5125123
+Palisade,NJ,,gn:5102369,ort,Palisade (Palisades Park),,0.6,vermutlich Palisades Park NJ,GeoNames 5102369
+Bryn Mawr,PA,,gn:5182064,ort,,,0.75,Bryn Mawr an der Main Line (Montgomery County),GeoNames 5182064
+Queenstown,,Irland,gn:2965260,ort,Cobh (Queenstown),,0.95,Queenstown = Cobh (bis 1920),GeoNames 2965260
+Queenstown,<leer>,,gn:2965260,ort,Cobh (Queenstown),,0.8,Queenstown als Zwischenhafen = Cobh,GeoNames 2965260
+"Queenstown, Engl.",,,gn:2965260,ort,Cobh (Queenstown),,0.85,Cobh gehörte 1920 noch zum Vereinigten Königreich,GeoNames 2965260
+"Queenstown, England",,,gn:2965260,ort,Cobh (Queenstown),,0.85,wie oben,GeoNames 2965260
+Genua,,,gn:3176219,ort,,,0.95,dt. Exonym,GeoNames 3176219
+Hull,,England,gn:2645425,ort,,,0.95,Hull = Kingston upon Hull,GeoNames 2645425
+Hull,,"England, USA",gn:2645425,ort,,,0.9,Hull-Route,GeoNames 2645425
+Hull,,"England, Kanada",gn:2645425,ort,,,0.9,Hull-Route,GeoNames 2645425
+Boulogne,,,gn:3031133,ort,,,0.9,Hafen Boulogne-sur-Mer,GeoNames 3031133
+Boulogne s/M,,,gn:3031133,ort,,,0.9,,GeoNames 3031133
+Villagarcia,,,gn:3105575,ort,,,0.9,Hafen Vilagarcía de Arousa,GeoNames 3105575
+Vera Cruz,<leer>,,gn:3514783,ort,,,0.9,Hafen Veracruz,GeoNames 3514783
+"Vera Cruz, Mex",,,gn:3514783,ort,,,0.9,,GeoNames 3514783
+Sao Francisco,,Brasilien,gn:3449112,ort,,,0.85,Hafen São Francisco do Sul (Anlaufhafen der Liste),GeoNames 3449112
+Sao Francsico d.S.,,,gn:3449112,ort,,,0.9,,GeoNames 3449112
+Sao Francisco d.S.,,,gn:3449112,ort,,,0.9,,GeoNames 3449112
+S. Francisco d.S.,,,gn:3449112,ort,,,0.9,,GeoNames 3449112
+Sao F.d.S.,,,gn:3449112,ort,,,0.9,,GeoNames 3449112
+Sao Fr.d.S.,,,gn:3449112,ort,,,0.9,,GeoNames 3449112
+Sao Franc. d. S.,,,gn:3449112,ort,,,0.9,,GeoNames 3449112
+Rio Grande d. S.,,,adm1:BR.23,bundesstaat,Rio Grande do Sul,,0.85,Abkürzung Rio Grande do Sul,admin1CodesASCII BR.23
+Rio de Janiero,,,gn:3451190,ort,,,0.9,Buchstabendreher,GeoNames 3451190
+Santiago de Ch.,,,gn:3871336,ort,,,0.9,Santiago de Chile,GeoNames 3871336
+"Mexiko, D.F.",,,gn:3530597,ort,,,0.95,Distrito Federal = Mexiko-Stadt,GeoNames 3530597
+"Mexico, D.F.",,,gn:3530597,ort,,,0.95,,GeoNames 3530597
+"Mexico, Mex",,,gn:3530597,ort,,,0.8,Hauptstadt gemeint (Staatsname doppelt),GeoNames 3530597
+"Mexico, Mex.",,,gn:3530597,ort,,,0.8,,GeoNames 3530597
+"Mexiko, Mex.",,,gn:3530597,ort,,,0.8,,GeoNames 3530597
+Mexico C.,,,gn:3530597,ort,,,0.85,,GeoNames 3530597
+Mexiko City,,,gn:3530597,ort,,,0.9,,GeoNames 3530597
+Hongkong,,,gn:1819729,ort,Hong Kong,,0.95,Stadt Hongkong statt Gebiet,GeoNames 1819729
+Leixoes,,,gn:2737824,ort,Leixões (Matosinhos),,0.9,Hafen Leixões liegt in Matosinhos bei Porto,GeoNames 2737824
+"Leixoes, Portugal",,,gn:2737824,ort,Leixões (Matosinhos),,0.9,,GeoNames 2737824
+Southhampton,<leer>,,gn:2637487,ort,,,0.85,Schreibfehler Southampton,GeoNames 2637487
+Lehe,<leer>,,gn:2944368,ort,Lehe (Bremerhaven),,0.8,Lehe bis 1924 eigene Stadt; heute Stadtteil von Bremerhaven,GeoNames 2944368
+Geestemünde,,,gn:2944368,ort,Geestemünde (Bremerhaven),,0.85,1924 in Wesermünde aufgegangen; heute Bremerhaven,GeoNames 2944368
+Barmen,<leer>,,gn:2805753,ort,Barmen (Wuppertal),,0.85,1929 mit Elberfeld zu Wuppertal vereinigt,GeoNames 2805753
+Elberfeld,<leer>,,gn:2805753,ort,Elberfeld (Wuppertal),,0.85,1929 mit Barmen zu Wuppertal vereinigt,GeoNames 2805753
+Wuppertal-Barmen,,,gn:2805753,ort,Barmen (Wuppertal),,0.9,,GeoNames 2805753
+Wuppertal-Elberfeld,,,gn:2805753,ort,Elberfeld (Wuppertal),,0.9,,GeoNames 2805753
+Breslau,<leer>,,gn:3081368,ort,Wrocław (Breslau),,0.85,dt. Name von Wrocław; ohne US-Staatsangabe,GeoNames 3081368
+Fort William,,Kanada,gn:6166142,ort,Fort William (Thunder Bay),,0.8,1970 in Thunder Bay ON aufgegangen,GeoNames 6166142
+Surrey,,England,land:GB,region,Surrey,land,0.85,englische Grafschaft; nur Landespunkt,countryInfo GB
+CA,,,adm1:US.CA,bundesstaat,,,0.75,Staatskürzel allein,admin1CodesASCII US.CA
+Walfischbai,,,gn:3359638,ort,Walvis Bay,,0.9,dt. Name Walfischbucht/Walfischbai,GeoNames 3359638
+Walfischbucht,,,gn:3359638,ort,Walvis Bay,,0.9,dt. Name,GeoNames 3359638
+Elisabeth,<leer>,USA,gn:5097598,ort,,,0.65,dt. Schreibung Elizabeth NJ (häufigste Lesart im Datensatz),GeoNames 5097598
+Tilsit,<leer>,,gn:490068,ort,Sowetsk (Tilsit),,0.85,dt. Name von Sowetsk (Oblast Kaliningrad),GeoNames 490068
+Reichenberg,<leer>,,gn:3071961,ort,Liberec (Reichenberg),,0.75,dt. Name von Liberec; auch dt. Dörfer gleichen Namens,GeoNames 3071961
+San Jose,,Guatemala,gn:3591060,ort,Puerto San José,,0.85,Anlaufhafen der Liste,GeoNames 3591060
+San Jose d.G.,,,gn:3591060,ort,Puerto San José,,0.85,San José de Guatemala,GeoNames 3591060
+Washington,<leer>,USA,gn:4140963,ort,,,0.8,ohne Staatsangabe meist Hauptstadt,GeoNames 4140963
+Trenton,NY,,gn:5105496,ort,,,0.75,Trenton NJ; in NY nur Altname eines Weilers (Barneveld),GeoNames 5105496
+Richmond,NY,,gn:5139568,ort,Richmond (Staten Island),,0.8,Borough of Richmond hieß bis 1975 offiziell so,GeoNames 5139568
+New Haven,NY,,gn:4839366,ort,,,0.75,New Haven CT (NY-Ort ohne Einwohnerzahl),GeoNames 4839366
+Allegheny,PA,,gn:5206379,ort,Allegheny (Pittsburgh),,0.85,Allegheny City 1907 nach Pittsburgh eingemeindet (North Side),GeoNames 5206379 (Altname Allegheny)
+Alleghany,PA,,gn:5206379,ort,Allegheny (Pittsburgh),,0.75,Schreibvariante Allegheny,GeoNames 5206379
+Techny,IL,,gn:4904056,ort,Techny (Northbrook),,0.85,Missionshaus der Steyler Missionare in Techny bei Northbrook IL,GeoNames 4904056 (Altname Techny)
+South Bethlehem,,,gn:5212917,ort,South Bethlehem (Bethlehem),,0.85,1917 in Bethlehem PA eingemeindet (Stahlwerk); nicht der gleichnamige Ort im Armstrong County,GeoNames 5212917
+So Bethlehem,,,gn:5212917,ort,South Bethlehem (Bethlehem),,0.85,Abkürzung South Bethlehem,GeoNames 5212917
+S. Bethlehem,,,gn:5212917,ort,South Bethlehem (Bethlehem),,0.8,Abkürzung South Bethlehem,GeoNames 5212917

@@ -1,0 +1,361 @@
+kuerzel,bereiche,art,stark,anzeige,punkt,genauigkeit,quelle
+D,DE,kuerzel,1,,,,"Kfz-Nationalitätszeichen; im Datensatz z. B. 'Berlin, D'"
+D.,DE,kuerzel,1,,,,Kfz-Nationalitätszeichen
+Germ,DE,kuerzel,1,,,,"Abkürzung Germany; 'Berlin, Germ'"
+Germ.,DE,kuerzel,1,,,,Abkürzung Germany
+Deutschland,DE,name,1,,,,dt. Ländername
+Deutsches Reich,DE,name,1,,,,dt. Ländername
+Bay.,DE.02,kuerzel,1,,,,"Bayern; 'München, Bay.'; Punkt = heutiges Land DE.02 (GeoNames ADM1)"
+Bav.,DE.02,kuerzel,1,,,,Bavaria; Punkt = heutiges Land DE.02 (GeoNames ADM1)
+Bayern,DE.02,name,1,Bayern,,bundesstaat,dt. Land; Punkt = heutiges Land DE.02 (GeoNames ADM1)
+Baden,DE.01,name,0,Baden,,bundesstaat,dt. Land; auch Orte namens Baden (AT/CH); Punkt = heutiges Land DE.01 (GeoNames ADM1)
+Hann.,DE.06,kuerzel,1,,,,Provinz Hannover; Punkt = heutiges Land DE.06 (GeoNames ADM1)
+Westf.,DE.07,kuerzel,1,,,,Westfalen; Punkt = heutiges Land DE.07 (GeoNames ADM1)
+Westfalen,DE.07,name,1,Westfalen,,bundesstaat,preuß. Provinz; Punkt = heutiges Land DE.07 (GeoNames ADM1)
+Sachsen,DE.13,name,1,Sachsen,,bundesstaat,dt. Land; Punkt = heutiges Land DE.13 (GeoNames ADM1)
+Thür.,DE.15,kuerzel,1,,,,Thüringen; Punkt = heutiges Land DE.15 (GeoNames ADM1)
+Thüringen,DE.15,name,1,Thüringen,,bundesstaat,dt. Land; Punkt = heutiges Land DE.15 (GeoNames ADM1)
+Rheinland,DE,name,1,Rheinland,,,preuß. Rheinprovinz
+Rheinl.,DE,kuerzel,1,,,,Rheinprovinz
+Rh.,DE,kuerzel,0,,,,Rheinprovinz
+Hessen,DE.05,name,1,Hessen,,bundesstaat,dt. Land; Punkt = heutiges Land DE.05 (GeoNames ADM1)
+Anhalt,DE.14,name,1,Anhalt,,bundesstaat,dt. Land; Punkt = heutiges Land DE.14 (GeoNames ADM1)
+Sa.-Anhalt,DE.14,kuerzel,1,,,,Provinz Sachsen-Anhalt; Punkt = heutiges Land DE.14 (GeoNames ADM1)
+Brandenburg,DE.11,name,0,Brandenburg,,bundesstaat,preuß. Provinz; auch Stadt Brandenburg; Punkt = heutiges Land DE.11 (GeoNames ADM1)
+Brdbg.,DE.11,kuerzel,1,,,,Brandenburg; Punkt = heutiges Land DE.11 (GeoNames ADM1)
+Wttbg,DE.01,kuerzel,1,,,,Württemberg; Punkt = heutiges Land DE.01 (GeoNames ADM1)
+Wttbg.,DE.01,kuerzel,1,,,,Württemberg; Punkt = heutiges Land DE.01 (GeoNames ADM1)
+Württemberg,DE.01,name,1,Württemberg,,bundesstaat,dt. Land; Punkt = heutiges Land DE.01 (GeoNames ADM1)
+Schlesien,DE;PL;CZ,name,1,Schlesien,,,preuß. Provinz; heute überwiegend PL
+Ostpreussen,DE;PL;RU;LT,name,1,Ostpreußen,,,preuß. Provinz; heute PL/RU/LT
+Ö,AT,kuerzel,1,,,,"Österreich; 'Wien, Ö'"
+Ö.,AT,kuerzel,1,,,,Österreich
+Oe,AT,kuerzel,1,,,,Österreich
+Österreich,AT,name,1,,,,dt. Ländername
+Austr.,AT,kuerzel,1,,,,Austria
+Au,AT,kuerzel,1,,,,"Austria; 'Wien, Au'"
+A,AT;AR,kuerzel,0,,,,"Kfz-Zeichen Österreich; einmal 'Rosario, A'"
+Schweiz,CH,name,1,,,,dt. Ländername
+CH,CH;CL;CN,kuerzel,0,,,,"CH = Schweiz; 'Valparaiso, Ch' = Chile; 'Shanghai, Ch.' = China"
+Sw.,CH;SE,kuerzel,0,,,,Switzerland oder Sweden
+Sch,CH;SE,kuerzel,0,,,,Schweiz oder Schweden
+Schw,CH;SE,kuerzel,0,,,,Schweiz oder Schweden
+England,GB.ENG,name,1,England,,land,Landesteil des Vereinigten Königreichs
+Engl.,GB,kuerzel,1,,,,England
+Engl,GB,kuerzel,1,,,,England
+E,GB;ES,kuerzel,0,,,,England (Southampton) oder España
+GB,GB,kuerzel,1,,,,Kfz-Zeichen
+Großbritannien,GB,name,1,,,,dt. Ländername
+Schottland,GB.SCT,name,1,Scotland,,land,Landesteil
+Schottl.,GB.SCT,kuerzel,1,,,,Schottland
+Wales,GB.WLS,name,1,Wales,,land,Landesteil
+Nordirland,GB.NIR,name,1,Northern Ireland,,land,Landesteil
+IoW,GB.ENG,kuerzel,1,,,,Isle of Wight
+Irland,IE;GB.NIR,name,1,,,,dt. Ländername; vor 1922 ganze Insel
+Irl.,IE;GB.NIR,kuerzel,1,,,,Irland
+Irl,IE;GB.NIR,kuerzel,1,,,,Irland
+IRL,IE;GB.NIR,kuerzel,1,,,,Kfz-Zeichen
+Irel.,IE;GB.NIR,kuerzel,1,,,,Ireland
+Holland,NL,name,1,,,,dt. Ländername
+Niederlande,NL,name,1,,,,dt. Ländername
+NL,NL,kuerzel,1,,,,Kfz-Zeichen
+H,HU;NL;DE,kuerzel,0,,,,"'Budapest, H' / 'Simpelveld, H' / 'Fulda, H.'"
+Belgien,BE,name,1,,,,dt. Ländername
+B,BE;DE;BR,kuerzel,0,,,,"'Antwerpen, B' / 'Partenkirchen, B.' / 'Sao Paulo, B.'"
+Br.,DE;BR;GB,kuerzel,0,,,,"'Bremen, Br.' / 'Para, Br.'"
+Frankreich,FR,name,1,,,,dt. Ländername
+Frankr.,FR,kuerzel,1,,,,Frankreich
+Frankr,FR,kuerzel,1,,,,Frankreich
+F,FR,kuerzel,1,,,,Kfz-Zeichen
+F.,FR,kuerzel,1,,,,Kfz-Zeichen
+Spanien,ES,name,1,,,,dt. Ländername
+Sp.,ES;BR.27,kuerzel,0,,,,Spanien; SP auch São Paulo
+Italien,IT,name,1,,,,dt. Ländername
+I,IT,kuerzel,0,,,,"Kfz-Zeichen; 'Montreal, I' falsch"
+Dänemark,DK,name,1,,,,dt. Ländername
+DK,DK,kuerzel,1,,,,Kfz-Zeichen
+Dä,DK,kuerzel,1,,,,Dänemark
+Dä.,DK,kuerzel,1,,,,Dänemark
+Schweden,SE,name,1,,,,dt. Ländername
+S,SE,kuerzel,0,,,,Kfz-Zeichen
+Norwegen,NO,name,1,,,,dt. Ländername
+N,NO;NI,kuerzel,0,,,,"'Oslo, N' / 'Blufields, N'"
+Finnland,FI,name,1,,,,dt. Ländername
+Russland,RU;UA;BY,name,1,,,,dt. Ländername
+UdSSR,RU;UA;BY;UZ;KZ;GE;AM;AZ;MD;TM;TJ;KG,name,1,,,,Sowjetunion
+USSR,RU;UA;BY;UZ;KZ;GE;AM;AZ;MD;TM;TJ;KG,name,1,,,,Sowjetunion
+R,RU;UA;BY;UZ;KZ;GE;AM;AZ;MD,kuerzel,0,,,,"'Moskau, R' / 'Taschkent, R'"
+Polen,PL,name,1,,,,dt. Ländername
+Pol.,PL,kuerzel,1,,,,Polen
+P,PT;PL;US.PA,kuerzel,0,,,,"'Lissabon, P' / 'Warschau, P' / 'Scranton, P.'"
+Ungarn,HU,name,1,,,,dt. Ländername
+U,HU,kuerzel,0,,,,"'Budapest, U'"
+Tschechoslowakei,CZ;SK,name,1,,,,dt. Ländername
+Tsch.,CZ;SK,kuerzel,1,,,,Tschechoslowakei
+Tsch,CZ;SK,kuerzel,1,,,,Tschechoslowakei
+CSR,CZ;SK,kuerzel,1,,,,Tschechoslowakische Republik
+C.S.R.,CZ;SK,kuerzel,1,,,,Tschechoslowakische Republik
+CS,CZ;SK,kuerzel,1,,,,Tschechoslowakei
+CZ-SL,CZ;SK,kuerzel,1,,,,Tschechoslowakei
+CZ,CZ;SK;PA,kuerzel,0,,,,"'Prag, CZ' / 'Cristobal, C.Z.' (Kanalzone)"
+T,CZ;SK;US.TX,kuerzel,0,,,,"'Prag, T' / 'Halletsville, T'"
+Jugoslawien,RS;HR;SI;BA;MK;ME,name,1,,,,dt. Ländername
+Jug.,RS;HR;SI;BA;MK;ME,kuerzel,1,,,,Jugoslawien
+Yug.,RS;HR;SI;BA;MK;ME,kuerzel,1,,,,Yugoslavia
+J,JP;RS;HR;SI;BA;MK;ME,kuerzel,0,,,,"'Yokohama, J' / 'Jasa Tomic, J'"
+Jap,JP,kuerzel,1,,,,Japan
+Jap.,JP,kuerzel,1,,,,Japan
+Rumänien,RO,name,1,,,,dt. Ländername
+RO,RO,kuerzel,1,,,,Kfz-Zeichen
+Bulgarien,BG,name,1,,,,dt. Ländername
+Griechenland,GR,name,1,,,,dt. Ländername
+Türkei,TR,name,1,,,,dt. Ländername
+Lettland,LV,name,1,,,,dt. Ländername
+Litauen,LT,name,1,,,,dt. Ländername
+L,LV;LT,kuerzel,0,,,,"'Riga, L'"
+Estland,EE,name,1,,,,dt. Ländername
+Estalnd,EE,name,1,,,,Schreibfehler im Feld port_of_arrival_country
+Island,IS,name,1,,,,dt. Ländername
+Luxemburg,LU,name,1,,,,dt. Ländername
+Ägypten,EG,name,1,,,,dt. Ländername
+Aeg.,EG,kuerzel,1,,,,Ägypten
+Palästina,IL;PS,name,1,,,,Mandatsgebiet
+Indien,IN,name,1,,,,dt. Ländername
+Ceylon,LK,name,1,,,,historischer Name Sri Lankas
+Siam,TH,name,1,,,,historischer Name Thailands
+Persien,IR,name,1,,,,historischer Name Irans
+Irak,IQ,name,1,,,,dt. Ländername
+Syrien,SY,name,1,,,,dt. Ländername
+Philippinen,PH,name,1,,,,dt. Ländername
+Phil.,PH,kuerzel,1,,,,Philippinen
+Phil,PH,kuerzel,1,,,,Philippinen
+Ph.,PH,kuerzel,1,,,,Philippinen
+P.I.,PH,kuerzel,1,,,,Philippine Islands
+Indonesien,ID,name,1,,,,dt. Ländername
+Niederländisch-Indien,ID,name,1,,,,Kolonie
+Indon.,ID,kuerzel,1,,,,Indonesien
+Java,ID,name,1,Java,,,Insel; keine Inselkoordinate im Gazetteer
+Sumatra,ID,name,1,Sumatra,,,Insel
+Straits,MY;SG,kuerzel,1,,,,Straits Settlements
+British Malaya,MY;SG,name,1,,,,Kolonie
+Malaysia,MY;SG,name,1,,,,Ländername (Britisch-Malaya inkl. Singapur)
+Australien,AU,name,1,,,,dt. Ländername
+NSW,AU.02,kuerzel,1,,,,New South Wales
+Vic,AU.07,kuerzel,1,,,,Victoria
+Vic.,AU.07,kuerzel,1,,,,Victoria
+SA,AU.05;DE,kuerzel,0,,,,"'Adelaide, SA' / 'Chemnitz, Sa.'"
+Neuseeland,NZ,name,1,,,,dt. Ländername
+Neu-Seeland,NZ,name,1,,,,dt. Ländername
+Neu-Guinea,PG,name,1,,,,dt. Kolonialname
+Neu Guinea,PG,name,1,,,,dt. Kolonialname
+PNG,PG,kuerzel,1,,,,Papua New Guinea
+Südafrika,ZA,name,1,,,,dt. Ländername
+Südwestafrika,NA,name,1,,,,ehem. Deutsch-Südwestafrika
+SWA,NA,kuerzel,1,,,,Südwestafrika
+Kamerun,CM,name,1,,,,dt. Ländername
+Kongo,CD;CG,name,1,,,,dt. Ländername
+Zaire,CD,name,1,,,,späterer Name von Belgisch-Kongo
+Tanganjika,TZ,name,1,,,,Mandatsgebiet
+Kenia,KE,name,1,,,,dt. Ländername
+Mosambik,MZ,name,1,,,,dt. Ländername
+Äquatorialguinea,GQ,name,1,,,,dt. Ländername
+Sp.Guinea,GQ,name,1,,,,Spanisch-Guinea
+Marokko,MA,name,1,,,,dt. Ländername
+Mexiko,MX,name,1,,,,dt. Ländername
+Mex,MX;US.NM,kuerzel,0,,,,"'Monterrey, Mex' / 'Albuquerque, N. Mex.'"
+Mex.,MX;US.NM,kuerzel,0,,,,Mexiko oder New Mexico
+D.F.,MX,kuerzel,1,,,,Distrito Federal
+Kuba,CU,name,1,,,,dt. Ländername
+C,CU;CO,kuerzel,0,,,,"'Havanna, C' / 'Cali, C.'"
+Kolumbien,CO,name,1,,,,dt. Ländername
+Columbien,CO,name,1,,,,alte dt. Schreibung
+Kol.,CO,kuerzel,1,,,,Kolumbien
+Col.,CO;US.CO,kuerzel,0,,,,Colombia oder Colorado
+Col,CO;US.CO,kuerzel,0,,,,Colombia oder Colorado
+Bolivien,BO,name,1,,,,dt. Ländername
+Bol.,BO,kuerzel,1,,,,Bolivien
+Argentinien,AR,name,1,,,,dt. Ländername
+Argentinia,AR,name,1,,,,Schreibvariante
+RA,AR,kuerzel,1,,,,Kfz-Zeichen República Argentina
+Arg.,AR,kuerzel,1,,,,Argentinien
+PY,PY,kuerzel,1,,,,ISO-Code Paraguay
+Parag.,PY,kuerzel,1,,,,Paraguay
+ROU,UY,kuerzel,1,,,,Kfz-Zeichen Uruguay
+Brasilien,BR,name,1,,,,dt. Ländername
+Bras.,BR,kuerzel,1,,,,Brasilien
+Pe,PE;CA.09,kuerzel,0,,,,"'Callao, PE' / 'Charlottetown, PE'"
+Nicaragua,NI,name,1,,,,Ländername
+Dominikanische Republik,DO,name,1,,,,dt. Ländername
+Dom.Rep.,DO,kuerzel,1,,,,Dominikanische Republik
+Dom.,DO,kuerzel,1,,,,Dominikanische Republik
+Haiti,HT,name,1,,,,Ländername
+Kanalzone,PA,name,1,Panama Canal Zone,,,US-Kanalzone 1903-1979
+Canal Zone,PA,name,1,Panama Canal Zone,,,US-Kanalzone 1903-1979
+C.Z.,PA,kuerzel,1,,,,Canal Zone
+Porto Rico,PR,name,1,,,,alte Schreibung
+Portorico,PR,name,1,,,,alte Schreibung
+Kanada,CA,name,1,,,,dt. Ländername
+Can,CA,kuerzel,1,,,,Canada
+Can.,CA,kuerzel,1,,,,Canada
+CDN,CA,kuerzel,1,,,,Kfz-Zeichen
+USA,US,name,1,USA,,land,Ländername
+U.S.A.,US,name,1,USA,,land,Ländername
+U S A,US,name,1,USA,,land,Schreibweise wie im Feld US_state
+Vereinigte Staaten,US,name,1,USA,,land,dt. Ländername
+Amerika,US,name,1,Amerika,,land,im dt. Sprachgebrauch der Zeit meist USA
+Nordamerika,US,name,1,Nordamerika,,,überwiegend USA; Kanada nicht unterscheidbar
+Südamerika,AR;BR;CL;PY;UY;BO;PE;EC;CO;VE;GY;SR;GF,name,1,Südamerika,,,Großregion ohne Punkt
+Mittelamerika,MX;GT;BZ;SV;HN;NI;CR;PA,name,1,Mittelamerika,,,Großregion ohne Punkt
+C.A.,US.CA;SV;GT;HN;NI;CR;PA;BZ,kuerzel,0,,,,"'San Salvador, C.A.' = Central America"
+Westindien,CU;JM;HT;DO;PR;BS;TT;BB;CW;AW,name,1,Westindien,,,Großregion ohne Punkt
+W.I.,US.WI;CU;JM;HT;DO;PR;BS;TT;BB;CW;AW,kuerzel,0,,,,"'Haiti, W.I.' = West Indies"
+Ostasien,CN;JP;KR;KP;TW;HK;MO;PH,name,1,Ostasien,,,Großregion ohne Punkt
+Asien,CN;JP;IN;ID;PH;TH;MY;SG;LK;VN;KR;TW;HK,name,1,Asien,,,Großregion ohne Punkt
+Afrika,ZA;NA;EG;CM;KE;TZ;MZ;AO;GH;NG;LR,name,1,Afrika,,,Großregion ohne Punkt
+Westafrika,CM;GH;NG;LR;GQ;TG;SN;SL;CI;GA,name,1,Westafrika,,,Großregion ohne Punkt
+Europa,DE;AT;CH;FR;GB;IT;ES;PT;NL;BE;DK;SE;NO;FI;PL;CZ;SK;HU,name,1,Europa,,,Großregion ohne Punkt
+Südbrasilien,BR.26;BR.18;BR.23;BR.27;BR.21,name,1,Südbrasilien,BR.26,bundesstaat,"Südstaaten PR/SC/RS, als Zusatz auch SP/RJ zugelassen (Santos, Rio); Punkt = Santa Catarina"
+Süd-Brasilien,BR.26;BR.18;BR.23;BR.27;BR.21,name,1,Südbrasilien,BR.26,bundesstaat,wie Südbrasilien
+Nordbrasilien,BR.04;BR.16;BR.13;BR.06,name,1,Nordbrasilien,,,Großregion ohne Punkt
+Madeira,PT.10,name,1,Madeira,2267827,bundesstaat,Insel; Punkt = Funchal (GeoNames 2267827)
+Madeiera,PT.10,name,1,Madeira,2267827,bundesstaat,Schreibfehler Madeira
+Kanarische Inseln,ES.53,name,1,Kanarische Inseln,2511174,bundesstaat,Punkt = Santa Cruz de Tenerife (GeoNames 2511174)
+Kanar.Inseln,ES.53,name,1,Kanarische Inseln,2511174,bundesstaat,Punkt = Santa Cruz de Tenerife
+Kanar. Inseln,ES.53,name,1,Kanarische Inseln,2511174,bundesstaat,Punkt = Santa Cruz de Tenerife
+Teneriffa,ES.53,name,1,Teneriffa,2511174,bundesstaat,Insel; Punkt = Santa Cruz de Tenerife
+Tenerife,ES.53,name,1,Teneriffa,2511174,bundesstaat,Insel; Punkt = Santa Cruz de Tenerife
+Gran Canaria,ES.53,name,1,Gran Canaria,2515270,bundesstaat,Insel; Punkt = Las Palmas (GeoNames 2515270)
+Long Island,US.NY[047|081|059|103],name,1,Long Island,5125123,bundesstaat,Kings/Queens/Nassau/Suffolk County; Punkt = GeoNames-Insel 5125123
+Long-Island,US.NY[047|081|059|103],name,1,Long Island,5125123,bundesstaat,wie Long Island
+L.I.,US.NY[047|081|059|103],kuerzel,1,Long Island,5125123,bundesstaat,Long Island
+L. I.,US.NY[047|081|059|103],kuerzel,1,Long Island,5125123,bundesstaat,Long Island
+LI,US.NY[047|081|059|103],kuerzel,1,Long Island,5125123,bundesstaat,Long Island
+L.J.,US.NY[047|081|059|103],kuerzel,1,Long Island,5125123,bundesstaat,Lesefehler für L.I. (alle Belege NY)
+LJ,US.NY[047|081|059|103],kuerzel,1,Long Island,5125123,bundesstaat,Lesefehler für L.I.
+St.I.,US.NY[085],kuerzel,1,,,,Staten Island
+St.Isl.,US.NY[085],kuerzel,1,,,,Staten Island
+St. Isld.,US.NY[085],kuerzel,1,,,,Staten Island
+S.I.,US.NY[085],kuerzel,1,,,,Staten Island
+N.Y.C.,US.NY[005|047|061|081|085],kuerzel,1,,,,New York City
+Bronx,US.NY[005],kuerzel,1,,,,Bronx County
+Brooklyn,US.NY[047],kuerzel,1,,,,Kings County
+T.H.,US.HI,kuerzel,1,,,,Territory of Hawaii
+Hawai,US.HI,name,1,Hawaii,,,Schreibvariante
+Ala.,US.AL,kuerzel,1,,,,US-Staatsabkürzung (traditionell)
+Al.,US.AL;CA.01,kuerzel,0,,,,Alabama oder Alberta
+AL,US.AL;CA.01,kuerzel,0,,,,Alabama oder Alberta
+Ariz.,US.AZ,kuerzel,1,,,,US-Staatsabkürzung
+Ark.,US.AR,kuerzel,1,,,,US-Staatsabkürzung
+Cal.,US.CA,kuerzel,1,,,,US-Staatsabkürzung
+Calif.,US.CA,kuerzel,1,,,,US-Staatsabkürzung
+CA,US.CA;SV;GT;HN;NI;CR;PA,kuerzel,0,,,,California oder Central America
+Colo.,US.CO,kuerzel,1,,,,US-Staatsabkürzung
+Conn.,US.CT,kuerzel,1,,,,US-Staatsabkürzung
+Del.,US.DE,kuerzel,1,,,,US-Staatsabkürzung
+Fla.,US.FL,kuerzel,1,,,,US-Staatsabkürzung
+Ga.,US.GA,kuerzel,1,,,,US-Staatsabkürzung
+Ida.,US.ID,kuerzel,1,,,,US-Staatsabkürzung
+Ill.,US.IL,kuerzel,1,,,,US-Staatsabkürzung
+Ind.,US.IN,kuerzel,1,,,,US-Staatsabkürzung
+Ia.,US.IA,kuerzel,1,,,,US-Staatsabkürzung
+Io.,US.IA,kuerzel,1,,,,Iowa
+Kan.,US.KS,kuerzel,1,,,,US-Staatsabkürzung
+Kans.,US.KS,kuerzel,1,,,,US-Staatsabkürzung
+Ky.,US.KY,kuerzel,1,,,,US-Staatsabkürzung
+La.,US.LA,kuerzel,1,,,,US-Staatsabkürzung
+Mass.,US.MA,kuerzel,1,,,,US-Staatsabkürzung
+Md.,US.MD,kuerzel,1,,,,US-Staatsabkürzung
+Me.,US.ME,kuerzel,1,,,,US-Staatsabkürzung
+Mich.,US.MI,kuerzel,1,,,,US-Staatsabkürzung
+Minn.,US.MN,kuerzel,1,,,,US-Staatsabkürzung
+Min.,US.MN,kuerzel,1,,,,Minnesota
+Miss.,US.MS,kuerzel,1,,,,US-Staatsabkürzung
+Mo.,US.MO,kuerzel,1,,,,US-Staatsabkürzung
+Mont.,US.MT,kuerzel,1,,,,US-Staatsabkürzung
+Neb.,US.NE,kuerzel,1,,,,US-Staatsabkürzung
+Nebr.,US.NE,kuerzel,1,,,,US-Staatsabkürzung
+Nev.,US.NV,kuerzel,1,,,,US-Staatsabkürzung
+N.Mex.,US.NM,kuerzel,1,,,,US-Staatsabkürzung
+N. Mex.,US.NM,kuerzel,1,,,,US-Staatsabkürzung
+N.Dak.,US.ND,kuerzel,1,,,,US-Staatsabkürzung
+N. Dak.,US.ND,kuerzel,1,,,,US-Staatsabkürzung
+S.Dak.,US.SD,kuerzel,1,,,,US-Staatsabkürzung
+S. Dak.,US.SD,kuerzel,1,,,,US-Staatsabkürzung
+Dak.,US.ND;US.SD,kuerzel,1,,,,Dakota-Territorium
+Dak,US.ND;US.SD,kuerzel,1,,,,Dakota-Territorium
+O.,US.OH,kuerzel,1,,,,Ohio; alle Belege mit US_state OH
+O,US.OH,kuerzel,1,,,,Ohio
+Oh.,US.OH,kuerzel,1,,,,Ohio
+Okla.,US.OK,kuerzel,1,,,,US-Staatsabkürzung
+Ore.,US.OR,kuerzel,1,,,,US-Staatsabkürzung
+Oreg.,US.OR,kuerzel,1,,,,US-Staatsabkürzung
+Pa.,US.PA,kuerzel,1,,,,US-Staatsabkürzung
+Pas,US.PA,kuerzel,1,,,,"Pennsylvania ('Altoona, Pas')"
+Penn.,US.PA,kuerzel,1,,,,US-Staatsabkürzung
+Penna.,US.PA,kuerzel,1,,,,US-Staatsabkürzung
+Tenn.,US.TN,kuerzel,1,,,,US-Staatsabkürzung
+Tex.,US.TX,kuerzel,1,,,,US-Staatsabkürzung
+Vt.,US.VT,kuerzel,1,,,,US-Staatsabkürzung
+Va.,US.VA,kuerzel,1,,,,US-Staatsabkürzung
+W.Va.,US.WV,kuerzel,1,,,,US-Staatsabkürzung
+W. Va.,US.WV,kuerzel,1,,,,US-Staatsabkürzung
+Wash.,US.WA,kuerzel,1,,,,US-Staatsabkürzung
+Wis.,US.WI,kuerzel,1,,,,US-Staatsabkürzung
+Wisc.,US.WI,kuerzel,1,,,,US-Staatsabkürzung
+Wyo.,US.WY,kuerzel,1,,,,US-Staatsabkürzung
+SC,US.SC;BR.26,kuerzel,0,,,,South Carolina oder Santa Catarina
+PR,PR;BR.18,kuerzel,0,,,,Puerto Rico oder Paraná
+RS,BR.23,kuerzel,1,,,,Rio Grande do Sul
+SP,BR.27;ES,kuerzel,0,,,,São Paulo oder Spanien
+RJ,BR.21,kuerzel,1,,,,Rio de Janeiro (Staat)
+MG,BR.15,kuerzel,1,,,,Minas Gerais
+Santa Catharina,BR.26,name,1,,,,alte Schreibung Santa Catarina
+Sta. Catharina,BR.26,name,1,,,,alte Schreibung Santa Catarina
+Sta. Catarina,BR.26,name,1,,,,Santa Catarina
+MB,CA.03,kuerzel,1,,,,Canada Post
+Man,CA.03,kuerzel,1,,,,Manitoba
+Man.,CA.03,kuerzel,1,,,,Manitoba
+Manit.,CA.03,kuerzel,1,,,,Manitoba
+SK,CA.11,kuerzel,1,,,,Canada Post
+Sask,CA.11,kuerzel,1,,,,Saskatchewan
+Sask.,CA.11,kuerzel,1,,,,Saskatchewan
+AB,CA.01,kuerzel,1,,,,Canada Post
+Alta,CA.01,kuerzel,1,,,,Alberta
+Alta.,CA.01,kuerzel,1,,,,Alberta
+Alb,CA.01,kuerzel,1,,,,Alberta
+Alb.,CA.01,kuerzel,1,,,,Alberta
+BC,CA.02,kuerzel,1,,,,Canada Post
+B.C.,CA.02,kuerzel,1,,,,British Columbia
+ON,CA.08,kuerzel,1,,,,Canada Post
+Ont,CA.08,kuerzel,1,,,,Ontario
+Ont.,CA.08,kuerzel,1,,,,Ontario
+QC,CA.10,kuerzel,1,,,,Canada Post
+Que,CA.10,kuerzel,1,,,,Quebec
+Que.,CA.10,kuerzel,1,,,,Quebec
+Qu,CA.10,kuerzel,1,,,,Quebec
+Qu.,CA.10,kuerzel,1,,,,Quebec
+Queb.,CA.10,kuerzel,1,,,,Quebec
+P.Q.,CA.10,kuerzel,1,,,,Province de Québec
+NS,CA.07,kuerzel,1,,,,Canada Post
+N.S.,CA.07,kuerzel,1,,,,Nova Scotia
+NB,CA.04,kuerzel,1,,,,Canada Post
+N.B.,CA.04,kuerzel,1,,,,New Brunswick
+PEI,CA.09,kuerzel,1,,,,Prince Edward Island
+NF,CA.05,kuerzel,1,,,,Newfoundland
+Nfld.,CA.05,kuerzel,1,,,,Newfoundland
+P.O.,,ignorieren,0,,,,Post Office
+PO,,ignorieren,0,,,,Post Office
+Surrey,GB.ENG,name,1,Surrey,,,englische Grafschaft
+Sussex,GB.ENG,name,1,Sussex,,,englische Grafschaft
+Kent,GB.ENG,name,1,Kent,,,englische Grafschaft; konkurriert mit Kent (OH/WA)
+Essex,GB.ENG,name,1,Essex,,,englische Grafschaft; konkurriert mit Essex County (NJ)
+Middlesex,GB.ENG,name,1,Middlesex,,,englische Grafschaft
+Hampshire,GB.ENG,name,1,Hampshire,,,englische Grafschaft
+Hants,GB.ENG,name,1,Hampshire,,,Abkürzung Hampshire
+Yorkshire,GB.ENG,name,1,Yorkshire,,,englische Grafschaft
+Lancashire,GB.ENG,name,1,Lancashire,,,englische Grafschaft
+Devon,GB.ENG,name,1,Devon,,,englische Grafschaft
+Cornwall,GB.ENG,name,1,Cornwall,,,englische Grafschaft; konkurriert mit Cornwall (ON/NY)
+Dorset,GB.ENG,name,1,Dorset,,,englische Grafschaft
+Insel Wight,GB.ENG,name,1,Isle of Wight,,,Insel im Ärmelkanal
+Isle of Wight,GB.ENG,name,1,Isle of Wight,,,Insel im Ärmelkanal

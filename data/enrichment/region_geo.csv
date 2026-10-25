@@ -1,0 +1,957 @@
+state_or_province_cleaned,n_records,region_lat,region_lon,land_heute,laender_heute,admin_codes,admin1_heute,ebene,methode
+Bayern,30821,49.0,11.5,DE,DE,DE.02;DE.08;DE.09,Bayern;Rheinland-Pfalz;Saarland,region,admin
+Hannover,25564,52.8,9.5,DE,DE,DE.03;DE.04;DE.06,Bremen;Hamburg;Niedersachsen,region,manuell
+Brandenburg,23737,52.4,13.4,DE,DE;PL,DE.11;DE.16;PL.76;PL.87,Brandenburg;Land Berlin;województwo lubuskie;województwo zachodniopomorskie,region,manuell
+Württemberg,20856,48.6,9.3,DE,DE,DE.01,Baden-Württemberg,region,manuell
+Sachsen,18806,51.0,13.25,DE,DE,DE.13;DE.14;DE.15,Sachsen;Sachsen-Anhalt;Thüringen,region,manuell
+Rheinland,16338,50.6,7.0,DE,DE,DE.05.065;DE.07.051;DE.07.053;DE.08;DE.09,Hessen;Nordrhein-Westfalen;Rheinland-Pfalz;Saarland,region,manuell
+Baden,15801,48.4,8.2,DE,DE,DE.01,Baden-Württemberg,region,manuell
+Bremen,14151,53.08,8.8,DE,DE,DE.03;DE.06,Bremen;Niedersachsen,region,manuell
+Westfalen,13042,51.75,8.0,DE,DE,DE.07.055;DE.07.057;DE.07.059,Nordrhein-Westfalen,region,manuell
+Hamburg,5956,53.55,10.0,DE,DE,DE.04;DE.06;DE.10,Hamburg;Niedersachsen;Schleswig-Holstein,region,manuell
+Schlesien,5819,50.8,17.2,PL,CZ;PL,CZ.84;CZ.85;PL.72;PL.76;PL.79;PL.83,Moravskoslezský kraj;Olomoucký kraj;Województwo dolnośląskie;Województwo opolskie;Województwo śląskie;województwo lubuskie,region,manuell
+Hessen-Nassau,5520,50.55,9.0,DE,DE,DE.05;DE.08;DE.15,Hessen;Rheinland-Pfalz;Thüringen,region,admin
+Rhein-Provinz,5467,50.6,7.0,DE,DE,DE.05.065;DE.07.051;DE.07.053;DE.08;DE.09,Hessen;Nordrhein-Westfalen;Rheinland-Pfalz;Saarland,region,manuell
+Hessen,5328,50.55,9.0,DE,DE,DE.05;DE.08,Hessen;Rheinland-Pfalz,region,admin
+Oldenburg,5021,53.0,8.15,DE,DE,DE.06;DE.08;DE.10,Niedersachsen;Rheinland-Pfalz;Schleswig-Holstein,region,manuell
+Österreich,5013,47.59,14.14,AT,AT;CZ;HR;IT;PL;RO;SI;UA,,,land,land
+USA,4658,39.83,-98.58,US,US,,,land,land
+Thüringen,4564,50.91667,11.0,DE,DE,DE.02.094;DE.14;DE.15,Bayern;Sachsen-Anhalt;Thüringen,region,admin
+Ostpreußen,3693,54.2,21.0,PL,LT;PL;RU,LT.58;PL.85;RU.23,Kaliningrad Oblast;Klaipėdos apskritis;Województwo warmińsko-mazurskie,region,manuell
+Schweiz,3536,46.8,8.23,CH,CH;LI,,,land,land
+Rumänien,3150,45.94,24.97,RO,MD;RO;UA,,,land,land
+Galizien,3072,49.8,22.5,PL,PL;UA,PL.77;PL.80;UA.06;UA.15;UA.22,Ivano-Frankivsk;Lviv;Ternopil;Województwo małopolskie;województwo podkarpackie,region,manuell
+Litauen,2934,55.17,23.88,LT,LT;PL,,,land,land
+Pommern,2800,53.9,15.3,DE,DE;PL,DE.12;PL.82;PL.87,Mecklenburg-Vorpommern;Województwo pomorskie;województwo zachodniopomorskie,region,manuell
+Deutschland,2412,51.16,10.45,DE,DE;LT;PL;RU,,,land,land
+New York,2150,43.00035,-75.4999,US,US,US.NY,New York,region,admin
+Preußen,2057,52.5,13.0,DE,DE;DK;LT;PL;RU,DE;DK;LT;PL;RU,,region,manuell
+England,1829,52.5,-1.5,GB,GB,,,land,land
+Böhmen,1826,49.9,14.4,CZ,CZ,CZ.52;CZ.79;CZ.80;CZ.81;CZ.82;CZ.83;CZ.86;CZ.87;CZ.88;CZ.89,Hlavní město Praha;Jihočeský kraj;Karlovarský kraj;Královéhradecký kraj;Liberecký kraj;Pardubický kraj;Plzeňský kraj;Středočeský kraj;Vysočina;Ústecký kraj,region,manuell
+Ungarn,1741,47.16,19.5,HU,AT;HR;HU;RO;RS;SK;UA,,,land,land
+Rheinpfalz,1690,49.35,7.85,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,manuell
+Saratow,1663,51.5,46.0,RU,RU,RU.67;RU.84,Saratov Oblast;Volgograd Oblast,region,manuell
+Pfalz,1471,49.35,7.85,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,manuell
+Lomza,1466,53.2,22.0,PL,PL,PL.78;PL.81,Województwo mazowieckie;Województwo podlaskie,region,manuell
+Mähren,1310,49.4,17.0,CZ,CZ,CZ.78;CZ.80;CZ.84;CZ.85;CZ.90,Jihomoravský kraj;Moravskoslezský kraj;Olomoucký kraj;Vysočina;Zlínský kraj,region,manuell
+Kawno,1237,55.3,23.9,LT,LT,LT,,region,manuell
+Wolhynien,1180,50.7,26.5,UA,UA,UA.09;UA.19;UA.24;UA.27,Khmelnytskyi;Rivne Oblast;Volyn;Zhytomyr Oblast,region,manuell
+Niederbayern,1157,48.75,12.83333,DE,DE,DE.02.092,Bayern,region,admin
+Braunschweig,1115,52.25,10.5,DE,DE,DE.06;DE.14,Niedersachsen;Sachsen-Anhalt,region,manuell
+Tschechoslowakei,1090,49.4,17.3,CZ,CZ;SK;UA,,,land,land
+Sachsen-Anhalt,1065,52.0,11.7333,DE,DE,DE.14;DE.15,Sachsen-Anhalt;Thüringen,region,admin
+Posen,1064,52.4,17.3,PL,PL,PL.73;PL.76;PL.86,Województwo kujawsko-pomorskie;województwo lubuskie;województwo wielkopolskie,region,manuell
+Schleswig-Holstein,1031,54.2,9.75,DE,DE;DK,DE.04;DE.10;DK.21,Hamburg;Region Syddanmark;Schleswig-Holstein,region,admin
+Grodno,1001,53.3,24.8,BY,BY;PL,BY.01;BY.03;PL.81,Brest;Grodnenskaya;Województwo podlaskie,region,manuell
+Holstein,984,54.1,10.0,DE,DE,DE.04;DE.10,Hamburg;Schleswig-Holstein,region,manuell
+Ostfriesland,943,53.4,7.4,DE,DE,DE.06,Niedersachsen,region,manuell
+Warschau,907,52.3,20.5,PL,PL,PL.73;PL.74;PL.78,Województwo kujawsko-pomorskie;Województwo mazowieckie;Województwo łódzkie,region,manuell
+Unterfranken,894,50.0,10.0,DE,DE,DE.02.096,Bayern,region,admin
+Danzig,888,54.35,18.65,PL,PL,PL.82,Województwo pomorskie,region,manuell
+Argentinien,857,-34.0,-62.0,AR,AR,,,land,land
+Illinois,813,40.00032,-89.25037,US,US,US.IL,Illinois,region,admin
+Slowakei,749,48.7,19.7,SK,SK,,,land,land
+Oberpfalz,746,49.5,12.0,DE,DE,DE.02.093,Bayern,region,admin
+Plock,723,52.8,20.0,PL,PL,PL.73;PL.78,Województwo kujawsko-pomorskie;Województwo mazowieckie,region,manuell
+Samara,714,52.0,48.0,RU,RU,RU.65;RU.67,Samara Oblast;Saratov Oblast,region,manuell
+Westpreußen,710,53.6,18.5,PL,PL,PL.73;PL.82;PL.85;PL.86,Województwo kujawsko-pomorskie;Województwo pomorskie;Województwo warmińsko-mazurskie;województwo wielkopolskie,region,manuell
+Mittelfranken,701,49.33333,10.83333,DE,DE,DE.02.095,Bayern,region,admin
+Suwalken,660,54.3,23.0,PL,LT;PL,LT.56;LT.59;PL.81,Alytaus apskritis;Marijampolės apskritis;Województwo podlaskie,region,manuell
+Pennsylvania,604,40.8,-77.7,US,US,US.PA,Pennsylvania,region,admin
+Vilnius,589,54.7,25.7,LT,BY;LT,BY.03;BY.05;BY.07;LT.56;LT.64;LT.65,Alytaus apskritis;Grodnenskaya;Minsk;Utenos apskritis;Vilniaus apskritis;Vitebsk,region,manuell
+Mecklenburg,559,53.6,12.4,DE,DE,DE.11;DE.12,Brandenburg;Mecklenburg-Vorpommern,region,manuell
+Lettland,558,56.88,24.6,LV,LV,,,land,land
+Minsk,551,53.7,27.6,BY,BY,BY,,region,manuell
+Holland,547,52.24,5.53,NL,NL,,,land,land
+Polen,527,52.1,19.4,PL,BY;LT;PL;UA,,,land,land
+Oberbayern,526,48.0,11.0,DE,DE,DE.02.091,Bayern,region,admin
+Dänemark,518,56.0,10.0,DK,DK,,,land,land
+New Jersey,513,40.16706,-74.49987,US,US,US.NJ,New Jersey,region,admin
+Oberfranken,503,49.83333,11.33333,DE,DE,DE.02.094,Bayern,region,admin
+Kalisch,452,51.8,18.5,PL,PL,PL.74;PL.86,Województwo łódzkie;województwo wielkopolskie,region,manuell
+Oberschlesien,446,50.4,18.4,PL,CZ;PL,CZ.85;PL.79;PL.83,Moravskoslezský kraj;Województwo opolskie;Województwo śląskie,region,manuell
+Ohio,409,40.25034,-83.00018,US,US,US.OH,Ohio,region,admin
+Bulgarien,396,42.7,25.5,BG,BG,,,land,land
+Brasilien,380,-14.2,-51.9,BR,BR,,,land,land
+Schweden,370,62.0,15.0,SE,SE,,,land,land
+Anhalt,357,51.8,12.0,DE,DE,DE.14,Sachsen-Anhalt,region,manuell
+Schwaben,323,48.33333,10.5,DE,DE,DE.01;DE.02.097,Baden-Württemberg;Bayern,region,admin
+Jugoslawien,310,44.0,20.5,RS,BA;HR;ME;MK;RS;SI;XK,,,land,land
+Hohenzollern,290,48.25,9.1,DE,DE,DE.01.083;DE.01.084,Baden-Württemberg,region,manuell
+Frankreich,288,46.6,2.45,FR,FR,,,land,land
+Saargebiet,278,49.40472,6.96083,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,admin
+Ukraine,266,48.38,31.17,UA,MD;PL;UA,,,land,land
+Cherson,264,47.0,31.5,UA,MD;UA,MD.58;UA.08;UA.10;UA.16;UA.17,Kherson;Kirovohrad;Mykolaiv;Odesa;Transnistria,region,manuell
+Bessarabien,258,46.5,28.8,MD,MD;UA,MD;UA.17,Odesa,region,manuell
+Lippe,256,51.95,8.85,DE,DE,DE.07.057,Nordrhein-Westfalen,region,manuell
+Kanada,253,56.13,-106.35,CA,CA,,,land,land
+Spanien,229,40.2,-3.6,ES,ES,,,land,land
+Mexiko,222,23.6,-102.5,MX,MX,,,land,land
+Kiew,221,50.0,30.5,UA,UA,UA.01;UA.12;UA.13;UA.27,Cherkasy;Kyiv City;Kyiv Oblast;Zhytomyr Oblast,region,manuell
+Provinz Sachsen,220,52.0,11.7,DE,DE,DE.14;DE.15,Sachsen-Anhalt;Thüringen,region,manuell
+Petrikau,216,51.2,19.5,PL,PL,PL.74;PL.83,Województwo łódzkie;Województwo śląskie,region,manuell
+Krain,212,46.0,14.5,SI,SI,SI,,region,manuell
+Niederösterreich,199,48.33333,15.75,AT,AT;CZ,AT.03;AT.09;CZ.78,Bundesland Wien;Jihomoravský kraj;Niederösterreich,region,admin
+Stawropol,199,44.95,43.34167,RU,RU,RU.70,Stavropol Kray,region,admin
+Kalifornien,189,37.25022,-119.75126,US,US,US.CA,California,region,admin
+Vogtland,185,50.5,12.2,DE,DE,DE.02.094;DE.13;DE.15,Bayern;Sachsen;Thüringen,region,manuell
+Italien,182,42.8,12.6,IT,HR;IT;SI,,,land,land
+Michigan,180,44.25029,-85.50033,US,US,US.MI,Michigan,region,admin
+Podolien,177,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Kroatien,175,45.1,15.2,HR,HR,,,land,land
+Wisconsin,173,44.50024,-90.00041,US,US,US.WI,Wisconsin,region,admin
+Russland,168,55.0,39.0,RU,AM;AZ;BY;EE;FI;GE;KZ;LT;LV;MD;PL;RU;UA,,,land,land
+Massachusetts,167,42.36565,-71.10832,US,US,US.MA,Massachusetts,region,admin
+Steiermark,165,47.3,15.3,AT,AT;SI,AT.06;SI,Steiermark,region,manuell
+Ostmark,162,47.59,14.14,AT,AT,,,land,land
+Irland,160,53.2,-8.1,IE,GB;IE,,,land,land
+Lübeck,154,53.87,10.69,DE,DE,DE.10,Schleswig-Holstein,region,manuell
+Finnland,151,62.5,25.7,FI,FI,,,land,land
+Australien,145,-25.27,133.78,AU,AU,,,land,land
+Rhein-Hessen,143,49.85,8.15,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+China,142,35.86,104.2,CN,CN,,,land,land
+Chile,141,-35.7,-71.5,CL,CL,,,land,land
+Mecklenburg-Schwerin,139,53.7,12.0,DE,DE,DE.12,Mecklenburg-Vorpommern,region,manuell
+Harz,137,51.75,10.75,DE,DE,DE.06;DE.14;DE.15,Niedersachsen;Sachsen-Anhalt;Thüringen,region,manuell
+CZ.-SL.,136,49.4,17.3,CZ,CZ;SK;UA,,,land,land
+Japan,127,36.2,138.25,JP,JP,,,land,land
+Kuba,124,21.52,-77.78,CU,CU,,,land,land
+Lublin,124,51.23333,22.9,PL,PL,PL.75,Województwo lubelskie,region,admin
+Norwegen,119,61.0,9.5,NO,NO,,,land,land
+Grenzmark,118,53.2,16.7,PL,PL,PL.76;PL.82;PL.86;PL.87,Województwo pomorskie;województwo lubuskie;województwo wielkopolskie;województwo zachodniopomorskie,region,manuell
+Siedlec,116,52.1,22.5,PL,PL,PL.75;PL.78,Województwo lubelskie;Województwo mazowieckie,region,manuell
+Schaumburg-Lippe,107,52.27,9.1,DE,DE,DE.06,Niedersachsen,region,manuell
+rechts dem Rhein,106,49.0,11.5,DE,DE,DE.02,Bayern,region,admin
+Berlin,105,52.52,13.4,DE,DE,DE.11;DE.16,Brandenburg;Land Berlin,region,manuell
+Connecticut,104,41.66704,-72.66648,US,US,US.CT,Connecticut,region,admin
+Kurland,104,56.9,22.5,LV,LV,LV,,region,manuell
+Texas,104,31.25044,-99.25061,US,US,US.TX,Texas,region,admin
+Maryland,100,39.00039,-76.74997,US,US,US.MD,Maryland,region,admin
+Waldeck,100,51.2,9.0,DE,DE,DE.05.066;DE.06,Hessen;Niedersachsen,region,manuell
+Schleswig,98,54.7,9.3,DE,DE;DK,DE.10;DK.21,Region Syddanmark;Schleswig-Holstein,region,manuell
+Podolsk,95,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Indiana,94,40.00032,-86.25027,US,US,US.IN,Indiana,region,admin
+Bukowina,91,47.9,25.8,RO,RO;UA,RO.34;UA.03,Chernivtsi;Județul Suceava,region,manuell
+Guatemala,90,15.78,-90.23,GT,GT,,,land,land
+Belgien,85,50.64,4.67,BE,BE,,,land,land
+Tirol,84,47.2,11.4,AT,AT;IT,AT.07;IT.17,Tirol;Trentino-Alto Adige,region,manuell
+Petříkov,79,51.2,19.5,PL,PL,PL.74;PL.83,Województwo łódzkie;Województwo śląskie,region,manuell
+Franken,78,49.6,10.7,DE,DE,DE.02.094;DE.02.095;DE.02.096,Bayern,region,manuell
+Missouri,78,38.25031,-92.50046,US,US,US.MO,Missouri,region,admin
+Uruguay,76,-32.5,-55.8,UY,UY,,,land,land
+Peru,75,-9.2,-75.0,PE,PE,,,land,land
+Kolumbien,73,4.6,-74.3,CO,CO,,,land,land
+Erzgebirge,72,50.6,13.0,DE,CZ;DE,CZ.81;CZ.89;DE.13,Karlovarský kraj;Sachsen;Ústecký kraj,region,manuell
+"Königreich der Serben, Kroaten und Slowenen",70,44.0,20.5,RS,BA;HR;ME;MK;RS;SI;XK,,,land,land
+Kuban,69,44.98811,38.97675,RU,RU,RU.01;RU.38,Adygeya Republic;Krasnodar Krai,region,admin
+Oberhessen,69,50.69806,8.76861,DE,DE,DE.05.065,Hessen,region,admin
+Portugal,69,39.6,-8.0,PT,PT,,,land,land
+Estland,68,58.6,25.0,EE,EE,,,land,land
+Breisgau,67,47.99,7.85,DE,DE,DE.01.083,Baden-Württemberg,region,manuell
+Rheinland-Pfalz,66,49.66667,7.5,DE,DE,DE.08,Rheinland-Pfalz,region,admin
+Saarland,66,49.40472,6.96083,DE,DE,DE.09,Saarland,region,admin
+Nebraska,65,41.50028,-99.75067,US,US,US.NE,Nebraska,region,admin
+Niederlausitz,62,51.75,14.3,DE,DE;PL,DE.11;DE.13;PL.76,Brandenburg;Sachsen;województwo lubuskie,region,manuell
+Washington,62,47.50012,-120.50147,US,US,US.DC;US.WA,District of Columbia;Washington,region,admin
+Burgenland,61,47.5,16.41667,AT,AT;HU,AT.01;HU.09;HU.22,Burgenland;Győr-Moson-Sopron megye;Vas megye,region,admin
+Großbritannien,58,54.0,-2.0,GB,GB;IE,,,land,land
+Taurien,57,46.0,34.5,UA,UA,UA.08;UA.11;UA.26,Crimea;Kherson;Zaporizhzhia,region,manuell
+Bosnien,55,44.17,17.79,BA,BA,,,land,land
+Niedersachsen,55,52.83333,9.16667,DE,DE,DE.06,Niedersachsen,region,admin
+Lausitz,54,51.5,14.4,DE,DE;PL,DE.11;DE.13;PL.72;PL.76,Brandenburg;Sachsen;Województwo dolnośląskie;województwo lubuskie,region,manuell
+Niederlanden,54,52.24,5.53,NL,NL,,,land,land
+Minnesota,52,46.25024,-94.25055,US,US,US.MN,Minnesota,region,admin
+Wolynsk,52,50.7,26.5,UA,UA,UA.09;UA.19;UA.24;UA.27,Khmelnytskyi;Rivne Oblast;Volyn;Zhytomyr Oblast,region,manuell
+Iowa,50,42.00027,-93.50049,US,US,US.IA,Iowa,region,admin
+Sachsen-Weimar,50,50.98,11.33,DE,DE,DE.15,Thüringen,region,manuell
+Lippe-Detmold,47,51.95,8.85,DE,DE,DE.07.057,Nordrhein-Westfalen,region,manuell
+Slawonien,47,45.4,18.0,HR,HR,HR.02;HR.10;HR.11;HR.17;HR.18,Brodsko-posavska županija;Osječko-baranjska županija;Požeško-slavonska županija;Virovitičko-podravska županija;Vukovarsko-srijemska županija,region,manuell
+Reuß,46,50.75,12.0,DE,DE,DE.15,Thüringen,region,manuell
+Kärnten,44,46.75,14.0,AT,AT;IT;SI,AT.02;IT.06;SI,Friuli Venezia Giulia;Kärnten,region,manuell
+USSR,44,55.0,39.0,RU,AM;AZ;BY;GE;KZ;RU;UA,,,land,land
+Kars,43,40.6,43.1,TR,TR,TR,,region,manuell
+Elsass,41,48.3,7.5,FR,FR,FR.44,Grand Est,region,manuell
+Saarpfalz,41,49.3,7.25,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,manuell
+Jekaterinoslaw,40,48.2,35.0,UA,UA,UA.04;UA.05;UA.26,Dnipropetrovsk;Donetsk;Zaporizhzhia,region,manuell
+Westerwald,40,50.6,7.9,DE,DE,DE.05.065;DE.08,Hessen;Rheinland-Pfalz,region,manuell
+Reuß ä. L.,39,50.66,12.2,DE,DE,DE.15,Thüringen,region,manuell
+Sachsen-Meiningen,39,50.57,10.42,DE,DE,DE.15,Thüringen,region,manuell
+Colorado,37,39.00027,-105.50083,US,US,US.CO,Colorado,region,admin
+Livland,37,57.5,25.5,LV,EE;LV,EE;LV,,region,manuell
+Griechenland,35,39.07,21.82,GR,GR,,,land,land
+Kansas,35,38.50029,-98.50063,US,US,US.KS,Kansas,region,admin
+Kielce,35,50.7,20.5,PL,PL,PL.77;PL.83;PL.84,Województwo małopolskie;Województwo śląskie;Województwo świętokrzyskie,region,manuell
+Palästina,35,31.5,34.9,IL,IL;JO;PS,,,land,land
+Mainfranken,33,50.0,10.0,DE,DE,DE.02.096,Bayern,region,admin
+Witebsk,33,55.5,28.5,BY,BY;LV;RU,BY.07;LV.06;LV.14;LV.19;LV.22;LV.23;LV.24;RU.60,Daugavpils;Krāslavas novads;Ludzas novads;Preiļu novads;Pskov Oblast;Rēzekne;Rēzeknes novads;Vitebsk,region,manuell
+uneindeutig,33,,,,"",,,land,nicht_zugeordnet
+Karsgebiet,32,40.6,43.1,TR,TR,TR,,region,manuell
+Paraguay,32,-23.4,-58.4,PY,PY,,,land,land
+Radom,31,51.2,21.2,PL,PL,PL.75;PL.78;PL.84,Województwo lubelskie;Województwo mazowieckie;Województwo świętokrzyskie,region,manuell
+Hessen-Darmstadt,29,50.55,9.0,DE,DE,DE.05;DE.08,Hessen;Rheinland-Pfalz,region,admin
+Luxemburg,29,49.78,6.09,LU,LU,,,land,land
+Oberösterreich,29,48.25,14.0,AT,AT,AT.04,Oberösterreich,region,admin
+Südafrika,29,-30.6,22.9,ZA,NA;ZA,,,land,land
+Türkei,29,39.0,35.2,TR,TR,,,land,land
+Übriges Österreich,29,47.59,14.14,AT,AT;CZ;HR;IT;PL;RO;SI;UA,,,land,land
+Ruhr,28,51.48,7.2,DE,DE,DE.07.051;DE.07.055;DE.07.059,Nordrhein-Westfalen,region,manuell
+Taunus,27,50.25,8.4,DE,DE,DE.05.064;DE.05.065,Hessen,region,manuell
+Tschernihiw,27,51.5,32.0,UA,RU;UA,RU.10;UA.02,Bryansk Oblast;Chernihiv Oblast,region,manuell
+Mogilew,26,53.9,30.3,BY,BY,BY.06,Mogilev,region,manuell
+Schottland,26,56.5,-4.2,GB,GB,,,land,land
+Stavropol,26,44.95,43.34167,RU,RU,RU.70,Stavropol Kray,region,admin
+Neumark,25,52.7,15.2,PL,DE;PL,DE.11;PL.76;PL.87,Brandenburg;województwo lubuskie;województwo zachodniopomorskie,region,manuell
+Philippinen,25,12.88,121.77,PH,PH,,,land,land
+Tomsk,25,58.49167,82.14167,RU,RU,RU.75,Tomsk Oblast,region,admin
+Kurhessen,24,51.08333,9.4,DE,DE,DE.05.065;DE.05.066,Hessen,region,admin
+Birkenfeld,23,49.65,7.17,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+Südwestafrika,23,-22.96,18.49,NA,NA,,,land,land
+Südafrikanische Union,22,-30.6,22.9,ZA,NA;ZA,,,land,land
+Altmark,21,52.7,11.5,DE,DE,DE.14,Sachsen-Anhalt,region,manuell
+Hessen-Kassel,21,51.08333,9.4,DE,DE,DE.05.065;DE.05.066,Hessen,region,admin
+Mark,21,52.4,13.4,DE,DE,DE.07.059;DE.11;DE.16,Brandenburg;Land Berlin;Nordrhein-Westfalen,region,manuell
+Poltawa,21,49.59212,34.54301,UA,UA,UA.18,Poltava,region,admin
+South Dakota,21,44.50026,-100.25069,US,US,US.SD,South Dakota,region,admin
+Croatia,20,45.1,15.2,HR,HR,,,land,land
+Lothringen,20,49.0,6.3,FR,FR,FR.44,Grand Est,region,manuell
+Mecklenburg-Strelitz,20,53.4,13.2,DE,DE,DE.11;DE.12,Brandenburg;Mecklenburg-Vorpommern,region,manuell
+Ontario,20,49.25014,-84.49983,CA,CA,CA.08,Ontario,region,admin
+Madeira,19,32.75,-16.95,PT,PT,PT.10,Madeira,region,manuell
+Radomsk,19,51.07,19.45,PL,PL,PL.74,Województwo łódzkie,region,manuell
+Sachen,19,51.0,13.25,DE,DE,DE.13;DE.14;DE.15,Sachsen;Sachsen-Anhalt;Thüringen,region,manuell
+Deutsch,18,,,,DE;LT;PL;RU,,,land,nicht_zugeordnet
+Kalisz,18,51.8,18.5,PL,PL,PL.74;PL.86,Województwo łódzkie;województwo wielkopolskie,region,manuell
+Mazedonien,18,41.6,21.7,MK,BG;GR;MK,,,land,land
+Niederlande,18,52.24,5.53,NL,NL,,,land,land
+Saar,18,49.4,6.95,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,manuell
+Sachsen-Altenburg,18,50.99,12.43,DE,DE,DE.15,Thüringen,region,manuell
+Venezuela,18,6.4,-66.6,VE,VE,,,land,land
+links dem Rhein,18,49.35,7.85,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,manuell
+Bayerischer Wald,17,49.0,13.2,DE,DE,DE.02.092;DE.02.093,Bayern,region,manuell
+Bolivien,17,-16.3,-63.6,BO,BO,,,land,land
+Long Island,17,40.8,-73.2,US,US,US.NY,New York,region,manuell
+Mohilew,17,53.9,30.3,BY,BY,BY.06,Mogilev,region,manuell
+North Dakota,17,47.50027,-100.00068,US,US,US.ND,North Dakota,region,admin
+Persien,17,32.43,53.69,IR,IR,,,land,land
+Georgia,16,32.75042,-83.50018,US,US,US.GA,Georgia,region,admin
+Nassau,16,50.3,7.95,DE,DE,DE.05.064;DE.08,Hessen;Rheinland-Pfalz,region,manuell
+"New South Wales, Australien",16,-25.27,133.78,AU,AU,AU.02,New South Wales,region,land
+Reuß j. L.,16,50.8,11.95,DE,DE,DE.15,Thüringen,region,manuell
+Reuß-Gera,16,50.88,12.08,DE,DE,DE.15,Thüringen,region,manuell
+Allgäu,15,47.7,10.3,DE,DE,DE.01.084;DE.02.097,Baden-Württemberg;Bayern,region,manuell
+Oberlausitz,15,51.15,14.7,DE,DE;PL,DE.13;PL.72,Sachsen;Województwo dolnośląskie,region,manuell
+Serbien,15,44.0,20.9,RS,RS;XK,,,land,land
+El Salvador,14,13.79,-88.9,SV,SV,,,land,land
+Gouvernement Kalisch,14,51.8,18.5,PL,PL,PL.74;PL.86,Województwo łódzkie;województwo wielkopolskie,region,manuell
+Liechtenstein,14,47.16,9.55,LI,LI,,,land,land
+Odenwald,14,49.65,9.0,DE,DE,DE.01.082;DE.02.096;DE.05.064,Baden-Württemberg;Bayern;Hessen,region,manuell
+Panama,14,8.54,-80.78,PA,PA,,,land,land
+Schaumburg,14,52.25,9.2,DE,DE,DE.06,Niedersachsen,region,manuell
+Chelm,13,51.13,23.47,PL,PL,PL.75,Województwo lubelskie,region,manuell
+Eifel,13,50.3,6.8,DE,DE,DE.07.053;DE.08,Nordrhein-Westfalen;Rheinland-Pfalz,region,manuell
+Kent,13,51.2,0.7,GB,GB,GB.ENG,England,region,manuell
+Nicaragua,13,12.87,-85.2,NI,NI,,,land,land
+Riesengebirge,13,50.75,15.7,PL,CZ;PL,CZ.82;CZ.83;PL.72,Královéhradecký kraj;Liberecký kraj;Województwo dolnośląskie,region,manuell
+Ruhrgebiet,13,51.48,7.2,DE,DE,DE.07.051;DE.07.055;DE.07.059,Nordrhein-Westfalen,region,manuell
+Siegkreis,13,50.8,7.3,DE,DE,DE.07.053,Nordrhein-Westfalen,region,manuell
+Virginia,13,37.54812,-77.44675,US,US,US.VA,Virginia,region,admin
+Wilno,13,54.7,25.7,LT,BY;LT,BY.03;BY.05;BY.07;LT.56;LT.64;LT.65,Alytaus apskritis;Grodnenskaya;Minsk;Utenos apskritis;Vilniaus apskritis;Vitebsk,region,manuell
+Delaware,12,39.00039,-75.49992,US,US,US.DE,Delaware,region,admin
+Elsass-Lothringen,12,48.6,7.0,FR,FR,FR.44,Grand Est,region,manuell
+Honduras,12,15.2,-86.24,HN,HN,,,land,land
+Montana,12,47.00025,-109.75102,US,US,US.MT,Montana,region,admin
+Niederländisch-Indien,12,-0.79,113.92,ID,ID,,,land,land
+North Carolina,12,35.50069,-80.00032,US,US,US.NC,North Carolina,region,admin
+Oregon,12,44.00013,-120.50139,US,US,US.OR,Oregon,region,admin
+Schwarzburg-Sondershausen,12,51.37,10.87,DE,DE,DE.15,Thüringen,region,manuell
+Turskoi,12,,,,,,,,nicht_zugeordnet
+Uckermark,12,53.2,13.8,DE,DE,DE.11;DE.12,Brandenburg;Mecklenburg-Vorpommern,region,manuell
+Vorarlberg,12,47.25,9.91667,AT,AT,AT.08,Vorarlberg,region,admin
+Afrika,11,,,,"",,,land,nicht_zugeordnet
+Costa Rica,11,9.75,-83.75,CR,CR,,,land,land
+Florida,11,28.75054,-82.5001,US,US,US.FL,Florida,region,admin
+Gouvernement Czernigow,11,51.5,32.0,UA,RU;UA,RU.10;UA.02,Bryansk Oblast;Chernihiv Oblast,region,manuell
+Hawaii,11,20.78785,-156.38612,US,US,US.HI,Hawaii,region,admin
+Java,11,-7.3,110.0,ID,ID,ID,,region,manuell
+Kielc,11,50.7,20.5,PL,PL,PL.77;PL.83;PL.84,Województwo małopolskie;Województwo śląskie;Województwo świętokrzyskie,region,manuell
+Kuban-Gebiet,11,44.98811,38.97675,RU,RU,RU.01;RU.38,Adygeya Republic;Krasnodar Krai,region,admin
+Manitoba,11,55.00019,-97.00049,CA,CA,CA.03,Manitoba,region,admin
+Nordbayern,11,49.6,11.0,DE,DE,DE.02.093;DE.02.094;DE.02.095;DE.02.096,Bayern,region,manuell
+Oklahoma,11,35.49209,-97.50328,US,US,US.OK,Oklahoma,region,admin
+Rheinpreußen,11,50.6,7.0,DE,DE,DE.07.051;DE.07.053;DE.08;DE.09,Nordrhein-Westfalen;Rheinland-Pfalz;Saarland,region,manuell
+Salvador,11,13.79,-88.9,SV,SV,,,land,land
+Schwarzburg-Rudolstadt,11,50.72,11.33,DE,DE,DE.15,Thüringen,region,manuell
+Schwarzwald,11,48.2,8.2,DE,DE,DE.01,Baden-Württemberg,region,manuell
+Slowenien,11,46.15,14.99,SI,SI,,,land,land
+Terskoye-Gebiet,11,43.5,45.0,RU,RU,RU.12;RU.17;RU.19;RU.22;RU.68;RU.70,Chechnya;Dagestan;Ingushetiya Republic;Kabardino-Balkariya Republic;North Ossetia–Alania;Stavropol Kray,region,manuell
+Ecuador,10,-1.8,-78.2,EC,EC,,,land,land
+Genua,10,44.41,8.93,IT,IT,IT.08,Liguria,region,manuell
+Istrien,10,45.25,13.9,HR,HR;IT;SI,HR.04;IT.06;SI,Friuli Venezia Giulia;Istarska županija,region,manuell
+Lodz,10,51.77,19.46,PL,PL,PL.74,Województwo łódzkie,region,manuell
+Niederrhein,10,51.5,6.4,DE,DE,DE.07.051,Nordrhein-Westfalen,region,manuell
+Rhode Island,10,41.75038,-71.49978,US,US,US.RI,Rhode Island,region,admin
+Sachsen-Weimar-Eisenach,10,50.98,11.33,DE,DE,DE.15,Thüringen,region,manuell
+Tennessee,10,35.75035,-86.25027,US,US,US.TN,Tennessee,region,admin
+Terek-Gebiet,10,43.5,45.0,RU,RU,RU.12;RU.17;RU.19;RU.22;RU.68;RU.70,Chechnya;Dagestan;Ingushetiya Republic;Kabardino-Balkariya Republic;North Ossetia–Alania;Stavropol Kray,region,manuell
+Wittgenstein Berleburg,10,51.05,8.39,DE,DE,DE.07.059,Nordrhein-Westfalen,region,manuell
+Aargau,9,47.39557,8.17214,CH,CH,CH.AG,Aargau,region,admin
+Haiti,9,18.97,-72.29,HT,HT,,,land,land
+Hull,9,53.74,-0.33,GB,GB,GB.ENG,England,region,manuell
+London,9,51.51,-0.13,GB,GB,GB.ENG,England,region,manuell
+Moldawien,9,47.2,28.4,MD,MD;RO,,,land,land
+Neuseeland,9,-40.9,174.89,NZ,NZ,,,land,land
+Oldenburg-Birkenfeld,9,49.65,7.17,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+Rhön,9,50.45,9.95,DE,DE,DE.02.096;DE.05.066;DE.15,Bayern;Hessen;Thüringen,region,manuell
+Sachsen-Coburg,9,50.4,10.8,DE,DE,DE.02.094;DE.15,Bayern;Thüringen,region,manuell
+Siedlecz,9,52.1,22.5,PL,PL,PL.75;PL.78,Województwo lubelskie;Województwo mazowieckie,region,manuell
+Südamerika,9,,,,AR;BO;BR;CL;CO;EC;PE;PY;UY;VE,,,land,nicht_zugeordnet
+Weimar,9,50.98,11.33,DE,DE,DE.15,Thüringen,region,manuell
+Coburg-Gotha,8,50.7,10.75,DE,DE,DE.02.094;DE.15,Bayern;Thüringen,region,manuell
+Deutsch-Österreich,8,47.59,14.14,AT,AT;CZ,,,land,land
+Eichsfeld,8,51.35,10.2,DE,DE,DE.06;DE.15,Niedersachsen;Thüringen,region,manuell
+Föhr,8,54.72,8.5,DE,DE,DE.10,Schleswig-Holstein,region,manuell
+Gouvernement Wilna,8,54.7,25.7,LT,BY;LT,BY.03;BY.05;BY.07;LT.56;LT.64;LT.65,Alytaus apskritis;Grodnenskaya;Minsk;Utenos apskritis;Vilniaus apskritis;Vitebsk,region,manuell
+H.N.,8,50.55,9.0,DE,DE,DE.05;DE.08;DE.15,Hessen;Rheinland-Pfalz;Thüringen,region,admin
+Hohenzollern-Sigmaringen,8,48.25,9.1,DE,DE,DE.01.083;DE.01.084,Baden-Württemberg,region,manuell
+Maine,8,45.50032,-69.24977,US,US,US.ME,Maine,region,admin
+Memelland,8,55.6,21.4,LT,LT,LT.58;LT.62,Klaipėdos apskritis;Tauragės apskritis,region,manuell
+Nevada,8,39.25021,-116.75119,US,US,US.NV,Nevada,region,admin
+South Carolina,8,34.00043,-81.00009,US,US,US.SC,South Carolina,region,admin
+Sudetengau,8,50.3,14.8,CZ,CZ,CZ,,region,manuell
+West Virginia,8,38.50038,-80.50009,US,US,US.WV,West Virginia,region,admin
+Wien,8,48.21,16.37,AT,AT,AT.03;AT.09,Bundesland Wien;Niederösterreich,region,manuell
+Dalmatien,7,43.5,16.4,HR,HR;ME,HR.03;HR.13;HR.15;HR.19;ME,Dubrovačko-neretvanska županija;Splitsko-dalmatinska županija;Zadarska županija;Šibensko-kninska županija,region,manuell
+Dominikanische Republik,7,18.74,-70.16,DO,DO,,,land,land
+Donisches Gebiet,7,48.0,41.5,RU,RU,RU.61;RU.84,Rostov;Volgograd Oblast,region,manuell
+Fereck,7,,,,,,,,nicht_zugeordnet
+Goldküste,7,7.95,-1.02,GH,GH,,,land,land
+Gouvernement Lomza,7,53.2,22.0,PL,PL,PL.78;PL.81,Województwo mazowieckie;Województwo podlaskie,region,manuell
+Gouvernement Plock,7,52.8,20.0,PL,PL,PL.73;PL.78,Województwo kujawsko-pomorskie;Województwo mazowieckie,region,manuell
+Gouvernement Warschau,7,52.3,20.5,PL,PL,PL.73;PL.74;PL.78,Województwo kujawsko-pomorskie;Województwo mazowieckie;Województwo łódzkie,region,manuell
+Louisiana,7,31.00047,-92.0004,US,US,US.LA,Louisiana,region,admin
+Main,7,50.0,9.8,DE,DE,DE.02.094;DE.02.096;DE.05.064,Bayern;Hessen,region,manuell
+Mark Brandenburg,7,52.4,13.4,DE,DE;PL,DE.11;DE.16;PL.76;PL.87,Brandenburg;Land Berlin;województwo lubuskie;województwo zachodniopomorskie,region,manuell
+Memelgebiet,7,55.6,21.4,LT,LT,LT.58;LT.62,Klaipėdos apskritis;Tauragės apskritis,region,manuell
+Merchant,7,,,,,,,,nicht_zugeordnet
+Odessa,7,46.48,30.73,UA,UA,UA.17,Odesa,region,manuell
+Ostschlesien,7,50.0,18.8,PL,CZ;PL,CZ.85;PL.83,Moravskoslezský kraj;Województwo śląskie,region,manuell
+Penna,7,40.8,-77.7,US,US,US.PA,Pennsylvania,region,admin
+Puerto Rico,7,18.22,-66.59,PR,PR;US,,,land,land
+Sachsen-Coburg-Gotha,7,50.7,10.75,DE,DE,DE.02.094;DE.15,Bayern;Thüringen,region,manuell
+Saratov,7,51.5,46.0,RU,RU,RU.67;RU.84,Saratov Oblast;Volgograd Oblast,region,manuell
+Alberta,6,52.28333,-117.469,CA,CA,CA.01,Alberta,region,admin
+Bayern (Pfalz),6,49.35,7.85,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,manuell
+Bosna,6,44.17,17.79,BA,BA,,,land,land
+Breslau,6,51.11,17.03,PL,PL,PL.72,Województwo dolnośląskie,region,manuell
+Buenos Aires,6,-34.6,-58.4,AR,AR,AR.01;AR.07,Buenos Aires;Buenos Aires F.D.,region,manuell
+Dorset,6,50.75,-2.3,GB,GB,GB.ENG,England,region,manuell
+Kentucky,6,38.20042,-84.87762,US,US,US.KY,Kentucky,region,admin
+Magdeburg,6,52.13,11.63,DE,DE,DE.14,Sachsen-Anhalt,region,manuell
+Mandschurei,6,45.0,126.0,CN,CN,CN,,region,manuell
+Mexico Distrito Federal,6,19.43,-99.13,MX,MX,MX.09,Mexico City,region,manuell
+Mosel,6,49.95,7.1,DE,DE;FR;LU,DE.08;DE.09;FR.44;LU,Grand Est;Rheinland-Pfalz;Saarland,region,manuell
+Niederschlesien,6,51.2,16.2,PL,PL,PL.72;PL.76,Województwo dolnośląskie;województwo lubuskie,region,manuell
+Rheingau,6,50.02,8.05,DE,DE,DE.05.064,Hessen,region,manuell
+Saale,6,51.3,11.9,DE,DE,DE.02.094;DE.14;DE.15,Bayern;Sachsen-Anhalt;Thüringen,region,manuell
+Samarow,6,52.0,48.0,RU,RU,RU.65;RU.67,Samara Oblast;Saratov Oblast,region,manuell
+Siegen,6,50.87,8.02,DE,DE,DE.07.059,Nordrhein-Westfalen,region,manuell
+Sumatra,6,0.0,102.0,ID,ID,ID,,region,manuell
+staatenlos,6,,,,"",,,land,nicht_zugeordnet
+Alabama,5,32.75041,-86.75026,US,US,US.AL,Alabama,region,admin
+Angola,5,-11.2,17.87,AO,AO,,,land,land
+Arizona,5,34.5003,-111.50098,US,US,US.AZ,Arizona,region,admin
+Baden-Württemberg,5,48.5,9.0,DE,DE,DE.01,Baden-Württemberg,region,admin
+Bayerische Ostmark,5,49.3,12.3,DE,DE,DE.02.092;DE.02.093;DE.02.094,Bayern,region,manuell
+Donisches Kosakengebiet,5,48.0,41.5,RU,RU,RU.61;RU.84,Rostov;Volgograd Oblast,region,manuell
+Gouvernement Gomel,5,52.4,31.0,BY,BY,BY.02,Homyel’ Voblasc’,region,manuell
+Grodna,5,53.3,24.8,BY,BY;PL,BY.01;BY.03;PL.81,Brest;Grodnenskaya;Województwo podlaskie,region,manuell
+Haardt,5,49.35,8.1,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+Kubian,5,44.98811,38.97675,RU,RU,RU.01;RU.38,Adygeya Republic;Krasnodar Krai,region,admin
+Küstenland,5,45.7,13.8,IT,HR;IT;SI,HR.04;IT.06;SI,Friuli Venezia Giulia;Istarska županija,region,manuell
+L. I.,5,40.8,-73.2,US,US,US.NY,New York,region,manuell
+Milwaukee,5,43.04,-87.91,US,US,US.WI,Wisconsin,region,manuell
+New Hampshire,5,43.66702,-71.4998,US,US,US.NH,New Hampshire,region,admin
+Rügen,5,54.43,13.43,DE,DE,DE.12,Mecklenburg-Vorpommern,region,manuell
+Sardav,5,,,,,,,,nicht_zugeordnet
+Sigmaringen,5,48.09,9.22,DE,DE,DE.01.084,Baden-Württemberg,region,manuell
+Spanisch-Guinea,5,1.65,10.27,GQ,GQ,,,land,land
+Surrey,5,51.25,-0.4,GB,GB,GB.ENG,England,region,manuell
+Südharz,5,51.55,10.8,DE,DE,DE.06;DE.14;DE.15,Niedersachsen;Sachsen-Anhalt;Thüringen,region,manuell
+Thurgau,5,47.5562,9.07686,CH,CH,CH.TG,Thurgau,region,admin
+Victoria,5,-25.27,133.78,AU,AU,AU.07,Victoria,region,land
+Zürich,5,47.41667,8.66667,CH,CH,CH.ZH,Zürich,region,admin
+British Columbia,4,53.99983,-125.0032,CA,CA,CA.02,British Columbia,region,admin
+Charkow,4,49.61667,36.5,UA,UA,UA.07,Kharkiv,region,admin
+Eriwan,4,40.18,44.51,AM,AM,AM,,region,manuell
+Halle,4,51.48,11.97,DE,DE,DE.14,Sachsen-Anhalt,region,manuell
+"Hannover, Kreis Rotenburg/Wümme",4,53.11,9.4,DE,DE,DE.06,Niedersachsen,region,manuell
+Herzogtum Bremen,4,53.4,9.1,DE,DE,DE.03;DE.06,Bremen;Niedersachsen,region,manuell
+Hunsrück,4,49.95,7.3,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+Indonesien,4,-0.79,113.92,ID,ID,,,land,land
+Jütland,4,56.2,9.3,DK,DK,DK.18;DK.19;DK.21,Region Midtjylland;Region Nordjylland;Region Syddanmark,region,manuell
+Kalarimaslo,4,,,,,,,,nicht_zugeordnet
+Kyffhäuser,4,51.4,11.0,DE,DE,DE.14;DE.15,Sachsen-Anhalt;Thüringen,region,manuell
+Lauenburg,4,53.6,10.7,DE,DE;PL,DE.10;PL.82,Schleswig-Holstein;Województwo pomorskie,region,manuell
+Memel,4,55.6,21.4,LT,LT,LT.58;LT.62,Klaipėdos apskritis;Tauragės apskritis,region,manuell
+Montenegro,4,42.7,19.37,ME,ME,,,land,land
+Niederdonau,4,48.3,15.8,AT,AT;CZ,AT.03;CZ.78;CZ.79,Jihomoravský kraj;Jihočeský kraj;Niederösterreich,region,manuell
+Nordfranken,4,49.83333,11.33333,DE,DE,DE.02.094;DE.02.096,Bayern,region,admin
+Opodno,4,,,,,,,,nicht_zugeordnet
+Philippinische Inseln,4,12.88,121.77,PH,PH,,,land,land
+Plodz,4,51.77,19.46,PL,PL,PL.74,Województwo łódzkie,region,manuell
+Protektorat,4,49.8,15.5,CZ,CZ,,,land,land
+Queensland,4,-25.27,133.78,AU,AU,AU.04,Queensland,region,land
+Radem,4,51.2,21.2,PL,PL,PL.75;PL.78;PL.84,Województwo lubelskie;Województwo mazowieckie;Województwo świętokrzyskie,region,manuell
+Regierungsbezirk Münster,4,51.9666,7.4333,DE,DE,DE.07.055,Nordrhein-Westfalen,region,admin
+Rowno,4,50.62,26.25,UA,UA,UA.19,Rivne Oblast,region,manuell
+Saxen,4,51.0,13.25,DE,DE,DE.13;DE.14;DE.15,Sachsen;Sachsen-Anhalt;Thüringen,region,manuell
+Siebenbürgen,4,46.5,24.5,RO,RO,RO.01;RO.02;RO.05;RO.06;RO.09;RO.13;RO.15;RO.20;RO.21;RO.25;RO.27;RO.31;RO.32;RO.33,Județul Alba;Județul Arad;Județul Bihor;Județul Bistrița-Năsăud;Județul Brașov;Județul Cluj;Județul Covasna;Județul Harghita;Județul Hunedoara;Județul Maramureș;Județul Mureș;Județul Satu Mare;Județul Sibiu;Județul Sălaj,region,manuell
+South Washington,4,,,,,,,,nicht_zugeordnet
+Straits Settlements,4,1.35,103.82,SG,MY;SG,,,land,land
+Sudetenland,4,50.3,14.8,CZ,CZ,CZ,,region,manuell
+Süd Brasilien,4,-27.0,-51.0,BR,BR,BR.18;BR.23;BR.26,Paraná;Rio Grande do Sul;Santa Catarina,region,manuell
+Unterlahnkreis,4,50.35,7.9,DE,DE,DE.05.064;DE.08,Hessen;Rheinland-Pfalz,region,manuell
+Wilhelmshaven,4,53.53,8.11,DE,DE,DE.06,Niedersachsen,region,manuell
+Zentralamerika,4,,,,CR;GT;HN;NI;PA;SV,,,land,nicht_zugeordnet
+Zytomir,4,50.25,28.66,UA,UA,UA.27,Zhytomyr Oblast,region,manuell
+bei Scharmbeck,4,53.23,8.79,DE,DE,DE.06,Niedersachsen,region,manuell
+Ägypten,4,26.82,30.8,EG,EG,,,land,land
+Akmulinsk,3,51.0,71.0,KZ,KZ,KZ,,region,manuell
+Alaska,3,64.00028,-150.00028,US,US,US.AK,Alaska,region,admin
+Arkansas,3,34.75037,-92.50044,US,US,US.AR,Arkansas,region,admin
+Bad,3,,,,,,,,nicht_zugeordnet
+"Bayern, rechts dem Rhein",3,49.0,11.5,DE,DE,DE.02,Bayern,region,admin
+Bückeburg,3,52.26,9.05,DE,DE,DE.06,Niedersachsen,region,manuell
+Detmold,3,51.94,8.88,DE,DE,DE.07.057,Nordrhein-Westfalen,region,manuell
+Essen,3,51.46,7.01,DE,DE,DE.07.051,Nordrhein-Westfalen,region,manuell
+Freistaat Sachsen,3,51.0,13.25,DE,DE,DE.13,Sachsen,region,admin
+Friesland,3,53.5,7.9,DE,DE;NL,DE.06;NL.02,Friesland;Niedersachsen,region,manuell
+Graz,3,47.07,15.44,AT,AT,AT.06,Steiermark,region,manuell
+Großherzogtum Hessen,3,50.55,9.0,DE,DE,DE.05;DE.08,Hessen;Rheinland-Pfalz,region,admin
+"Hannover, jetzt Bremen",3,53.1,8.85,DE,DE,DE.03;DE.06,Bremen;Niedersachsen,region,manuell
+Hoboken,3,40.74,-74.03,US,US,US.NJ,New Jersey,region,manuell
+Horn,3,,,,,,,,nicht_zugeordnet
+Kioff,3,50.0,30.5,UA,UA,UA.01;UA.12;UA.13;UA.27,Cherkasy;Kyiv City;Kyiv Oblast;Zhytomyr Oblast,region,manuell
+Kolna,3,53.41,21.93,PL,PL,PL.81,Województwo podlaskie,region,manuell
+Korea,3,37.5,127.5,KR,KP;KR,,,land,land
+Kreis Hoya,3,52.8,9.1,DE,DE,DE.06,Niedersachsen,region,manuell
+Königreich Sachsen,3,51.0,13.25,DE,DE,DE.13,Sachsen,region,admin
+Lausitz / Sachsen,3,51.3,14.4,DE,DE,DE.11;DE.13,Brandenburg;Sachsen,region,manuell
+Liedlec,3,52.1,22.5,PL,PL,PL.75;PL.78,Województwo lubelskie;Województwo mazowieckie,region,manuell
+Lingfield,3,,,,,,,,nicht_zugeordnet
+Mandschukuo,3,45.0,126.0,CN,CN,,,land,land
+Meiningen,3,50.57,10.42,DE,DE,DE.15,Thüringen,region,manuell
+Meroslaw,3,,,,,,,,nicht_zugeordnet
+Mitranska,3,,,,,,,,nicht_zugeordnet
+Nordrhein-Westfalen,3,51.21895,6.76339,DE,DE,DE.07,Nordrhein-Westfalen,region,admin
+Nove Zamky,3,47.99,18.16,SK,SK,SK.04,Nitriansky,region,manuell
+Oberelsass,3,47.85,7.25,FR,FR,FR.44,Grand Est,region,manuell
+Oranjefreistaat,3,-28.5,26.5,ZA,ZA,ZA,,region,manuell
+Osthessen,3,50.6,9.7,DE,DE,DE.05.066,Hessen,region,manuell
+"Parana, Brasilien",3,-24.5,-51.33333,BR,BR,BR.18,Paraná,region,admin
+Pevek,3,,,,,,,,nicht_zugeordnet
+Podolcr,3,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Podolin,3,,,,,,,,nicht_zugeordnet
+Post Schnaitsee,3,,,,,,,,nicht_zugeordnet
+Provinz Hannover,3,52.8,9.5,DE,DE,DE.03;DE.04;DE.06,Bremen;Hamburg;Niedersachsen,region,manuell
+Radon,3,51.2,21.2,PL,PL,PL.75;PL.78;PL.84,Województwo lubelskie;Województwo mazowieckie;Województwo świętokrzyskie,region,manuell
+Radonisk,3,,,,,,,,nicht_zugeordnet
+Riga,3,56.95,24.11,LV,LV,LV.25,Rīga,region,manuell
+Sauerland,3,51.2,8.1,DE,DE,DE.07.059,Nordrhein-Westfalen,region,manuell
+Schwerin,3,53.63,11.41,DE,DE,DE.12,Mecklenburg-Vorpommern,region,manuell
+Semipalatinskaje,3,50.4,80.2,KZ,KZ,KZ,,region,manuell
+Sieg,3,50.8,7.7,DE,DE,DE.07.053;DE.07.059;DE.08,Nordrhein-Westfalen;Rheinland-Pfalz,region,manuell
+Spessart,3,50.0,9.4,DE,DE,DE.02.096;DE.05.064,Bayern;Hessen,region,manuell
+St. Petersburg,3,59.94,30.31,RU,RU,RU.42;RU.66,Leningradskaya Oblast';St. Petersburg,region,manuell
+Stuttgart,3,48.78,9.18,DE,DE,DE.01.081,Baden-Württemberg,region,manuell
+Szomolnok,3,48.78,20.88,SK,SK,SK.03,Košický,region,manuell
+Süd-Rhodesien,3,-19.0,29.15,ZW,ZW,,,land,land
+Südaustralien,3,-25.27,133.78,AU,AU,AU.05,South Australia,region,land
+Tobolje,3,57.0,68.0,RU,RU,RU.54;RU.78,Omsk Oblast;Tyumen Oblast,region,manuell
+Trento,3,46.07,11.12,IT,IT,IT.17,Trentino-Alto Adige,region,manuell
+Wales,3,52.3,-3.7,GB,GB,,,land,land
+Weser,3,52.8,9.0,DE,DE,DE.03;DE.05.066;DE.06;DE.07.057,Bremen;Hessen;Niedersachsen;Nordrhein-Westfalen,region,manuell
+Westerland,3,54.91,8.31,DE,DE,DE.10,Schleswig-Holstein,region,manuell
+Wittenberg,3,51.87,12.65,DE,DE,DE.14,Sachsen-Anhalt,region,manuell
+Worcester,3,52.19,-2.22,GB,GB,GB.ENG,England,region,manuell
+AB,2,52.28333,-117.469,CA,CA,CA.01,Alberta,region,admin
+Abessinien,2,9.15,40.49,ET,ET,,,land,land
+Alta,2,52.28333,-117.469,CA,CA,CA.01,Alberta,region,admin
+Altenburg,2,50.99,12.43,DE,DE,DE.15,Thüringen,region,manuell
+Amerika,2,39.83,-98.58,US,US,,,land,land
+Backa,2,45.6,19.4,RS,HU;RS,HU.01;RS.VO,Bács-Kiskun vármegye;Vojvodina,region,manuell
+Balingen,2,48.27,8.85,DE,DE,DE.01.084,Baden-Württemberg,region,manuell
+Baniska,2,,,,,,,,nicht_zugeordnet
+Batschka,2,45.6,19.4,RS,HU;RS,HU.01;RS.VO,Bács-Kiskun vármegye;Vojvodina,region,manuell
+Bayern/Mittelfranken,2,49.33333,10.83333,DE,DE,DE.02.095,Bayern,region,admin
+Bayrische Ostmark,2,49.3,12.3,DE,DE,DE.02.092;DE.02.093;DE.02.094,Bayern,region,manuell
+Belicen/Bl.,2,,,,,,,,nicht_zugeordnet
+Bregenz,2,47.5,9.75,AT,AT,AT.08,Vorarlberg,region,manuell
+Buckingham,2,51.8,-0.8,GB,GB,GB.ENG,England,region,manuell
+Ceylon,2,7.87,80.77,LK,LK,,,land,land
+Charlottenburg,2,,,,,,,,nicht_zugeordnet
+Ciechonowec,2,52.68,22.51,PL,PL,PL.81,Województwo podlaskie,region,manuell
+Coburg,2,50.26,10.96,DE,DE,DE.02.094,Bayern,region,manuell
+Corrientes,2,-29.0,-58.0,AR,AR,AR.06,Corrientes,region,admin
+Czogow,2,,,,,,,,nicht_zugeordnet
+Dillkreis,2,50.7,8.3,DE,DE,DE.05.065,Hessen,region,manuell
+Domingo,2,18.47,-69.89,DO,DO,DO,,region,manuell
+Dresden,2,,,,,,,,nicht_zugeordnet
+Elbe,2,53.0,11.0,DE,CZ;DE,CZ.89;DE.04;DE.06;DE.10;DE.11;DE.13;DE.14,Brandenburg;Hamburg;Niedersachsen;Sachsen;Sachsen-Anhalt;Schleswig-Holstein;Ústecký kraj,region,manuell
+Emden,2,,,,,,,,nicht_zugeordnet
+Emsland,2,52.8,7.3,DE,DE,DE.06,Niedersachsen,region,manuell
+Essex,2,51.8,0.6,GB,GB,GB.ENG,England,region,manuell
+Eulengebirge,2,50.7,16.5,PL,PL,PL.72,Województwo dolnośląskie,region,manuell
+Gminok,2,,,,,,,,nicht_zugeordnet
+Gomorska,2,,,,,,,,nicht_zugeordnet
+Greiz,2,,,,,,,,nicht_zugeordnet
+Hechingen,2,48.35,8.96,DE,DE,DE.01.084,Baden-Württemberg,region,manuell
+Hohenhameln,2,,,,,,,,nicht_zugeordnet
+Holländisch-Westindien,2,12.17,-68.99,CW,CW,CW,,region,manuell
+Iran,2,32.43,53.69,IR,IR,,,land,land
+Island,2,64.9,-18.6,IS,IS,,,land,land
+Istomföld,2,,,,,,,,nicht_zugeordnet
+Kaligerka,2,,,,,,,,nicht_zugeordnet
+Kamerun,2,7.37,12.35,CM,CM,,,land,land
+"Kanada, Ontario",2,49.25014,-84.49983,CA,CA,CA.08,Ontario,region,admin
+Kanalzone,2,9.1,-79.7,PA,PA,PA,,region,manuell
+Katalonien,2,40.2,-3.6,ES,ES,ES.56,Comunidad Autónoma de Cataluña,region,land
+Kielec,2,50.7,20.5,PL,PL,PL.77;PL.83;PL.84,Województwo małopolskie;Województwo śląskie;Województwo świętokrzyskie,region,manuell
+Koblenz,2,,,,,,,,nicht_zugeordnet
+Kovno,2,55.3,23.9,LT,LT,LT,,region,manuell
+Kreis Leiningen,2,,,,,,,,nicht_zugeordnet
+L. J.,2,40.8,-73.2,US,US,US.NY,New York,region,manuell
+Leipzig,2,,,,,,,,nicht_zugeordnet
+Liberia,2,6.43,-9.43,LR,LR,,,land,land
+Lifland,2,57.5,25.5,LV,EE;LV,EE;LV,,region,manuell
+Luthu,2,,,,,,,,nicht_zugeordnet
+Mainprovinz,2,,,,,,,,nicht_zugeordnet
+Memel Distrikt,2,55.6,21.4,LT,LT,LT.58;LT.62,Klaipėdos apskritis;Tauragės apskritis,region,manuell
+Middelesex,2,51.55,-0.35,GB,GB,GB.ENG,England,region,manuell
+Middlesbrough,2,,,,,,,,nicht_zugeordnet
+Mittelschlesien,2,51.0,17.0,PL,PL,PL.72,Województwo dolnośląskie,region,manuell
+Mogelow,2,53.9,30.3,BY,BY,BY.06,Mogilev,region,manuell
+Mohylew,2,53.9,30.3,BY,BY,BY.06,Mogilev,region,manuell
+Moldau,2,47.2,27.5,MD,MD;RO,MD;RO.04;RO.07;RO.18;RO.23;RO.28;RO.34;RO.38;RO.40,Județul Bacău;Județul Botoșani;Județul Galați;Județul Iași;Județul Neamț;Județul Suceava;Județul Vaslui;Vrancea,region,manuell
+Morava,2,49.4,17.0,CZ,CZ,CZ.78;CZ.80;CZ.84;CZ.85;CZ.90,Jihomoravský kraj;Moravskoslezský kraj;Olomoucký kraj;Vysočina;Zlínský kraj,region,manuell
+Moskau,2,55.75,37.62,RU,RU,RU.47;RU.48,Moscow;Moscow Oblast,region,manuell
+New Mexico,2,34.50034,-106.00085,US,US,US.NM,New Mexico,region,admin
+Niederelbe,2,53.7,9.4,DE,DE,DE.04;DE.06;DE.10,Hamburg;Niedersachsen;Schleswig-Holstein,region,manuell
+Nigeria,2,9.08,8.68,NG,NG,,,land,land
+Nordböhmen,2,50.65,14.5,CZ,CZ,CZ.82;CZ.83;CZ.89,Královéhradecký kraj;Liberecký kraj;Ústecký kraj,region,manuell
+Nordfriesland,2,54.6,8.9,DE,DE,DE.10,Schleswig-Holstein,region,manuell
+"Ontario, Kanada",2,49.25014,-84.49983,CA,CA,CA.08,Ontario,region,admin
+Ostfranken,2,49.83333,11.33333,DE,DE,DE.02.094,Bayern,region,admin
+Ostpriegnitz,2,53.1,12.4,DE,DE,DE.11,Brandenburg,region,manuell
+Ostrowo,2,51.65,17.81,PL,PL,PL.86,województwo wielkopolskie,region,manuell
+Pagast,2,,,,,,,,nicht_zugeordnet
+Petrik,2,51.2,19.5,PL,PL,PL.74;PL.83,Województwo łódzkie;Województwo śląskie,region,manuell
+Petrikan,2,51.2,19.5,PL,PL,PL.74;PL.83,Województwo łódzkie;Województwo śląskie,region,manuell
+Plok,2,52.8,20.0,PL,PL,PL.73;PL.78,Województwo kujawsko-pomorskie;Województwo mazowieckie,region,manuell
+Portugiesisch Westafrika,2,-11.2,17.87,AO,AO,,,land,land
+Provinz Hessen,2,50.55,9.0,DE,DE,DE.05,Hessen,region,admin
+Provinz Posen,2,52.4,17.3,PL,PL,PL.73;PL.76;PL.86,Województwo kujawsko-pomorskie;województwo lubuskie;województwo wielkopolskie,region,manuell
+Pultawa,2,49.59212,34.54301,UA,UA,UA.18,Poltava,region,admin
+Querfurt,2,,,,,,,,nicht_zugeordnet
+Radau,2,,,,,,,,nicht_zugeordnet
+Rhein,2,50.5,7.4,DE,CH;DE;NL,CH.BS;CH.SG;DE.01;DE.05.064;DE.07.051;DE.07.053;DE.08;NL,Baden-Württemberg;Basilea Città;Hessen;Nordrhein-Westfalen;Rheinland-Pfalz;Sankt Gallen,region,manuell
+Rhodesien,2,-19.0,29.15,ZW,ZM;ZW,,,land,land
+Ruthenien,2,48.4,23.0,UA,UA,UA.25,Zakarpattia,region,manuell
+SK,2,,,,,,,,nicht_zugeordnet
+Samoa,2,-13.76,-172.1,WS,WS,,,land,land
+Santo Domingo,2,18.47,-69.89,DO,DO,DO,,region,manuell
+Sarnochi,2,,,,,,,,nicht_zugeordnet
+Schwarzburg,2,50.7,11.2,DE,DE,DE.15,Thüringen,region,manuell
+Siedlce,2,52.1,22.5,PL,PL,PL.75;PL.78,Województwo lubelskie;Województwo mazowieckie,region,manuell
+Sierpe,2,,,,,,,,nicht_zugeordnet
+Sisdlec,2,52.1,22.5,PL,PL,PL.75;PL.78,Województwo lubelskie;Województwo mazowieckie,region,manuell
+Smolensk,2,54.95833,33.0,RU,RU,RU.69,Smolensk Oblast,region,admin
+Stade,2,,,,,,,,nicht_zugeordnet
+Stockholm,2,59.33,18.07,SE,SE,SE.26,Stockholms län,region,manuell
+Sylt,2,54.9,8.32,DE,DE,DE.10,Schleswig-Holstein,region,manuell
+Syrien,2,34.8,38.99,SY,SY,,,land,land
+Südwales,2,51.65,-3.5,GB,GB,GB.WLS,Wales,region,manuell
+Südwashington,2,,,,,,,,nicht_zugeordnet
+Transvaal,2,-25.5,29.0,ZA,ZA,ZA,,region,manuell
+Tschechei,2,49.8,15.5,CZ,CZ,,,land,land
+Tschechien,2,49.8,15.5,CZ,CZ,,,land,land
+Ugocsa,2,48.1,23.0,UA,RO;UA,RO.32;UA.25,Județul Satu Mare;Zakarpattia,region,manuell
+Unterbayern,2,48.75,12.83333,DE,DE,DE.02.092,Bayern,region,admin
+Unterwesterwald,2,50.45,7.8,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+Utah,2,39.25024,-111.75103,US,US,US.UT,Utah,region,admin
+Vermont,2,44.00034,-72.74983,US,US,US.VT,Vermont,region,admin
+Warthe,2,52.5,15.5,PL,PL,PL.76;PL.86,województwo lubuskie;województwo wielkopolskie,region,manuell
+Weserbergland,2,51.95,9.3,DE,DE,DE.06;DE.07.057,Niedersachsen;Nordrhein-Westfalen,region,manuell
+Wesermünde,2,53.55,8.58,DE,DE,DE.03;DE.06,Bremen;Niedersachsen,region,manuell
+Westfranken,2,50.0,10.0,DE,DE,DE.02.095;DE.02.096,Bayern,region,admin
+Westindien,2,18.5,-72.0,JM,BS;CU;DO;HT;JM,BS;CU;DO;HT;JM,,region,manuell
+Wolzan,2,,,,,,,,nicht_zugeordnet
+Zitomir,2,50.25,28.66,UA,UA,UA.27,Zhytomyr Oblast,region,manuell
+am Rhein,2,50.5,7.4,DE,CH;DE;NL,CH.BS;CH.SG;DE.01;DE.05.064;DE.07.051;DE.07.053;DE.08;NL,Baden-Württemberg;Basilea Città;Hessen;Nordrhein-Westfalen;Rheinland-Pfalz;Sankt Gallen,region,manuell
+b./Bremen,2,53.08,8.8,DE,DE,DE.03;DE.06,Bremen;Niedersachsen,region,manuell
+bei Schlagenbad,2,,,,,,,,nicht_zugeordnet
+domestic,2,,,,,,,,nicht_zugeordnet
+i/d. Mark,2,52.4,13.4,DE,DE,DE.11;DE.16,Brandenburg;Land Berlin,region,manuell
+Österreich-Ungarn,2,47.59,14.14,AT,AT;BA;CZ;HR;HU;IT;PL;RO;RS;SI;SK;UA,,,land,land
+Alfeld,1,,,,,,,,nicht_zugeordnet
+Alfeld-Braunschweig,1,,,,,,,,nicht_zugeordnet
+Alfeld-Hannover,1,,,,,,,,nicht_zugeordnet
+Algerien,1,28.03,1.66,DZ,DZ,,,land,land
+Amberg,1,,,,,,,,nicht_zugeordnet
+Armenien,1,40.07,45.04,AM,AM,,,land,land
+B/Merseburg,1,,,,,,,,nicht_zugeordnet
+B?nn,1,,,,,,,,nicht_zugeordnet
+Baeska,1,45.6,19.4,RS,HU;RS,HU.01;RS.VO,Bács-Kiskun vármegye;Vojvodina,region,manuell
+Bahama Inseln,1,25.03,-77.4,BS,BS,,,land,land
+Baltimore,1,39.29,-76.61,US,US,US.MD,Maryland,region,manuell
+Barmen,1,,,,,,,,nicht_zugeordnet
+Battenberg-Hessen,1,,,,,,,,nicht_zugeordnet
+Bayrisches Allgäu,1,47.7,10.3,DE,DE,DE.02.097,Bayern,region,manuell
+Belarus,1,53.7,27.95,BY,BY,,,land,land
+Bergen,1,60.39,5.32,NO,NO,NO.46,Vestland,region,manuell
+Bergischer Schwarzwald,1,51.1,7.2,DE,DE,DE.07.051;DE.07.053,Nordrhein-Westfalen,region,manuell
+Bermuda,1,32.32,-64.76,BM,BM,,,land,land
+Besdenitza,1,,,,,,,,nicht_zugeordnet
+Bezirk Hamburg,1,53.55,10.0,DE,DE,DE.04;DE.06;DE.10,Hamburg;Niedersachsen;Schleswig-Holstein,region,manuell
+Biala,1,,,,,,,,nicht_zugeordnet
+Bodensee,1,47.6,9.4,DE,AT;CH;DE,AT.08;CH.SG;CH.TG;DE.01;DE.02.097,Baden-Württemberg;Bayern;Sankt Gallen;Thurgau;Vorarlberg,region,manuell
+Bolmowo,1,,,,,,,,nicht_zugeordnet
+Brandenburg (Berlin),1,52.52,13.4,DE,DE,DE.11;DE.16,Brandenburg;Land Berlin,region,manuell
+Bratislavska,1,48.15,17.11,SK,SK,SK.02,Bratislavský,region,manuell
+Bremerhaven,1,,,,,,,,nicht_zugeordnet
+Bremervörde,1,,,,,,,,nicht_zugeordnet
+Britisch-Ostafrika,1,-0.02,37.9,KE,KE,,,land,land
+Britische Inseln,1,54.0,-2.0,GB,GB;IE,,,land,land
+Buckinghamshire,1,51.8,-0.8,GB,GB,GB.ENG,England,region,manuell
+Bukarest,1,,,,,,,,nicht_zugeordnet
+Bühl-Baden,1,,,,,,,,nicht_zugeordnet
+Carmathen,1,,,,,,,,nicht_zugeordnet
+Casatow,1,,,,,,,,nicht_zugeordnet
+Casille Corco,1,,,,,,,,nicht_zugeordnet
+Celebes-Insel,1,-2.0,120.5,ID,ID,ID,,region,manuell
+Chelms,1,51.13,23.47,PL,PL,PL.75,Województwo lubelskie,region,manuell
+Chicago,1,41.85,-87.65,US,US,US.IL,Illinois,region,manuell
+Chinska,1,,,,,,,,nicht_zugeordnet
+Corinthia,1,46.75,14.0,AT,AT,AT.02,Kärnten,region,manuell
+Cornwall,1,50.4,-4.9,GB,GB,GB.ENG,England,region,manuell
+County Kerry,1,52.1,-9.6,IE,IE,IE,,region,manuell
+Cravska,1,,,,,,,,nicht_zugeordnet
+Czerniczow,1,51.5,32.0,UA,RU;UA,RU.10;UA.02,Bryansk Oblast;Chernihiv Oblast,region,manuell
+DO,1,,,,,,,,nicht_zugeordnet
+Diethmarschen,1,54.15,9.1,DE,DE,DE.10,Schleswig-Holstein,region,manuell
+Dominica,1,15.41,-61.37,DM,DM,,,land,land
+Ehringshausen-Preußen,1,,,,,,,,nicht_zugeordnet
+Ehringshausen-Rheinland,1,,,,,,,,nicht_zugeordnet
+Erewan,1,40.18,44.51,AM,AM,AM,,region,manuell
+FR,1,,,,,,,,nicht_zugeordnet
+Flor.,1,28.75054,-82.5001,US,US,US.FL,Florida,region,admin
+Frankfurt,1,,,,,,,,nicht_zugeordnet
+Freie Hansestadt Hamburg,1,53.55,10.0,DE,DE,DE.04;DE.06;DE.10,Hamburg;Niedersachsen;Schleswig-Holstein,region,manuell
+Freisbach in der Pfalz,1,,,,,,,,nicht_zugeordnet
+Freistaat Danzig,1,54.35,18.65,PL,PL,PL.82,Województwo pomorskie,region,manuell
+Friwau,1,,,,,,,,nicht_zugeordnet
+Fünen,1,55.3,10.4,DK,DK,DK.21,Region Syddanmark,region,manuell
+Fürstentum Lippe-Detmold,1,51.95,8.85,DE,DE,DE.07.057,Nordrhein-Westfalen,region,manuell
+Fürstentum Waldeck,1,51.2,9.0,DE,DE,DE.05.066;DE.06,Hessen;Niedersachsen,region,manuell
+Garmaniszow,1,,,,,,,,nicht_zugeordnet
+Glasgow,1,,,,,,,,nicht_zugeordnet
+Gorges,1,,,,,,,,nicht_zugeordnet
+Gotha,1,50.95,10.7,DE,DE,DE.15,Thüringen,region,manuell
+Gottesbergkogdeich,1,,,,,,,,nicht_zugeordnet
+Gouvernement Kono,1,55.3,23.9,LT,LT,LT,,region,manuell
+Gouvernement Kowar,1,,,,,,,,nicht_zugeordnet
+Gouvernement Kowno,1,55.3,23.9,LT,LT,LT,,region,manuell
+Gouvernement Minsk,1,53.7,27.6,BY,BY,BY,,region,manuell
+Gouvernement Wolinow,1,50.7,26.5,UA,UA,UA.09;UA.19;UA.24;UA.27,Khmelnytskyi;Rivne Oblast;Volyn;Zhytomyr Oblast,region,manuell
+Grafschaft Glatz,1,50.4,16.6,PL,PL,PL.72,Województwo dolnośląskie,region,manuell
+Granada,1,37.18,-3.6,ES,ES,ES.51,Comunidad Autónoma de Andalucía,region,manuell
+Grondy,1,,,,,,,,nicht_zugeordnet
+"Guatemala, Zentralamerika",1,15.78,-90.23,GT,GT,GT,,region,land
+Haag,1,52.08,4.31,NL,NL,NL.11,Zuid-Holland,region,manuell
+Halberstadt,1,,,,,,,,nicht_zugeordnet
+"Hammonia, Brasilien",1,-26.98,-49.51,BR,BR,BR.26,Santa Catarina,region,manuell
+Hampshire,1,51.05,-1.3,GB,GB,GB.ENG,England,region,manuell
+Hansestadt Bremen,1,53.08,8.8,DE,DE,DE.03;DE.06,Bremen;Niedersachsen,region,manuell
+Havanna,1,23.13,-82.38,CU,CU,CU,,region,manuell
+Helenowo,1,,,,,,,,nicht_zugeordnet
+Helgoland,1,,,,,,,,nicht_zugeordnet
+Herzegowina,1,43.3,17.8,BA,BA,BA,,region,manuell
+Hessen Darmstadt,1,50.55,9.0,DE,DE,DE.05;DE.08,Hessen;Rheinland-Pfalz,region,admin
+Hmbg. Birkenfeld,1,,,,,,,,nicht_zugeordnet
+"Holstein, Preußen",1,54.1,10.0,DE,DE,DE.04;DE.10,Hamburg;Schleswig-Holstein,region,manuell
+Hörde,1,51.48,7.5,DE,DE,DE.07.059,Nordrhein-Westfalen,region,manuell
+Illwo,1,,,,,,,,nicht_zugeordnet
+Inn,1,48.1,12.3,DE,AT;DE,AT.04;AT.07;DE.02.091;DE.02.092,Bayern;Oberösterreich;Tirol,region,manuell
+Irak,1,33.22,43.68,IQ,IQ,,,land,land
+Isere,1,45.2,5.7,FR,FR,FR.84,Auvergne-Rhône-Alpes,region,manuell
+Isle of Wight,1,50.67,-1.3,GB,GB,GB.ENG,England,region,manuell
+Israel,1,31.05,34.85,IL,IL,,,land,land
+Iwanowa,1,,,,,,,,nicht_zugeordnet
+Ja.,1,,,,,,,,nicht_zugeordnet
+Jamaica,1,,,,JM,JM,,region,nicht_zugeordnet
+Jersey,1,49.21,-2.13,JE,JE,JE,,region,manuell
+Jerusalem,1,31.78,35.22,IL,IL;PS,IL;PS,,region,manuell
+Jeverland,1,53.57,7.9,DE,DE,DE.06,Niedersachsen,region,manuell
+Jozefowo,1,,,,,,,,nicht_zugeordnet
+Kalicz,1,51.8,18.5,PL,PL,PL.74;PL.86,Województwo łódzkie;województwo wielkopolskie,region,manuell
+Kalmeja,1,,,,,,,,nicht_zugeordnet
+Kammergut,1,,,,,,,,nicht_zugeordnet
+Kanagawa,1,36.2,138.25,JP,JP,JP.19,Kanagawa,region,land
+Kanton Bern,1,46.87251,7.59563,CH,CH,CH.BE,Bern,region,admin
+Karlsruhe,1,,,,,,,,nicht_zugeordnet
+Kassel,1,,,,,,,,nicht_zugeordnet
+Kenia,1,,,,,,,,nicht_zugeordnet
+"Kent, England",1,51.2,0.7,GB,GB,GB.ENG,England,region,manuell
+Kidec,1,,,,,,,,nicht_zugeordnet
+Kiebcka,1,,,,,,,,nicht_zugeordnet
+Koblinka,1,,,,,,,,nicht_zugeordnet
+Kolno,1,53.41,21.93,PL,PL,PL.81,Województwo podlaskie,region,manuell
+Konin,1,52.22,18.25,PL,PL,PL.86,województwo wielkopolskie,region,manuell
+Konow,1,,,,,,,,nicht_zugeordnet
+Kosono,1,,,,,,,,nicht_zugeordnet
+Kowiensk,1,55.3,23.9,LT,LT,LT,,region,manuell
+Krasnopok,1,,,,,,,,nicht_zugeordnet
+Kreis Aurich,1,53.47,7.48,DE,DE,DE.06,Niedersachsen,region,manuell
+Kreis Büdingen,1,50.29,9.11,DE,DE,DE.05.064,Hessen,region,manuell
+Kreis Deutsche Krone,1,53.27,16.47,PL,PL,PL.87,województwo zachodniopomorskie,region,manuell
+Kreis Einbeck,1,51.82,9.87,DE,DE,DE.06,Niedersachsen,region,manuell
+Kreis Heimstedt,1,,,,,,,,nicht_zugeordnet
+Kreis Osterholz,1,53.23,8.79,DE,DE,DE.06,Niedersachsen,region,manuell
+Kreis Schlawe,1,54.36,16.68,PL,PL,PL.87,województwo zachodniopomorskie,region,manuell
+Kreis Strehlen,1,50.73,17.06,PL,PL,PL.72,Województwo dolnośląskie,region,manuell
+Kreis Usingen,1,50.33,8.53,DE,DE,DE.05.064,Hessen,region,manuell
+Kreis Wesermünde,1,53.55,8.7,DE,DE,DE.03;DE.06,Bremen;Niedersachsen,region,manuell
+Kreis Wetzlar,1,50.56,8.5,DE,DE,DE.05.065,Hessen,region,manuell
+Kulaki,1,,,,,,,,nicht_zugeordnet
+Kutais,1,42.27,42.7,GE,GE,GE,,region,manuell
+Köln,1,,,,,,,,nicht_zugeordnet
+Königreich Württemberg,1,48.6,9.3,DE,DE,DE.01,Baden-Württemberg,region,manuell
+Lahn,1,50.5,8.4,DE,DE,DE.05;DE.08,Hessen;Rheinland-Pfalz,region,manuell
+"Landing, New Jersey",1,,,,,,,,nicht_zugeordnet
+Landsee,1,,,,,,,,nicht_zugeordnet
+Langenholm,1,,,,,,,,nicht_zugeordnet
+Lanken,1,,,,,,,,nicht_zugeordnet
+Lapy,1,52.99,22.88,PL,PL,PL.81,Województwo podlaskie,region,manuell
+Lauenstein-Hannover,1,,,,,,,,nicht_zugeordnet
+Leeds,1,53.8,-1.55,GB,GB,GB.ENG,England,region,manuell
+Leicestershire,1,52.65,-1.15,GB,GB,GB.ENG,England,region,manuell
+Lemas,1,,,,,,,,nicht_zugeordnet
+Libanon,1,33.85,35.86,LB,LB,,,land,land
+Lidecko,1,,,,,,,,nicht_zugeordnet
+Lieduc,1,,,,,,,,nicht_zugeordnet
+Liegnitz,1,51.21,16.16,PL,PL,PL.72,Województwo dolnośląskie,region,manuell
+Lienzingen-Württemberg,1,,,,,,,,nicht_zugeordnet
+Limburg,1,51.2,5.9,NL,NL,NL.05,Limburg,region,manuell
+Lipnik,1,,,,,,,,nicht_zugeordnet
+Liski,1,,,,,,,,nicht_zugeordnet
+Loeben,1,,,,,,,,nicht_zugeordnet
+Lubin,1,,,,,,,,nicht_zugeordnet
+Lutren,1,,,,,,,,nicht_zugeordnet
+Luzern,1,47.16667,8.16667,CH,CH,CH.LU,Lucerne,region,admin
+Löster,1,,,,,,,,nicht_zugeordnet
+MF,1,,,,,,,,nicht_zugeordnet
+Magyar,1,47.16,19.5,HU,HU,HU,,region,manuell
+Malopolska,1,50.0,21.0,PL,PL,PL.77;PL.80,Województwo małopolskie;województwo podkarpackie,region,manuell
+Marck,1,52.4,13.4,DE,DE,DE.11;DE.16,Brandenburg;Land Berlin,region,manuell
+Marmatier,1,47.9,24.0,RO,RO;UA,RO.25;UA.25,Județul Maramureș;Zakarpattia,region,manuell
+Matto Grosso,1,-13.0,-56.0,BR,BR,BR.11;BR.14,Mato Grosso;Mato Grosso do Sul,region,admin
+Maulew,1,,,,,,,,nicht_zugeordnet
+Mes.,1,,,,,,,,nicht_zugeordnet
+Middlesex,1,51.55,-0.35,GB,GB,GB.ENG,England,region,manuell
+Minneapolis,1,44.98,-93.26,US,US,US.MN,Minnesota,region,manuell
+Mittelbayern,1,48.8,12.0,DE,DE,DE.02.091;DE.02.092;DE.02.093,Bayern,region,manuell
+Mogileff,1,53.9,30.3,BY,BY,BY.06,Mogilev,region,manuell
+Mohitno,1,,,,,,,,nicht_zugeordnet
+Moldavien,1,47.2,28.4,MD,MD;RO,,,land,land
+Montevideo,1,-34.9,-56.19,UY,UY,UY,,region,manuell
+"Montgomery, Missouri",1,38.25031,-92.50046,US,US,US.MO,Missouri,region,admin
+Naden,1,,,,,,,,nicht_zugeordnet
+Nahe Ettlingen,1,,,,,,,,nicht_zugeordnet
+Nahe Rottenburg,1,,,,,,,,nicht_zugeordnet
+Namibia,1,-22.96,18.49,NA,NA,,,land,land
+Natal,1,-29.0,30.5,ZA,ZA,ZA,,region,manuell
+Neckar,1,48.9,9.2,DE,DE,DE.01,Baden-Württemberg,region,manuell
+Neufundland,1,52.0,-56.0,CA,CA,CA.05,Newfoundland and Labrador,region,admin
+Neuweier,1,,,,,,,,nicht_zugeordnet
+New South Wales,1,-25.27,133.78,AU,AU,AU.02,New South Wales,region,land
+Newry Ashgrove,1,,,,,,,,nicht_zugeordnet
+Nidwalden,1,46.92739,8.41028,CH,CH,CH.NW,Nidwalden,region,admin
+Nieder-Baden,1,49.0,8.66667,DE,DE,DE.01.082,Baden-Württemberg,region,admin
+Niederfranken,1,50.0,10.0,DE,DE,DE.02.096,Bayern,region,admin
+Niederung,1,55.0,21.5,RU,LT;RU,LT.58;RU.23,Kaliningrad Oblast;Klaipėdos apskritis,region,manuell
+Nord-Aargau,1,47.39557,8.17214,CH,CH,CH.AG,Aargau,region,admin
+Nord-Rhodesien,1,-13.13,27.85,ZM,ZM,,,land,land
+Nordbaden,1,49.0,8.66667,DE,DE,DE.01.082,Baden-Württemberg,region,admin
+Nordbrabant,1,51.66667,5.0,NL,NL,NL.06,Noord-Brabant,region,admin
+Nordenham,1,,,,,,,,nicht_zugeordnet
+Nordharz,1,51.85,10.8,DE,DE,DE.06;DE.14,Niedersachsen;Sachsen-Anhalt,region,manuell
+Nordlausitz,1,51.9,14.0,DE,DE,DE.11,Brandenburg,region,manuell
+Nordschlesien,1,51.6,16.2,PL,PL,PL.72;PL.76,Województwo dolnośląskie;województwo lubuskie,region,manuell
+Nürnberg,1,,,,,,,,nicht_zugeordnet
+O. S.,1,50.4,18.4,PL,CZ;PL,CZ.85;PL.79;PL.83,Moravskoslezský kraj;Województwo opolskie;Województwo śląskie,region,manuell
+Oberamt Aalen,1,,,,,,,,nicht_zugeordnet
+Oberamt Kuenzelsau,1,,,,,,,,nicht_zugeordnet
+Oberamt Leonberg,1,,,,,,,,nicht_zugeordnet
+Oberamt Waldsee,1,,,,,,,,nicht_zugeordnet
+Odenthal,1,,,,,,,,nicht_zugeordnet
+Odenwald/Hessen,1,49.65,8.9,DE,DE,DE.05.064,Hessen,region,manuell
+Oder,1,52.3,14.6,DE,DE;PL,DE.11;PL.72;PL.76;PL.79;PL.87,Brandenburg;Województwo dolnośląskie;Województwo opolskie;województwo lubuskie;województwo zachodniopomorskie,region,manuell
+Odw.,1,49.65,9.0,DE,DE,DE.01.082;DE.02.096;DE.05.064,Baden-Württemberg;Bayern;Hessen,region,manuell
+Olazanka,1,,,,,,,,nicht_zugeordnet
+Orenburg,1,51.64167,55.6,RU,RU,RU.55,Orenburg Oblast,region,admin
+Osnabrück,1,,,,,,,,nicht_zugeordnet
+Ost,1,,,,,,,,nicht_zugeordnet
+Osthavelland,1,52.6,12.9,DE,DE,DE.11,Brandenburg,region,manuell
+Ostpommern,1,54.1,16.8,PL,PL,PL.82;PL.87,Województwo pomorskie;województwo zachodniopomorskie,region,manuell
+Ostpreußen-Friesland,1,54.2,21.0,PL,PL;RU,PL.85;RU.23,Kaliningrad Oblast;Województwo warmińsko-mazurskie,region,manuell
+Ostrawa,1,49.83,18.28,CZ,CZ,CZ.85,Moravskoslezský kraj,region,manuell
+Ostrussland,1,55.0,45.0,RU,RU,RU,,region,manuell
+Ostsee,1,,,,,,,,nicht_zugeordnet
+P.Dembrca,1,,,,,,,,nicht_zugeordnet
+P.K.R.,1,,,,,,,,nicht_zugeordnet
+Patagonien,1,-43.0,-69.0,AR,AR;CL,AR;CL,,region,manuell
+Perch,1,,,,,,,,nicht_zugeordnet
+Petrykau,1,51.2,19.5,PL,PL,PL.74;PL.83,Województwo łódzkie;Województwo śląskie,region,manuell
+Pfalz/Bayern,1,49.35,7.85,DE,DE,DE.08;DE.09,Rheinland-Pfalz;Saarland,region,manuell
+Pietrkau,1,51.2,19.5,PL,PL,PL.74;PL.83,Województwo łódzkie;Województwo śląskie,region,manuell
+Piotrkowice,1,,,,,,,,nicht_zugeordnet
+Plauen,1,,,,,,,,nicht_zugeordnet
+Plocz,1,52.8,20.0,PL,PL,PL.73;PL.78,Województwo kujawsko-pomorskie;Województwo mazowieckie,region,manuell
+Podelin,1,,,,,,,,nicht_zugeordnet
+Podelow,1,,,,,,,,nicht_zugeordnet
+Podlien,1,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Podokin,1,,,,,,,,nicht_zugeordnet
+Podolak,1,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Podoler,1,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Podolez,1,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Podolia,1,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Podolznien,1,49.0,28.0,UA,UA,UA.09;UA.17;UA.23,Khmelnytskyi;Odesa;Vinnytsia,region,manuell
+Podvesk,1,,,,,,,,nicht_zugeordnet
+Polnisch Bursztyn,1,49.26,24.63,UA,UA,UA.06,Ivano-Frankivsk,region,manuell
+Poltow,1,49.59212,34.54301,UA,UA,UA.18,Poltava,region,admin
+Poltowa,1,49.59212,34.54301,UA,UA,UA.18,Poltava,region,admin
+Porek,1,,,,,,,,nicht_zugeordnet
+Portugiesisch Ostafrika,1,-18.67,35.53,MZ,MZ,,,land,land
+"Posen, Neisze Linie",1,52.4,17.3,PL,PL,PL.86,województwo wielkopolskie,region,manuell
+Posen-Westpreussen,1,53.0,17.5,PL,PL,PL.73;PL.82;PL.86,Województwo kujawsko-pomorskie;Województwo pomorskie;województwo wielkopolskie,region,manuell
+Post Endorf,1,,,,,,,,nicht_zugeordnet
+Post Reisbach,1,,,,,,,,nicht_zugeordnet
+Post Tittling,1,,,,,,,,nicht_zugeordnet
+Pretzkow,1,,,,,,,,nicht_zugeordnet
+Preußisch Brandenburg,1,52.4,13.4,DE,DE;PL,DE.11;DE.16;PL.76;PL.87,Brandenburg;Land Berlin;województwo lubuskie;województwo zachodniopomorskie,region,manuell
+Preußisch Minden,1,,,,,,,,nicht_zugeordnet
+Preußisch Oldenburg,1,53.0,8.15,DE,DE,DE.06,Niedersachsen,region,manuell
+Priegnitz,1,53.1,12.0,DE,DE,DE.11,Brandenburg,region,manuell
+Pro Bolez,1,,,,,,,,nicht_zugeordnet
+Prosec,1,,,,,,,,nicht_zugeordnet
+Protekow,1,,,,,,,,nicht_zugeordnet
+Provinz Oslo,1,59.91,10.75,NO,NO,NO.12,Oslo Fylke,region,manuell
+Provinz Schlesien,1,50.8,17.0,PL,PL,PL.72;PL.76;PL.79;PL.83,Województwo dolnośląskie;Województwo opolskie;Województwo śląskie;województwo lubuskie,region,manuell
+Prym,1,,,,,,,,nicht_zugeordnet
+Pulia,1,,,,,,,,nicht_zugeordnet
+QC,1,52.00017,-71.99907,CA,CA,CA.10,Quebec,region,admin
+Radomek,1,,,,,,,,nicht_zugeordnet
+Radomysl,1,50.5,29.23,UA,UA,UA.27,Zhytomyr Oblast,region,manuell
+Regierungsbezirk Magdeburg,1,52.13,11.62,DE,DE,DE.14,Sachsen-Anhalt,region,manuell
+Reuß-Schleiz,1,50.58,11.81,DE,DE,DE.15,Thüringen,region,manuell
+Reuß-Vogtland,1,50.66,12.2,DE,DE,DE.13;DE.15,Sachsen;Thüringen,region,manuell
+Rheinland-Hessen,1,49.9,8.15,DE,DE,DE.05;DE.08,Hessen;Rheinland-Pfalz,region,manuell
+Rheintal,1,50.4,7.6,DE,CH;DE,CH.SG;DE.07.053;DE.08,Nordrhein-Westfalen;Rheinland-Pfalz;Sankt Gallen,region,manuell
+Rhön/Bayern,1,50.4,10.0,DE,DE,DE.02.096,Bayern,region,manuell
+Rise Birstall,1,,,,,,,,nicht_zugeordnet
+Rudolstadt,1,50.72,11.33,DE,DE,DE.15,Thüringen,region,manuell
+Russische Flüchtlinge,1,,,,,,,,nicht_zugeordnet
+SA,1,,,,,,,,nicht_zugeordnet
+SZ.-SL.,1,49.4,17.3,CZ,CZ;SK;UA,,,land,land
+Saalfeld,1,,,,,,,,nicht_zugeordnet
+Saalkreis,1,51.5,11.9,DE,DE,DE.14,Sachsen-Anhalt,region,manuell
+Saarkreis,1,49.40472,6.96083,DE,DE,DE.09,Saarland,region,admin
+Saliby,1,,,,,,,,nicht_zugeordnet
+Salzburg,1,47.41667,13.25,AT,AT,AT.05,Salzburg,region,admin
+Samju,1,,,,,,,,nicht_zugeordnet
+Santafe,1,-31.0,-61.0,AR,AR,AR.21,Santa Fe,region,admin
+Sarato,1,51.5,46.0,RU,RU,RU.67;RU.84,Saratov Oblast;Volgograd Oblast,region,manuell
+Sardars,1,,,,,,,,nicht_zugeordnet
+Sarsk,1,,,,,,,,nicht_zugeordnet
+Saskatoon,1,52.13,-106.67,CA,CA,CA.11,Saskatchewan,region,manuell
+Schaumb.Birkenfeld,1,,,,,,,,nicht_zugeordnet
+Schlebusch,1,,,,,,,,nicht_zugeordnet
+Schwarzbach-Rudolstadt,1,50.72,11.33,DE,DE,DE.15,Thüringen,region,manuell
+Schwarzenfels-Nassau,1,,,,,,,,nicht_zugeordnet
+Siedlaw,1,,,,,,,,nicht_zugeordnet
+Siegerland,1,50.9,8.0,DE,DE,DE.07.059,Nordrhein-Westfalen,region,manuell
+Skandinavien,1,,,,DK;NO;SE,,,land,nicht_zugeordnet
+Sondershausen,1,51.37,10.87,DE,DE,DE.15,Thüringen,region,manuell
+Sonnowa,1,,,,,,,,nicht_zugeordnet
+Sontra-Nassau,1,,,,,,,,nicht_zugeordnet
+Soralow,1,,,,,,,,nicht_zugeordnet
+Soros,1,,,,,,,,nicht_zugeordnet
+Sozialistische Sowjetrepublik,1,55.0,39.0,RU,AM;AZ;BY;GE;KZ;RU;UA,,,land,land
+Springe-Hannover,1,,,,,,,,nicht_zugeordnet
+Sredna,1,,,,,,,,nicht_zugeordnet
+Strehlau,1,,,,,,,,nicht_zugeordnet
+Strelitz,1,53.36,13.08,DE,DE,DE.12,Mecklenburg-Vorpommern,region,manuell
+Sussex,1,50.95,-0.3,GB,GB,GB.ENG,England,region,manuell
+Svedlec,1,52.1,22.5,PL,PL,PL.75;PL.78,Województwo lubelskie;Województwo mazowieckie,region,manuell
+Szedlycko,1,,,,,,,,nicht_zugeordnet
+Szepes,1,49.0,20.5,SK,PL;SK,PL.77;SK.03;SK.05,Košický;Prešovský;Województwo małopolskie,region,manuell
+Szewo,1,,,,,,,,nicht_zugeordnet
+Südschweden,1,56.5,14.0,SE,SE,SE.02;SE.06;SE.09;SE.12;SE.27,Blekinge län;Hallands län;Kalmar län;Kronobergs län;Skåne län,region,manuell
+Südtirol,1,46.6,11.4,IT,IT,IT.17,Trentino-Alto Adige,region,manuell
+Tasmania,1,-25.27,133.78,AU,AU,AU.06,Tasmania,region,land
+Tauroggen,1,55.25,22.29,LT,LT,LT.62,Tauragės apskritis,region,manuell
+Temes,1,45.7,21.2,RO,RO;RS,RO.36;RS.VO,Județul Timiș;Vojvodina,region,manuell
+Teneriffa,1,28.3,-16.55,ES,ES,ES.53,Comunidad Autónoma de Canarias,region,manuell
+Thalheim,1,,,,,,,,nicht_zugeordnet
+Tilsit,1,55.08,21.88,RU,RU,RU.23,Kaliningrad Oblast,region,manuell
+Topolsk,1,,,,,,,,nicht_zugeordnet
+Torontal,1,45.5,20.6,RS,RO;RS,RO.36;RS.VO,Județul Timiș;Vojvodina,region,manuell
+Trebnitz,1,51.31,17.06,PL,PL,PL.72,Województwo dolnośląskie,region,manuell
+Trencanska,1,,,,,,,,nicht_zugeordnet
+Trier,1,,,,,,,,nicht_zugeordnet
+Tsahaznigow,1,51.5,32.0,UA,RU;UA,RU.10;UA.02,Bryansk Oblast;Chernihiv Oblast,region,manuell
+Tunesien,1,33.89,9.54,TN,TN,,,land,land
+Twittau,1,,,,,,,,nicht_zugeordnet
+Udine,1,46.06,13.24,IT,IT,IT.06,Friuli Venezia Giulia,region,manuell
+Uelzen,1,,,,,,,,nicht_zugeordnet
+Ufa,1,54.26667,56.525,RU,RU,RU.08,Bashkortostan Republic,region,admin
+Unter-Strelitz,1,53.36,13.08,DE,DE,DE.12,Mecklenburg-Vorpommern,region,manuell
+Unterkrain,1,45.8,15.1,SI,SI,SI,,region,manuell
+Unterpfalz,1,49.35,7.85,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+Urgelew,1,,,,,,,,nicht_zugeordnet
+Usedom,1,53.95,14.0,DE,DE;PL,DE.12;PL.87,Mecklenburg-Vorpommern;województwo zachodniopomorskie,region,manuell
+V.B.,1,,,,,,,,nicht_zugeordnet
+Varad Zsopa,1,,,,,,,,nicht_zugeordnet
+Vasm.,1,,,,,,,,nicht_zugeordnet
+Vilay,1,,,,,,,,nicht_zugeordnet
+Vilna,1,54.7,25.7,LT,BY;LT,BY.03;BY.05;BY.07;LT.56;LT.64;LT.65,Alytaus apskritis;Grodnenskaya;Minsk;Utenos apskritis;Vilniaus apskritis;Vitebsk,region,manuell
+Vogtl.,1,50.5,12.2,DE,DE,DE.02.094;DE.13;DE.15,Bayern;Sachsen;Thüringen,region,manuell
+Vorpommern,1,53.9,13.4,DE,DE,DE.12,Mecklenburg-Vorpommern,region,manuell
+Waldau,1,,,,,,,,nicht_zugeordnet
+Waldkappel,1,,,,,,,,nicht_zugeordnet
+Waldkirch,1,,,,,,,,nicht_zugeordnet
+Warburg-Preußen,1,,,,,,,,nicht_zugeordnet
+West-Australien,1,-25.27,133.78,AU,AU,AU.08,Western Australia,region,land
+West-Ungarn,1,47.5,16.7,AT,AT;HU,AT.01;HU.09;HU.22,Burgenland;Győr-Moson-Sopron megye;Vas megye,region,manuell
+Westfalen Provinz,1,51.75,8.0,DE,DE,DE.07.055;DE.07.057;DE.07.059,Nordrhein-Westfalen,region,manuell
+Westpriegnitz,1,53.1,11.8,DE,DE,DE.11,Brandenburg,region,manuell
+Wiesbaden,1,,,,,,,,nicht_zugeordnet
+Wilzo.,1,,,,,,,,nicht_zugeordnet
+Wittgenstein,1,51.0,8.4,DE,DE,DE.07.059,Nordrhein-Westfalen,region,manuell
+Wladikass,1,,,,,,,,nicht_zugeordnet
+Wohylew,1,53.9,30.3,BY,BY,BY.06,Mogilev,region,manuell
+Wyoming,1,43.00024,-107.5009,US,US,US.WY,Wyoming,region,admin
+Zachingen,1,,,,,,,,nicht_zugeordnet
+Zahczyki,1,,,,,,,,nicht_zugeordnet
+Zemplen,1,48.6,21.7,SK,HU;SK;UA,HU.04;SK.03;SK.05;UA.25,Borsod-Abaúj-Zemplén megye;Košický;Prešovský;Zakarpattia,region,manuell
+Zsombolya,1,45.79,20.72,RO,RO,RO.36,Județul Timiș,region,manuell
+a/Neckar,1,48.9,9.2,DE,DE,DE.01,Baden-Württemberg,region,manuell
+am Harz,1,51.75,10.75,DE,DE,DE.06;DE.14;DE.15,Niedersachsen;Sachsen-Anhalt;Thüringen,region,manuell
+am Neckar,1,48.9,9.2,DE,DE,DE.01,Baden-Württemberg,region,manuell
+an der Nahe,1,49.8,7.6,DE,DE,DE.08,Rheinland-Pfalz,region,manuell
+an der Rodalb,1,,,,,,,,nicht_zugeordnet
+bei Berlin,1,52.52,13.4,DE,DE,DE.11;DE.16,Brandenburg;Land Berlin,region,manuell
+im Breisgau,1,47.99,7.85,DE,DE,DE.01.083,Baden-Württemberg,region,manuell
+manufact,1,,,,,,,,nicht_zugeordnet
+p.T.,1,,,,,,,,nicht_zugeordnet
+Äquatorialguinea,1,1.65,10.27,GQ,GQ,,,land,land

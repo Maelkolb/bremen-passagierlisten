@@ -1,0 +1,120 @@
+port_of_arrival_cleaned,port_of_arrival_country,hafen_name,hafen_land,geonames_id,hafen_typ,hafen_region,reise_typ,quelle
+Southampton,England,,,2637487,,,,GeoNames 2637487
+Kingston upon Hull,England,,,2645425,,,,GeoNames 2645425
+Hull,England,Kingston upon Hull,,2645425,,,,"GeoNames 2645425; Rohwert 'Hull, England' / 'Hull / Kanada'"
+London,England,,,2643743,,,,GeoNames 2643743
+Dover,England,,,2651048,,,,GeoNames 2651048
+Bristol,England,,,2654675,,,,GeoNames 2654675
+Middlesbrough,England,,,2642607,,,,GeoNames 2642607
+Stockton,England,Stockton-on-Tees,,2636876,,,,GeoNames 2636876
+Glasgow,Schottland,,,2648579,,,,GeoNames 2648579
+Aberdeen,Schottland,,,2657832,,,,GeoNames 2657832
+Belfast,Irland,,GB,2655984,,,,GeoNames 2655984; Nordirland
+Hongkong,,Hong Kong,HK,1819729,,,,GeoNames 1819729
+Walfischbucht,Südafrika,Walvis Bay,NA,3359638,,,,GeoNames 3359638; damals Mandatsgebiet Südwestafrika
+Curacao,Niederlande,Willemstad (Curaçao),CW,3513090,,,,GeoNames 3513090; Hafen Willemstad
+Aruba,Niederlande,Oranjestad (Aruba),AW,3577154,,,,GeoNames 3577154
+Königsberg,Ostpreussen,Königsberg (Kaliningrad),RU,554234,,,,GeoNames 554234
+Wiborg,Finnland,Wiborg (Vyborg),RU,470546,,,,GeoNames 470546; bis 1944 finnisch
+Bandar Shapour,Iran,Bandar Shapur (Bandar-e Emam Khomeyni),,8521444,,,,GeoNames 8521444
+Bushir,Iran,Bushir (Bushehr),,139817,,,,GeoNames 139817
+Dairen,China,Dairen (Dalian),,1814087,,,,GeoNames 1814087
+Lourenco Marques,Mosambik,Lourenço Marques (Maputo),,1040652,,,,GeoNames 1040652
+San Juan de Puerto Rico,Puerto Rico,,,4568127,,,,GeoNames 4568127
+Gibraltar,,,GI,2411585,,,,GeoNames 2411585
+Ponta Delgarda,Portugal,Ponta Delgada,,6941014,,,,GeoNames 6941014
+Balbao,Kanalzone,Balboa,PA,3714426,,,,GeoNames 3714426; Kanalzone
+Bremen,,,DE,2944388,,,kreuzfahrt,"GeoNames 2944388; 64 von 105 Zeilen Rundreise 'Hero' 28.07.1936 mit Ziel Bremen, Rest Spengemann-Listen 1833-1844"
+Hamburg,,,DE,2911298,,,kreuzfahrt,GeoNames 2911298; Ostseefahrt 'Köln' 1927 und Kurzreisen 1938/39
+Bremerhaven,,,DE,2944368,unbekannt,,,"GeoNames 2944368; Spengemann-Listen 1832-1844, vermutlich Abfahrts- statt Ankunftshafen"
+"Hull, New York","England, USA",Hull / New York,US,5128581,route,Nordamerika,,"Route über Hull (Bahn nach Liverpool); Koordinate = letzter Hafen New York, GeoNames 5128581"
+"Hull, Quebec","England, Kanada",Hull / Québec,CA,6325494,route,Nordamerika,,"Route über Hull; letzter Hafen Québec, GeoNames 6325494"
+"London, Quebec","England, Kanada",London / Québec,CA,6325494,route,Nordamerika,,"Route über London; letzter Hafen Québec, GeoNames 6325494"
+"Hull, Halifax","England, Kanada",Hull / Halifax,CA,6324729,route,Nordamerika,,"Route über Hull; letzter Hafen Halifax, GeoNames 6324729"
+"Hull, Portland","England, USA",Hull / Portland (Maine),US,4975802,route,Nordamerika,,"Route über Hull; Winterhafen Portland ME (Liste 'Reiher / Kanada' 1923, Ziel Westbrook ME), GeoNames 4975802"
+"Plymouth, Cherbourgh, Bremen","England, Frankreich, Deutschland",Plymouth / Cherbourg / Bremen,DE,2944388,route,Europa,,"Liste 1924 ohne Ziele; Koordinate = letzter Hafen Bremen, GeoNames 2944388"
+"Rotterdam, Antwerpen, Australien","""Niederlande, Belgien, Australien""""""",Rotterdam / Antwerpen / Australien,AU,,route,Australien/Ozeanien,,Endhafen in Australien nicht genannt; keine Koordinate
+"Spanien, Portugal","Spanien, Portugal",,,,region,Europa,,zwei Länder; keine Koordinate
+Ostasien,Asien,,,,region,Asien,,Großregion; keine Koordinate
+Nordamerika Westküste,USA,,US,,region,Nordamerika,,Großregion; keine Koordinate
+Südamerika Westküste,Südamerika,,,,region,Südamerika,,Großregion; keine Koordinate
+Westafrika,,,,,region,Afrika,,Großregion; keine Koordinate
+Westindien,,,,,region,Mittelamerika/Karibik,,Großregion; keine Koordinate
+Kanalhäfen,,,,,region,Europa,,Ärmelkanal-Häfen; keine Koordinate
+Ostsee,,,,,region,Europa,,Seegebiet; keine Koordinate
+Südbrasilien,Brasilien,,BR,,region,Südamerika,,Großregion; keine Koordinate
+Magellanes,Chile,Magallanes,CL,,region,Südamerika,,Region Magallanes; keine Koordinate
+Großbritannien,Großbritannien,,GB,land:GB,region,Europa,,nur Land; Landespunkt aus GeoNames-Orten
+England,England,,GB,land:GB,region,Europa,,nur Land; Landespunkt aus GeoNames-Orten
+Südwestafrika,Südwestafrika,,NA,land:NA,region,Afrika,,nur Land; Landespunkt aus GeoNames-Orten
+,,,,,unbekannt,,,port_of_arrival_cleaned leer; Rohwerte meist 'NY'/'New York' (2.369 Zeilen) und 'unbekannt'
+,ohne Angabe,,,,unbekannt,,,ohne Angabe
+uneindeutig,uneindeutig,,,,unbekannt,,,Rohwert 'Unbekannt'
+Rundreise,,,,,kreuzfahrt,Europa,kreuzfahrt,Rundreise laut Hafenfeld
+Rundreise Mittelmeer,,,,,kreuzfahrt,Europa,kreuzfahrt,Rundreise laut Hafenfeld
+Rundreise Ostsee,,,,,kreuzfahrt,Europa,kreuzfahrt,Rundreise laut Hafenfeld
+Rundreise England-Finnland,,,,,kreuzfahrt,Europa,kreuzfahrt,Rundreise laut Hafenfeld
+Gesellschaftsreise,Amazonas Januar 1938,Gesellschaftsreise Amazonas Januar 1938,BR,,kreuzfahrt,Südamerika,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Island-Norwegen August 1939,Gesellschaftsreise Island-Norwegen August 1939,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Kopenhagen 1938,Gesellschaftsreise Kopenhagen 1938,DK,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Las Palmas 1938,Gesellschaftsreise Las Palmas 1938,ES,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Madeira 1927,Gesellschaftsreise Madeira 1927,PT,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Madeira 1938,Gesellschaftsreise Madeira 1938,PT,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Madeira Frühlingsfahrt 1938,Gesellschaftsreise Madeira Frühlingsfahrt 1938,PT,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Madeira Osterfahrt 1937,Gesellschaftsreise Madeira Osterfahrt 1937,PT,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Madeira Sylvester 1934,Gesellschaftsreise Madeira Sylvester 1934,PT,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Mittelmeer 1938,Gesellschaftsreise Mittelmeer 1938,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Mittelmeer Februar 1934,Gesellschaftsreise Mittelmeer Februar 1934,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Mittelmeer Februar 1938,Gesellschaftsreise Mittelmeer Februar 1938,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Nordkap I. Juli 1933,Gesellschaftsreise Nordkap I. Juli 1933,NO,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Nordkap II. Juli 1933,Gesellschaftsreise Nordkap II. Juli 1933,NO,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Nordkap III. August 1933,Gesellschaftsreise Nordkap III. August 1933,NO,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Nordkap Juli 1930,Gesellschaftsreise Nordkap Juli 1930,NO,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Nordkap Juli 1938,Gesellschaftsreise Nordkap Juli 1938,NO,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Nordkap-Spitzbergen 1938,Gesellschaftsreise Nordkap-Spitzbergen 1938,NO,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Pfingstfahrt Juni 1938,Gesellschaftsreise Pfingstfahrt Juni 1938,,,kreuzfahrt,,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Polarfahrt 1939,Gesellschaftsreise Polarfahrt 1939,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Polarfahrt Juli 1933,Gesellschaftsreise Polarfahrt Juli 1933,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Polarfahrt Juli 1938,Gesellschaftsreise Polarfahrt Juli 1938,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Schottl.-Isl.-Norwegen Juli 1938,Gesellschaftsreise Schottl.-Isl.-Norwegen Juli 1938,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Schottland-Norwegen 1938,Gesellschaftsreise Schottland-Norwegen 1938,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Schweden 1927,Gesellschaftsreise Schweden 1927,SE,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Skandinavien-Ostsee 1938,Gesellschaftsreise Skandinavien-Ostsee 1938,,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Teneriffa 1938,Gesellschaftsreise Teneriffa 1938,ES,,kreuzfahrt,Europa,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Weihnachten 1937,Gesellschaftsreise Weihnachten 1937,,,kreuzfahrt,,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,Weihnachten 1938,Gesellschaftsreise Weihnachten 1938,,,kreuzfahrt,,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Gesellschaftsreise,unbekannt 1938,Gesellschaftsreise unbekannt 1938,,,kreuzfahrt,,kreuzfahrt,Kreuzfahrt (Gesellschaftsreise) laut Feld port_of_arrival_country; Ziel = Rundreise
+Australien,Australien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Bolivien,Bolivien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Brasilien,Brasilien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Chile,Chile,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+China,China,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Costa Rica,Costa Rica,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Dominikanische Republik,Dominikanische Republik,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Ecuador,Ecuador,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+El Salvador,El Salvador,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Finnland,Finnland,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Frankreich,Frankreich,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Indien,Indien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Italien,Italien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Kanada,Kanada,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Kolumbien,Kolumbien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Mexiko,Mexiko,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Norwegen,Norwegen,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Persien,Persien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Peru,Peru,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Portugal,Portugal,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Schweden,Schweden,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Spanien,Spanien,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Südafrika,Südafrika,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+USA,USA,,,,region,,,Hafenfeld nennt nur das Land; Koordinate aus dem Datensatz (Landesmittelpunkt)
+Nordamerika,USA,,US,,region,Nordamerika,,nur Kontinent; Koordinate aus dem Datensatz
+Afrika,Afrika,,-,,region,Afrika,,nur Kontinent; Koordinate aus dem Datensatz (liegt in Südafrika)
+Estland,Estalnd,,EE,,region,,,Tippfehler im Landesfeld; Koordinate aus dem Datensatz
+Florida,USA,,US,,region,,,nur Bundesstaat; Koordinate aus dem Datensatz
+Kanarische Inseln,Spanien,,,,region,,,Inselgruppe; Koordinate aus dem Datensatz
+Pernambuco,Brasilien,,,,region,,,Bundesstaat statt Hafen; Koordinate aus dem Datensatz (Staatsmitte)
+Bahia,Brasilien,,,,region,,,Bundesstaat statt Hafen; Koordinate aus dem Datensatz (Staatsmitte)
+Para,Brasilien,,,,region,,,Bundesstaat statt Hafen; Koordinate aus dem Datensatz (Staatsmitte)
+Ceara,Brasilien,,,,region,,,Bundesstaat statt Hafen; Koordinate aus dem Datensatz (Staatsmitte)
+Rio Grande do Sul,Brasilien,,,,region,,,Bundesstaat statt Hafen; Koordinate aus dem Datensatz (Staatsmitte)

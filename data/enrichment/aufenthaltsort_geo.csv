@@ -1,0 +1,838 @@
+place_of_stay,US_state_cleaned,port_of_arrival_country,n_records,aufenthalt_ort,aufenthalt_ort_gruppe,aufenthalt_metro,aufenthalt_land,aufenthalt_us_state,aufenthalt_lat,aufenthalt_lon,geonames_id,geo_precision,geo_method,geo_confidence,geo_ambiguous,aufenthalt_typ
+New York,,USA,760,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+New York,NY,USA,649,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+Brooklyn,NY,USA,174,Brooklyn,New York City,New York Metro,US,NY,40.6501,-73.94958,5110302,ort,exakt,0.95,false,ort
+Chicago,IL,USA,172,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.95,false,ort
+Chicago,,USA,119,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.88,false,ort
+Brooklyn,,USA,105,Brooklyn,New York City,New York Metro,US,NY,40.6501,-73.94958,5110302,ort,exakt,0.88,false,ort
+"New York, NY",,USA,71,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+transit,,USA,70,,,,,,,,,,kein_ort,,false,unklar
+Philadelphia,PA,USA,52,Philadelphia,Philadelphia,Philadelphia,US,PA,39.95238,-75.16362,4560349,ort,exakt,0.95,false,ort
+Detroit,MI,USA,42,Detroit,Detroit,Detroit,US,MI,42.33143,-83.04575,4990729,ort,exakt,0.95,false,ort
+Detroit,,USA,36,Detroit,Detroit,Detroit,US,MI,42.33143,-83.04575,4990729,ort,exakt,0.88,false,ort
+Philadelphia,,USA,32,Philadelphia,Philadelphia,Philadelphia,US,PA,39.95238,-75.16362,4560349,ort,exakt,0.88,false,ort
+"New York, NY",NY,USA,31,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+Milwaukee,WI,USA,30,Milwaukee,Milwaukee,Milwaukee,US,WI,43.0389,-87.90647,5263045,ort,exakt,0.95,false,ort
+New York,NJ,USA,26,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+Newark,NJ,USA,23,Newark,Newark,New York Metro,US,NJ,40.73566,-74.17237,5101798,ort,exakt,0.95,false,ort
+Cincinnati,OH,USA,20,Cincinnati,Cincinnati,Cincinnati,US,OH,39.12711,-84.51439,4508722,ort,exakt,0.95,false,ort
+Boston,,USA,19,Boston,Boston,Boston,US,MA,42.35843,-71.05977,4930956,ort,exakt,0.88,false,ort
+Milwaukee,,USA,19,Milwaukee,Milwaukee,Milwaukee,US,WI,43.0389,-87.90647,5263045,ort,exakt,0.88,false,ort
+Irvington,NJ,USA,18,Irvington,Irvington,New York Metro,US,NJ,40.73232,-74.23487,5099724,ort,exakt,0.95,false,ort
+Astoria,NY,USA,16,Astoria,New York City,New York Metro,US,NY,40.77205,-73.93014,5107464,ort,exakt,0.95,false,ort
+Washington,DC,USA,16,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,exakt,0.95,false,ort
+Buffalo,NY,USA,15,Buffalo,Buffalo,Buffalo,US,NY,42.88645,-78.87837,5110629,ort,exakt,0.95,false,ort
+Jersey City,NJ,USA,15,Jersey City,Jersey City,New York Metro,US,NJ,40.72816,-74.07764,5099836,ort,exakt,0.95,false,ort
+"New York,N.Y.",,USA,15,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+Newark,,USA,15,Newark,Newark,New York Metro,US,NJ,40.73566,-74.17237,5101798,ort,exakt,0.68,true,ort
+Rochester,NY,USA,15,Rochester,Rochester,Rochester,US,NY,43.15478,-77.61556,5134086,ort,exakt,0.95,false,ort
+Cleveland,OH,USA,14,Cleveland,Cleveland,Cleveland,US,OH,41.4995,-81.69541,5150529,ort,exakt,0.95,false,ort
+Long Island,NY,USA,14,Long Island,Long Island,Long Island,US,NY,40.81677,-73.06622,5125123,bundesstaat,exakt,0.95,false,region
+New York  NY,,USA,14,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+"New York,  NY",,USA,14,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+Baltimore,,USA,13,Baltimore,Baltimore,Baltimore,US,MD,39.29038,-76.61219,4347778,ort,exakt,0.88,false,ort
+Cincinnati,,USA,13,Cincinnati,Cincinnati,Cincinnati,US,OH,39.12711,-84.51439,4508722,ort,exakt,0.88,false,ort
+Cleveland,,USA,13,Cleveland,Cleveland,Cleveland,US,OH,41.4995,-81.69541,5150529,ort,exakt,0.68,true,ort
+Bronx,NY,USA,12,The Bronx,New York City,New York Metro,US,NY,40.84985,-73.86641,5110266,ort,alternativname,0.88,false,ort
+Jersey City,,USA,12,Jersey City,Jersey City,New York Metro,US,NJ,40.72816,-74.07764,5099836,ort,exakt,0.88,false,ort
+Long Island,,USA,11,Long Island,Long Island,Long Island,US,NY,40.81677,-73.06622,5125123,bundesstaat,exakt,0.88,false,region
+Astoria,,USA,10,Astoria,New York City,New York Metro,US,NY,40.77205,-73.93014,5107464,ort,exakt,0.68,true,ort
+Hoboken,,USA,10,Hoboken,Hoboken,New York Metro,US,NJ,40.74399,-74.03236,5099133,ort,exakt,0.88,false,ort
+Pittsburgh,PA,USA,10,Pittsburgh,Pittsburgh,Pittsburgh,US,PA,40.44062,-79.99589,5206379,ort,exakt,0.95,false,ort
+"Detroit, MI",,USA,9,Detroit,Detroit,Detroit,US,MI,42.33143,-83.04575,4990729,ort,exakt,0.95,false,ort
+New York City,,USA,9,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,exakt,0.88,false,ort
+Pittsburgh,,USA,9,Pittsburgh,Pittsburgh,Pittsburgh,US,PA,40.44062,-79.99589,5206379,ort,exakt,0.88,false,ort
+Reading,PA,USA,9,Reading,Reading,Reading,US,PA,40.33565,-75.92687,5207728,ort,exakt,0.95,false,ort
+Transit USA,,USA,9,,,,,,,,,,kein_ort,,false,unklar
+Washington,,USA,9,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,override,0.8,false,ort
+transit USA,,USA,9,,,,,,,,,,kein_ort,,false,unklar
+Allentown,PA,USA,8,Allentown,Allentown,Allentown,US,PA,40.60843,-75.49018,5178127,ort,exakt,0.95,false,ort
+Buffalo,,USA,8,Buffalo,Buffalo,Buffalo,US,NY,42.88645,-78.87837,5110629,ort,exakt,0.88,false,ort
+Elizabeth,NJ,USA,8,Elizabeth,Elizabeth,New York Metro,US,NJ,40.66399,-74.2107,5097598,ort,exakt,0.95,false,ort
+"New York,N.Y.",NY,USA,8,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+Passaic,NJ,USA,8,Passaic,Passaic,New York Metro,US,NJ,40.85677,-74.12848,5102443,ort,exakt,0.95,false,ort
+St. Louis,,USA,8,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,exakt,0.88,false,ort
+Union City,NJ,USA,8,Union City,Union City,New York Metro,US,NJ,40.77955,-74.02375,5105634,ort,exakt,0.95,false,ort
+Wash.,,USA,8,Washington,Washington,Washington,US,WA,47.50012,-120.50147,5815135,bundesstaat,nur_kuerzel,0.7,false,bundesstaat
+Albany,NY,USA,7,Albany,Albany,Albany,US,NY,42.65258,-73.75623,5106834,ort,exakt,0.95,false,ort
+Baltimore,MD,USA,7,Baltimore,Baltimore,Baltimore,US,MD,39.29038,-76.61219,4347778,ort,exakt,0.95,false,ort
+Boston,MA,USA,7,Boston,Boston,Boston,US,MA,42.35843,-71.05977,4930956,ort,exakt,0.95,false,ort
+"Brooklyn,N.Y.",NY,USA,7,Brooklyn,New York City,New York Metro,US,NY,40.6501,-73.94958,5110302,ort,exakt,0.95,false,ort
+Columbus,OH,USA,7,Columbus,Columbus,Columbus,US,OH,39.96118,-82.99879,4509177,ort,exakt,0.95,false,ort
+Corona,,USA,7,Corona,New York City,New York Metro,US,NY,40.74705,-73.86014,5113779,ort,staat_aus_korpus,0.75,true,ort
+Glendale,,USA,7,Glendale,New York City,New York Metro,US,NY,40.70149,-73.8868,5118670,ort,staat_aus_korpus,0.75,true,ort
+Irvington,,USA,7,Irvington,Irvington,New York Metro,US,NJ,40.73232,-74.23487,5099724,ort,exakt,0.68,true,ort
+Los Angeles,,USA,7,Los Angeles,Los Angeles,Los Angeles,US,CA,34.05223,-118.24368,5368361,ort,exakt,0.88,false,ort
+New York,PA,USA,7,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+New York NY,,USA,7,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+Rochester,,USA,7,Rochester,Rochester,Rochester,US,NY,43.15478,-77.61556,5134086,ort,staat_aus_korpus,0.75,true,ort
+East Orange,NJ,USA,6,East Orange,East Orange,New York Metro,US,NJ,40.76732,-74.20487,5097441,ort,exakt,0.95,false,ort
+Jamaica,NY,USA,6,Jamaica,New York City,New York Metro,US,NY,40.69149,-73.80569,5122520,ort,exakt,0.95,false,ort
+Los Angeles,CA,USA,6,Los Angeles,Los Angeles,Los Angeles,US,CA,34.05223,-118.24368,5368361,ort,exakt,0.95,false,ort
+"Philadelphia, PA",,USA,6,Philadelphia,Philadelphia,Philadelphia,US,PA,39.95238,-75.16362,4560349,ort,exakt,0.95,false,ort
+San Francisco,CA,USA,6,San Francisco,San Francisco,San Francisco,US,CA,37.77493,-122.41942,5391959,ort,exakt,0.95,false,ort
+Syracuse,,USA,6,Syracuse,Syracuse,Syracuse,US,NY,43.04812,-76.14742,5140405,ort,exakt,0.68,true,ort
+Union City,,USA,6,Union City,Union City,New York Metro,US,NJ,40.77955,-74.02375,5105634,ort,staat_aus_korpus,0.75,true,ort
+Woodside,NY,USA,6,Woodside,New York City,New York Metro,US,NY,40.74538,-73.90541,5145067,ort,exakt,0.95,false,ort
+Brillon,,USA,5,Brillon,Brillon,Brillon,FR,,50.435,3.32891,3030037,ort,exakt,0.88,false,ort
+"Brooklyn, NY",NY,USA,5,Brooklyn,New York City,New York Metro,US,NY,40.6501,-73.94958,5110302,ort,exakt,0.95,false,ort
+"Detroit, MI",MI,USA,5,Detroit,Detroit,Detroit,US,MI,42.33143,-83.04575,4990729,ort,exakt,0.95,false,ort
+Jersey City,NY,USA,5,Jersey City,Jersey City,New York Metro,US,NJ,40.72816,-74.07764,5099836,ort,staat_korrigiert,0.65,true,ort
+Omaha,NE,USA,5,Omaha,Omaha,Omaha,US,NE,41.25626,-95.94043,5074472,ort,exakt,0.95,false,ort
+Toledo,,USA,5,Toledo,Toledo,Toledo,US,OH,41.66394,-83.55521,5174035,ort,exakt,0.88,false,ort
+Ann Arbor,MI,USA,4,Ann Arbor,Ann Arbor,Ann Arbor,US,MI,42.27756,-83.74088,4984247,ort,exakt,0.95,false,ort
+Bronx,,USA,4,The Bronx,New York City,New York Metro,US,NY,40.84985,-73.86641,5110266,ort,alternativname,0.81,false,ort
+"Chicago, IL",,USA,4,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.95,false,ort
+Clifton,NJ,USA,4,Clifton,Clifton,New York Metro,US,NJ,40.85843,-74.16376,5096699,ort,exakt,0.95,false,ort
+Denver,CO,USA,4,Denver,Denver,Denver,US,CO,39.73915,-104.9847,5419384,ort,exakt,0.95,false,ort
+Elizabeth,,USA,4,Elizabeth,Elizabeth,New York Metro,US,NJ,40.66399,-74.2107,5097598,ort,exakt,0.88,false,ort
+Glendale,NY,USA,4,Glendale,New York City,New York Metro,US,NY,40.70149,-73.8868,5118670,ort,exakt,0.95,false,ort
+Hammond,IN,USA,4,Hammond,Hammond,Hammond,US,IN,41.58337,-87.50004,4921100,ort,exakt,0.95,false,ort
+Hillside,NJ,USA,4,Hillside,Hillside,New York Metro,US,NJ,40.70121,-74.23015,5099093,ort,exakt,0.95,false,ort
+Hoboken,NJ,USA,4,Hoboken,Hoboken,New York Metro,US,NJ,40.74399,-74.03236,5099133,ort,exakt,0.95,false,ort
+Indianapolis,,USA,4,Indianapolis,Indianapolis,Indianapolis,US,IN,39.76838,-86.15804,4259418,ort,exakt,0.88,false,ort
+New Brunswick,,USA,4,New Brunswick,New Brunswick,New York Metro,US,NJ,40.48622,-74.45182,5101717,ort,exakt,0.88,false,ort
+New Rochelle,,USA,4,New Rochelle,New Rochelle,New York Metro,US,NY,40.91149,-73.78235,5128549,ort,exakt,0.88,false,ort
+New York,CT,USA,4,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+New York,IL,USA,4,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+New York,,,4,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+Omaha,,USA,4,Omaha,Omaha,Omaha,US,NE,41.25626,-95.94043,5074472,ort,exakt,0.88,false,ort
+Oshkosh,WI,USA,4,Oshkosh,Oshkosh,Oshkosh,US,WI,44.02471,-88.54261,5265838,ort,exakt,0.95,false,ort
+Reading,,USA,4,Reading,Reading,Reading,US,PA,40.33565,-75.92687,5207728,ort,exakt,0.68,true,ort
+San Francisco,,USA,4,San Francisco,San Francisco,San Francisco,US,CA,37.77493,-122.41942,5391959,ort,exakt,0.88,false,ort
+St. Louis,MO,USA,4,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,exakt,0.95,false,ort
+Syracuse,NY,USA,4,Syracuse,Syracuse,Syracuse,US,NY,43.04812,-76.14742,5140405,ort,exakt,0.95,false,ort
+Toledo,OH,USA,4,Toledo,Toledo,Toledo,US,OH,41.66394,-83.55521,5174035,ort,exakt,0.95,false,ort
+Troy,NY,USA,4,Troy,Troy,Troy,US,NY,42.72841,-73.69179,5141502,ort,exakt,0.95,false,ort
+Akron,OH,USA,3,Akron,Akron,Akron,US,OH,41.08144,-81.51901,5145476,ort,exakt,0.95,false,ort
+Akron,,USA,3,Akron,Akron,Akron,US,OH,41.08144,-81.51901,5145476,ort,exakt,0.88,false,ort
+Albany,,USA,3,Albany,Albany,Albany,US,NY,42.65258,-73.75623,5106834,ort,staat_aus_korpus,0.75,true,ort
+Binghamton,,USA,3,Binghamton,Binghamton,Binghamton,US,NY,42.09869,-75.91797,5109177,ort,exakt,0.88,false,ort
+Bloomfield,NJ,USA,3,Bloomfield,Bloomfield,New York Metro,US,NJ,40.80677,-74.18542,5095779,ort,exakt,0.95,false,ort
+Bloomfield Hills,MI,USA,3,Bloomfield Hills,Bloomfield Hills,Bloomfield Hills,US,MI,42.58364,-83.24549,4986429,ort,exakt,0.95,false,ort
+"Boston, MA",,USA,3,Boston,Boston,Boston,US,MA,42.35843,-71.05977,4930956,ort,exakt,0.95,false,ort
+Bridgeport,CT,USA,3,Bridgeport,Bridgeport,Bridgeport,US,CT,41.17923,-73.18945,5282804,ort,exakt,0.95,false,ort
+"Brooklyn, NY",,USA,3,Brooklyn,New York City,New York Metro,US,NY,40.6501,-73.94958,5110302,ort,exakt,0.95,false,ort
+Cambridge,MA,USA,3,Cambridge,Cambridge,Cambridge,US,MA,42.3751,-71.10561,4931972,ort,exakt,0.95,false,ort
+Canton,OH,USA,3,Canton,Canton,Canton,US,OH,40.79895,-81.37845,5149222,ort,exakt,0.95,false,ort
+Chester,,USA,3,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Chicago,NY,USA,3,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.88,false,ort
+Englewood,,USA,3,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Flint,MI,USA,3,Flint,Flint,Flint,US,MI,43.01253,-83.68746,4992982,ort,exakt,0.95,false,ort
+Florida,,USA,3,Florida,Florida,Florida,US,NY,41.33176,-74.35682,5117451,ort,staat_aus_korpus,0.75,true,ort
+Forest Park,IL,USA,3,Forest Park,Forest Park,Forest Park,US,IL,41.87948,-87.81367,4892775,ort,exakt,0.95,false,ort
+Garfield,NJ,USA,3,Garfield,Garfield,New York Metro,US,NJ,40.88149,-74.1132,5098343,ort,exakt,0.95,false,ort
+Garfield,,USA,3,Garfield,Garfield,New York Metro,US,NJ,40.88149,-74.1132,5098343,ort,exakt,0.88,false,ort
+Hartford,,USA,3,Hartford,Hartford,Hartford,US,CT,41.76371,-72.68509,4835797,ort,exakt,0.88,false,ort
+Hempstead,NY,USA,3,Hempstead,Hempstead,New York Metro,US,NY,40.70621,-73.61874,5120478,ort,exakt,0.95,false,ort
+Hempstead,,USA,3,Hempstead,Hempstead,New York Metro,US,NY,40.70621,-73.61874,5120478,ort,exakt,0.68,true,ort
+Hollywood,CA,USA,3,Hollywood,Hollywood,Hollywood,US,CA,34.09834,-118.32674,5357527,ort,exakt,0.95,false,ort
+Jamaica,,USA,3,Jamaica,New York City,New York Metro,US,NY,40.69149,-73.80569,5122520,ort,staat_aus_korpus,0.75,true,ort
+Jersey City,FL,USA,3,Jersey City,Jersey City,New York Metro,US,NJ,40.72816,-74.07764,5099836,ort,exakt,0.88,false,ort
+Kenilworth,,USA,3,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Kenosha,WI,USA,3,Kenosha,Kenosha,Kenosha,US,WI,42.58474,-87.82119,5258393,ort,exakt,0.95,false,ort
+Kenosha,,USA,3,Kenosha,Kenosha,Kenosha,US,WI,42.58474,-87.82119,5258393,ort,exakt,0.88,false,ort
+Lake Forest,IL,USA,3,Lake Forest,Lake Forest,Lake Forest,US,IL,42.25863,-87.84063,4899012,ort,exakt,0.95,false,ort
+Lancaster,PA,USA,3,Lancaster,Lancaster,Lancaster,US,PA,40.03788,-76.30551,5197079,ort,exakt,0.95,false,ort
+Madison,WI,USA,3,Madison,Madison,Madison,US,WI,43.07305,-89.40123,5261457,ort,exakt,0.95,false,ort
+Mamaroneck,NY,USA,3,Mamaroneck,Mamaroneck,New York Metro,US,NY,40.94871,-73.73263,5125738,ort,exakt,0.95,false,ort
+Maplewood,NY,USA,3,Maplewood,Maplewood,New York Metro,US,NJ,40.73121,-74.27348,5100854,ort,staat_korrigiert,0.65,true,ort
+N-Rochelle,NY,USA,3,New Rochelle,New Rochelle,New York Metro,US,NY,40.91149,-73.78235,5128549,ort,fuzzy,0.7,false,ort
+New Haven,,USA,3,New Haven,New Haven,New Haven,US,CT,41.30815,-72.92816,4839366,ort,exakt,0.68,true,ort
+New Jersey,,USA,3,New Jersey,New Jersey,New Jersey,US,NJ,40.16706,-74.49987,5101760,bundesstaat,exakt,0.88,false,bundesstaat
+New York NY,NY,USA,3,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+North Bergen,NJ,USA,3,North Bergen,North Bergen,New York Metro,US,NJ,40.80427,-74.01208,5101879,ort,exakt,0.95,false,ort
+North Bergen,,USA,3,North Bergen,North Bergen,New York Metro,US,NJ,40.80427,-74.01208,5101879,ort,exakt,0.88,false,ort
+Northampton,,USA,3,Northampton,Northampton,Northampton,US,PA,40.68621,-75.49685,5203804,ort,staat_aus_korpus,0.75,true,ort
+Oakland,CA,USA,3,Oakland,Oakland,Oakland,US,CA,37.80437,-122.2708,5378538,ort,exakt,0.95,false,ort
+Pasadena,CA,USA,3,Pasadena,Pasadena,Pasadena,US,CA,34.14778,-118.14452,5381396,ort,exakt,0.95,false,ort
+Paterson,NJ,USA,3,Paterson,Paterson,New York Metro,US,NJ,40.91677,-74.17181,5102466,ort,exakt,0.95,false,ort
+Philadelphia,NY,USA,3,Philadelphia,Philadelphia,Philadelphia,US,NY,44.1545,-75.70882,5131095,ort,exakt,0.95,false,ort
+"Philadelphia, PA",PA,USA,3,Philadelphia,Philadelphia,Philadelphia,US,PA,39.95238,-75.16362,4560349,ort,exakt,0.95,false,ort
+Plainfield,,USA,3,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Providence,,USA,3,Providence,Providence,Providence,US,RI,41.82399,-71.41283,5224151,ort,exakt,0.88,false,ort
+Richmond,,USA,3,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Richmond Hill,,USA,3,Richmond Hill,New York City,New York Metro,US,NY,40.69983,-73.83125,5133825,ort,exakt,0.68,true,ort
+Ridgewood,NY,USA,3,Ridgewood,New York City,New York Metro,US,NY,40.7001,-73.90569,5133858,ort,exakt,0.95,false,ort
+Rye,NY,USA,3,Rye,Rye,New York Metro,US,NY,40.98065,-73.68374,5134693,ort,exakt,0.95,false,ort
+Santa Barbara,,USA,3,Santa Barbara,Santa Barbara,Santa Barbara,US,CA,34.42083,-119.69819,5392952,ort,exakt,0.88,false,ort
+Scarsdale,NY,USA,3,Scarsdale,Scarsdale,New York Metro,US,NY,41.0051,-73.78458,5136433,ort,exakt,0.95,false,ort
+Seattle,WA,USA,3,Seattle,Seattle,Seattle,US,WA,47.60621,-122.33207,5809844,ort,exakt,0.95,false,ort
+South Orange,,USA,3,South Orange,South Orange,New York Metro,US,NJ,40.74899,-74.26126,5104836,ort,exakt,0.88,false,ort
+Springfield,MA,USA,3,Springfield,Springfield,Springfield,US,MA,42.10148,-72.58981,4951788,ort,exakt,0.95,false,ort
+"St. Louis, MO",,USA,3,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,exakt,0.95,false,ort
+Storrs,CT,USA,3,Storrs,Storrs,Storrs,US,CT,41.80843,-72.24952,4843786,ort,exakt,0.95,false,ort
+Summit,,USA,3,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Takomer Park,,USA,3,Takoma Park,Takoma Park,Takoma Park,US,MD,38.97789,-77.00748,4370890,ort,fuzzy,0.6,false,ort
+Trenton,,USA,3,Trenton,Trenton,Trenton,US,NJ,40.21705,-74.74294,5105496,ort,exakt,0.68,true,ort
+Valley Stream,,USA,3,Valley Stream,Valley Stream,New York Metro,US,NY,40.66427,-73.70846,5142109,ort,exakt,0.88,false,ort
+Washington DC,,USA,3,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,alternativname,0.78,false,ort
+White Plains,NY,USA,3,White Plains,White Plains,New York Metro,US,NY,41.03399,-73.76291,5144336,ort,exakt,0.95,false,ort
+Woodhaven,NY,USA,3,Woodhaven,New York City,New York Metro,US,NY,40.68927,-73.85791,5144975,ort,exakt,0.95,false,ort
+Yonkers,NY,USA,3,Yonkers,Yonkers,New York Metro,US,NY,40.9304,-73.89789,5145215,ort,exakt,0.95,false,ort
+Yonkers,,USA,3,Yonkers,Yonkers,New York Metro,US,NY,40.9304,-73.89789,5145215,ort,exakt,0.88,false,ort
+1928-1935,NY,USA,2,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,adresse
+Altoona,PA,USA,2,Altoona,Altoona,Altoona,US,PA,40.51868,-78.39474,5178195,ort,exakt,0.95,false,ort
+"Altoona, PA",,USA,2,Altoona,Altoona,Altoona,US,PA,40.51868,-78.39474,5178195,ort,exakt,0.95,false,ort
+"Baltimore, MD",,USA,2,Baltimore,Baltimore,Baltimore,US,MD,39.29038,-76.61219,4347778,ort,exakt,0.95,false,ort
+Bayside,NY,USA,2,Bayside,New York City,New York Metro,US,NY,40.76844,-73.77708,5108193,ort,exakt,0.95,false,ort
+Bellerose,NY,USA,2,Bellerose,Bellerose,New York Metro,US,NY,40.72427,-73.71513,5108692,ort,exakt,0.95,false,ort
+Bergenfield,NJ,USA,2,Bergenfield,Bergenfield,New York Metro,US,NJ,40.9276,-73.99736,5095611,ort,exakt,0.95,false,ort
+Berkeley,,USA,2,Berkeley,Berkeley,Berkeley,US,CA,37.87159,-122.27275,5327684,ort,exakt,0.88,false,ort
+Bloomfield,,USA,2,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+"Boston, MA",MA,USA,2,Boston,Boston,Boston,US,MA,42.35843,-71.05977,4930956,ort,exakt,0.95,false,ort
+Bridgeport,,USA,2,Bridgeport,Bridgeport,Bridgeport,US,CT,41.17923,-73.18945,5282804,ort,exakt,0.68,true,ort
+Brooklyn,NJ,USA,2,Brooklyn,New York City,New York Metro,US,NY,40.6501,-73.94958,5110302,ort,staat_korrigiert,0.65,true,ort
+Cambridge,,USA,2,Cambridge,Cambridge,Cambridge,US,MA,42.3751,-71.10561,4931972,ort,exakt,0.68,true,ort
+"Charleston, NC",NC,USA,2,,,,US,NC,35.50069,-80.00032,4482348,bundesstaat,mehrdeutig_bundesstaat,0.7,true,ort
+Chicago,IA,USA,2,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.88,false,ort
+Chicago,,,2,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.88,false,ort
+"Chicago, IL",NY,USA,2,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.95,false,ort
+Cicero,IL,USA,2,Cicero,Cicero,Cicero,US,IL,41.84559,-87.75394,4888015,ort,exakt,0.95,false,ort
+Clarksville,TN,USA,2,Clarksville,Clarksville,Clarksville,US,TN,36.52977,-87.35945,4613868,ort,exakt,0.95,false,ort
+College Point,,USA,2,College Point,New York City,New York Metro,US,NY,40.7876,-73.84597,5113302,ort,exakt,0.88,false,ort
+Cranford,,USA,2,Cranford,Cranford,New York Metro,US,NJ,40.65844,-74.29959,5097017,ort,exakt,0.88,false,ort
+Dallas,TX,USA,2,Dallas,Dallas,Dallas,US,TX,32.78306,-96.80667,4684888,ort,exakt,0.95,false,ort
+Dallas,,USA,2,Dallas,Dallas,Dallas,US,TX,32.78306,-96.80667,4684888,ort,exakt,0.88,false,ort
+Danbury,,USA,2,Danbury,Danbury,Danbury,US,CT,41.39482,-73.45401,4832353,ort,exakt,0.88,false,ort
+Dawson,,USA,2,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Dayton,OH,USA,2,Dayton,Dayton,Dayton,US,OH,39.75895,-84.19161,4509884,ort,exakt,0.95,false,ort
+Dayton,,USA,2,Dayton,Dayton,Dayton,US,OH,39.75895,-84.19161,4509884,ort,exakt,0.88,false,ort
+"Detroit, Mi",,USA,2,Detroit,Detroit,Detroit,US,MI,42.33143,-83.04575,4990729,ort,exakt,0.95,false,ort
+Dixfield,ME,USA,2,Dixfield,Dixfield,Dixfield,US,ME,44.53395,-70.4559,4962589,ort,exakt,0.95,false,ort
+E.Orange,NJ,USA,2,East Orange,East Orange,New York Metro,US,NJ,40.76732,-74.20487,5097441,ort,normalisiert,0.92,false,ort
+Elleron,,USA,2,,,,,,,,,,kein_treffer,,false,ort
+Elmhurst,,USA,2,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Emporium,PA,USA,2,Emporium,Emporium,Emporium,US,PA,41.51145,-78.23529,5188737,ort,exakt,0.95,false,ort
+Erie,PA,USA,2,Erie,Erie,Erie,US,PA,42.12922,-80.08506,5188843,ort,exakt,0.95,false,ort
+Fitchburg,,USA,2,Fitchburg,Fitchburg,Fitchburg,US,MA,42.58342,-71.8023,4936812,ort,staat_aus_korpus,0.75,true,ort
+Forest Hills,NY,USA,2,Forest Hills,New York City,New York Metro,US,NY,40.71621,-73.85014,5117575,ort,exakt,0.95,false,ort
+Forest Hills,,USA,2,Forest Hills,New York City,New York Metro,US,NY,40.71621,-73.85014,5117575,ort,staat_aus_korpus,0.75,true,ort
+Forest Park,,USA,2,Forest Park,Forest Park,Forest Park,US,IL,41.87948,-87.81367,4892775,ort,staat_aus_korpus,0.75,true,ort
+Fort Lee,,USA,2,Fort Lee,Fort Lee,New York Metro,US,NJ,40.85093,-73.97014,5098135,ort,exakt,0.68,true,ort
+Fort Wayne,IN,USA,2,Fort Wayne,Fort Wayne,Fort Wayne,US,IN,41.1306,-85.12886,4920423,ort,exakt,0.95,false,ort
+Freehold,NY,USA,2,Freehold,Freehold,New York Metro,US,NJ,40.26011,-74.27376,5098278,ort,staat_korrigiert,0.65,true,ort
+Ft.Atkinson,WI,USA,2,Fort Atkinson,Fort Atkinson,Fort Atkinson,US,WI,42.92889,-88.83705,5253498,ort,normalisiert,0.92,false,ort
+"Gamesville, FL",FL,USA,2,Gainesville,Gainesville,Gainesville,US,FL,29.65163,-82.32483,4156404,ort,fuzzy,0.7,false,ort
+Glen Cove,NY,USA,2,Glen Cove,Glen Cove,New York Metro,US,NY,40.86232,-73.63374,5118626,ort,exakt,0.95,false,ort
+Grantwood,NJ,USA,2,Grantwood,Grantwood,New York Metro,US,NJ,40.82677,-73.98708,5098556,ort,exakt,0.95,false,ort
+Great Neck,NY,USA,2,Great Neck,Great Neck,New York Metro,US,NY,40.80066,-73.72846,5119218,ort,exakt,0.95,false,ort
+Greenwich,NY,USA,2,Greenwich,Greenwich,Greenwich,US,NY,43.09063,-73.49873,5119416,ort,exakt,0.95,false,ort
+Greenwich,,USA,2,Greenwich,Greenwich,Greenwich,US,CT,41.02649,-73.62846,4835395,ort,exakt,0.68,true,ort
+Guttenberg,NJ,USA,2,Guttenberg,Guttenberg,New York Metro,US,NJ,40.79205,-74.00375,5098698,ort,exakt,0.95,false,ort
+Hackensack,NJ,USA,2,Hackensack,Hackensack,New York Metro,US,NJ,40.88593,-74.04347,5098706,ort,exakt,0.95,false,ort
+Hanover,,USA,2,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Holyoke,MA,USA,2,Holyoke,Holyoke,Holyoke,US,MA,42.20426,-72.6162,4939783,ort,exakt,0.95,false,ort
+Irvington,NY,USA,2,Irvington,Irvington,New York Metro,US,NY,41.03922,-73.86823,5122365,ort,exakt,0.95,false,ort
+Jackson Heights,,USA,2,Jackson Heights,New York City,New York Metro,US,NY,40.75566,-73.88541,5122477,ort,exakt,0.88,false,ort
+Jamaica Plain,MA,USA,2,Jamaica Plain,Jamaica Plain,Jamaica Plain,US,MA,42.30982,-71.12033,4940764,ort,exakt,0.95,false,ort
+Kansas City,,USA,2,Kansas City,Kansas City,Kansas City,US,MO,39.09973,-94.57857,4393217,ort,exakt,0.88,false,ort
+"Lafayette, IN",,USA,2,Lafayette,Lafayette,Lafayette,US,IN,40.4167,-86.87529,4922462,ort,exakt,0.95,false,ort
+Larchmont,,USA,2,Larchmont,Larchmont,New York Metro,US,NY,40.92788,-73.7518,5124017,ort,staat_aus_korpus,0.75,true,ort
+Linden,NJ,USA,2,Linden,Linden,New York Metro,US,NJ,40.62205,-74.24459,5100506,ort,exakt,0.95,false,ort
+Little Falls,NY,USA,2,Little Falls,Little Falls,Little Falls,US,NY,43.0434,-74.8596,5124642,ort,exakt,0.95,false,ort
+"Long Island, NY",,USA,2,Long Island,Long Island,Long Island,US,NY,40.81677,-73.06622,5125123,bundesstaat,exakt,0.95,false,region
+Los Andeles,,USA,2,Los Angeles,Los Angeles,Los Angeles,US,CA,34.05223,-118.24368,5368361,ort,fuzzy,0.6,false,ort
+Louisville,,USA,2,Louisville,Louisville,Louisville,US,KY,38.25424,-85.75941,4299276,ort,exakt,0.88,false,ort
+Lynbrook,NY,USA,2,Lynbrook,Lynbrook,New York Metro,US,NY,40.65483,-73.6718,5125523,ort,exakt,0.95,false,ort
+Melford,CT,USA,2,Milford,Milford,Milford,US,CT,41.22232,-73.0565,4838652,ort,fuzzy,0.7,false,ort
+Middleburg,VA,USA,2,Middleburg,Middleburg,Middleburg,US,VA,38.96872,-77.73555,4772904,ort,exakt,0.95,false,ort
+Milburn,,USA,2,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Milwaukee,NY,USA,2,Milwaukee,Milwaukee,Milwaukee,US,WI,43.0389,-87.90647,5263045,ort,exakt,0.88,false,ort
+Mont Vale,NJ,USA,2,,,,US,MT,47.00025,-109.75102,5667009,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Montclair,,USA,2,Montclair,Montclair,New York Metro,US,NJ,40.82593,-74.20903,5101334,ort,staat_aus_korpus,0.75,true,ort
+Morry Hill,,USA,2,,,,,,,,,,kein_treffer,,false,ort
+N. Canaan,CT,USA,2,New Canaan,New Canaan,New Canaan,US,CT,41.14676,-73.49484,4839319,ort,fuzzy,0.7,false,ort
+N. Rochelle,NY,USA,2,New Rochelle,New Rochelle,New York Metro,US,NY,40.91149,-73.78235,5128549,ort,fuzzy,0.7,false,ort
+NJ,,USA,2,New Jersey,New Jersey,New Jersey,US,NJ,40.16706,-74.49987,5101760,bundesstaat,nur_kuerzel,0.7,false,bundesstaat
+NYC,,USA,2,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,override,0.95,false,ort
+New Orleans,,,2,New Orleans,New Orleans,New Orleans,US,LA,29.95465,-90.07507,4335045,ort,exakt,0.88,false,ort
+New Rochelle,NY,USA,2,New Rochelle,New Rochelle,New York Metro,US,NY,40.91149,-73.78235,5128549,ort,exakt,0.95,false,ort
+New York,CA,USA,2,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+New York,MA,USA,2,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+"New York, N.Y. Yokohama, Japan",,USA,2,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+Northampton,MA,USA,2,Northampton,Northampton,Northampton,US,MA,42.32509,-72.6412,4945819,ort,exakt,0.95,false,ort
+Oakland,,USA,2,Oakland,Oakland,Oakland,US,CA,37.80437,-122.2708,5378538,ort,exakt,0.88,false,ort
+Orange,NJ,USA,2,Orange,Orange,New York Metro,US,NJ,40.77066,-74.23265,5102213,ort,exakt,0.95,false,ort
+Orange,,USA,2,Orange,Orange,Orange,US,CA,33.78779,-117.85311,5379513,ort,exakt,0.68,true,ort
+Paradise Valley,NV,USA,2,Paradise Valley,Paradise Valley,Paradise Valley,US,NV,41.49351,-117.53457,5707166,ort,exakt,0.95,false,ort
+Paterson,,USA,2,Paterson,Paterson,New York Metro,US,NJ,40.91677,-74.17181,5102466,ort,exakt,0.88,false,ort
+Perth Amboy,NJ,USA,2,Perth Amboy,Perth Amboy,New York Metro,US,NJ,40.50677,-74.26542,5102578,ort,exakt,0.95,false,ort
+Philad.,PA,USA,2,,,,US,PA,40.8,-77.7,6254927,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Pittsburgh PA,,USA,2,Pittsburgh,Pittsburgh,Pittsburgh,US,PA,40.44062,-79.99589,5206379,ort,exakt,0.95,false,ort
+"Pittsburgh, PA",PA,USA,2,Pittsburgh,Pittsburgh,Pittsburgh,US,PA,40.44062,-79.99589,5206379,ort,exakt,0.95,false,ort
+Port Clinton,,USA,2,Port Clinton,Port Clinton,Port Clinton,US,OH,41.512,-82.93769,5167259,ort,exakt,0.68,true,ort
+Portland,OR,USA,2,Portland,Portland,Portland,US,OR,45.52345,-122.67621,5746545,ort,exakt,0.95,false,ort
+Queens Village,,USA,2,Queens Village,New York City,New York Metro,US,NY,40.72677,-73.74152,5133271,ort,exakt,0.88,false,ort
+Ridgefield,NJ,USA,2,Ridgefield,Ridgefield,New York Metro,US,NJ,40.83427,-74.00875,5103254,ort,exakt,0.95,false,ort
+Rochelle,NY,USA,2,New Rochelle,New Rochelle,New York Metro,US,NY,40.91149,-73.78235,5128549,ort,override,0.8,false,ort
+Rome,GA,USA,2,Rome,Rome,Rome,US,GA,34.25704,-85.16467,4219762,ort,exakt,0.95,false,ort
+Rosslyn,VA,USA,2,Rosslyn,Rosslyn,Rosslyn,US,VA,38.89678,-77.07248,4782988,ort,exakt,0.95,false,ort
+Sacramento,,USA,2,Sacramento,Sacramento,Sacramento,US,CA,38.58157,-121.4944,5389489,ort,exakt,0.88,false,ort
+"San Francisco, CA",CA,USA,2,San Francisco,San Francisco,San Francisco,US,CA,37.77493,-122.41942,5391959,ort,exakt,0.95,false,ort
+San Marino,,USA,2,San Marino,San Marino,San Marino,US,CA,34.1214,-118.10646,5392400,ort,staat_aus_korpus,0.75,true,ort
+Scarsdale,NJ,USA,2,Scarsdale,Scarsdale,New York Metro,US,NY,41.0051,-73.78458,5136433,ort,staat_korrigiert,0.65,true,ort
+Scarsdale,,USA,2,Scarsdale,Scarsdale,New York Metro,US,NY,41.0051,-73.78458,5136433,ort,exakt,0.88,false,ort
+Scat Pleasant,MD,USA,2,Seat Pleasant,Seat Pleasant,Seat Pleasant,US,MD,38.89622,-76.90664,4369086,ort,fuzzy,0.7,false,ort
+Seattle,,USA,2,Seattle,Seattle,Seattle,US,WA,47.60621,-122.33207,5809844,ort,exakt,0.88,false,ort
+Seward,,USA,2,Seward,Seward,Seward,US,NE,40.90695,-97.09892,5078792,ort,staat_aus_korpus,0.75,true,ort
+Shannock,RI,USA,2,Shannock,Shannock,Shannock,US,RI,41.44843,-71.63673,5224829,ort,exakt,0.95,false,ort
+Shongton,NY,USA,2,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,ort
+So.Orange,NJ,USA,2,South Orange,South Orange,New York Metro,US,NJ,40.74899,-74.26126,5104836,ort,normalisiert,0.92,false,ort
+Sparta,NJ,USA,2,Sparta,Sparta,Sparta,US,NJ,41.03343,-74.63849,5104882,ort,exakt,0.95,false,ort
+Spokane,WA,USA,2,Spokane,Spokane,Spokane,US,WA,47.65966,-117.42908,5811696,ort,exakt,0.95,false,ort
+Springfield,,USA,2,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+St. Louis,,,2,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,exakt,0.88,false,ort
+Staten Island,NY,USA,2,Staten Island,New York City,New York Metro,US,NY,40.56233,-74.13986,5139568,ort,exakt,0.95,false,ort
+Staten Island,,USA,2,Staten Island,New York City,New York Metro,US,NY,40.56233,-74.13986,5139568,ort,exakt,0.88,false,ort
+Tonnawanda,OH,USA,2,Tonawanda,Tonawanda,Tonawanda,US,NY,43.02033,-78.88031,5141175,ort,fuzzy,0.6,false,ort
+Troy,,USA,2,Troy,Troy,Troy,US,NY,42.72841,-73.69179,5141502,ort,staat_aus_korpus,0.75,true,ort
+"Washington,D.C.",,USA,2,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,override,0.8,false,ort
+Wauwatosa,WI,USA,2,Wauwatosa,Wauwatosa,Wauwatosa,US,WI,43.04946,-88.00759,5278159,ort,exakt,0.95,false,ort
+West Chester,,USA,2,West Chester,West Chester,West Chester,US,PA,39.96097,-75.60804,4562144,ort,exakt,0.88,false,ort
+Westfield,NJ,USA,2,Westfield,Westfield,New York Metro,US,NJ,40.65899,-74.34737,5106331,ort,exakt,0.95,false,ort
+Westfield,,USA,2,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Wilkes Barre,,USA,2,Wilkes-Barre,Wilkes-Barre,Wilkes-Barre,US,PA,41.24591,-75.88131,5219488,ort,normalisiert,0.85,false,ort
+Wilkinsburg,,USA,2,Wilkinsburg,Wilkinsburg,Wilkinsburg,US,PA,40.44174,-79.88199,5219501,ort,exakt,0.88,false,ort
+Winnetka,IL,USA,2,Winnetka,Winnetka,Winnetka,US,IL,42.10808,-87.7359,4916891,ort,exakt,0.95,false,ort
+Wyomissing,,USA,2,Wyomissing,Wyomissing,Wyomissing,US,PA,40.32954,-75.96521,5220248,ort,exakt,0.88,false,ort
+York,,USA,2,York,York,York,US,PA,39.9626,-76.72774,4562407,ort,exakt,0.68,true,ort
+in transit,,USA,2,,,,US,IN,40.00032,-86.25027,4921868,bundesstaat,fallback_bundesstaat,0.75,false,ort
+0.0,NY,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,adresse
+Aliquippa,NY,USA,1,Aliquippa,Aliquippa,Aliquippa,US,PA,40.63673,-80.24006,5178027,ort,exakt,0.88,false,ort
+Allentown.Pa.,,USA,1,Allentown,Allentown,Allentown,US,PA,40.60843,-75.49018,5178127,ort,staat_aus_korpus,0.7,true,ort
+Allenwood,NY,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Ambler,PA,USA,1,Ambler,Ambler,Ambler,US,PA,40.15455,-75.22157,5178225,ort,exakt,0.95,false,ort
+Anzino,CA,USA,1,,,,US,CA,37.25022,-119.75126,5332921,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Appleton,,USA,1,Appleton,Appleton,Appleton,US,WI,44.26193,-88.41538,5244080,ort,exakt,0.88,false,ort
+Ashtabula,,USA,1,Ashtabula,Ashtabula,Ashtabula,US,OH,41.86505,-80.78981,5146089,ort,exakt,0.88,false,ort
+Atlantic City,,USA,1,Atlantic City,Atlantic City,Atlantic City,US,NJ,39.36415,-74.42306,4500546,ort,exakt,0.88,false,ort
+"Augusta, GA",VA,USA,1,Augusta,Augusta,Augusta,US,GA,33.47097,-81.97484,4180531,ort,exakt,0.95,false,ort
+"Augusta, GA",,USA,1,Augusta,Augusta,Augusta,US,GA,33.47097,-81.97484,4180531,ort,exakt,0.95,false,ort
+Aurora,IL,USA,1,Aurora,Aurora,Aurora,US,IL,41.76058,-88.32007,4883817,ort,exakt,0.95,false,ort
+Baltimore,WA,USA,1,Baltimore,Baltimore,Baltimore,US,MD,39.29038,-76.61219,4347778,ort,exakt,0.88,false,ort
+Baltimore MD,,USA,1,Baltimore,Baltimore,Baltimore,US,MD,39.29038,-76.61219,4347778,ort,exakt,0.95,false,ort
+Battle Creek,MI,USA,1,Battle Creek,Battle Creek,Battle Creek,US,MI,42.3173,-85.17816,4985153,ort,exakt,0.95,false,ort
+Bay City,MI,USA,1,Bay City,Bay City,Bay City,US,MI,43.59447,-83.88886,4985180,ort,exakt,0.95,false,ort
+Beach Bluff,MA,USA,1,Beach Bluff,Beach Bluff,Beach Bluff,US,MA,42.47926,-70.8856,4929990,ort,exakt,0.95,false,ort
+Beechwood,MA,USA,1,Beechwood,Beechwood,Beechwood,US,MA,42.20982,-70.81893,4930212,ort,exakt,0.95,false,ort
+Belleville,MO,USA,1,Belleville,Belleville,Belleville,US,MO,37.1245,-94.59051,4376460,ort,exakt,0.95,false,ort
+Belleville,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Beltsville,MD,USA,1,Beltsville,Beltsville,Beltsville,US,MD,39.03483,-76.90747,4348353,ort,exakt,0.95,false,ort
+Berkshire Heights,PA,USA,1,Berkshire Heights,Berkshire Heights,Berkshire Heights,US,PA,40.34593,-75.96077,5180057,ort,exakt,0.95,false,ort
+Bernardsville,NJ,USA,1,Bernardsville,Bernardsville,New York Metro,US,NJ,40.71871,-74.56932,5095626,ort,exakt,0.95,false,ort
+Berryville,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Bethlehem,PA,USA,1,Bethlehem,Bethlehem,Bethlehem,US,PA,40.62593,-75.37046,5180225,ort,exakt,0.95,false,ort
+Bethlehem,,USA,1,Bethlehem,Bethlehem,Bethlehem,US,PA,40.62593,-75.37046,5180225,ort,exakt,0.88,false,ort
+Beverley,,USA,1,Beverley,Beverley,Beverley,GB,,53.84587,-0.42332,2655785,ort,exakt,0.88,false,ort
+"Binghamton, NY",,USA,1,Binghamton,Binghamton,Binghamton,US,NY,42.09869,-75.91797,5109177,ort,exakt,0.95,false,ort
+Blairsville,PA,USA,1,Blairsville,Blairsville,Blairsville,US,PA,40.43118,-79.26087,5180834,ort,exakt,0.95,false,ort
+Bloomfield,CT,USA,1,Bloomfield,Bloomfield,Bloomfield,US,CT,41.82649,-72.73009,5282526,ort,exakt,0.95,false,ort
+Bloomfield,NY,USA,1,Bloomfield,Bloomfield,New York Metro,US,NJ,40.80677,-74.18542,5095779,ort,staat_korrigiert,0.65,true,ort
+Bogota,NJ,USA,1,Bogota,Bogota,New York Metro,US,NJ,40.87621,-74.02986,5095808,ort,exakt,0.95,false,ort
+Boonton,,USA,1,Boonton,Boonton,New York Metro,US,NJ,40.9026,-74.4071,5095826,ort,exakt,0.88,false,ort
+Boston,NJ,USA,1,Boston,Boston,Boston,US,MA,42.35843,-71.05977,4930956,ort,exakt,0.88,false,ort
+Boston,NY,USA,1,Boston,Boston,Boston,US,NY,42.62895,-78.73753,5109797,ort,exakt,0.95,false,ort
+Boston,,,1,Boston,Boston,Boston,US,MA,42.35843,-71.05977,4930956,ort,exakt,0.88,false,ort
+Bozeman,MT,USA,1,Bozeman,Bozeman,Bozeman,US,MT,45.67965,-111.03856,5641727,ort,exakt,0.95,false,ort
+"Bridgeville, PA",PA,USA,1,Bridgeville,Bridgeville,Bridgeville,US,PA,40.35618,-80.11006,5181636,ort,exakt,0.95,false,ort
+Bronxville,NY,USA,1,Bronxville,Bronxville,New York Metro,US,NY,40.93815,-73.83208,5110269,ort,exakt,0.95,false,ort
+"Brooklyn,N.Y.",,USA,1,Brooklyn,New York City,New York Metro,US,NY,40.6501,-73.94958,5110302,ort,exakt,0.95,false,ort
+Broslyn,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Brunswick,NJ,USA,1,New Brunswick,New Brunswick,New York Metro,US,NJ,40.48622,-74.45182,5101717,ort,alternativname,0.88,false,ort
+Brunswick,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+"Brunswick, ME",,USA,1,Brunswick,Brunswick,Brunswick,US,ME,43.91452,-69.96533,4959473,ort,exakt,0.95,false,ort
+"Buffalo,  NY",,USA,1,Buffalo,Buffalo,Buffalo,US,NY,42.88645,-78.87837,5110629,ort,exakt,0.95,false,ort
+"Buffalo, NY",,USA,1,Buffalo,Buffalo,Buffalo,US,NY,42.88645,-78.87837,5110629,ort,exakt,0.95,false,ort
+Burk,SD,USA,1,,,,,,,,,,mehrdeutig,,true,ort
+"Burnett, WI",WI,USA,1,Burnett,Burnett,Burnett,US,WI,43.50471,-88.70705,5247228,ort,exakt,0.95,false,ort
+Califon,NJ,USA,1,Califon,Califon,Califon,US,NJ,40.71954,-74.83572,5096141,ort,exakt,0.95,false,ort
+California,,USA,1,California,California,California,US,CA,37.25022,-119.75126,5332921,bundesstaat,exakt,0.68,true,bundesstaat
+Calumet,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Campbell,,USA,1,Campbell,Campbell,Campbell,US,OH,41.07839,-80.59924,5149149,ort,staat_aus_korpus,0.75,true,ort
+"Canon City,",NY,USA,1,Cañon City,Cañon City,Cañon City,US,CO,38.44098,-105.24245,5416005,ort,exakt,0.88,false,ort
+Canpello,MA,USA,1,,,,US,MA,42.36565,-71.10832,6254926,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Canton,,USA,1,Canton,Canton,Canton,US,OH,40.79895,-81.37845,5149222,ort,staat_aus_korpus,0.75,true,ort
+"Canton, OH",,USA,1,Canton,Canton,Canton,US,OH,40.79895,-81.37845,5149222,ort,exakt,0.95,false,ort
+Chambersburg,PA,USA,1,Chambersburg,Chambersburg,Chambersburg,US,PA,39.93759,-77.6611,4557109,ort,exakt,0.95,false,ort
+Chappaqua,NJ,USA,1,Chappaqua,Chappaqua,New York Metro,US,NY,41.15954,-73.76485,5112259,ort,exakt,0.88,false,ort
+"Charleston, SC",,USA,1,Charleston,Charleston,Charleston,US,SC,32.77632,-79.93275,4574324,ort,exakt,0.95,false,ort
+Charlesville,IL,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Checktowaga,NY,USA,1,Cheektowaga,Cheektowaga,Cheektowaga,US,NY,42.90339,-78.75475,5112375,ort,fuzzy,0.7,false,ort
+Chester,PA,USA,1,Chester,Chester,Chester,US,PA,39.84753,-75.35785,4557137,ort,exakt,0.95,false,ort
+Chester N.Y.,,USA,1,Chester,Chester,Chester,US,NY,41.36259,-74.27126,5112470,ort,exakt,0.95,false,ort
+Chestnut Hill,,USA,1,Chestnut Hill,Chestnut Hill,Chestnut Hill,US,MA,42.33065,-71.16616,4932957,ort,exakt,0.68,true,ort
+Chicago,IN,USA,1,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.88,false,ort
+Chicago,KY,USA,1,Saint Francis,Saint Francis,Saint Francis,US,KY,37.62645,-85.42774,4307142,ort,historischer_name,0.6,true,ort
+Chicago,MA,USA,1,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.88,false,ort
+Chicago,MI,USA,1,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.88,false,ort
+Chicago  IL,,USA,1,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.95,false,ort
+"Chicago,Ill.",,USA,1,Chicago,Chicago,Chicago,US,IL,41.85003,-87.65005,4887398,ort,exakt,0.95,false,ort
+Cincinatti,OH,USA,1,Cincinnati,Cincinnati,Cincinnati,US,OH,39.12711,-84.51439,4508722,ort,alternativname,0.85,false,ort
+"Cincinnati, OH",,USA,1,Cincinnati,Cincinnati,Cincinnati,US,OH,39.12711,-84.51439,4508722,ort,exakt,0.95,false,ort
+Cinncinati,,USA,1,Cincinnati,Cincinnati,Cincinnati,US,OH,39.12711,-84.51439,4508722,ort,fuzzy,0.6,false,ort
+Cleveland,NH,USA,1,Cleveland,Cleveland,Cleveland,US,OH,41.4995,-81.69541,5150529,ort,exakt,0.68,true,ort
+Cleveland,NY,USA,1,Cleveland,Cleveland,Cleveland,US,NY,43.24035,-75.8838,5112925,ort,exakt,0.95,false,ort
+Cleveland,PA,USA,1,Cleveland,Cleveland,Cleveland,US,OH,41.4995,-81.69541,5150529,ort,exakt,0.68,true,ort
+"Cleveland, OH",,USA,1,Cleveland,Cleveland,Cleveland,US,OH,41.4995,-81.69541,5150529,ort,exakt,0.95,false,ort
+Clifton,NY,USA,1,Clifton,New York City,New York Metro,US,NY,40.6201,-74.07709,5112956,ort,exakt,0.95,false,ort
+Clifton NJ,NJ,USA,1,Clifton,Clifton,New York Metro,US,NJ,40.85843,-74.16376,5096699,ort,exakt,0.95,false,ort
+Closter,NY,USA,1,Closter,Closter,New York Metro,US,NJ,40.97315,-73.96153,5096742,ort,staat_korrigiert,0.65,true,ort
+Coaldale,PA,USA,1,Coaldale,Coaldale,Coaldale,US,PA,40.82287,-75.90687,5184748,ort,exakt,0.95,false,ort
+College Point,NY,USA,1,College Point,New York City,New York Metro,US,NY,40.7876,-73.84597,5113302,ort,exakt,0.95,false,ort
+Collingswood,NJ,USA,1,Collingswood,Collingswood,Collingswood,US,NJ,39.91817,-75.07128,4501306,ort,exakt,0.95,false,ort
+Columbus,NY,USA,1,Columbus,Columbus,Columbus,US,NY,42.68396,-75.37267,5113380,ort,exakt,0.95,false,ort
+Columbus,,USA,1,Columbus,Columbus,Columbus,US,OH,39.96118,-82.99879,4509177,ort,exakt,0.68,true,ort
+Convent NJ,NJ,USA,1,,,,US,NJ,40.16706,-74.49987,5101760,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Convent Station,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Coraopolis,,USA,1,Coraopolis,Coraopolis,Coraopolis,US,PA,40.5184,-80.16672,5185408,ort,exakt,0.88,false,ort
+"Corona, L.I.",,USA,1,Corona,New York City,New York Metro,US,NY,40.74705,-73.86014,5113779,ort,exakt,0.95,false,ort
+Council Bluffs,IA,USA,1,Council Bluffs,Council Bluffs,Council Bluffs,US,IA,41.26194,-95.86083,4852832,ort,exakt,0.95,false,ort
+Covington,,USA,1,Covington,Covington,Covington,US,KY,39.08367,-84.50855,4288809,ort,staat_aus_korpus,0.75,true,ort
+Creston,NE,USA,1,Creston,Creston,Creston,US,NE,41.70668,-97.36254,5066424,ort,exakt,0.95,false,ort
+Crestwood,NY,USA,1,Crestwood,Crestwood,New York Metro,US,NY,40.9601,-73.8243,5114102,ort,exakt,0.95,false,ort
+Croton,NY,USA,1,Croton-on-Hudson,Croton-on-Hudson,New York Metro,US,NY,41.20843,-73.89125,5114221,ort,alternativname,0.88,false,ort
+Croton/Hudson,NY,USA,1,Croton-on-Hudson,Croton-on-Hudson,New York Metro,US,NY,41.20843,-73.89125,5114221,ort,alternativname,0.88,false,ort
+Daisytown,,USA,1,,,,US,PA,40.8,-77.7,6254927,bundesstaat,mehrdeutig_bundesstaat,0.7,true,ort
+Dallas,NY,USA,1,Dallas,Dallas,Dallas,US,TX,32.78306,-96.80667,4684888,ort,exakt,0.88,false,ort
+Damsonville,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Danbury,CT,USA,1,Danbury,Danbury,Danbury,US,CT,41.39482,-73.45401,4832353,ort,exakt,0.95,false,ort
+Davenport,,USA,1,Davenport,Davenport,Davenport,US,IA,41.52364,-90.57764,4853423,ort,exakt,0.88,false,ort
+Dearborn,,USA,1,Dearborn,Dearborn,Dearborn,US,MI,42.32226,-83.17631,4990510,ort,exakt,0.88,false,ort
+Decatur,IL,USA,1,Decatur,Decatur,Decatur,US,IL,39.84031,-88.9548,4236895,ort,exakt,0.95,false,ort
+Dedham,MA,USA,1,Dedham,Dedham,Dedham,US,MA,42.24177,-71.16616,4934664,ort,exakt,0.95,false,ort
+Dedham,,USA,1,Dedham,Dedham,Dedham,US,MA,42.24177,-71.16616,4934664,ort,exakt,0.88,false,ort
+"Demarest, NJ",,USA,1,Demarest,Demarest,New York Metro,US,NJ,40.95732,-73.96347,5097224,ort,exakt,0.95,false,ort
+Denver,,USA,1,Denver,Denver,Denver,US,CO,39.73915,-104.9847,5419384,ort,exakt,0.88,false,ort
+Derby,,USA,1,Derby,Derby,Derby,US,CT,41.32065,-73.089,4832745,ort,staat_aus_korpus,0.75,true,ort
+Des Plaines,IL,USA,1,Des Plaines,Des Plaines,Des Plaines,US,IL,42.03336,-87.8834,4889772,ort,exakt,0.95,false,ort
+Detroit,IL,USA,1,Detroit,Detroit,Detroit,US,IL,39.6206,-90.67679,4237004,ort,exakt,0.95,false,ort
+Dover,NJ,USA,1,Dover,Dover,New York Metro,US,NJ,40.88399,-74.5621,5097315,ort,exakt,0.95,false,ort
+Dublin,GA,USA,1,Dublin,Dublin,Dublin,US,GA,32.54044,-82.90375,4192205,ort,exakt,0.95,false,ort
+Durhamville,NY,USA,1,Durhamville,Durhamville,Durhamville,US,NY,43.12062,-75.67102,5115536,ort,exakt,0.95,false,ort
+Dyer,,USA,1,Dyer,Dyer,Dyer,US,IN,41.4942,-87.52171,4919820,ort,exakt,0.68,true,ort
+E. Concord,NY,USA,1,East Concord,East Concord,East Concord,US,NY,42.55201,-78.6403,5115810,ort,normalisiert,0.92,false,ort
+E. Orange,NJ,USA,1,East Orange,East Orange,New York Metro,US,NJ,40.76732,-74.20487,5097441,ort,normalisiert,0.92,false,ort
+E.Orange,,USA,1,East Orange,East Orange,New York Metro,US,NJ,40.76732,-74.20487,5097441,ort,normalisiert,0.85,false,ort
+East Orange,,USA,1,East Orange,East Orange,New York Metro,US,NJ,40.76732,-74.20487,5097441,ort,exakt,0.88,false,ort
+Easton,,USA,1,Easton,Easton,Easton,US,PA,40.68843,-75.22073,5188140,ort,staat_aus_korpus,0.75,true,ort
+Edgewater,NJ,USA,1,Edgewater,Edgewater,New York Metro,US,NJ,40.82704,-73.97569,5097575,ort,exakt,0.95,false,ort
+El Paso,,USA,1,El Paso,El Paso,El Paso,US,TX,31.75872,-106.48693,5520993,ort,exakt,0.88,false,ort
+Elizabeth,NY,USA,1,Elizabeth,Elizabeth,New York Metro,US,NJ,40.66399,-74.2107,5097598,ort,staat_korrigiert,0.65,true,ort
+"Elizabeth,N.J.",,USA,1,Elizabeth,Elizabeth,New York Metro,US,NJ,40.66399,-74.2107,5097598,ort,exakt,0.95,false,ort
+"Elizabethton, TN",NJ,USA,1,Elizabethton,Elizabethton,Elizabethton,US,TN,36.34872,-82.21069,4620634,ort,exakt,0.95,false,ort
+"Elizabethton, TN",TN,USA,1,Elizabethton,Elizabethton,Elizabethton,US,TN,36.34872,-82.21069,4620634,ort,exakt,0.95,false,ort
+Elm Grove,,USA,1,Elm Grove,Elm Grove,Elm Grove,US,WI,43.04307,-88.07898,5251784,ort,exakt,0.88,false,ort
+Elmhurst,IL,USA,1,Elmhurst,Elmhurst,Elmhurst,US,IL,41.89947,-87.94034,4891010,ort,exakt,0.95,false,ort
+Elmhurst,NY,USA,1,Elmhurst,New York City,New York Metro,US,NY,40.73649,-73.87791,5116495,ort,exakt,0.95,false,ort
+Elyria,,USA,1,Elyria,Elyria,Elyria,US,OH,41.36838,-82.10765,5153207,ort,exakt,0.88,false,ort
+Englewood,NJ,USA,1,Englewood,Englewood,New York Metro,US,NJ,40.89288,-73.97264,5097672,ort,exakt,0.95,false,ort
+Erie,,USA,1,Erie,Erie,Erie,US,PA,42.12922,-80.08506,5188843,ort,exakt,0.68,true,ort
+Evanston,IL,USA,1,Evanston,Evanston,Evanston,US,IL,42.04114,-87.69006,4891382,ort,exakt,0.95,false,ort
+Eynou,PA,USA,1,,,,US,PA,40.8,-77.7,6254927,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Far Hills,NJ,USA,1,Far Hills,Far Hills,New York Metro,US,NJ,40.68427,-74.63571,5097836,ort,exakt,0.95,false,ort
+Far Rokaway,,USA,1,Far Rockaway,New York City,New York Metro,US,NY,40.60538,-73.75513,5116917,ort,fuzzy,0.6,false,ort
+Fargo,,USA,1,Fargo,Fargo,Fargo,US,ND,46.87719,-96.7898,5059163,ort,exakt,0.88,false,ort
+Farmindale,NY,USA,1,Farmingdale,Farmingdale,New York Metro,US,NY,40.7326,-73.4454,5116931,ort,fuzzy,0.7,false,ort
+Ferndale,MI,USA,1,Ferndale,Ferndale,Ferndale,US,MI,42.46059,-83.13465,4992635,ort,exakt,0.95,false,ort
+Filztenry,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Flint,,USA,1,Flint,Flint,Flint,US,MI,43.01253,-83.68746,4992982,ort,exakt,0.88,false,ort
+Flushing,NY,USA,1,Flushing,New York City,New York Metro,US,NY,40.76538,-73.81736,5117472,ort,exakt,0.95,false,ort
+Flushing,,USA,1,Flushing,New York City,New York Metro,US,NY,40.76538,-73.81736,5117472,ort,staat_aus_korpus,0.75,true,ort
+For. Hills,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Forst Park,IL,USA,1,Forest Park,Forest Park,Forest Park,US,IL,41.87948,-87.81367,4892775,ort,fuzzy,0.7,false,ort
+Fort Johnson,,USA,1,Fort Johnson,Fort Johnson,Fort Johnson,US,NY,42.95841,-74.23291,5117683,ort,exakt,0.68,true,ort
+Fort Seardau,IL,USA,1,,,,US,IL,40.00032,-89.25037,4896861,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Fort Wayne,,USA,1,Fort Wayne,Fort Wayne,Fort Wayne,US,IN,41.1306,-85.12886,4920423,ort,exakt,0.88,false,ort
+Framingham,MA,USA,1,Framingham,Framingham,Framingham,US,MA,42.27926,-71.41617,4937230,ort,exakt,0.95,false,ort
+Freemont,,USA,1,Fremont,Fremont,Fremont,US,OH,41.35033,-83.12186,5155207,ort,alternativname,0.61,true,ort
+Garden City,NJ,USA,1,Garden City,Garden City,New York Metro,US,NY,40.72677,-73.6343,5118226,ort,staat_korrigiert,0.65,true,ort
+Garden City,NY,USA,1,Garden City,Garden City,New York Metro,US,NY,40.72677,-73.6343,5118226,ort,exakt,0.95,false,ort
+Gary,IN,USA,1,Gary,Gary,Gary,US,IN,41.59337,-87.34643,4920607,ort,exakt,0.95,false,ort
+Gary,,USA,1,Gary,Gary,Gary,US,IN,41.59337,-87.34643,4920607,ort,exakt,0.88,false,ort
+Gibsonburg,,USA,1,Gibsonburg,Gibsonburg,Gibsonburg,US,OH,41.3845,-83.32048,5155710,ort,exakt,0.88,false,ort
+Gilbertsville,PA,USA,1,Gilbertsville,Gilbertsville,Gilbertsville,US,PA,40.3201,-75.61018,5191093,ort,exakt,0.95,false,ort
+Glenbrook,CT,USA,1,Glenbrook,Glenbrook,Glenbrook,US,CT,41.06482,-73.52623,4835025,ort,exakt,0.95,false,ort
+Glencoe,IL,USA,1,Glencoe,Glencoe,Glencoe,US,IL,42.13503,-87.75812,4894078,ort,exakt,0.95,false,ort
+Glendale,CA,USA,1,Glendale,Glendale,Glendale,US,CA,34.14251,-118.25508,5352423,ort,exakt,0.95,false,ort
+Glendale,NJ,USA,1,Glendale,New York City,New York Metro,US,NY,40.70149,-73.8868,5118670,ort,staat_korrigiert,0.65,true,ort
+"Glendale,L.I.N.Y.",,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Glenridge,NJ,USA,1,Glen Ridge,Glen Ridge,New York Metro,US,NJ,40.80538,-74.20376,5098430,ort,fuzzy,0.7,false,ort
+Glenridge,NY,USA,1,Glenridge,Glenridge,Glenridge,US,NY,42.86702,-73.90957,5118691,ort,exakt,0.95,false,ort
+Goldensbridge,,USA,1,Goldens Bridge,Goldens Bridge,New York Metro,US,NY,41.29343,-73.6768,5118781,ort,alternativname,0.78,false,ort
+Grand Rapids,,USA,1,Grand Rapids,Grand Rapids,Grand Rapids,US,MI,42.96336,-85.66809,4994358,ort,exakt,0.88,false,ort
+"Grantwood, NJ",NJ,USA,1,Grantwood,Grantwood,New York Metro,US,NJ,40.82677,-73.98708,5098556,ort,exakt,0.95,false,ort
+Great Kills,NY,USA,1,Great Kills,New York City,New York Metro,US,NY,40.55427,-74.15153,5119211,ort,exakt,0.95,false,ort
+Greenfield,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Greenville,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Gretna,,USA,1,Gretna,Gretna,Gretna,US,LA,29.91465,-90.05396,4326575,ort,exakt,0.68,true,ort
+Grocket,CA,USA,1,,,,US,CA,37.25022,-119.75126,5332921,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Haddonsfield,,USA,1,Haddonfield,Haddonfield,Haddonfield,US,NJ,39.8915,-75.03767,4502103,ort,fuzzy,0.6,false,ort
+Hamtramck,MI,USA,1,Hamtramck,Hamtramck,Hamtramck,US,MI,42.39282,-83.04964,4995197,ort,exakt,0.95,false,ort
+"Harlan, KY.",,USA,1,Harlan,Harlan,Harlan,US,KY,36.84314,-83.32185,4294072,ort,exakt,0.95,false,ort
+Hartford,CT,USA,1,Hartford,Hartford,Hartford,US,CT,41.76371,-72.68509,4835797,ort,exakt,0.95,false,ort
+Hasbronk Hights,NJ,USA,1,Hasbrouck Heights,Hasbrouck Heights,New York Metro,US,NJ,40.85816,-74.0807,5098878,ort,fuzzy,0.7,false,ort
+Hasbrouck,,USA,1,Hasbrouck,Hasbrouck,Hasbrouck,US,NY,41.7912,-74.6146,5120171,ort,exakt,0.88,false,ort
+Hastings,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Hatfield,,USA,1,,,,,,,,,,mehrdeutig,,true,ort
+Hawkinsville 7,,USA,1,,,,,,,,,,kein_treffer,,false,unklar
+Hawthorne,,USA,1,Hawthorne,Hawthorne,Hawthorne,US,CA,33.9164,-118.35257,5355828,ort,exakt,0.68,true,ort
+Hempstaed,NJ,USA,1,,,,US,NJ,40.16706,-74.49987,5101760,bundesstaat,fallback_bundesstaat,0.75,false,ort
+"Hempstead, NY",,USA,1,Hempstead,Hempstead,New York Metro,US,NY,40.70621,-73.61874,5120478,ort,exakt,0.95,false,ort
+"Henderson, KY",,USA,1,Henderson,Henderson,Henderson,US,KY,37.83615,-87.59001,4294494,ort,exakt,0.95,false,ort
+Hicksville,,USA,1,Hicksville,Hicksville,New York Metro,US,NY,40.76843,-73.52513,5120656,ort,exakt,0.88,false,ort
+Highland,NY,USA,1,Highland,Highland,Highland,US,NY,41.72093,-73.96014,5120741,ort,exakt,0.95,false,ort
+Hillsdale,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Hilly Hill,FL,USA,1,Holly Hill,Holly Hill,Holly Hill,US,FL,29.24359,-81.03756,4158914,ort,fuzzy,0.7,false,ort
+Hoboken,NY,USA,1,Hoboken,Hoboken,New York Metro,US,NJ,40.74399,-74.03236,5099133,ort,staat_korrigiert,0.65,true,ort
+Hollywood,,USA,1,Hollywood,Hollywood,Hollywood,US,CA,34.09834,-118.32674,5357527,ort,staat_aus_korpus,0.75,true,ort
+Homestead,PA,USA,1,Homestead,Homestead,Homestead,US,PA,40.4059,-79.91199,5194067,ort,exakt,0.95,false,ort
+"Hopewell, VA",,USA,1,Hopewell,Hopewell,Hopewell,US,VA,37.30432,-77.2872,4764826,ort,exakt,0.95,false,ort
+"Hotel Commodore 42nd Str. at Grand Central Term, NYC",,USA,1,New York,New York,New York,US,NY,43.00035,-75.4999,5128638,bundesstaat,nur_kuerzel,0.7,false,region
+Houston,TX,USA,1,Houston,Houston,Houston,US,TX,29.76328,-95.36327,4699066,ort,exakt,0.95,false,ort
+Houston,,USA,1,Houston,Houston,Houston,US,TX,29.76328,-95.36327,4699066,ort,exakt,0.88,false,ort
+Houston,,,1,Houston,Houston,Houston,US,TX,29.76328,-95.36327,4699066,ort,exakt,0.88,false,ort
+"Houston, Texas",,USA,1,Houston,Houston,Houston,US,TX,29.76328,-95.36327,4699066,ort,exakt,0.95,false,ort
+Huntington,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Indianapolis,IN,USA,1,Indianapolis,Indianapolis,Indianapolis,US,IN,39.76838,-86.15804,4259418,ort,exakt,0.95,false,ort
+Indianapolis,NY,USA,1,Indianapolis,Indianapolis,Indianapolis,US,IN,39.76838,-86.15804,4259418,ort,exakt,0.88,false,ort
+"Irvington, NJ",NJ,USA,1,Irvington,Irvington,New York Metro,US,NJ,40.73232,-74.23487,5099724,ort,exakt,0.95,false,ort
+Islip,NY,USA,1,Islip,Islip,New York Metro,US,NY,40.72982,-73.21039,5122413,ort,exakt,0.95,false,ort
+Ithaca,NY,USA,1,Ithaca,Ithaca,Ithaca,US,NY,42.44063,-76.49661,5122432,ort,exakt,0.95,false,ort
+Ithaca,,USA,1,Ithaca,Ithaca,Ithaca,US,NY,42.44063,-76.49661,5122432,ort,exakt,0.88,false,ort
+"Ithaca, NY",,USA,1,Ithaca,Ithaca,Ithaca,US,NY,42.44063,-76.49661,5122432,ort,exakt,0.95,false,ort
+Ithaka,NY,USA,1,Ithaca,Ithaca,Ithaca,US,NY,42.44063,-76.49661,5122432,ort,alternativname,0.85,false,ort
+Jackson,MI,USA,1,Jackson,Jackson,Jackson,US,MI,42.24587,-84.40135,4997384,ort,exakt,0.95,false,ort
+Jackson Heights,NJ,USA,1,Jackson Heights,New York City,New York Metro,US,NY,40.75566,-73.88541,5122477,ort,staat_korrigiert,0.65,true,ort
+Jackson Heights,NY,USA,1,Jackson Heights,New York City,New York Metro,US,NY,40.75566,-73.88541,5122477,ort,exakt,0.95,false,ort
+Jamaica,NJ,USA,1,Jamaica,New York City,New York Metro,US,NY,40.69149,-73.80569,5122520,ort,staat_korrigiert,0.65,true,ort
+"Jamaica, L. I.",NY,USA,1,Jamaica,New York City,New York Metro,US,NY,40.69149,-73.80569,5122520,ort,exakt,0.95,false,ort
+"Jersey City, NJ",,USA,1,Jersey City,Jersey City,New York Metro,US,NJ,40.72816,-74.07764,5099836,ort,exakt,0.95,false,ort
+Jersey city,NJ,USA,1,Jersey City,Jersey City,New York Metro,US,NJ,40.72816,-74.07764,5099836,ort,normalisiert,0.92,false,ort
+Jersey-City,,USA,1,Jersey City,Jersey City,New York Metro,US,NJ,40.72816,-74.07764,5099836,ort,normalisiert,0.85,false,ort
+Johnson,MN,USA,1,Johnson,Johnson,Johnson,US,MN,45.57274,-96.29534,5031992,ort,exakt,0.95,false,ort
+Jordan Falls,,USA,1,Jordan Falls,Jordan Falls,Jordan Falls,CA,,43.81553,-65.23212,5987881,ort,exakt,0.88,false,ort
+Julesburg,CO,USA,1,Julesburg,Julesburg,Julesburg,US,CO,40.98833,-102.26435,5578567,ort,exakt,0.95,false,ort
+Jungo,NV,USA,1,,,,US,NV,39.25021,-116.75119,5509151,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Kansas,,USA,1,Kansas City,Kansas City,Kansas City,US,MO,39.09973,-94.57857,4393217,ort,staat_aus_korpus,0.65,true,ort
+Kansas City,MO,USA,1,Kansas City,Kansas City,Kansas City,US,MO,39.09973,-94.57857,4393217,ort,exakt,0.95,false,ort
+"Kansas City, MO",MO,USA,1,Kansas City,Kansas City,Kansas City,US,MO,39.09973,-94.57857,4393217,ort,exakt,0.95,false,ort
+Kentfield,,USA,1,Kentfield,Kentfield,Kentfield,US,CA,37.95215,-122.5572,5362864,ort,exakt,0.88,false,ort
+Kew Gardens,NY,USA,1,Kew Gardens,New York City,New York Metro,US,NY,40.71427,-73.83097,5123344,ort,exakt,0.95,false,ort
+"Kew Gardens, NY",NY,USA,1,Kew Gardens,New York City,New York Metro,US,NY,40.71427,-73.83097,5123344,ort,exakt,0.95,false,ort
+Kresson,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+La Grange,IL,USA,1,La Grange,La Grange,La Grange,US,IL,41.80503,-87.86923,4898846,ort,exakt,0.95,false,ort
+Lake Geneva,WI,USA,1,Lake Geneva,Lake Geneva,Lake Geneva,US,WI,42.59168,-88.43343,5259169,ort,exakt,0.95,false,ort
+Lakeville,,USA,1,Lakeville,Lakeville,Lakeville,US,MN,44.64969,-93.24272,5034059,ort,exakt,0.88,false,ort
+Lakewood,OH,USA,1,Lakewood,Lakewood,Lakewood,US,OH,41.48199,-81.79819,5160315,ort,exakt,0.95,false,ort
+Lansing,MI,USA,1,Lansing,Lansing,Lansing,US,MI,42.73253,-84.55553,4998830,ort,exakt,0.95,false,ort
+Latrobe,,USA,1,Latrobe,Latrobe,Latrobe,US,PA,40.32118,-79.37948,5197227,ort,exakt,0.88,false,ort
+Le Roy,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Lenox,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Lewiston,ME,USA,1,Lewiston,Lewiston,Lewiston,US,ME,44.10035,-70.21478,4969398,ort,exakt,0.95,false,ort
+Lewistone,NY,USA,1,Lewiston,Lewiston,Lewiston,US,NY,43.17256,-79.03588,5124307,ort,fuzzy,0.7,false,ort
+Ligonier,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Linden,NY,USA,1,Linden,Linden,New York Metro,US,NJ,40.62205,-74.24459,5100506,ort,staat_korrigiert,0.65,true,ort
+Linden,,USA,1,Linden,Linden,New York Metro,US,NJ,40.62205,-74.24459,5100506,ort,exakt,0.88,false,ort
+"Linden, NJ",NJ,USA,1,Linden,Linden,New York Metro,US,NJ,40.62205,-74.24459,5100506,ort,exakt,0.95,false,ort
+Linwood,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Little Ferry,NY,USA,1,Little Ferry,Little Ferry,New York Metro,US,NJ,40.85288,-74.04208,5100542,ort,staat_korrigiert,0.65,true,ort
+Liverpool,,USA,1,Liverpool,Liverpool,Liverpool,GB,,53.41058,-2.97794,2644210,ort,exakt,0.68,true,ort
+Livingston,NJ,USA,1,Livingston,Livingston,New York Metro,US,NJ,40.79593,-74.31487,5100572,ort,exakt,0.95,false,ort
+Livingston,NY,USA,1,Livingston,Livingston,New York Metro,US,NJ,40.79593,-74.31487,5100572,ort,staat_korrigiert,0.65,true,ort
+Lodi,CA,USA,1,Lodi,Lodi,Lodi,US,CA,38.1302,-121.27245,5367565,ort,exakt,0.95,false,ort
+Lodi,NJ,USA,1,Lodi,Lodi,New York Metro,US,NJ,40.88232,-74.0832,5100604,ort,exakt,0.95,false,ort
+Long Beach,NY,USA,1,Long Beach,Long Beach,New York Metro,US,NY,40.58844,-73.65791,5125086,ort,exakt,0.95,false,ort
+Long Island,,,1,Long Island,Long Island,Long Island,US,NY,40.81677,-73.06622,5125123,bundesstaat,exakt,0.88,false,region
+"Long Island,N.Y.",,USA,1,Long Island,Long Island,Long Island,US,NY,40.81677,-73.06622,5125123,bundesstaat,exakt,0.95,false,region
+Los Angeles,NY,USA,1,Los Angeles,Los Angeles,Los Angeles,US,CA,34.05223,-118.24368,5368361,ort,exakt,0.88,false,ort
+"Los Angeles, CA",,USA,1,Los Angeles,Los Angeles,Los Angeles,US,CA,34.05223,-118.24368,5368361,ort,exakt,0.95,false,ort
+Los. Angeles,,USA,1,Los Angeles,Los Angeles,Los Angeles,US,CA,34.05223,-118.24368,5368361,ort,normalisiert,0.85,false,ort
+Lost Creek,PA,USA,1,Lost Creek,Lost Creek,Lost Creek,US,PA,40.80648,-76.24689,5199010,ort,exakt,0.95,false,ort
+Lowell,MA,USA,1,Lowell,Lowell,Lowell,US,MA,42.63342,-71.31617,4942618,ort,exakt,0.95,false,ort
+Ludlow,KY,USA,1,Ludlow,Ludlow,Ludlow,US,KY,39.09256,-84.54744,4299531,ort,exakt,0.95,false,ort
+Lyn,,USA,1,Lyn,Lyn,Lyn,CA,,44.58341,-75.78265,6062266,ort,exakt,0.88,false,ort
+"Lynbrook, NY",NY,USA,1,Lynbrook,Lynbrook,New York Metro,US,NY,40.65483,-73.6718,5125523,ort,exakt,0.95,false,ort
+"Lynchburg, VA",,USA,1,Lynchburg,Lynchburg,Lynchburg,US,VA,37.41375,-79.14225,4771075,ort,exakt,0.95,false,ort
+Lyndhurst,NJ,USA,1,Lyndhurst,Lyndhurst,New York Metro,US,NJ,40.81204,-74.12431,5100706,ort,exakt,0.95,false,ort
+Mablewood,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Madison,NY,USA,1,Madison,Madison,New York Metro,US,NJ,40.75982,-74.4171,5100748,ort,staat_korrigiert,0.65,true,ort
+"Madison, NJ",NJ,USA,1,Madison,Madison,New York Metro,US,NJ,40.75982,-74.4171,5100748,ort,exakt,0.95,false,ort
+Mamarouck,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Manhassat,,USA,1,Manhasset,Manhasset,New York Metro,US,NY,40.79788,-73.69957,5125766,ort,fuzzy,0.6,false,ort
+Maplewood,NJ,USA,1,Maplewood,Maplewood,New York Metro,US,NJ,40.73121,-74.27348,5100854,ort,exakt,0.95,false,ort
+Maplewood,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+"Marinette, WI",WI,USA,1,Marinette,Marinette,Marinette,US,WI,45.09998,-87.63066,5261852,ort,exakt,0.95,false,ort
+Maryland,,USA,1,Maryland,Maryland,Maryland,US,MD,39.00039,-76.74997,4361885,bundesstaat,exakt,0.88,false,bundesstaat
+Mashing,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Maspeth,NY,USA,1,Maspeth,New York City,New York Metro,US,NY,40.72316,-73.91264,5126180,ort,exakt,0.95,false,ort
+Maspeth,,USA,1,Maspeth,New York City,New York Metro,US,NY,40.72316,-73.91264,5126180,ort,exakt,0.88,false,ort
+Maywood,IL,USA,1,Maywood,Maywood,Maywood,US,IL,41.8792,-87.84312,4901514,ort,exakt,0.95,false,ort
+Medford,MA,USA,1,Medford,Medford,Medford,US,MA,42.41843,-71.10616,4943629,ort,exakt,0.95,false,ort
+Media,PA,USA,1,Media,Media,Media,US,PA,39.91678,-75.38769,4559575,ort,exakt,0.95,false,ort
+Melrose Park,,USA,1,Melrose Park,Melrose Park,Melrose Park,US,IL,41.90059,-87.85673,4901868,ort,exakt,0.68,true,ort
+"Memphis, TE",TN,USA,1,Memphis,Memphis,Memphis,US,TN,35.14953,-90.04898,4641239,ort,exakt,0.95,false,ort
+Mendham,,USA,1,Mendham,Mendham,New York Metro,US,NJ,40.77593,-74.60071,5101073,ort,exakt,0.88,false,ort
+Merrick,NY,USA,1,Merrick,Merrick,New York Metro,US,NY,40.66288,-73.55152,5126630,ort,exakt,0.95,false,ort
+Middleburg,,USA,1,Middleburg,Middleburg,Middleburg,US,FL,30.06885,-81.86038,4164387,ort,exakt,0.68,true,ort
+Middletown,CT,USA,1,Middletown,Middletown,Middletown,US,CT,41.56232,-72.65065,4838633,ort,exakt,0.95,false,ort
+Middletown,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Midlane Park,NJ,USA,1,Midland Park,Midland Park,New York Metro,US,NJ,40.98926,-74.1407,5101178,ort,fuzzy,0.7,false,ort
+Milwaukee,IL,USA,1,Milwaukee,Milwaukee,Milwaukee,US,WI,43.0389,-87.90647,5263045,ort,exakt,0.88,false,ort
+"Milwaukee, WI",WI,USA,1,Milwaukee,Milwaukee,Milwaukee,US,WI,43.0389,-87.90647,5263045,ort,exakt,0.95,false,ort
+Mineola,,USA,1,Mineola,Mineola,New York Metro,US,NY,40.74927,-73.64068,5127134,ort,exakt,0.68,true,ort
+Minnesota,MN,USA,1,Minnesota,Minnesota,Minnesota,US,MN,46.25024,-94.25055,5037779,bundesstaat,exakt,0.95,false,bundesstaat
+Mont Clair,NJ,USA,1,Montclair,Montclair,New York Metro,US,NJ,40.82593,-74.20903,5101334,ort,alternativname,0.85,false,ort
+Montana,,USA,1,Montana,Montana,Montana,US,MT,47.00025,-109.75102,5667009,bundesstaat,exakt,0.88,false,bundesstaat
+Montclair,NJ,USA,1,Montclair,Montclair,New York Metro,US,NJ,40.82593,-74.20903,5101334,ort,exakt,0.95,false,ort
+Morrisville,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Mount Kisco,NY,USA,1,Mount Kisco,Mount Kisco,New York Metro,US,NY,41.20426,-73.72708,5127744,ort,exakt,0.95,false,ort
+Mount Kisco,,USA,1,Mount Kisco,Mount Kisco,New York Metro,US,NY,41.20426,-73.72708,5127744,ort,exakt,0.88,false,ort
+Mount Vernon,WA,USA,1,Mount Vernon,Mount Vernon,Mount Vernon,US,WA,48.42122,-122.33405,5804127,ort,exakt,0.95,false,ort
+Mount Vernon,,USA,1,Mount Vernon,Mount Vernon,New York Metro,US,NY,40.9126,-73.83708,5127835,ort,staat_aus_korpus,0.75,true,ort
+Mountain Lke,NJ,USA,1,Mountain Lakes,Mountain Lakes,New York Metro,US,NJ,40.89482,-74.43293,5101585,ort,fuzzy,0.7,false,ort
+Mt. Vernon,,USA,1,Mount Vernon,Mount Vernon,New York Metro,US,NY,40.9126,-73.83708,5127835,ort,staat_aus_korpus,0.75,true,ort
+N. Brunswick,,USA,1,North Brunswick,North Brunswick,New York Metro,US,NJ,40.454,-74.482,6946944,ort,normalisiert,0.85,false,ort
+N.Brunswick,NJ,USA,1,North Brunswick,North Brunswick,New York Metro,US,NJ,40.454,-74.482,6946944,ort,normalisiert,0.92,false,ort
+NY,,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,override,0.95,false,ort
+Napa.Cal.,CA,USA,1,,,,US,CA,37.25022,-119.75126,5332921,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Nazareth,PA,USA,1,Nazareth,Nazareth,Nazareth,US,PA,40.74038,-75.30962,5202938,ort,exakt,0.95,false,ort
+Neefsville,NY,USA,1,Neffs,Neffs,Neffs,US,PA,40.69454,-75.60963,5202964,ort,alternativname,0.78,false,ort
+Negaunee,MI,USA,1,Negaunee,Negaunee,Negaunee,US,MI,46.4991,-87.6118,5003294,ort,exakt,0.95,false,ort
+New  York,,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.78,false,ort
+New Britain,CT,USA,1,New Britain,New Britain,New Britain,US,CT,41.66121,-72.77954,4839292,ort,exakt,0.95,false,ort
+New Brunswick,NY,USA,1,New Brunswick,New Brunswick,New York Metro,US,NJ,40.48622,-74.45182,5101717,ort,staat_korrigiert,0.65,true,ort
+New Castle,,USA,1,New Castle,New Castle,New Castle,US,PA,41.00367,-80.34701,5203127,ort,staat_aus_korpus,0.75,true,ort
+"New Haven, CT",,USA,1,New Haven,New Haven,New Haven,US,CT,41.30815,-72.92816,4839366,ort,exakt,0.95,false,ort
+New Orleans,LA,USA,1,New Orleans,New Orleans,New Orleans,US,LA,29.95465,-90.07507,4335045,ort,exakt,0.95,false,ort
+New York,DC,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+New York,MO,USA,1,New York,New York,New York,US,MO,39.68529,-93.92688,4049286,ort,exakt,0.95,false,ort
+New York,OH,USA,1,Seal,Seal,Seal,US,OH,40.877,-83.15047,5171547,ort,historischer_name,0.6,true,ort
+New York,RI,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.81,false,ort
+New York,TN,USA,1,Scotts Mill,Scotts Mill,Scotts Mill,US,TN,35.4998,-87.14834,4656269,ort,historischer_name,0.6,true,ort
+New York,TX,USA,1,New York,New York,New York,US,TX,32.16793,-95.66913,4714635,ort,exakt,0.95,false,ort
+"New York City, NY",,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,exakt,0.95,false,ort
+"New York, NY",IL,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+"New York,N.Y.",CA,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+"New York,N.Y.",NJ,USA,1,New York City,New York City,New York Metro,US,NY,40.71427,-74.00597,5128581,ort,alternativname,0.88,false,ort
+Newark,MA,USA,1,Newark,Newark,New York Metro,US,NJ,40.73566,-74.17237,5101798,ort,exakt,0.68,true,ort
+Newark,NY,USA,1,Newark,Newark,New York Metro,US,NJ,40.73566,-74.17237,5101798,ort,staat_korrigiert,0.65,true,ort
+"Newark, NJ",,USA,1,Newark,Newark,New York Metro,US,NJ,40.73566,-74.17237,5101798,ort,exakt,0.95,false,ort
+Newhaven,,USA,1,New Haven,New Haven,New Haven,US,CT,41.30815,-72.92816,4839366,ort,staat_aus_korpus,0.7,true,ort
+Newport,RI,USA,1,Newport,Newport,Newport,US,RI,41.4901,-71.31283,5223593,ort,exakt,0.95,false,ort
+Newston,TX,USA,1,Newton,Newton,Newton,US,TX,30.84853,-93.7574,4714713,ort,fuzzy,0.7,false,ort
+"Newton,N.J.",,USA,1,Newton,Newton,Newton,US,NJ,41.05815,-74.75267,5101848,ort,exakt,0.95,false,ort
+Niles Center,IL,USA,1,Skokie,Skokie,Skokie,US,IL,42.03336,-87.73339,4911600,ort,historischer_name,0.6,true,ort
+No. Bergen,NJ,USA,1,North Bergen,North Bergen,New York Metro,US,NJ,40.80427,-74.01208,5101879,ort,normalisiert,0.92,false,ort
+North-East,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Norwalk,CT,USA,1,Norwalk,Norwalk,Norwalk,US,CT,41.1176,-73.4079,4839822,ort,exakt,0.95,false,ort
+Norwalk CT,CT,USA,1,Norwalk,Norwalk,Norwalk,US,CT,41.1176,-73.4079,4839822,ort,exakt,0.95,false,ort
+Nutley,NJ,USA,1,Nutley,Nutley,New York Metro,US,NJ,40.82232,-74.15987,5102076,ort,exakt,0.95,false,ort
+Oak Park,IL,USA,1,Oak Park,Oak Park,Oak Park,US,IL,41.88503,-87.7845,4904381,ort,exakt,0.95,false,ort
+Oconomowoc,WI,USA,1,Oconomowoc,Oconomowoc,Oconomowoc,US,WI,43.11167,-88.49927,5265499,ort,exakt,0.95,false,ort
+Odenton,MD,USA,1,Odenton,Odenton,Odenton,US,MD,39.084,-76.70025,4364362,ort,exakt,0.95,false,ort
+Oil City,PA,USA,1,Oil City,Oil City,Oil City,US,PA,41.43395,-79.70644,5204278,ort,exakt,0.95,false,ort
+Okahoma,OK,USA,1,,,,US,OK,35.49209,-97.50328,4544379,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Omaha,CA,USA,1,Omaha,Omaha,Omaha,US,NE,41.25626,-95.94043,5074472,ort,exakt,0.88,false,ort
+Ossining,NY,USA,1,Ossining,Ossining,New York Metro,US,NY,41.16287,-73.86152,5130045,ort,exakt,0.95,false,ort
+Ossining,,USA,1,Ossining,Ossining,New York Metro,US,NY,41.16287,-73.86152,5130045,ort,exakt,0.88,false,ort
+Oswego,,USA,1,Oswego,Oswego,Oswego,US,NY,43.45535,-76.5105,5130081,ort,staat_aus_korpus,0.75,true,ort
+Ozone Park,NY,USA,1,Ozone Park,New York City,New York Metro,US,NY,40.67677,-73.84375,5130334,ort,exakt,0.95,false,ort
+Ozone Park,,USA,1,Ozone Park,New York City,New York Metro,US,NY,40.67677,-73.84375,5130334,ort,exakt,0.88,false,ort
+Palisade,NJ,USA,1,Palisade (Palisades Park),Palisade (Palisades Park),New York Metro,US,NJ,40.84816,-73.99764,5102369,ort,override,0.6,false,ort
+Palisade,,USA,1,Palisade,Palisade,Palisade,US,CO,39.11026,-108.35092,5433806,ort,exakt,0.68,true,ort
+"Palisade, NJ",,USA,1,,,,US,NJ,40.16706,-74.49987,5101760,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Palmerton,,USA,1,Palmerton,Palmerton,Palmerton,US,PA,40.8014,-75.6119,5204957,ort,exakt,0.88,false,ort
+"Paoli, PA",,USA,1,Paoli,Paoli,Paoli,US,PA,40.04205,-75.47631,5205037,ort,exakt,0.95,false,ort
+Paramus,,USA,1,Paramus,Paramus,New York Metro,US,NJ,40.94454,-74.07542,5102387,ort,exakt,0.88,false,ort
+Parkersburg,,USA,1,Parkersburg,Parkersburg,Parkersburg,US,WV,39.26674,-81.56151,4817641,ort,exakt,0.88,false,ort
+Parlein,NJ,USA,1,,,,US,NJ,40.16706,-74.49987,5101760,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Parma,OH,USA,1,Parma,Parma,Parma,US,OH,41.40477,-81.72291,5166177,ort,exakt,0.95,false,ort
+Pasadena,,,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Passaic,OH,USA,1,Passaic,Passaic,New York Metro,US,NJ,40.85677,-74.12848,5102443,ort,exakt,0.88,false,ort
+Paterson,NY,USA,1,Paterson,Paterson,New York Metro,US,NJ,40.91677,-74.17181,5102466,ort,staat_korrigiert,0.65,true,ort
+Pawtucket,,USA,1,Pawtucket,Pawtucket,Pawtucket,US,RI,41.87871,-71.38256,5223869,ort,exakt,0.88,false,ort
+Pelham,NY,USA,1,Pelham,Pelham,New York Metro,US,NY,40.90982,-73.80791,5130854,ort,exakt,0.95,false,ort
+Pensylvan,NJ,USA,1,,,,US,NJ,40.16706,-74.49987,5101760,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Peoria,,USA,1,Peoria,Peoria,Peoria,US,IL,40.69365,-89.58899,4905687,ort,staat_aus_korpus,0.75,true,ort
+Petaluma,CA,USA,1,Petaluma,Petaluma,Petaluma,US,CA,38.23242,-122.63665,5382232,ort,exakt,0.95,false,ort
+Philad.,MA,USA,1,,,,US,MA,42.36565,-71.10832,6254926,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Philadelphia,CA,USA,1,Philadelphia,Philadelphia,Philadelphia,US,PA,39.95238,-75.16362,4560349,ort,exakt,0.88,false,ort
+Philadelphia,IN,USA,1,Philadelphia,Philadelphia,Philadelphia,US,IN,39.78143,-85.84554,4262984,ort,exakt,0.95,false,ort
+"Philadelphia,Pa.Ayton,Ont.Canada",,USA,1,Philadelphia,Philadelphia,Philadelphia,US,PA,39.95238,-75.16362,4560349,ort,exakt,0.88,false,ort
+Phoenix,,USA,1,Phoenix,Phoenix,Phoenix,US,AZ,33.44838,-112.07404,5308655,ort,exakt,0.88,false,ort
+Pinebrook,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Pinehill,NY,USA,1,Pine Hill,Pine Hill,Pine Hill,US,NY,42.13314,-74.48015,5131386,ort,alternativname,0.88,false,ort
+Pittsburg,,USA,1,Pittsburgh,Pittsburgh,Pittsburgh,US,PA,40.44062,-79.99589,5206379,ort,staat_aus_korpus,0.75,true,ort
+Pittsburgh,ME,USA,1,Pittsburgh,Pittsburgh,Pittsburgh,US,PA,40.44062,-79.99589,5206379,ort,exakt,0.88,false,ort
+Pittsburgh,NY,USA,1,Pittsburgh,Pittsburgh,Pittsburgh,US,PA,40.44062,-79.99589,5206379,ort,exakt,0.88,false,ort
+Pittsfield,MA,USA,1,Pittsfield,Pittsfield,Pittsfield,US,MA,42.45008,-73.24538,4947459,ort,exakt,0.95,false,ort
+Plainfields,NY,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Plains-Wilkes Barre,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Pomona,CA,USA,1,Pomona,Pomona,Pomona,US,CA,34.05529,-117.75228,5384170,ort,exakt,0.95,false,ort
+Port Chester,NY,USA,1,Port Chester,Port Chester,New York Metro,US,NY,41.00176,-73.66568,5132002,ort,exakt,0.95,false,ort
+Port Chester,,USA,1,Port Chester,Port Chester,New York Metro,US,NY,41.00176,-73.66568,5132002,ort,exakt,0.88,false,ort
+Port Clinton,OH,USA,1,Port Clinton,Port Clinton,Port Clinton,US,OH,41.512,-82.93769,5167259,ort,exakt,0.95,false,ort
+Portland,,USA,1,Portland,Portland,Portland,US,OR,45.52345,-122.67621,5746545,ort,exakt,0.68,true,ort
+Porto Rico,,USA,1,Puerto Rico,Puerto Rico,Puerto Rico,PR,,18.18662,-66.30628,,land,exakt,0.88,false,land
+Poughkeepsie,NY,USA,1,Poughkeepsie,Poughkeepsie,Poughkeepsie,US,NY,41.70037,-73.92097,5132143,ort,exakt,0.95,false,ort
+Poughkeepsie,,USA,1,Poughkeepsie,Poughkeepsie,Poughkeepsie,US,NY,41.70037,-73.92097,5132143,ort,exakt,0.88,false,ort
+"Pratt, KS",,USA,1,Pratt,Pratt,Pratt,US,KS,37.64391,-98.73759,4277752,ort,exakt,0.95,false,ort
+Princeton,MA,USA,1,Princeton,Princeton,Princeton,US,MA,42.4487,-71.8773,4947998,ort,exakt,0.95,false,ort
+Princeton,NJ,USA,1,Princeton,Princeton,Princeton,US,NJ,40.34872,-74.65905,5102922,ort,exakt,0.95,false,ort
+Prospect Park,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Providence,MA,USA,1,Providence,Providence,Providence,US,RI,41.82399,-71.41283,5224151,ort,exakt,0.88,false,ort
+Providence RI,,USA,1,Providence,Providence,Providence,US,RI,41.82399,-71.41283,5224151,ort,exakt,0.95,false,ort
+Racine,WI,USA,1,Racine,Racine,Racine,US,WI,42.72613,-87.78285,5268249,ort,exakt,0.95,false,ort
+Rahway,,USA,1,Rahway,Rahway,New York Metro,US,NJ,40.60816,-74.27765,5103055,ort,exakt,0.88,false,ort
+Reading,NJ,USA,1,Reading,Reading,Reading,US,PA,40.33565,-75.92687,5207728,ort,exakt,0.68,true,ort
+"Reading, PA",PA,USA,1,Reading,Reading,Reading,US,PA,40.33565,-75.92687,5207728,ort,exakt,0.95,false,ort
+Remus,MI,USA,1,Remus,Remus,Remus,US,MI,43.5967,-85.14475,5007001,ort,exakt,0.95,false,ort
+Richm. Hill,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Richwood NY,NY,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Ridgewood,NJ,USA,1,Ridgewood,Ridgewood,New York Metro,US,NJ,40.97926,-74.11653,5103269,ort,exakt,0.95,false,ort
+River Forest,IL,USA,1,River Forest,River Forest,River Forest,US,IL,41.89781,-87.81395,4907637,ort,exakt,0.95,false,ort
+Riverside,CA,USA,1,Riverside,Riverside,Riverside,US,CA,33.95335,-117.39616,5387877,ort,exakt,0.95,false,ort
+Rochelle,,USA,1,Rochelle,Rochelle,Rochelle,US,IL,41.92392,-89.06871,4907863,ort,exakt,0.68,true,ort
+Rochelle Park,NY,USA,1,Rochelle Park,Rochelle Park,New York Metro,US,NJ,40.90732,-74.07514,5103384,ort,staat_korrigiert,0.65,true,ort
+"Rochester, NY",NY,USA,1,Rochester,Rochester,Rochester,US,NY,43.15478,-77.61556,5134086,ort,exakt,0.95,false,ort
+Rockaway,NY,USA,1,Rockaway (Queens),New York City,New York Metro,US,NY,40.60538,-73.75513,5116917,ort,override,0.7,false,ort
+"Rockford, IL",,USA,1,Rockford,Rockford,Rockford,US,IL,42.27113,-89.094,4907959,ort,exakt,0.95,false,ort
+"Rockledge, TN",,USA,1,Rockledge,Rockledge,Rockledge,US,TN,35.14786,-85.96748,4653959,ort,exakt,0.95,false,ort
+Ronnemede,NY,USA,1,Runnemede,Runnemede,Runnemede,US,NJ,39.85234,-75.06795,4503953,ort,fuzzy,0.6,false,ort
+Roselle,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Roselle Park,NJ,USA,1,Roselle Park,Roselle Park,New York Metro,US,NJ,40.66455,-74.26431,5103503,ort,exakt,0.95,false,ort
+Rosemont,PA,USA,1,Rosemont,Rosemont,Rosemont,US,PA,40.02567,-75.3238,5209023,ort,exakt,0.95,false,ort
+Roslyn,NY,USA,1,Roslyn,Roslyn,New York Metro,US,NY,40.79982,-73.65096,5134415,ort,exakt,0.95,false,ort
+Rumson,,USA,1,Rumson,Rumson,New York Metro,US,NJ,40.37205,-73.99903,5103564,ort,exakt,0.88,false,ort
+Rye,,USA,1,Rye,Rye,New York Metro,US,NY,40.98065,-73.68374,5134693,ort,staat_aus_korpus,0.75,true,ort
+S. Barbara,,USA,1,Santa Barbara,Santa Barbara,Santa Barbara,US,CA,34.42083,-119.69819,5392952,ort,variante,0.78,false,ort
+Sacramento,CA,USA,1,Sacramento,Sacramento,Sacramento,US,CA,38.58157,-121.4944,5389489,ort,exakt,0.95,false,ort
+Salt Lake,UT,USA,1,Salt Lake City,Salt Lake City,Salt Lake City,US,UT,40.76078,-111.89105,5780993,ort,alternativname,0.88,false,ort
+Salt Lake C.,UT,USA,1,,,,US,UT,39.25024,-111.75103,5549030,bundesstaat,fallback_bundesstaat,0.75,false,ort
+San Diego,,USA,1,San Diego,San Diego,San Diego,US,CA,32.71571,-117.16472,5391811,ort,exakt,0.88,false,ort
+San Francisco,OR,USA,1,San Francisco,San Francisco,San Francisco,US,CA,37.77493,-122.41942,5391959,ort,exakt,0.88,false,ort
+"San Francisco, CA",,USA,1,San Francisco,San Francisco,San Francisco,US,CA,37.77493,-122.41942,5391959,ort,exakt,0.95,false,ort
+"San Francisco,Cal",,USA,1,San Francisco,San Francisco,San Francisco,US,CA,37.77493,-122.41942,5391959,ort,exakt,0.95,false,ort
+San Francisco.Cal.,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+San Jose,CA,USA,1,San Jose,San Jose,San Jose,US,CA,37.33939,-121.89496,5392171,ort,exakt,0.95,false,ort
+San Juan,,USA,1,,,,,,,,,,mehrdeutig,,true,ort
+San Luis,CA,USA,1,San Luis Obispo,San Luis Obispo,San Luis Obispo,US,CA,35.28275,-120.65962,5392323,ort,praefix,0.65,false,ort
+San Madeo,CA,USA,1,San Mateo,San Mateo,San Mateo,US,CA,37.56299,-122.32553,5392423,ort,fuzzy,0.7,false,ort
+"San Marino, CA",CA,USA,1,San Marino,San Marino,San Marino,US,CA,34.1214,-118.10646,5392400,ort,exakt,0.95,false,ort
+San Mateo,,USA,1,San Mateo,San Mateo,San Mateo,US,CA,37.56299,-122.32553,5392423,ort,exakt,0.88,false,ort
+San Pedro,,USA,1,San Pedro,San Pedro,San Pedro,US,CA,33.73585,-118.29229,5392528,ort,exakt,0.68,true,ort
+San Pedro CA,,USA,1,,,,,,,,,,mehrdeutig,,true,ort
+Santa Clara,,USA,1,Santa Clara,Santa Clara,Santa Clara,US,CA,37.35411,-121.95524,5393015,ort,exakt,0.88,false,ort
+Sayreville,NJ,USA,1,Sayreville,Sayreville,New York Metro,US,NJ,40.45927,-74.36098,5104404,ort,exakt,0.95,false,ort
+Scotch Plains,NJ,USA,1,Scotch Plains,Scotch Plains,New York Metro,US,NJ,40.65538,-74.38987,5104473,ort,exakt,0.95,false,ort
+Scranton,,USA,1,Scranton,Scranton,Scranton,US,PA,41.40916,-75.6649,5211303,ort,exakt,0.88,false,ort
+Seattle,NY,USA,1,Seattle,Seattle,Seattle,US,WA,47.60621,-122.33207,5809844,ort,exakt,0.88,false,ort
+Seattle  WA,WA,USA,1,Seattle,Seattle,Seattle,US,WA,47.60621,-122.33207,5809844,ort,exakt,0.95,false,ort
+Secaucus,NJ,USA,1,Secaucus,Secaucus,New York Metro,US,NJ,40.78955,-74.05653,5104504,ort,exakt,0.95,false,ort
+Sheboygan,WI,USA,1,Sheboygan,Sheboygan,Sheboygan,US,WI,43.75083,-87.71453,5272893,ort,exakt,0.95,false,ort
+Sheffield,,USA,1,,,,,,,,,,mehrdeutig,,true,ort
+Shenectady,,USA,1,Schenectady,Schenectady,Schenectady,US,NY,42.81424,-73.93957,5136454,ort,fuzzy,0.6,false,ort
+Shongton,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Silt,CO,USA,1,Silt,Silt,Silt,US,CO,39.54859,-107.65617,5438708,ort,exakt,0.95,false,ort
+Sioux City,IA,USA,1,Sioux City,Sioux City,Sioux City,US,IA,42.49999,-96.40031,4876523,ort,exakt,0.95,false,ort
+Snohomish,WA,USA,1,Snohomish,Snohomish,Snohomish,US,WA,47.91288,-122.09818,5810988,ort,exakt,0.95,false,ort
+So. Norwalk,NY,USA,1,South Norwalk,South Norwalk,South Norwalk,US,CT,41.09371,-73.41873,4843313,ort,normalisiert,0.85,false,ort
+So.Ozone Park,NY,USA,1,South Ozone Park,New York City,New York Metro,US,NY,40.6701,-73.81902,5138950,ort,normalisiert,0.92,false,ort
+Sommers,CT,USA,1,Somers,Somers,Somers,US,CT,41.98537,-72.4462,4843215,ort,fuzzy,0.7,false,ort
+South Bend,IN,USA,1,South Bend,South Bend,South Bend,US,IN,41.68338,-86.25001,4926563,ort,exakt,0.95,false,ort
+South Orange,NJ,USA,1,South Orange,South Orange,New York Metro,US,NJ,40.74899,-74.26126,5104836,ort,exakt,0.95,false,ort
+South River,,USA,1,South River,South River,New York Metro,US,NJ,40.44649,-74.38598,5104853,ort,exakt,0.88,false,ort
+Southbend,IN,USA,1,South Bend,South Bend,South Bend,US,IN,41.68338,-86.25001,4926563,ort,fuzzy,0.7,false,ort
+Spartanburg,,USA,1,Spartanburg,Spartanburg,Spartanburg,US,SC,34.94957,-81.93205,4597200,ort,exakt,0.88,false,ort
+"Spokane, Washington, DC",,USA,1,Spokane,Spokane,Spokane,US,WA,47.65966,-117.42908,5811696,ort,exakt,0.95,false,ort
+Spokane.Wash.,WA,USA,1,,,,US,WA,47.50012,-120.50147,5815135,bundesstaat,fallback_bundesstaat,0.75,false,ort
+St. Albans,,USA,1,Saint Albans,New York City,New York Metro,US,NY,40.69844,-73.76069,5134861,ort,staat_aus_korpus,0.75,true,ort
+St. Joseph,MO,USA,1,Saint Joseph,Saint Joseph,Saint Joseph,US,MO,39.76861,-94.84663,4407010,ort,exakt,0.95,false,ort
+St. Joseph,MS,USA,1,Saint Joseph,Saint Joseph,Saint Joseph,US,MO,39.76861,-94.84663,4407010,ort,exakt,0.68,true,ort
+St. Louis,IL,USA,1,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,exakt,0.88,false,ort
+St. Luois,,USA,1,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,fuzzy,0.6,false,ort
+St. Paul,,USA,1,Saint Paul,Saint Paul,Saint Paul,US,MN,44.94441,-93.09327,5045360,ort,exakt,0.88,false,ort
+St.Louis,MO,USA,1,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,normalisiert,0.92,false,ort
+St.Louis,,USA,1,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,normalisiert,0.85,false,ort
+"St.Louis,MO.",,USA,1,St. Louis,St. Louis,St. Louis,US,MO,38.62727,-90.19789,4407066,ort,normalisiert,0.92,false,ort
+Stamford,,USA,1,Stamford,Stamford,Stamford,US,CT,41.05343,-73.53873,4843564,ort,exakt,0.88,false,ort
+"Stamford, CT",CT,USA,1,Stamford,Stamford,Stamford,US,CT,41.05343,-73.53873,4843564,ort,exakt,0.95,false,ort
+Stapleton,,USA,1,Stapleton,New York City,New York Metro,US,NY,40.62649,-74.07764,5139465,ort,exakt,0.68,true,ort
+Stockton,,USA,1,Stockton,Stockton,Stockton,US,CA,37.9577,-121.29078,5399020,ort,exakt,0.88,false,ort
+Stony Brook,,USA,1,Stony Brook,Stony Brook,New York Metro,US,NY,40.92565,-73.14094,5139865,ort,exakt,0.88,false,ort
+Summit,NJ,USA,1,Summit,Summit,New York Metro,US,NJ,40.71562,-74.36468,5105127,ort,exakt,0.95,false,ort
+Tarentum,NY,USA,1,Tarentum,Tarentum,Tarentum,US,PA,40.60146,-79.75977,5215215,ort,exakt,0.88,false,ort
+Tarrytown,,USA,1,Tarrytown,Tarrytown,New York Metro,US,NY,41.07621,-73.85875,5140538,ort,exakt,0.88,false,ort
+Teddo,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+"Tenaflay, NY",NY,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Terre Haute,IN,USA,1,Terre Haute,Terre Haute,Terre Haute,US,IN,39.4667,-87.41391,4265737,ort,exakt,0.95,false,ort
+Texas,NY,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,mehrdeutig_bundesstaat,0.7,true,ort
+Thomsonville,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Toms  River,NJ,USA,1,Toms River,Toms River,Toms River,US,NJ,39.95373,-74.19792,4504476,ort,normalisiert,0.92,false,ort
+Tonnawanda,NY,USA,1,Tonawanda,Tonawanda,Tonawanda,US,NY,43.02033,-78.88031,5141175,ort,fuzzy,0.7,false,ort
+Transit,,USA,1,,,,,,,,,,kein_ort,,false,unklar
+Transit NY,,USA,1,,,,,,,,,,kein_ort,,false,unklar
+Transit U.S.A.,,USA,1,,,,,,,,,,kein_ort,,false,unklar
+Tuckahoe,NY,USA,1,Tuckahoe,Tuckahoe,New York Metro,US,NY,40.95038,-73.82736,5141528,ort,override,0.8,false,ort
+U.Montclair,NJ,USA,1,,,,US,NJ,40.16706,-74.49987,5101760,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Union City,IL,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Upper Darby,PA,USA,1,Upper Darby,Upper Darby,Upper Darby,US,PA,39.92845,-75.2738,4561879,ort,exakt,0.95,false,ort
+Upperdarby,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+Upperderby,PA,USA,1,,,,US,PA,40.8,-77.7,6254927,bundesstaat,fallback_bundesstaat,0.75,false,ort
+Valdese,,USA,1,Valdese,Valdese,Valdese,US,NC,35.74069,-81.56315,4496484,ort,exakt,0.88,false,ort
+Van Dyke,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Vancouver,WA,USA,1,Vancouver,Vancouver,Vancouver,US,WA,45.63873,-122.66149,5814616,ort,exakt,0.95,false,ort
+Villa Nova,PA,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+W.New York,,USA,1,West New York,West New York,New York Metro,US,NJ,40.78788,-74.01431,5106292,ort,normalisiert,0.85,false,ort
+W.Orange,NJ,USA,1,West Orange,West Orange,New York Metro,US,NJ,40.79871,-74.23904,5106298,ort,normalisiert,0.92,false,ort
+Waco,,USA,1,Waco,Waco,Waco,US,TX,31.54933,-97.14667,4739526,ort,exakt,0.88,false,ort
+Wakenva,VA,USA,1,Wakenva,Wakenva,Wakenva,US,VA,37.04177,-82.3132,4791882,ort,exakt,0.95,false,ort
+Wantagh,,USA,1,Wantagh,Wantagh,New York Metro,US,NY,40.68371,-73.51013,5143198,ort,exakt,0.88,false,ort
+Washington,,,1,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,exakt,0.88,false,ort
+Washington D.C.,,USA,1,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,alternativname,0.78,false,ort
+Washington Valley,,USA,1,,,,,,,,,,mehrdeutig,,true,ort
+"Washington, DC",DC,USA,1,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,exakt,0.95,false,ort
+"Wasington,D.C.",,USA,1,Washington,Washington,Washington,US,DC,38.89511,-77.03637,4140963,ort,fuzzy,0.7,false,ort
+Waterbury,,USA,1,Waterbury,Waterbury,Waterbury,US,CT,41.55815,-73.0515,4845193,ort,exakt,0.88,false,ort
+Waterloo,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Watervliet,NJ,USA,1,Watervliet,Watervliet,Watervliet,US,NY,42.73008,-73.70123,4833276,ort,exakt,0.68,true,ort
+Waukegan,IL,USA,1,Waukegan,Waukegan,Waukegan,US,IL,42.36363,-87.84479,4915734,ort,exakt,0.95,false,ort
+Weehawken,NJ,USA,1,Weehawken,Weehawken,New York Metro,US,NJ,40.76955,-74.02042,5106184,ort,exakt,0.95,false,ort
+Wellesley,,USA,1,Wellesley,Wellesley,Wellesley,US,MA,42.29649,-71.29256,4954738,ort,exakt,0.88,false,ort
+Wernersville,,USA,1,Wernersville,Wernersville,Wernersville,US,PA,40.33009,-76.0805,5218485,ort,exakt,0.88,false,ort
+West Brighton,,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,mehrdeutig_bundesstaat,0.7,true,ort
+West Orange,NJ,USA,1,West Orange,West Orange,New York Metro,US,NJ,40.79871,-74.23904,5106298,ort,exakt,0.95,false,ort
+West Orange,,USA,1,West Orange,West Orange,New York Metro,US,NJ,40.79871,-74.23904,5106298,ort,exakt,0.88,false,ort
+Westburg,,USA,1,Westbury,Westbury,New York Metro,US,NY,40.75566,-73.58763,5144040,ort,fuzzy,0.6,false,ort
+Westport,,USA,1,Westport,Westport,Westport,US,CT,41.14149,-73.3579,4845585,ort,staat_aus_korpus,0.75,true,ort
+White Plaines,NY,USA,1,White Plains,White Plains,New York Metro,US,NY,41.03399,-73.76291,5144336,ort,fuzzy,0.7,false,ort
+Whitehouse,NY,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Whitewater,AR,USA,1,Whitewater,Whitewater,Whitewater,US,WI,42.83362,-88.73233,5278931,ort,exakt,0.88,false,ort
+Williamstown,,USA,1,Williamstown,Williamstown,Williamstown,US,NJ,39.68623,-74.99517,4504871,ort,exakt,0.68,true,ort
+Wilmette,IL,USA,1,Wilmette,Wilmette,Wilmette,US,IL,42.07225,-87.72284,4916732,ort,exakt,0.95,false,ort
+Wilmette,,USA,1,Wilmette,Wilmette,Wilmette,US,IL,42.07225,-87.72284,4916732,ort,exakt,0.88,false,ort
+Wilmington,DE,USA,1,Wilmington,Wilmington,Wilmington,US,DE,39.74595,-75.54659,4145381,ort,exakt,0.95,false,ort
+Wilson,,USA,1,Wilson,Wilson,Wilson,US,NC,35.72127,-77.91554,4499389,ort,exakt,0.68,true,ort
+Winfield,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Woodcliff,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Woodford,,USA,1,Woodford,Woodford,Woodford,US,WI,42.64862,-89.86262,5279604,ort,staat_aus_korpus,0.75,true,ort
+Woodridge,NJ,USA,1,Wood-Ridge,Wood-Ridge,New York Metro,US,NJ,40.84566,-74.08792,5106520,ort,alternativname,0.88,false,ort
+Woodside,NJ,USA,1,Woodside,New York City,New York Metro,US,NY,40.74538,-73.90541,5145067,ort,staat_korrigiert,0.65,true,ort
+Woodside,,USA,1,Woodside,New York City,New York Metro,US,NY,40.74538,-73.90541,5145067,ort,exakt,0.68,true,ort
+Woodstock,,USA,1,,,,US,,39.51477,-86.7939,,land,mehrdeutig_land,0.7,true,ort
+Worcester,MA,USA,1,Worcester,Worcester,Worcester,US,MA,42.26259,-71.80229,4956184,ort,exakt,0.95,false,ort
+Worcester,,USA,1,Worcester,Worcester,Worcester,US,MA,42.26259,-71.80229,4956184,ort,exakt,0.88,false,ort
+"Worcester, MA",,USA,1,Worcester,Worcester,Worcester,US,MA,42.26259,-71.80229,4956184,ort,exakt,0.95,false,ort
+York,PA,USA,1,York,York,York,US,PA,39.9626,-76.72774,4562407,ort,exakt,0.95,false,ort
+Youngtown,OH,USA,1,Youngstown,Youngstown,Youngstown,US,OH,41.09978,-80.64952,5177568,ort,fuzzy,0.7,false,ort
+Zanesville,VA,USA,1,Zanesville,Zanesville,Zanesville,US,OH,39.94035,-82.01319,4528923,ort,exakt,0.88,false,ort
+Zanesville,,USA,1,Zanesville,Zanesville,Zanesville,US,OH,39.94035,-82.01319,4528923,ort,exakt,0.88,false,ort
+employer: Bausch & Lomb.Optical Co. 635-St.Pau(?),NY,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,adresse
+for visit only Elmhurst,,USA,1,,,,,,,,,,kein_treffer,,false,ort
+"jacksonville, FL",,USA,1,Jacksonville,Jacksonville,Jacksonville,US,FL,30.33218,-81.65565,4160021,ort,normalisiert,0.92,false,ort
+lancaster,,USA,1,Lancaster,Lancaster,Lancaster,US,PA,40.03788,-76.30551,5197079,ort,staat_aus_korpus,0.75,true,ort
+oconomowoc,,USA,1,Oconomowoc,Oconomowoc,Oconomowoc,US,WI,43.11167,-88.49927,5265499,ort,normalisiert,0.85,false,ort
+"several times, New York",,USA,1,,,,US,NY,43.00035,-75.4999,5128638,bundesstaat,fallback_bundesstaat,0.75,false,ort
+transit,,Irland,1,,,,,,,,,,kein_ort,,false,unklar
+transit to Haiti,,USA,1,,,,,,,,,,kein_ort,,false,unklar

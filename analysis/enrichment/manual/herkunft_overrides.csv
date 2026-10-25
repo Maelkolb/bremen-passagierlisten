@@ -1,0 +1,109 @@
+ort_roh,region,nationalitaet,kontext,geonames_id,herkunft_ort,lat,lon,land,genauigkeit,konfidenz,quelle,bemerkung
+Lehe,,,,2879618,Lehe,,,,ort,,manuell,Unterweserstadt Lehe (1924 in Wesermünde aufgegangen); nicht Lehe/Emsland
+Barmen,,,immer,2952539,Barmen,,,,ort,,manuell,Stadt Barmen (1929 Wuppertal); nicht das Dorf bei Jülich
+Elberfeld,,,immer,2931276,Elberfeld,,,,ort,,manuell,Stadt Elberfeld (1929 Wuppertal)
+Rüstringen,,,immer,2808720,Rüstringen,,,,ort,0.9,manuell,oldenburgische Stadt 1911-1937 neben Wilhelmshaven; Punkt Wilhelmshaven
+Ruestringen,,,immer,2808720,Rüstringen,,,,ort,0.9,manuell,wie Rüstringen
+Blumenthal,,,,2947516,Blumenthal,,,,ort,0.85,manuell,Blumenthal (Unterweser) bei Bremen; Regionsangaben Hannover/Bremen
+Baden,Baden,,,,Baden,,,,keine,,manuell,Land Baden oder Stadt Baden(-Baden) nicht unterscheidbar
+Baden-Baden,,,immer,2953504,Baden-Baden,,,,ort,,manuell,
+Frank,,Russland,,528028,Frank,,,,ort,0.8,manuell,Wolgakolonie Frank (Medweditzki Krestowoi Bujerak)
+Norka,,,immer,522838,Norka,,,,ort,0.85,manuell,Wolgakolonie Norka (heute Nekrassowo)
+Hussenbach,,,immer,535169,Hussenbach,,,,ort,0.8,manuell,Wolgakolonie Hussenbach (Linjowo Osero)
+Union City,,,immer,5105634,Union City,,,,ort,0.85,manuell,Union City (New Jersey); deutsche Gemeinde im Hudson County
+Görlitz,,,immer,2918987,Görlitz,,,,ort,,manuell,Altstadt westlich der Neiße; nicht Zgorzelec
+Burg,Bremen,,,2941310,Burg,,,,ort,0.85,manuell,Burg bei Bremen (Burg-Grambke)
+Wald,Rheinland,,,2815194,Wald,,,,ort,0.85,manuell,Stadt Wald (1929 Solingen)
+Wald,Rhein-Provinz,,,2815194,Wald,,,,ort,0.85,manuell,Stadt Wald (1929 Solingen)
+Vitkovice,,Tschechoslowakei,,3062805,Vítkovice,,,,ort,0.85,manuell,Witkowitz (Ostrava)
+Vitkovice,,Österreich,,3062805,Vítkovice,,,,ort,0.85,manuell,Witkowitz (Ostrava)
+St. Martin,,Tschechoslowakei,,3058780,St. Martin,,,,ort,0.7,manuell,Turčiansky Svätý Martin (heute Martin)
+Landshut,Schlesien,,,3096779,Landeshut,,,,ort,0.85,manuell,Landeshut in Schlesien (Kamienna Góra)
+Schneidemühl,,,immer,3089033,Schneidemühl,,,,ort,,manuell,
+Schneidemuehl,,,immer,3089033,Schneidemühl,,,,ort,,manuell,
+Mühlheim,Rheinland,,,2867838,Mülheim an der Ruhr,,,,ort,0.8,manuell,Schreibvariante; Rheinprovinz
+Mühlheim,Rhein-Provinz,,,2867838,Mülheim an der Ruhr,,,,ort,0.8,manuell,Schreibvariante; Rheinprovinz
+Mühlheim,Westfalen,,,2867838,Mülheim an der Ruhr,,,,ort,0.75,manuell,Schreibvariante; Ruhrgebiet
+Elizabeth,,,immer,5097598,Elizabeth,,,,ort,0.9,manuell,Elizabeth (New Jersey)
+Hoboken,,,immer,5099133,Hoboken,,,,ort,0.9,manuell,Hoboken (New Jersey)
+Brooklyn,,,immer,5110302,Brooklyn,,,,ort,,manuell,
+Chicago,,,immer,4887398,Chicago,,,,ort,,manuell,
+Buenos Aires,,,immer,3435910,Buenos Aires,,,,ort,,manuell,
+Neuberg,,Österreich,,11551051,Neuberg im Burgenland,,,,ort,0.75,manuell,Burgenländisches Auswandererdorf; Neuberg an der Mürz möglich
+St. Anna,,Rumänien,,666936,Sankt Anna,,,,ort,0.85,manuell,Sankt Anna (Sântana) im Kreis Arad
+St. Anne,,Rumänien,,666936,Sankt Anna,,,,ort,0.8,manuell,Sankt Anna (Sântana) im Kreis Arad
+Osterholz,,,,2856500,Osterholz,,,,ort,0.85,manuell,Flecken Osterholz (1927 Osterholz-Scharmbeck)
+Jassy,,,immer,675810,Jassy,,,,ort,,manuell,Iași
+Belgrad,,,immer,792680,Belgrad,,,,ort,,manuell,
+Rom,,,immer,3169070,Rom,,,,ort,,manuell,
+Schöndorf,,Rumänien,,8306315,Schöndorf,,,,ort,0.8,manuell,Schöndorf (Frumușeni) im Kreis Arad
+Steyl,,,immer,2746751,Steyl,,,,ort,,manuell,Missionshaus Steyl bei Venlo (Limburg)
+Höchst,,Deutschland,,2903019,Höchst am Main,,,,ort,0.8,manuell,Höchst am Main (1928 Frankfurt); Region Österreich bleibt automatisch
+Hoechst,,Deutschland,,2903019,Höchst am Main,,,,ort,0.8,manuell,Höchst am Main (1928 Frankfurt)
+Kischineff,,,immer,618426,Kischinew,,,,ort,,manuell,Chișinău
+Kischinew,,,immer,618426,Kischinew,,,,ort,,manuell,Chișinău
+Kischinef,,,immer,618426,Kischinew,,,,ort,,manuell,Chișinău
+Mailand,,,immer,3173435,Mailand,,,,ort,,manuell,
+Wallern,,Österreich,,2761964,Wallern im Burgenland,,,,ort,0.75,manuell,Burgenländisches Auswandererdorf; Wallern an der Trattnach möglich
+Bad Homburg,,,immer,2953436,Bad Homburg vor der Höhe,,,,ort,,manuell,
+Flushing,,Deutschland,,5117472,Flushing,,,,ort,0.8,manuell,Flushing (Queens New York)
+Flushing,,USA,,5117472,Flushing,,,,ort,0.8,manuell,Flushing (Queens New York)
+Bethlehem,,Deutschland,,5180225,Bethlehem,,,,ort,0.75,manuell,Bethlehem (Pennsylvania)
+Bethlehem,,USA,,5180225,Bethlehem,,,,ort,0.8,manuell,Bethlehem (Pennsylvania)
+Bethlehem,,keine,,5180225,Bethlehem,,,,ort,0.7,manuell,Bethlehem (Pennsylvania)
+Pittsburg,,,immer,5206379,Pittsburgh,,,,ort,0.9,manuell,Schreibvariante von Pittsburgh (Pennsylvania)
+Strassburg,,Deutschland,,2973783,Straßburg,,,,ort,0.8,manuell,Straßburg im Elsass (bis 1918 deutsch)
+Csakova,,,immer,681971,Csakova,,,,ort,0.85,manuell,Tschakowa (Ciacova) im Banat
+M.-Gladbach,,,immer,2869894,Mönchengladbach,,,,ort,,manuell,
+Veless,,,immer,785058,Veles,,,,ort,0.85,manuell,
+Goerlitz,,,immer,2918987,Görlitz,,,,ort,,manuell,
+Wesermünde-L.,,,immer,2879618,Wesermünde-Lehe,,,,ort,0.9,manuell,
+Wesermünde-G.,,,immer,2922109,Wesermünde-Geestemünde,,,,ort,0.9,manuell,
+Castrop,,,immer,2940231,Castrop,,,,ort,0.9,manuell,Castrop (1926 Castrop-Rauxel)
+Gr. Becskerek,,,immer,783814,Groß-Betschkerek,,,,ort,,manuell,Nagybecskerek (Zrenjanin)
+Salzwedel,,,immer,2842112,Salzwedel,,,,ort,,manuell,
+NYC,,,immer,5128581,New York,,,,ort,,manuell,
+Wilkau,Sachsen,,,2808644,Wilkau,,,,ort,0.85,manuell,Wilkau (Wilkau-Haßlau)
+Eickel,,,,2814226,Eickel,,,,ort,0.85,manuell,Eickel (1926 Wanne-Eickel)
+Huck,,Russland,,489658,Huck,,,,ort,0.8,manuell,Wolgakolonie Huck (Splawnucha)
+Schilling,,Russland,,490349,Schilling,,,,ort,0.8,manuell,Wolgakolonie Schilling (Sosnowka)
+W.-Barmen,,,immer,2952539,Wuppertal-Barmen,,,,ort,,manuell,
+W.-Elberfeld,,,immer,2931276,Wuppertal-Elberfeld,,,,ort,,manuell,
+Dietel,,Russland,,582633,Dietel,,,,ort,0.8,manuell,Wolgakolonie Dietel (Oleschna/Aleschniki)
+Kl. Eislingen,,,immer,2931414,Klein-Eislingen,,,,ort,0.85,manuell,heute Eislingen/Fils
+Gr. Eislingen,,,immer,2931414,Groß-Eislingen,,,,ort,0.85,manuell,heute Eislingen/Fils
+Nikolajew,,Russland,,700569,Nikolajew,,,,ort,0.75,manuell,Nikolajew (Mykolajiw) am Bug
+Slov. Meder,,,immer,3058300,Slowakisch Meder,,,,ort,0.85,manuell,Slovenský Meder (Palárikovo)
+Kawno,,,immer,598316,Kowno,,,,ort,0.9,manuell,Kaunas
+Splawnucha,,,immer,489658,Splawnucha,,,,ort,0.85,manuell,Wolgakolonie Huck
+Binghampton,,,immer,5109177,Binghamton,,,,ort,0.9,manuell,Binghamton (New York)
+Leichtling,,,immer,556964,Leichtling,,,,ort,0.85,manuell,Wolgakolonie Leichtling (Ilowlinka)
+Karnap,,,,2892758,Karnap,,,,ort,0.8,manuell,Karnap (1929 Essen)
+Witkowitz,,,immer,3062805,Witkowitz,,,,ort,0.85,manuell,Vítkovice (Ostrava)
+Alexandrowsk,,Russland,,687700,Alexandrowsk,,,,ort,0.7,manuell,Alexandrowsk am Dnepr (Saporischschja); mehrere Orte dieses Namens
+Elisabeth,,USA,,5097598,Elizabeth,,,,ort,0.8,manuell,Elizabeth (New Jersey)
+Patterson,,,,5102466,Paterson,,,,ort,0.75,manuell,Schreibvariante von Paterson (New Jersey)
+Balzer,,,immer,542464,Balzer,,,,ort,0.85,manuell,Wolgakolonie Balzer (Krasnoarmeisk)
+Mt. Clair,,,immer,5101334,Montclair,,,,ort,0.8,manuell,Montclair (New Jersey)
+Montclair,,,,5101334,Montclair,,,,ort,0.75,manuell,Montclair (New Jersey)
+Oleschna,,,immer,582633,Oleschna,,,,ort,0.8,manuell,Wolgakolonie Dietel (Oleschna)
+Werchnaja Grasmucke,,,immer,474700,Werchnaja Grjasnucha,,,,ort,0.85,manuell,Wolgakolonie Kraft
+Pasadena,,,,5381396,Pasadena,,,,ort,0.7,manuell,Pasadena (Kalifornien); Pasadena (Texas) möglich
+Princeton,,,,5102922,Princeton,,,,ort,0.7,manuell,Princeton (New Jersey)
+Schoendorf,,Rumänien,,8306315,Schöndorf,,,,ort,0.8,manuell,Schöndorf (Frumușeni) im Kreis Arad
+Traunau,,Rumänien,,10903356,Traunau,,,,ort,0.8,manuell,Traunau (Aluniș) im Kreis Arad
+Tarutino,,,immer,691820,Tarutino,,,,ort,0.85,manuell,bessarabiendeutsche Kolonie Tarutino (Tarutyne/Bessarabske)
+Windhuk,,,immer,3352136,Windhuk,,,,ort,,manuell,Windhoek (Deutsch-Südwestafrika)
+Baranovicy,,,immer,630429,Baranowitschi,,,,ort,0.85,manuell,Baranawitschy
+Baranowicze,,,immer,630429,Baranowitschi,,,,ort,0.9,manuell,Baranawitschy
+Bielitz,,,immer,3103402,Bielitz,,,,ort,0.9,manuell,Bielitz (Bielsko) in Österreichisch-Schlesien
+Bottendorf,Hessen-Nassau,,,2945778,Bottendorf,,,,ort,0.85,manuell,Bottendorf (Burgwald)
+Bottendorf,Hessen,,,2945778,Bottendorf,,,,ort,0.85,manuell,Bottendorf (Burgwald)
+NY,,,immer,5128581,New York,,,,ort,0.9,manuell,
+N.Y.,,,immer,5128581,New York,,,,ort,0.9,manuell,
+N.Y.C.,,,immer,5128581,New York,,,,ort,0.9,manuell,
+Karwin,,Österreich,,3073789,Karwin,,,,ort,0.85,manuell,Karwin (Karviná) in Österreichisch-Schlesien
+Karwin,,Tschechoslowakei,,3073789,Karwin,,,,ort,0.85,manuell,Karviná
+Irvington,,,immer,5099724,Irvington,,,,ort,0.85,manuell,Irvington (New Jersey)
+Tilsit,,,immer,490068,Tilsit,,,,ort,,manuell,Sowetsk (Kaliningrader Gebiet)
+Osterfeld,Westfalen,,,2856589,Osterfeld,,,,ort,0.85,manuell,Osterfeld (bis 1929 westfälisch; heute Oberhausen)

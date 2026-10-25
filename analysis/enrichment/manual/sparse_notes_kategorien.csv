@@ -1,0 +1,17 @@
+pattern,kategorie
+^gestrichen,Streichung
+doppelt|doppel,Dublette
+^geb(\.|ürtig|\s),Geburtsort
+fl(ü|ue)chtling,Flüchtling
+gustloff|volkstanz|kreuzchor|studienreise|kreuzfahrt|cruise|rundreise|rundfahrt|irland-?england|ostsee|gesellschaftsreise|reisegruppe|ausflug,Reiseart
+ertrunken|verstorben|gestorben|cholera|gerettet|gestrandet|schiffbr|untergang|neptun|new era|shenandoah|wilhelmine|johanne,Unglück und Rettung
+besatzung|crew|matrose|seemann,Besatzung
+zeitungsanzeige|zeitung,Quellenhinweis
+ticket-?nr|^\d[\d/]{4}[\d/]*$|^B/C|sammelpass|seefahrtsbuch|ausreisegenehmigung|^id$,Dokumentvermerk
+korrigiert|geändert|geaendert|fraglich|falsch|vermtl|verschoben|zerrissen|fragment|fehler|so angegeben|unleserlich|lt\. liste|nicht lesbar,Datenvermerk
+zweifelhaft|eingefügt|^see col|^col\.|^[A-Z]{2}$,Datenvermerk
+wolga|ex russe|missionare|bürger|rückwanderer|reisende$|hospital,Personenvermerk
+reiseantritt|reiseende|rückreise|rueckreise|besuchsreise|ausschiffung|kanal-passagier|nicht gereist|ab/bis|^pass liverpool|stockholm|-tanger|portugal,Reiseverlauf
+transit|reist ab|abreisehafen|fahrtantritt|weiterfahrt|abfahrt|rückfahrt|^via |\bvia\b|^nach |^ab |^von |zugestiegen|eingestiegen|reisebeginn|per eisenbahn|^bremen\s*-|weiter am|^zurück|endziel|^p\. s/s|fährt ab|^reist,Reiseverlauf
+^aus [A-ZÄÖÜ],Herkunft
+^(mit|und)\s|personen$|^kind$|^frau$|mit familie|kinder$|children|nebst|^kind dt,Begleitung

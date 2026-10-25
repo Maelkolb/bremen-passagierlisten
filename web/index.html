@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>735.000 Schicksale</title>
+    <meta name="description" content="Ein Jahrhundert Auswanderung über Bremen 1830–1939: Reportage, Atlas und Forscher-Werkbank zu den Bremer Passagierlisten, transkribiert von Die MAUS – Gesellschaft für Familienforschung e. V. Bremen." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314213d'/%3E%3Cpath d='M6 21h20l-3 5H9z' fill='%23c87d55'/%3E%3Cpath d='M15 5v14h-8z' fill='%23f9f6f0'/%3E%3Cpath d='M17 8v11h7z' fill='%23f9f6f0'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap flex items-center justify-between gap-6 h-14">
+        <a href="#start" class="serif text-lg no-underline whitespace-nowrap">Bremer Passagierlisten</a>
+        <nav class="hidden md:flex gap-6" id="nav">
+          <a href="#reportage">Reportage</a>
+          <a href="#atlas">Atlas</a>
+          <a href="#berufswege">Berufswege</a>
+          <a href="#werkbank">Werkbank</a>
+          <a href="#quellen">Quellen</a>
+          <a href="bericht.html">Forschungsbericht</a>
+        </nav>
+        <a href="#werkbank" class="md:hidden text-sm">Werkbank</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="start" class="pt-14 pb-16 md:pt-20">
+        <div class="wrap">
+          <h1 class="m-0 text-[clamp(44px,8vw,96px)] leading-[0.95]">735.000 Schicksale</h1>
+          <p class="serif italic text-[clamp(20px,2.6vw,30px)] mt-3 mb-10 text-[var(--ink-2)]">Ein Jahrhundert Auswanderung über Bremen 1830–1939</p>
+          <div id="hero"></div>
+        </div>
+      </section>
+
+      <section id="reportage" class="section">
+        <div class="wrap">
+          <h2 class="section-title">Ein Jahrhundert in Bewegung</h2>
+          <div id="reportage-body" class="mt-8"></div>
+        </div>
+      </section>
+
+      <section id="atlas" class="section">
+        <div class="wrap">
+          <h2 class="section-title">Atlas der Wege</h2>
+          <div id="atlas-body" class="mt-6"></div>
+        </div>
+      </section>
+
+      <section id="berufswege" class="section">
+        <div class="wrap">
+          <h2 class="section-title">Berufswege</h2>
+          <div id="sankey-body" class="mt-6"></div>
+        </div>
+      </section>
+
+      <section id="werkbank" class="section">
+        <div class="wrap">
+          <h2 class="section-title">Forscher-Werkbank</h2>
+          <div id="werkbank-body" class="mt-6"></div>
+        </div>
+      </section>
+
+      <section id="quellen" class="section">
+        <div class="wrap">
+          <h2 class="section-title">Quellen und Überlieferung</h2>
+          <div id="quellen-body" class="mt-6"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section pb-20">
+      <div class="wrap grid gap-8 md:grid-cols-3 text-sm text-[var(--ink-2)]">
+        <div>
+          <p class="m-0 text-[var(--ink)]">Transkription</p>
+          <p class="mt-1 mb-0">Die MAUS – Gesellschaft für Familienforschung e. V. Bremen, Handelskammer Bremen, Staatsarchiv Bremen: <a href="https://passagierlisten.de/">passagierlisten.de</a></p>
+        </div>
+        <div>
+          <p class="m-0 text-[var(--ink)]">Datensatz</p>
+          <p class="mt-1 mb-0">Perschl, Schmidt, Gassner, Rehbein (2025): A Dataset of 735,000 Migration Records (Bremen, 1830–1939). Zenodo, <a href="https://doi.org/10.5281/zenodo.17977460">10.5281/zenodo.17977460</a>, CC BY 4.0</p>
+        </div>
+        <div>
+          <p class="m-0 text-[var(--ink)]">Weitere Daten</p>
+          <p class="mt-1 mb-0">Ortskoordinaten: <a href="https://www.geonames.org/">GeoNames</a> (CC BY 4.0). Küstenlinien: <a href="https://www.naturalearthdata.com/">Natural Earth</a>. Methode und Statistik: <a href="bericht.html">Forschungsbericht</a>.</p>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

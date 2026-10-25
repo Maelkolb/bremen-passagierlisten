@@ -1,0 +1,8 @@
+pattern,reiseart
+irland-?england,Irland-Englandfahrt
+ostsee,Ostseefahrt
+kreuzfahrt|cruise,Kreuzfahrt
+rundreise|rundfahrt,Rundreise
+studienreise,Studienreise
+gustloff|volkstanz|kreuzchor|gesellschaftsreise|reisegruppe,Gruppenreise
+^transit|in transit|transit to,Transit
