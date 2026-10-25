@@ -9,7 +9,6 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
-    "@deck.gl/aggregation-layers": "9.4.0",
     "@deck.gl/core": "9.4.0",
     "@deck.gl/layers": "9.4.0",
     "@deck.gl/mapbox": "9.4.0",

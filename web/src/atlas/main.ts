@@ -1,118 +1,105 @@
 import "../styles.css";
 import "./atlas.css";
 import { onThemeChange } from "../theme";
-import { herkunftView, kettenView, wandelView, wegeViewOf, zieleView, type LensView, type SelectionView } from "./lenses";
-import { MapView, type VIEWS } from "./mapview";
+import { MapView, type FRAMES } from "./mapview";
 import { Panel } from "./panel";
-import { AtlasData, type Profile } from "./source";
-import { filtersAreDefault, FIRST_YEAR, initialChapter, LAST_YEAR, LENSES, store, type Lens, type State } from "./state";
+import { AtlasData, type Search } from "./source";
+import { initialChapter, store, VIEWS, type State, type View } from "./state";
 import { Timeline } from "./timeline";
 import { Tour } from "./tour";
+import { herkunftView, kettenView, zieleView, type AtlasView, type SelectionView } from "./views";
 
-const LENS_VIEWS: Record<Lens, keyof typeof VIEWS> = {
+const FRAME_OF: Record<View, keyof typeof FRAMES> = {
   herkunft: "europa",
   ziele: "atlantik",
-  wege: "atlantik",
-  ketten: "nordatlantik",
-  wandel: "europa",
+  ketten: "atlantik",
 };
 
 const data = new AtlasData();
 await data.loadStatic();
+const baseYears = await data.years({ name: "", similar: false });
 
-const panel = new Panel(data);
+const panel = new Panel(data, baseYears);
 const yearOverlay = document.getElementById("year-overlay")!;
 const map = new MapView(document.getElementById("map")!, document.getElementById("tooltip")!, {
-  selectPlace: (kind, point) => store.set({ selection: { kind, name: point.name, lat: point.lat, lon: point.lon } }),
+  selectPlace: (kind, p) => store.set({ selection: { kind, name: p.name, land: p.land, lat: p.lat, lon: p.lon } }),
   selectCorridor: (id) => store.set({ corridor: id }),
   clear: () => {
     if (store.state.selection || store.state.corridor !== null) store.set({ selection: null, corridor: null });
   },
 });
-const timeline = new Timeline(document.getElementById("timeline")!, (window, playing) => {
+const timeline = new Timeline(document.getElementById("timeline")!, baseYears, (window, playing) => {
   yearOverlay.textContent = playing ? String(window[0]) : "";
   yearOverlay.classList.toggle("visible", playing);
   store.set({ window });
 });
-timeline.setGaps(gapsFrom(data.basis.jahre.jahr));
+timeline.setCounts(baseYears);
 timeline.setWindow(store.state.window);
-const tour = new Tour(data, map, timeline);
+const tour = new Tour(data, map, timeline, () => panel.focusSearch());
+document.getElementById("tour-start")!.addEventListener("click", () => tour.start());
 
-const profiles = new Map<string, Promise<Profile>>();
-const members = new Map<number, Promise<any[]>>();
+const search = (state: State): Search => ({ name: state.name, similar: state.similar });
+const resolved = new Map<string, unknown>();
+const requested = new Set<string>();
 
-function gapsFrom(years: number[]): [number, number][] {
-  const present = new Set(years);
-  const gaps: [number, number][] = [];
-  let start: number | null = null;
-  for (let year = FIRST_YEAR; year <= LAST_YEAR + 1; year++) {
-    if (!present.has(year) && year <= LAST_YEAR) start ??= year;
-    else if (start !== null) {
-      if (year - start >= 3) gaps.push([start, year - 1]);
-      start = null;
-    }
+function lazy<T>(key: string, compute: () => Promise<T>): T | null {
+  if (resolved.has(key)) return resolved.get(key) as T;
+  if (!requested.has(key)) {
+    requested.add(key);
+    compute().then((value) => {
+      resolved.set(key, value);
+      schedule();
+    });
   }
-  return gaps;
+  return null;
 }
 
-function renderLensTabs(): void {
-  const nav = document.getElementById("lenses")!;
-  nav.innerHTML = LENSES.map((l) => `<button type="button" data-lens="${l.id}" aria-pressed="${store.state.lens === l.id}">${l.label}</button>`).join("");
-  nav.querySelectorAll<HTMLButtonElement>("button").forEach((button) =>
-    button.addEventListener("click", () => {
-      const lens = button.dataset.lens as Lens;
-      if (lens === store.state.lens) return;
-      store.set({ lens, selection: null, corridor: null });
-      map.fly(LENS_VIEWS[lens]);
-    }),
-  );
+function selectionView(state: State): SelectionView | null {
+  const selection = state.selection;
+  if (!selection) return null;
+  const key = JSON.stringify(["profile", selection, search(state), state.window]);
+  return { selection, profile: data.ready ? lazy(key, () => data.profile(selection, search(state), state.window)) : null };
 }
 
-async function selectionView(state: State): Promise<SelectionView | null> {
-  const sel = state.selection;
-  if (!sel || !data.ready) return sel ? { selection: sel, profile: null } : null;
-  const key = JSON.stringify([sel, state.filters, state.window]);
-  if (!profiles.has(key)) profiles.set(key, data.profile(sel, state.filters, state.window));
-  return { selection: sel, profile: await profiles.get(key)! };
-}
-
-async function compute(state: State): Promise<LensView> {
-  switch (state.lens) {
-    case "herkunft": {
-      const lqActive = !filtersAreDefault({ ...state.filters, reiseart: "Überfahrt" });
-      const [series, base, selected] = await Promise.all([
-        data.origins(state.filters),
-        state.mode === "anteil" && lqActive ? data.baseOrigins(state.filters) : Promise.resolve(null),
-        selectionView(state),
-      ]);
-      return herkunftView(series, base, state, selected, lqActive);
-    }
+async function compute(state: State): Promise<AtlasView> {
+  const s = search(state);
+  if (s.name && !data.ready) return { kind: "loading" };
+  switch (state.view) {
+    case "herkunft":
+      return herkunftView(await data.origins(s), state, selectionView(state));
     case "ziele": {
-      const [ports, destinations, selected] = await Promise.all([data.ports(state.filters), data.destinations(state.filters), selectionView(state)]);
-      return zieleView(ports, destinations, state, selected);
-    }
-    case "wege": {
-      if (!data.ready) return wegeViewOf([], true);
-      return wegeViewOf(await data.flows(state.filters, state.window, state.flowLimit, state.overseasOnly), false);
+      const [destinations, ports] = await Promise.all([data.destinations(s), data.ports(s)]);
+      return zieleView(destinations, ports, state, selectionView(state));
     }
     case "ketten": {
-      let list: any[] | null = null;
-      if (state.corridor !== null && data.ready) {
-        const corridor = data.korridore.find((c) => c.id === state.corridor);
-        if (corridor) {
-          if (!members.has(corridor.id)) members.set(corridor.id, data.corridorMembers(corridor));
-          list = await members.get(corridor.id)!;
-        }
-      }
-      return kettenView(data.korridore, data.kategorien, state, list);
+      const corridor = data.korridore.find((c) => c.id === state.corridor);
+      const members = corridor && data.ready ? lazy(JSON.stringify(["members", corridor.id, s]), () => data.members(corridor, s)) : null;
+      return kettenView(data.korridore, data.kategorien, state, await data.corridorHits(s), members);
     }
-    case "wandel":
-      return wandelView(await data.origins(state.filters), state);
   }
 }
 
 let generation = 0;
 let pending = false;
+let revealed = "";
+
+function reveal(view: AtlasView): void {
+  if (tour.active) return;
+  if ((view.kind === "herkunft" || view.kind === "ziele") && view.selected?.profile) {
+    const { selection, profile } = view.selected;
+    const key = JSON.stringify(selection);
+    if (key === revealed) return;
+    revealed = key;
+    map.reveal([[selection.lon, selection.lat], ...profile.counterparts.slice(0, 6).map((c): [number, number] => [c.lon, c.lat])]);
+  } else if (view.kind === "ketten" && view.selected) {
+    const c = view.selected;
+    if (`k${c.id}` === revealed) return;
+    revealed = `k${c.id}`;
+    map.reveal([[c.herkunft_lon, c.herkunft_lat], [c.ziel_lon, c.ziel_lat]]);
+  } else if (!(view.kind === "herkunft" || view.kind === "ziele") || !view.selected) {
+    revealed = "";
+  }
+}
 
 function schedule(): void {
   if (pending) return;
@@ -124,20 +111,35 @@ function schedule(): void {
     const view = await compute(state);
     if (run !== generation) return;
     map.render(view);
-    panel.render(view);
+    panel.render(view, state);
+    reveal(view);
   });
 }
 
 function refreshTimeline(): void {
-  data.years(store.state.filters).then((counts) => timeline.setCounts(counts));
+  const s = search(store.state);
+  if (s.name && !data.ready) return;
+  data.years(s).then((counts) => timeline.setCounts(counts));
+}
+
+function renderViewSwitch(): void {
+  const nav = document.getElementById("views")!;
+  nav.innerHTML = VIEWS.map((v) => `<button type="button" role="tab" data-view="${v.id}" aria-selected="${store.state.view === v.id}">${v.label}</button>`).join("");
+  nav.querySelectorAll<HTMLButtonElement>("button").forEach((button) =>
+    button.addEventListener("click", () => {
+      const view = button.dataset.view as View;
+      if (view !== store.state.view) store.set({ view, selection: null, corridor: null });
+    }),
+  );
 }
 
 store.subscribe((state, previous) => {
-  if (state.lens !== previous.lens) {
-    document.querySelectorAll<HTMLButtonElement>("#lenses button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lens === state.lens)));
+  if (state.view !== previous.view) {
+    document.querySelectorAll<HTMLButtonElement>("#views button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.view === state.view)));
+    map.fly(FRAME_OF[state.view]);
   }
-  if (state.filters !== previous.filters) {
-    panel.syncFilters(state.filters);
+  if (state.name !== previous.name || state.similar !== previous.similar) {
+    panel.sync(state);
     refreshTimeline();
   }
   if (state.window !== previous.window) timeline.setWindow(state.window);
@@ -163,19 +165,17 @@ onThemeChange(() => {
   schedule();
 });
 
-renderLensTabs();
-refreshTimeline();
+renderViewSwitch();
 await map.whenReady();
-if (store.state.lens !== "herkunft") map.fly(LENS_VIEWS[store.state.lens], 0);
+if (store.state.view !== "herkunft") map.fly(FRAME_OF[store.state.view], 0);
 schedule();
 if (initialChapter !== undefined && Number.isFinite(initialChapter)) tour.start(initialChapter - 1);
 
 data
-  .openDatabase((stage, loaded, total) => panel.status(stage, loaded, total))
+  .openDatabase((stage, loaded, total) => panel.loading(stage.startsWith("Daten") && total > 0 ? (loaded / total) * 0.95 : stage.startsWith("Tabelle") ? 0.97 : 0.02))
   .then(() => {
     panel.ready();
-    profiles.clear();
     refreshTimeline();
     schedule();
   })
-  .catch((error) => panel.failed(String(error?.message ?? error)));
+  .catch(() => panel.failed());

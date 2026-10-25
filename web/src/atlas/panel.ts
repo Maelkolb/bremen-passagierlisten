@@ -1,406 +1,384 @@
-import * as echarts from "echarts";
 import { escapeHtml, fmt, pct } from "../format";
-import { axisStyle, baseOption, tokens } from "../theme";
-import type { CorridorView, HerkunftView, KettenView, LensView, SelectionView, WandelView, WegeView, ZieleView } from "./lenses";
-import { categoryColor, diverging, rgb } from "./mapview";
-import type { AtlasData } from "./source";
-import { activeFilterCount, AGE_GROUPS, DEFAULT_FILTERS, PERIODS, store, type Filters, type OriginMode } from "./state";
+import { tokens, type Tokens } from "../theme";
+import { categoryColor, css, placeRadius, rgb, viewColor } from "./mapview";
+import type { AtlasData, Corridor, Member } from "./source";
+import { FULL_WINDOW, isFullWindow, store, type Selection, type State, type View } from "./state";
+import { YearAxis, yearBars } from "./timeline";
+import { countryName, type AtlasView, type HerkunftView, type KettenView, type PlacePoint, type SelectionView, type Share, type ZieleView } from "./views";
 
-const css = (c: [number, number, number, number]) => `rgba(${c[0]},${c[1]},${c[2]},${(c[3] / 255).toFixed(2)})`;
-const fmt1 = (v: number) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1, minimumFractionDigits: 1 }).format(v);
-const MODES: { id: OriginMode; label: string }[] = [
-  { id: "orte", label: "Orte" },
-  { id: "dichte", label: "Dichte" },
-  { id: "anteil", label: "Überrepräsentation" },
-];
+interface Row {
+  label: string;
+  sub?: string;
+  n: number;
+  value?: string;
+  key?: string;
+  color?: string;
+}
+
+const SEARCH_DELAY = 450;
+const BACK_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const SEARCH_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m10.5 10.5 3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+const CLEAR_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 4.5 7 7m0-7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+function rows(items: Row[], color: string, max?: number): string {
+  const top = max ?? Math.max(Number.EPSILON, ...items.map((r) => r.n));
+  return `<ol class="rows">${items.map((r) => {
+    const tag = r.key === undefined ? "div" : "button";
+    const attributes = r.key === undefined ? "" : ` type="button" data-key="${escapeHtml(r.key)}"`;
+    return `<li><${tag} class="row"${attributes}>
+      <span class="row-label">${escapeHtml(r.label)}${r.sub ? `<span class="row-sub">${escapeHtml(r.sub)}</span>` : ""}</span>
+      <span class="row-value">${r.value ?? fmt(r.n)}</span>
+      <span class="row-bar"><i style="width:${Math.max(1.5, (r.n / top) * 100).toFixed(1)}%;background:${r.color ?? color}"></i></span>
+    </${tag}></li>`;
+  }).join("")}</ol>`;
+}
+
+function shareRows(items: Share[], total: number, color: string): string {
+  return rows(items.map((s) => ({ label: s.label, n: s.n, value: pct(s.n / Math.max(1, total)) })), color);
+}
+
+function stats(items: [string, string][]): string {
+  return `<dl class="stats">${items.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>`;
+}
+
+function block(title: string, content: string): string {
+  return `<section class="block"><h3>${title}</h3>${content}</section>`;
+}
+
+function windowText(window: [number, number]): string {
+  return window[0] === window[1] ? String(window[0]) : `${window[0]}–${window[1]}`;
+}
+
+function niceFloor(value: number): number {
+  const power = 10 ** Math.floor(Math.log10(value));
+  return [5, 2, 1].map((m) => m * power).find((v) => v <= value) ?? power;
+}
 
 export class Panel {
-  private filterRoot: HTMLElement;
-  private lensRoot: HTMLElement;
-  private statusRoot: HTMLElement;
-  private charts: echarts.ECharts[] = [];
+  private root: HTMLElement;
+  private body: HTMLElement;
+  private handle: HTMLElement;
+  private legend: HTMLElement;
+  private input: HTMLInputElement;
+  private clear: HTMLButtonElement;
+  private similar: HTMLInputElement;
+  private similarRow: HTMLElement;
+  private progress: HTMLElement;
+  private loadShare = 0;
 
-  constructor(private data: AtlasData) {
-    this.filterRoot = document.getElementById("panel-filters")!;
-    this.lensRoot = document.getElementById("panel-lens")!;
-    this.statusRoot = document.getElementById("panel-status")!;
-    this.renderFilters();
-    const panel = document.getElementById("panel")!;
-    const toggle = document.getElementById("panel-toggle")!;
-    toggle.addEventListener("click", () => {
-      const open = panel.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", String(open));
-    });
+  constructor(private data: AtlasData, private baseYears: Map<number, number>) {
+    this.root = document.getElementById("panel")!;
+    this.body = document.getElementById("panel-body")!;
+    this.handle = document.getElementById("panel-handle")!;
+    this.legend = document.getElementById("legend")!;
+    const search = document.getElementById("search")!;
+    search.innerHTML = `
+      <label class="search-field">${SEARCH_ICON}
+        <span class="sr-only">Nachname</span>
+        <input id="search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Nachname suchen" disabled />
+        <button type="button" class="search-clear" id="search-clear" aria-label="Suche löschen" hidden>${CLEAR_ICON}</button>
+      </label>
+      <div class="search-progress" id="search-progress"><i></i></div>
+      <label class="search-similar" id="search-similar-row" hidden><input type="checkbox" id="search-similar" /> ähnliche Schreibweisen einbeziehen</label>`;
+    this.input = search.querySelector("#search-input")!;
+    this.clear = search.querySelector("#search-clear")!;
+    this.similar = search.querySelector("#search-similar")!;
+    this.similarRow = search.querySelector("#search-similar-row")!;
+    this.progress = search.querySelector("#search-progress")!;
+    this.bindSearch();
+    this.handle.addEventListener("click", () => this.toggleSheet());
+    this.sync(store.state);
   }
 
-  status(stage: string, loaded: number, total: number): void {
-    const share = total > 1 ? Math.round((loaded / total) * 100) : 0;
-    this.statusRoot.innerHTML = `
-      <div class="db-status">${escapeHtml(stage)}${total > 1 ? ` ${fmt(loaded / 1e6)} von ${fmt(total / 1e6)} MB` : " …"}
-        <div class="progress"><div style="width:${share}%"></div></div>
-      </div>
-      <p class="panel-note">Bis die Datenbank bereitsteht, zeigt die Karte die Herkunftsorte aller Überfahrten ohne Filter.</p>`;
+  private bindSearch(): void {
+    let timer: number | undefined;
+    const apply = () => {
+      window.clearTimeout(timer);
+      const name = this.input.value.trim();
+      if (name !== store.state.name) store.set({ name, selection: null, corridor: null });
+    };
+    this.input.addEventListener("input", () => {
+      this.clear.hidden = !this.input.value;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(apply, SEARCH_DELAY);
+    });
+    this.input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") apply();
+      if (e.key === "Escape") this.setName("");
+    });
+    this.clear.addEventListener("click", () => {
+      this.setName("");
+      this.input.focus();
+    });
+    this.similar.addEventListener("change", () => store.set({ similar: this.similar.checked, selection: null, corridor: null }));
+  }
+
+  setName(name: string): void {
+    this.input.value = name;
+    store.set({ name, selection: null, corridor: null });
+  }
+
+  focusSearch(): void {
+    if (!this.input.disabled) this.input.focus();
+  }
+
+  sync(state: State): void {
+    if (document.activeElement !== this.input) this.input.value = state.name;
+    this.clear.hidden = !this.input.value;
+    this.similar.checked = state.similar;
+    this.similarRow.hidden = !state.name;
+  }
+
+  loading(share: number): void {
+    this.loadShare = share;
+    this.progress.querySelector("i")!.style.width = `${Math.round(share * 100)}%`;
+    this.input.placeholder = `Namenssuche wird geladen … ${Math.round(share * 100)} %`;
   }
 
   ready(): void {
-    this.statusRoot.hidden = true;
-    this.filterRoot.classList.remove("disabled-block");
-    this.data.nationalities().then((list) => {
-      const select = this.filterRoot.querySelector<HTMLSelectElement>("[name=staat]")!;
-      select.insertAdjacentHTML("beforeend", list.map((n) => `<option value="${escapeHtml(n.name)}">${escapeHtml(n.name)} (${fmt(n.n)})</option>`).join(""));
-      select.value = store.state.filters.staat;
-    });
+    this.progress.classList.add("done");
+    this.input.disabled = false;
+    this.input.placeholder = "Nachname suchen";
   }
 
-  failed(message: string): void {
-    this.statusRoot.innerHTML = `<p class="db-status">Die Datenbank konnte nicht geladen werden (${escapeHtml(message)}). Der Atlas braucht einen lokalen Webserver; die Grundansicht bleibt nutzbar.</p>`;
+  failed(): void {
+    this.progress.classList.add("done");
+    this.input.placeholder = "Namenssuche nicht verfügbar";
   }
 
-  syncFilters(filters: Filters): void {
-    for (const [key, value] of Object.entries(filters)) {
-      const field = this.filterRoot.querySelector<HTMLInputElement | HTMLSelectElement>(`[name=${key}]`);
-      if (!field) continue;
-      if (field instanceof HTMLInputElement && field.type === "checkbox") field.checked = Boolean(value);
-      else field.value = String(value);
-    }
-    const count = activeFilterCount(filters);
-    this.filterRoot.querySelector("#filter-count")!.textContent = count ? `${count} aktiv` : "alle Überfahrten";
-    if (count) (this.filterRoot.querySelector("#filter-details") as HTMLDetailsElement).open = true;
-  }
-
-  private renderFilters(): void {
-    const sectors = this.data.sektoren;
-    this.filterRoot.classList.add("disabled-block");
-    this.filterRoot.innerHTML = `
-      <details id="filter-details">
-      <summary class="filter-summary"><h2>Auswahl</h2><span class="text-sm muted" id="filter-count"></span></summary>
-      <form class="panel-grid" id="filter-form" autocomplete="off">
-        <label class="field wide"><span>Reisende</span>
-          <select class="select" name="reiseart">
-            <option value="Überfahrt">Auswanderer und übrige Überfahrten</option>
-            <option value="US-Staatsangehörige">US-Staatsangehörige</option>
-            <option value="alle">alle Einträge</option>
-          </select></label>
-        <label class="field"><span>Berufsbereich</span>
-          <select class="select" name="sektor"><option value="">alle</option>${Object.entries(sectors).map(([k, v]) => `<option value="${k}">${escapeHtml(v)}</option>`).join("")}<option value="-1">ohne Angabe</option></select></label>
-        <label class="field"><span>Geschlecht</span>
-          <select class="select" name="geschlecht"><option value="">alle</option><option value="m">Männer</option><option value="w">Frauen</option></select></label>
-        <label class="field"><span>Alter</span>
-          <select class="select" name="alter"><option value="">alle</option>${Object.keys(AGE_GROUPS).map((k) => `<option value="${k}">${k.replace("-", "–")} Jahre</option>`).join("")}</select></label>
-        <label class="field"><span>Staatsangehörigkeit</span>
-          <select class="select" name="staat"><option value="">alle</option></select></label>
-        <label class="field wide"><span>Nachname</span><input class="input" name="nachname" placeholder="z. B. Schmidt oder Hoff*" /></label>
-        <label class="check wide" style="grid-column:1/-1"><input type="checkbox" name="aehnlich" /> ähnliche Schreibweisen (Kölner Phonetik)</label>
-        <label class="field wide"><span>Beruf</span><input class="input" name="beruf" placeholder="z. B. Bäcker" /></label>
-        <div class="wide" style="grid-column:1/-1"><button type="button" class="back-link" id="filter-reset">Auswahl zurücksetzen</button></div>
-      </form>
-      </details>`;
-    const form = this.filterRoot.querySelector<HTMLFormElement>("#filter-form")!;
-    let timer: number | undefined;
-    const apply = () => {
-      const data = new FormData(form);
-      const next: Filters = {
-        reiseart: String(data.get("reiseart") ?? "Überfahrt"),
-        sektor: String(data.get("sektor") ?? ""),
-        geschlecht: String(data.get("geschlecht") ?? ""),
-        alter: String(data.get("alter") ?? ""),
-        staat: String(data.get("staat") ?? ""),
-        nachname: String(data.get("nachname") ?? "").trim(),
-        aehnlich: data.get("aehnlich") === "on",
-        beruf: String(data.get("beruf") ?? "").trim(),
-      };
-      store.setFilters(next);
-    };
-    form.addEventListener("change", apply);
-    form.addEventListener("input", (e) => {
-      if ((e.target as HTMLElement).tagName !== "INPUT" || (e.target as HTMLInputElement).type === "checkbox") return;
-      window.clearTimeout(timer);
-      timer = window.setTimeout(apply, 500);
-    });
-    form.addEventListener("submit", (e) => e.preventDefault());
-    this.filterRoot.querySelector("#filter-reset")!.addEventListener("click", () => {
-      store.setFilters(DEFAULT_FILTERS);
-      this.syncFilters(DEFAULT_FILTERS);
-    });
-    this.syncFilters(store.state.filters);
-  }
-
-  render(view: LensView): void {
-    this.filterRoot.classList.toggle("filters-inactive", view.kind === "ketten");
-    this.charts.forEach((c) => c.dispose());
-    this.charts = [];
-    if (view.kind === "herkunft") this.herkunft(view);
-    if (view.kind === "ziele") this.ziele(view);
-    if (view.kind === "wege") this.wege(view);
-    if (view.kind === "ketten") this.ketten(view);
-    if (view.kind === "wandel") this.wandel(view);
-    this.legend(view);
-  }
-
-  private figures(items: [string, string][]): string {
-    return `<dl class="figures">${items.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>`;
-  }
-
-  private rank(rows: { label: string; sub?: string; n: number; data?: string; value?: string; color?: string }[], max?: number): string {
-    const top = max ?? Math.max(Number.EPSILON, ...rows.map((r) => r.n));
-    return `<table class="rank"><tbody>${rows.map((r) => `
-      <tr${r.data ? ` class="clickable" data-pick="${escapeHtml(r.data)}" tabindex="0"` : ""}>
-        <td>${escapeHtml(r.label)}${r.sub ? `<span class="sub">${escapeHtml(r.sub)}</span>` : ""}</td>
-        <td class="bar"><i style="width:${Math.max(2, (r.n / top) * 100)}%${r.color ? `;background:${r.color}` : ""}"></i></td>
-        <td class="num">${r.value ?? fmt(r.n)}</td>
-      </tr>`).join("")}</tbody></table>`;
-  }
-
-  private onPick(handler: (value: string) => void): void {
-    this.lensRoot.querySelectorAll<HTMLElement>("[data-pick]").forEach((row) => {
-      const go = () => handler(row.dataset.pick!);
-      row.addEventListener("click", go);
-      row.addEventListener("keydown", (e) => (e.key === "Enter" ? go() : null));
-    });
-  }
-
-  private yearChart(target: HTMLElement, years: { jahr: number; n: number }[], window: [number, number]): void {
+  render(view: AtlasView, state: State): void {
     const t = tokens();
-    const ax = axisStyle(t);
-    const all = Array.from({ length: 1939 - 1830 + 1 }, (_, i) => 1830 + i);
-    const byYear = new Map(years.map((y) => [y.jahr, y.n]));
-    const chart = echarts.init(target);
-    chart.setOption({
-      ...baseOption(t),
-      animation: false,
-      grid: { left: 34, right: 4, top: 6, bottom: 20 },
-      tooltip: { trigger: "axis", valueFormatter: (v: any) => fmt(v) },
-      xAxis: { type: "category", data: all.map(String), ...ax, splitLine: { show: false }, axisLabel: { ...ax.axisLabel, fontSize: 10, interval: 19 } },
-      yAxis: { type: "value", ...ax, splitNumber: 2, axisLine: { show: false }, axisLabel: { ...ax.axisLabel, fontSize: 10, formatter: (v: number) => fmt(v) } },
-      series: [{ type: "bar", data: all.map((y) => ({ value: byYear.get(y) ?? 0, itemStyle: { color: y >= window[0] && y <= window[1] ? t.ink : t.ruleStrong } })), barCategoryGap: "8%" }],
-    });
-    this.charts.push(chart);
+    if (view.kind === "loading") this.loadingView(state);
+    if (view.kind === "herkunft") this.herkunft(view, state, t);
+    if (view.kind === "ziele") this.ziele(view, state, t);
+    if (view.kind === "ketten") this.ketten(view, state, t);
+    this.renderLegend(view, t);
   }
 
-  private werkbankLink(params: Record<string, string | number | undefined>): string {
+  private subject(state: State): string {
+    if (!state.name) return "Einträge";
+    return `Einträge namens ${escapeHtml(state.name)}${state.similar ? " und ähnlich" : ""}`;
+  }
+
+  private headline(number: string, text: string, state: State): string {
+    const period = isFullWindow(state.window) ? "" : `, ${windowText(state.window)}`;
+    this.handle.innerHTML = `<span><strong>${number}</strong> ${text}${period}</span>`;
+    return `<div class="headline"><div class="headline-number">${number}</div><p class="headline-text">${text}${period}</p></div>`;
+  }
+
+  private empty(state: State): string {
+    this.handle.innerHTML = `<span>Keine Einträge</span>`;
+    const period = isFullWindow(state.window) ? "" : ` in den Jahren ${windowText(state.window)}`;
+    return `<div class="empty">
+      <p>Keine Einträge für „${escapeHtml(state.name)}“${period}.</p>
+      ${!state.similar ? `<button type="button" class="button secondary" data-similar>Ähnliche Schreibweisen einbeziehen</button>` : ""}
+      ${!isFullWindow(state.window) ? `<button type="button" class="button secondary" data-all-years>Alle Jahre</button>` : ""}
+    </div>`;
+  }
+
+  private show(html: string): void {
+    this.body.innerHTML = html;
+    this.body.scrollTop = 0;
+    this.body.querySelector("[data-similar]")?.addEventListener("click", () => store.set({ similar: true }));
+    this.body.querySelector("[data-all-years]")?.addEventListener("click", () => store.set({ window: FULL_WINDOW }));
+  }
+
+  private onRows(selector: string, handler: (key: string) => void): void {
+    this.body.querySelectorAll<HTMLElement>(`${selector} [data-key]`).forEach((row) => row.addEventListener("click", () => handler(row.dataset.key!)));
+  }
+
+  private loadingView(state: State): void {
+    this.handle.innerHTML = `<span>Suche nach ${escapeHtml(state.name)} …</span>`;
+    this.show(`<div class="headline"><p class="headline-text">Die Namenssuche wird vorbereitet, ${Math.round(this.loadShare * 100)} % geladen. Danach erscheinen hier alle Einträge namens ${escapeHtml(state.name)}.</p></div>`);
+  }
+
+  private placeRows(list: PlacePoint[], color: string): string {
+    return rows(list.map((p, i) => ({ label: p.name, sub: countryName(p.land), n: p.n, key: String(i) })), color);
+  }
+
+  private herkunft(view: HerkunftView, state: State, t: Tokens): void {
+    if (view.selected) return this.profile(view.selected, state, t);
+    if (!view.total) return this.show(this.empty(state));
+    const color = viewColor(t, "herkunft");
+    const top = view.points.slice(0, 10);
+    this.show(`
+      ${this.headline(fmt(view.total), `${this.subject(state)} mit Herkunftsort, aus ${fmt(view.points.length)} Orten`, state)}
+      ${block("Heutige Staaten", shareRows(view.countries, view.total, color))}
+      <section class="block" id="top-places"><h3>Häufigste Herkunftsorte</h3>${this.placeRows(top, color)}</section>`);
+    this.onRows("#top-places", (i) => this.select("herkunft", top[Number(i)]));
+  }
+
+  private ziele(view: ZieleView, state: State, t: Tokens): void {
+    if (view.selected) return this.profile(view.selected, state, t);
+    if (!view.total) return this.show(this.empty(state));
+    const color = viewColor(t, "ziele");
+    const top = view.points.slice(0, 10);
+    const portTotal = view.ports.reduce((s, p) => s + p.n, 0);
+    this.show(`
+      ${this.headline(fmt(view.total), `${this.subject(state)} mit Reiseziel, in ${fmt(view.points.length)} Orten`, state)}
+      ${block("Weltregionen", shareRows(view.regions, view.total, color))}
+      ${block("Ankunftshäfen", rows(view.ports.slice(0, 5).map((p) => ({ label: p.name, n: p.n, value: pct(p.n / Math.max(1, portTotal)) })), t.series[0]))}
+      <section class="block" id="top-places"><h3>Häufigste Reiseziele</h3>${this.placeRows(top, color)}</section>`);
+    this.onRows("#top-places", (i) => this.select("ziel", top[Number(i)]));
+  }
+
+  private select(kind: "herkunft" | "ziel", p: PlacePoint): void {
+    store.set({ selection: { kind, name: p.name, land: p.land, lat: p.lat, lon: p.lon } });
+  }
+
+  private werkbankLink(params: Record<string, string | number>): string {
     const search = new URLSearchParams();
-    for (const [key, value] of Object.entries(params)) if (value !== undefined && value !== "") search.set(key, String(value));
-    const f = store.state.filters;
-    if (f.nachname) search.set("nachname", f.nachname);
-    if (f.aehnlich) search.set("aehnlich", "1");
-    if (f.beruf) search.set("beruf", f.beruf);
-    if (f.reiseart !== "alle") search.set("reiseart", f.reiseart);
-    if (f.sektor) search.set("sektor", f.sektor);
+    for (const [key, value] of Object.entries(params)) search.set(key, String(value));
+    const state = store.state;
+    if (state.name) search.set("nachname", state.name);
+    if (state.name && state.similar) search.set("aehnlich", "1");
+    search.set("reiseart", "Überfahrt");
+    if (!isFullWindow(state.window)) {
+      search.set("von", String(state.window[0]));
+      search.set("bis", String(state.window[1]));
+    }
     return `index.html?${search.toString()}#werkbank`;
   }
 
-  private profile(selected: SelectionView, title: string): string {
+  private profile(selected: SelectionView, state: State, t: Tokens): void {
     const { selection, profile } = selected;
-    const [from, to] = store.state.window;
-    const head = `<button type="button" class="back-link" id="profile-close">Zurück zur Übersicht</button><h2 style="margin-top:10px">${escapeHtml(selection.name)}</h2>`;
-    if (!profile) return `${head}<p class="panel-note">Profil wird berechnet …</p>`;
-    const fromHere = selection.kind === "herkunft";
-    const link = this.werkbankLink({ [fromHere ? "herkunft" : "ziel"]: `"${selection.name}"`, von: from, bis: to });
-    return `${head}
-      ${this.figures([
-        [`Einträge ${from === to ? from : `${from}–${to}`}`, fmt(profile.inWindow)],
-        ["Einträge insgesamt", fmt(profile.total)],
-        ["Frauenanteil", profile.women == null ? "–" : pct(profile.women)],
-        ["Medianalter", profile.medianAge == null ? "–" : `${fmt(profile.medianAge)} Jahre`],
-      ])}
-      <h3>Einträge je Jahr</h3><div class="mini-chart" id="profile-years"></div>
-      <h3>${fromHere ? "Wohin sie wollten" : "Woher sie kamen"}</h3>
-      ${this.rank(profile.counterparts.slice(0, 8).map((c) => ({ label: c.name, sub: c.land ?? undefined, n: c.n })))}
-      <h3>Häufigste Berufe</h3>${this.rank(profile.occupations.map((o) => ({ label: o.name, n: o.n })))}
-      <h3>Häufigste Nachnamen</h3>${this.rank(profile.surnames.map((o) => ({ label: o.name, n: o.n })))}
-      <h3>Ankunftshäfen</h3>${this.rank(profile.ports.map((o) => ({ label: o.name, n: o.n })))}
-      <p class="panel-note">${profile.families == null ? "" : `${pct(profile.families)} reisten in Gruppen ab drei Personen gleichen Namens. `}<a href="${link}">Alle Einträge in der Werkbank</a></p>
-      <p class="panel-note">${title}</p>`;
-  }
-
-  private bindProfile(selected: SelectionView): void {
-    this.lensRoot.querySelector("#profile-close")?.addEventListener("click", () => store.set({ selection: null }));
-    const target = this.lensRoot.querySelector<HTMLElement>("#profile-years");
-    if (target && selected.profile) this.yearChart(target, selected.profile.years, store.state.window);
-  }
-
-  private herkunft(view: HerkunftView): void {
-    if (view.selected) {
-      this.lensRoot.innerHTML = this.profile(view.selected, "Bögen zeigen die häufigsten Reiseziele aus diesem Ort im gewählten Zeitraum.");
-      this.bindProfile(view.selected);
+    const outward = selection.kind === "herkunft";
+    const ownColor = viewColor(t, outward ? "herkunft" : "ziele");
+    const otherColor = viewColor(t, outward ? "ziele" : "herkunft");
+    this.handle.innerHTML = `<span><strong>${escapeHtml(selection.name)}</strong> ${profile ? `${fmt(profile.inWindow)} Einträge` : ""}</span>`;
+    const head = `
+      <button type="button" class="back" id="back">${BACK_ICON}Übersicht</button>
+      <h2 class="title">${escapeHtml(selection.name)}</h2>
+      <p class="subtitle"><i class="dot" style="background:${ownColor}"></i>${outward ? "Herkunftsort" : "Reiseziel"}${selection.land ? `, ${escapeHtml(countryName(selection.land))}` : ""}${isFullWindow(state.window) ? "" : `, ${windowText(state.window)}`}</p>`;
+    if (!profile) {
+      const waiting = this.data.ready ? "Profil wird berechnet …" : `Das Profil erscheint, sobald die Datenbank geladen ist (${Math.round(this.loadShare * 100)} %).`;
+      this.show(`${head}<p class="note">${waiting}</p>`);
+      this.bindBack(() => store.set({ selection: null }));
       return;
     }
-    const top = view.points.slice(0, 12);
-    const distanceMax = Math.max(1, ...view.distanceBins.map((b) => b.n));
-    const modeNote = view.mode === "anteil"
-      ? (view.lqActive
-        ? "Farbe: Anteil der Auswahl an allen Reisenden eines Ortes, geteilt durch ihren Anteil insgesamt (Lagequotient). Nur Orte mit mindestens 20 Einträgen im Zeitraum."
-        : "Für die Überrepräsentation zuerst oben eine Auswahl treffen, etwa Frauen, einen Berufsbereich oder einen Nachnamen.")
-      : view.mode === "dichte"
-        ? "Sechsecke von etwa 28 km Radius, Farbe nach Zahl der Einträge (Quantile)."
-        : "Kreisfläche nach Zahl der Einträge. Ein Klick auf einen Ort öffnet sein Profil.";
-    this.lensRoot.innerHTML = `
-      <h2>Herkunft</h2>
-      <div class="segmented" role="group" aria-label="Darstellung">${MODES.map((m) => `<button type="button" data-mode="${m.id}" aria-pressed="${view.mode === m.id}">${m.label}</button>`).join("")}</div>
-      <p class="panel-note">${modeNote}</p>
-      ${this.figures([
-        ["Einträge mit Herkunftsort", fmt(view.total)],
-        ["Orte", fmt(view.points.length)],
-        ["Medianentfernung von Bremen", view.medianKm == null ? "–" : `${fmt(view.medianKm)} km`],
-        ["aus Europa", view.europeShare == null ? "–" : pct(view.europeShare)],
+    const counterparts = profile.counterparts.slice(0, 6);
+    const link = this.werkbankLink({ [outward ? "herkunft" : "ziel"]: `"${selection.name}"` });
+    this.show(`${head}
+      ${stats([
+        ["Einträge", fmt(profile.inWindow)],
+        ["Frauen", profile.women == null ? "–" : pct(profile.women)],
+        ["Medianalter", profile.medianAge == null ? "–" : fmt(profile.medianAge)],
       ])}
-      <h3>Entfernung von Bremen</h3>
-      ${this.rank(view.distanceBins.map((b) => ({ label: b.label, n: b.n })), distanceMax)}
-      <h3>Häufigste Herkunftsorte</h3>
-      ${this.rank(top.map((p, i) => ({ label: p.name, n: p.n, data: String(i) })))}
-      <p class="panel-note">Nur Einträge, deren Wohnort sich auf einen Ort genau bestimmen ließ (GeoNames).</p>`;
-    this.lensRoot.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((b) => b.addEventListener("click", () => store.set({ mode: b.dataset.mode as OriginMode })));
-    this.onPick((i) => {
-      const p = top[Number(i)];
-      store.set({ selection: { kind: "herkunft", name: p.name, lat: p.lat, lon: p.lon } });
+      ${block("Einträge je Jahr", `<svg class="mini-years" id="profile-years"></svg>`)}
+      <section class="block" id="counterparts"><h3>${outward ? "Wohin sie wollten" : "Woher sie kamen"}</h3>${rows(counterparts.map((c, i) => ({ label: c.name, sub: countryName(c.land), n: c.n, key: String(i) })), otherColor)}</section>
+      <section class="block" id="surnames"><h3>Häufigste Nachnamen</h3>${rows(profile.surnames.map((s) => ({ label: s.name, n: s.n, key: s.name })), t.ink3)}</section>
+      ${block("Häufigste Berufe", rows(profile.occupations.map((o) => ({ label: o.name, n: o.n })), t.ink3))}
+      <a class="button wide" href="${link}">Einträge in der Werkbank ansehen</a>`);
+    this.bindBack(() => store.set({ selection: null }));
+    this.miniYears("#profile-years", profile.years, state.window);
+    this.onRows("#counterparts", (i) => {
+      const c = counterparts[Number(i)];
+      const view: View = outward ? "ziele" : "herkunft";
+      const next: Selection = { kind: outward ? "ziel" : "herkunft", name: c.name, land: c.land, lat: c.lat, lon: c.lon };
+      store.set({ view, selection: next });
     });
+    this.onRows("#surnames", (name) => this.setName(name));
   }
 
-  private ziele(view: ZieleView): void {
-    if (view.selected) {
-      this.lensRoot.innerHTML = this.profile(view.selected, "Bögen zeigen die häufigsten Herkunftsorte der Reisenden zu diesem Ziel.");
-      this.bindProfile(view.selected);
-      return;
-    }
-    const destinations = view.destinations.slice(0, 12);
-    this.lensRoot.innerHTML = `
-      <h2>Ziele</h2>
-      ${this.figures([
-        ["Einträge mit Reiseziel", fmt(view.total)],
-        ["Reiseziele", fmt(view.destinations.length)],
-      ])}
-      <h3>Weltregionen der Reiseziele</h3>
-      ${this.rank(view.regions.map((r) => ({ label: r.name, n: r.n })))}
-      <h3>Ankunftshäfen</h3>
-      ${this.rank(view.ports.slice(0, 8).map((p) => ({ label: p.name, n: p.n })))}
-      <h3>Häufigste Reiseziele</h3>
-      ${this.rank(destinations.map((p, i) => ({ label: p.name, sub: p.extra ?? undefined, n: p.n, data: String(i) })))}
-      <p class="panel-note">Reiseziel ist der in der Liste genannte Bestimmungsort, geokodiert gegen GeoNames; New York City fasst die fünf Stadtbezirke zusammen.</p>`;
-    this.onPick((i) => {
-      const p = destinations[Number(i)];
-      store.set({ selection: { kind: "ziel", name: p.name, lat: p.lat, lon: p.lon } });
-    });
+  private bindBack(handler: () => void): void {
+    this.body.querySelector("#back")?.addEventListener("click", handler);
   }
 
-  private wege(view: WegeView): void {
-    const total = view.flows.reduce((s, f) => s + f.n, 0);
-    this.lensRoot.innerHTML = `
-      <h2>Wege</h2>
-      <div class="panel-grid">
-        <label class="field"><span>Verbindungen</span>
-          <select class="select" id="flow-limit">${[100, 300, 1000].map((n) => `<option value="${n}"${store.state.flowLimit === n ? " selected" : ""}>${fmt(n)} stärkste</option>`).join("")}</select></label>
-        <label class="check" style="align-self:end"><input type="checkbox" id="flow-overseas"${store.state.overseasOnly ? " checked" : ""} /> nur Europa → Übersee</label>
-      </div>
-      ${view.loading ? `<p class="panel-note">Verbindungen werden berechnet …</p>` : this.figures([["Einträge in diesen Verbindungen", fmt(total)], ["Verbindungen", fmt(view.flows.length)]])}
-      <h3>Stärkste Verbindungen</h3>
-      ${this.rank(view.flows.slice(0, 15).map((f) => ({ label: `${f.herkunft} → ${f.ziel}`, n: f.n })))}
-      <p class="panel-note">Herkunftsort und Reiseziel derselben Person, beide sicher geokodiert. „Europa → Übersee“ blendet Rück- und Geschäftsreisen mit Herkunft außerhalb Europas oder Ziel in Europa aus.</p>`;
-    this.lensRoot.querySelector<HTMLSelectElement>("#flow-limit")!.addEventListener("change", (e) => store.set({ flowLimit: Number((e.target as HTMLSelectElement).value) }));
-    this.lensRoot.querySelector<HTMLInputElement>("#flow-overseas")!.addEventListener("change", (e) => store.set({ overseasOnly: (e.target as HTMLInputElement).checked }));
+  private miniYears(selector: string, counts: Map<number, number>, window: [number, number]): void {
+    const svg = this.body.querySelector<SVGSVGElement>(selector);
+    if (!svg) return;
+    const width = svg.clientWidth || 320;
+    const height = 64;
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.innerHTML = yearBars(new YearAxis(this.baseYears, width), counts, window, height);
   }
 
-  private ketten(view: KettenView): void {
-    const t = tokens();
-    if (view.selected) {
-      this.corridorDetail(view.selected, view.members);
-      return;
-    }
-    const top = view.corridors.slice(0, 20);
-    this.lensRoot.innerHTML = `
-      <h2>Kettenmigration</h2>
-      <div class="chips" role="group" aria-label="Kategorie">
-        <button type="button" class="chip" data-cat="" aria-pressed="${store.state.category === ""}">alle</button>
-        ${view.categories.filter((c) => c.corridors > 0).map((c) => `<button type="button" class="chip" data-cat="${escapeHtml(c.name)}" aria-pressed="${store.state.category === c.name}"><i style="background:${css(categoryColor(t, c.name, 255))}"></i>${escapeHtml(c.name)} <span class="count">${fmt(c.corridors)}</span></button>`).join("")}
-      </div>
-      ${this.figures([
-        ["Korridore", fmt(view.corridors.length)],
-        ["Personen darin", fmt(view.corridors.reduce((s, c) => s + c.personen, 0))],
-      ])}
-      <h3>Stärkste Korridore</h3>
-      ${this.rank(top.map((c) => ({ label: `${c.herkunft} → ${c.ziel}`, sub: `${c.beruf ?? c.kategorie}, ${c.von}–${c.bis}`, n: c.personen, data: String(c.id) })))}
-      <p class="panel-note">Ein Korridor ist ein Paar aus Herkunftsort in Europa und Ziel in Übersee mit mindestens fünf Reisegruppen in mindestens drei Jahrgängen, deutlich häufiger als bei Unabhängigkeit erwartet (log-odds, z ≥ 3). Grundlage sind alle Überfahrten; die Auswahl oben gilt hier nicht, das Zeitfenster schon.</p>`;
-    this.lensRoot.querySelectorAll<HTMLButtonElement>("[data-cat]").forEach((b) => b.addEventListener("click", () => store.set({ category: b.dataset.cat ?? "", corridor: null })));
-    this.onPick((id) => store.set({ corridor: Number(id) }));
+  private ketten(view: KettenView, state: State, t: Tokens): void {
+    if (view.selected) return this.corridor(view.selected, view.members, state, t);
+    if (!view.corridors.length && !view.categories.length) return this.show(this.empty(state));
+    const top = view.corridors.slice(0, 12);
+    const groups = view.corridors.reduce((s, c) => s + c.inWindow, 0);
+    const text = state.name
+      ? `Korridore mit Einträgen namens ${escapeHtml(state.name)}${state.similar ? " und ähnlich" : ""}`
+      : `Korridore der Kettenmigration mit ${fmt(groups)} Reisegruppen`;
+    const categoryRows = view.categories.map((c) => ({
+      label: c.name,
+      n: c.corridors,
+      key: c.name,
+      color: css(categoryColor(t, c.name, state.category && state.category !== c.name ? 70 : 255)),
+    }));
+    this.show(`
+      ${this.headline(fmt(view.corridors.length), text, state)}
+      <p class="note">Ein Korridor verbindet einen Herkunftsort mit einem Ziel in Übersee, zu dem über mehrere Jahre immer wieder Reisegruppen fuhren, weit häufiger als zufällig zu erwarten.</p>
+      <section class="block" id="categories"><h3>Kategorien${state.category ? `<button type="button" class="link-button" id="category-reset">alle zeigen</button>` : ""}</h3>${rows(categoryRows, t.ink3)}</section>
+      <section class="block" id="top-corridors"><h3>Stärkste Korridore</h3>${rows(top.map((c) => ({
+        label: `${c.herkunft} → ${c.ziel}`,
+        sub: c.hits ? `${fmt(c.hits)} Einträge namens ${state.name}` : `${c.beruf ?? c.kategorie}, ${c.von}–${c.bis}`,
+        n: c.inWindow,
+        key: String(c.id),
+        color: css(categoryColor(t, c.kategorie)),
+      })), t.ink3)}</section>`);
+    this.body.querySelectorAll<HTMLElement>("#categories .row").forEach((row) => row.classList.toggle("muted-row", Boolean(state.category) && row.dataset.key !== state.category));
+    this.onRows("#categories", (name) => store.set({ category: state.category === name ? "" : name, corridor: null }));
+    this.body.querySelector("#category-reset")?.addEventListener("click", () => store.set({ category: "" }));
+    this.onRows("#top-corridors", (id) => store.set({ corridor: Number(id) }));
   }
 
-  private corridorDetail(c: CorridorView, members: any[] | null): void {
-    const link = this.werkbankLink({ herkunft: `"${c.herkunft}"`, ziel: `"${c.ziel}"`, reiseart: "Überfahrt" });
-    this.lensRoot.innerHTML = `
-      <button type="button" class="back-link" id="corridor-close">Alle Korridore</button>
-      <h2 style="margin-top:10px">${escapeHtml(c.herkunft)} → ${escapeHtml(c.ziel)}</h2>
-      <p class="panel-note" style="margin-top:0">${escapeHtml(c.kategorie)}${c.beruf ? `, häufigster Beruf ${escapeHtml(c.beruf)}` : ""}</p>
-      ${this.figures([
+  private corridor(c: Corridor & { inWindow: number; hits: number | null }, members: Member[] | null, state: State, t: Tokens): void {
+    const color = css(categoryColor(t, c.kategorie));
+    const link = this.werkbankLink({ herkunft: `"${c.herkunft}"`, ziel: `"${c.ziel}"` });
+    this.handle.innerHTML = `<span><strong>${escapeHtml(c.herkunft)} → ${escapeHtml(c.ziel)}</strong></span>`;
+    const people = members
+      ? `<ol class="people">${members.map((m) => `<li><span class="person">${escapeHtml([m.vorname, m.nachname].filter(Boolean).join(" "))}<span class="row-sub">${escapeHtml([m.beruf, m.alter != null ? `${m.alter} Jahre` : null].filter(Boolean).join(", "))}</span></span><span class="row-value">${m.jahr}</span></li>`).join("")}</ol>`
+      : `<p class="note">${this.data.ready ? "Einträge werden geladen …" : `Die Einträge erscheinen, sobald die Datenbank geladen ist (${Math.round(this.loadShare * 100)} %).`}</p>`;
+    this.show(`
+      <button type="button" class="back" id="back">${BACK_ICON}Alle Korridore</button>
+      <h2 class="title">${escapeHtml(c.herkunft)} → ${escapeHtml(c.ziel)}</h2>
+      <p class="subtitle"><i class="dot" style="background:${color}"></i>${escapeHtml(c.kategorie)}${c.beruf ? `, häufigster Beruf ${escapeHtml(c.beruf)}` : ""}</p>
+      ${stats([
         ["Reisegruppen", fmt(c.gruppen)],
         ["Personen", fmt(c.personen)],
-        ["Frauenanteil", pct(c.frauenanteil)],
-        ["Gruppen ab drei", pct(c.familienanteil)],
-        ["Jahre", `${c.von}–${c.bis}`],
-        ["z-Wert", fmt1(c.z)],
+        ["Frauen", pct(c.frauenanteil)],
       ])}
-      <h3>Reisegruppen je Jahr</h3><div class="mini-chart" id="corridor-years"></div>
-      <h3>Reisende (erste 60 Einträge)</h3>
-      ${members ? `<table class="rank"><tbody>${members.map((m) => `<tr><td>${escapeHtml(m.vorname ?? "")} ${escapeHtml(m.nachname ?? "")}<span class="sub">${escapeHtml(m.beruf ?? "")}${m.schiff ? `, ${escapeHtml(m.schiff)}` : ""}</span></td><td class="num">${m.alter ?? ""}</td><td class="num">${m.jahr}</td></tr>`).join("")}</tbody></table>` : `<p class="panel-note">Einträge werden geladen …</p>`}
-      <p class="panel-note"><a href="${link}">Alle Einträge in der Werkbank</a></p>`;
-    this.lensRoot.querySelector("#corridor-close")!.addEventListener("click", () => store.set({ corridor: null }));
-    this.yearChart(this.lensRoot.querySelector<HTMLElement>("#corridor-years")!, c.jahre.map(([jahr, n]) => ({ jahr, n })), store.state.window);
+      ${block("Reisegruppen je Jahr", `<svg class="mini-years" id="corridor-years"></svg>`)}
+      ${block(state.name ? `Reisende namens ${escapeHtml(state.name)}` : "Reisende", people)}
+      <a class="button wide" href="${link}">Einträge in der Werkbank ansehen</a>`);
+    this.bindBack(() => store.set({ corridor: null }));
+    this.miniYears("#corridor-years", new Map(c.jahre), state.window);
   }
 
-  private wandel(view: WandelView): void {
-    const [a, b] = view.periods;
-    const option = (selected: string) => PERIODS.map((p) => `<option value="${p.id}"${p.id === selected ? " selected" : ""} title="${p.label}">${p.id}</option>`).join("");
-    const shapeA = view.shapes.find((s) => s.period === a);
-    const shapeB = view.shapes.find((s) => s.period === b);
-    const t = tokens();
-    const changeRows = (list: WandelView["gainers"]) => list.map((p) => ({ label: p.name, sub: `${pct(p.a, 2)} → ${pct(p.b, 2)}`, n: Math.abs(p.diff), value: `${p.diff > 0 ? "+" : "−"}${fmt1(Math.abs(p.diff) * 100)}`, color: p.diff > 0 ? t.series[7] : t.series[0] }));
-    const changeMax = Math.max(Number.EPSILON, ...[...view.gainers, ...view.losers].map((p) => Math.abs(p.diff)));
-    this.lensRoot.innerHTML = `
-      <h2>Wandel</h2>
-      <div class="panel-grid">
-        <label class="field"><span>Zeitraum A</span><select class="select" id="compare-a">${option(a)}</select></label>
-        <label class="field"><span>Zeitraum B</span><select class="select" id="compare-b">${option(b)}</select></label>
-      </div>
-      ${this.figures([
-        ["Einträge A", fmt(view.totals[0])],
-        ["Einträge B", fmt(view.totals[1])],
-        ["Abstand der Schwerpunkte A und B", view.shiftKm == null ? "–" : `${fmt(view.shiftKm)} km`],
-        ["Standarddistanz A / B", shapeA && shapeB ? `${fmt(shapeA.centroid.spreadKm)} / ${fmt(shapeB.centroid.spreadKm)} km` : "–"],
-      ])}
-      <h3>Stärker vertreten in B (Prozentpunkte)</h3>
-      ${this.rank(changeRows(view.gainers), changeMax)}
-      <h3>Stärker vertreten in A (Prozentpunkte)</h3>
-      ${this.rank(changeRows(view.losers), changeMax)}
-      <p class="panel-note">Rasterzellen von 0,5° × 0,75°: Anteil an allen Herkunftsorten des Zeitraums, B minus A. Ellipsen umfassen eine Standardabweichung um den Schwerpunkt (europäische Herkunftsorte); die Punkte zeigen den Schwerpunkt jedes Jahres mit mindestens 300 Einträgen. Die Auswahl oben gilt auch hier.</p>`;
-    this.lensRoot.querySelector<HTMLSelectElement>("#compare-a")!.addEventListener("change", (e) => store.set({ compare: [(e.target as HTMLSelectElement).value, store.state.compare[1]] }));
-    this.lensRoot.querySelector<HTMLSelectElement>("#compare-b")!.addEventListener("change", (e) => store.set({ compare: [store.state.compare[0], (e.target as HTMLSelectElement).value] }));
+  private renderLegend(view: AtlasView, t: Tokens): void {
+    const dot = (color: string, label: string) => `<div class="legend-row"><i class="dot" style="background:${color}"></i>${label}</div>`;
+    const line = (color: string, label: string) => `<div class="legend-row"><i class="line" style="background:${color}"></i>${label}</div>`;
+    if ((view.kind === "herkunft" || view.kind === "ziele") && view.selected) {
+      const outward = view.selected.selection.kind === "herkunft";
+      this.legend.innerHTML = `${dot(viewColor(t, "herkunft"), outward ? escapeHtml(view.selected.selection.name) : "Herkunftsorte")}${dot(viewColor(t, "ziele"), outward ? "Reiseziele" : escapeHtml(view.selected.selection.name))}`;
+    } else if (view.kind === "herkunft" && view.points.length) {
+      this.legend.innerHTML = this.sizeLegend(view.points[0].n, viewColor(t, "herkunft"), "Einträge je Herkunftsort");
+    } else if (view.kind === "ziele" && view.points.length) {
+      this.legend.innerHTML = `${this.sizeLegend(view.points[0].n, viewColor(t, "ziele"), "Einträge je Reiseziel")}${line(t.series[0], "Seeweg zum Ankunftshafen")}`;
+    } else {
+      this.legend.innerHTML = "";
+    }
   }
 
-  private legend(view: LensView): void {
-    const t = tokens();
-    const root = document.getElementById("legend")!;
-    const swatch = (color: string, label: string, round = true) => `<div class="legend-row"><span class="legend-swatch" style="background:${color};border-radius:${round ? "50%" : "2px"}"></span>${label}</div>`;
-    const ramp = (colors: string[]) => `<div class="legend-ramp" style="background:linear-gradient(90deg, ${colors.join(", ")})"></div>`;
-    const divergingRamp = [-1, -0.5, 0, 0.5, 1].map((v) => css(diverging(t, v, 255)));
-    if (view.kind === "herkunft") {
-      if (view.selected) {
-        root.innerHTML = `<div class="legend-title">${escapeHtml(view.selected.selection.name)}</div>${swatch(css(rgb(t.brass, 255)), "Herkunft")}${swatch(css(rgb(t.series[4], 255)), "Reiseziele aus diesem Ort")}`;
-      } else if (view.mode === "dichte") {
-        root.innerHTML = `<div class="legend-title">Herkunftsorte, Dichte</div>${ramp(t.sequential.slice(1))}<div class="legend-scale"><span>wenige</span><span>viele Einträge</span></div>`;
-      } else if (view.mode === "anteil") {
-        root.innerHTML = `<div class="legend-title">Anteil der Auswahl je Ort</div>${ramp(divergingRamp)}<div class="legend-scale"><span>¼</span><span>gleich</span><span>4-fach</span></div>`;
-      } else {
-        root.innerHTML = `<div class="legend-title">Herkunftsorte</div>${swatch(css(rgb(t.brass, 200)), "Kreisfläche nach Zahl der Einträge")}`;
-      }
-    }
-    if (view.kind === "ziele") root.innerHTML = `<div class="legend-title">Ziele</div>${swatch(css(rgb(t.series[2], 255)), "Ankunftshafen")}${swatch(css(rgb(t.series[4], 200)), "genanntes Reiseziel")}`;
-    if (view.kind === "wege") root.innerHTML = `<div class="legend-title">Wege</div>${ramp([css(rgb(t.brass, 255)), css(rgb(t.series[4], 255))])}<div class="legend-scale"><span>Herkunft</span><span>Ziel</span></div>`;
-    if (view.kind === "ketten") root.innerHTML = `<div class="legend-title">Korridore nach Kategorie</div>${view.categories.filter((c) => c.corridors).map((c) => swatch(css(categoryColor(t, c.name, 255)), c.name, false)).join("")}`;
-    if (view.kind === "wandel") {
-      const [a, b] = view.periods;
-      root.innerHTML = `<div class="legend-title">Anteil B minus A</div>${ramp(divergingRamp)}<div class="legend-scale"><span>häufiger ${a}</span><span>häufiger ${b}</span></div>
-        <div class="legend-row" style="margin-top:8px"><span class="legend-swatch" style="border:2px solid ${t.series[0]};background:transparent"></span>Ellipse ${a}</div>
-        <div class="legend-row"><span class="legend-swatch" style="border:2px solid ${t.series[7]};background:transparent"></span>Ellipse ${b}</div>
-        <div class="legend-row"><span class="legend-swatch" style="background:${t.sequential[4]}"></span>Schwerpunkt je Jahr</div>`;
-    }
+  private sizeLegend(max: number, color: string, title: string): string {
+    const first = niceFloor(max);
+    const values = [first / 100, first / 10, first].filter((v) => v >= 1);
+    const radius = values.map((v) => placeRadius(v, max));
+    const height = radius[radius.length - 1] * 2 + 18;
+    const column = 50;
+    const circles = values.map((v, i) => {
+      const cx = column * i + column / 2;
+      const r = radius[i];
+      return `<circle cx="${cx}" cy="${height - 16 - r}" r="${r}" fill="${css(rgb(color, 115))}" stroke="${color}" stroke-width="0.8"/>
+        <text x="${cx}" y="${height - 2}" text-anchor="middle">${fmt(v)}</text>`;
+    }).join("");
+    return `<div class="legend-title">${title}</div><svg class="size-legend" width="${column * values.length}" height="${height}">${circles}</svg>`;
+  }
+
+  private toggleSheet(): void {
+    const open = this.root.classList.toggle("open");
+    this.handle.setAttribute("aria-expanded", String(open));
   }
 }
-

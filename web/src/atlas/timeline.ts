@@ -1,42 +1,193 @@
 import { fmt } from "../format";
-import { FIRST_YEAR, LAST_YEAR } from "./state";
+import { FIRST_YEAR, FULL_WINDOW, isFullWindow, LAST_YEAR } from "./state";
 
-const PAD_LEFT = 4;
-const PAD_RIGHT = 4;
-const HEIGHT = 76;
-const AXIS = 14;
-const PLAY_MS = 850;
-const LABEL_YEARS = [1830, 1840, 1850, 1860, 1870, 1880, 1890, 1900, 1910, 1920, 1930, 1939];
+const SEGMENT_SPLIT = 20;
+const MINOR_WEIGHT = 0.2;
+const MINOR_SHARE = 0.05;
+const BREAK_PX = 16;
+const LABEL_SPACING = 34;
+const EDGE = 14;
+const MIN_MISSING_RUN = 3;
+const PLAY_MS = 900;
+
+const PLAY_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4L13 8z" fill="currentColor"/></svg>`;
+const PAUSE_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.8" width="3" height="10.4" rx="0.8" fill="currentColor"/><rect x="9.5" y="2.8" width="3" height="10.4" rx="0.8" fill="currentColor"/></svg>`;
+
+interface Segment {
+  from: number;
+  to: number;
+  weight: number;
+  left: number;
+}
+
+export class YearAxis {
+  segments: Segment[] = [];
+  private unit = 1;
+
+  constructor(private years: Map<number, number>, readonly width: number) {
+    const present = [...years.keys()].sort((a, b) => a - b);
+    const total = [...years.values()].reduce((s, n) => s + n, 0);
+    const ranges: [number, number][] = [];
+    for (const year of present) {
+      const last = ranges[ranges.length - 1];
+      if (last && year - last[1] <= SEGMENT_SPLIT) last[1] = year;
+      else ranges.push([year, year]);
+    }
+    const share = (from: number, to: number) => present.filter((y) => y >= from && y <= to).reduce((s, y) => s + years.get(y)!, 0) / total;
+    this.segments = ranges.map(([from, to]) => ({ from, to, weight: share(from, to) < MINOR_SHARE ? MINOR_WEIGHT : 1, left: 0 }));
+    const units = this.segments.reduce((s, g) => s + (g.to - g.from + 1) * g.weight, 0);
+    this.unit = (width - BREAK_PX * (this.segments.length - 1)) / units;
+    let left = 0;
+    for (const segment of this.segments) {
+      segment.left = left;
+      left = this.right(segment) + BREAK_PX;
+    }
+  }
+
+  get first(): number {
+    return this.segments[0].from;
+  }
+
+  get last(): number {
+    return this.segments[this.segments.length - 1].to;
+  }
+
+  slot(year: number): number {
+    return this.segmentOf(year).weight * this.unit;
+  }
+
+  x(year: number): number {
+    const segment = this.segmentOf(year);
+    const clamped = Math.max(segment.from, Math.min(segment.to + 1, year));
+    return segment.left + (clamped - segment.from) * segment.weight * this.unit;
+  }
+
+  end(year: number): number {
+    return this.x(year) + (this.inside(year) ? this.slot(year) : 0);
+  }
+
+  yearAt(px: number): number {
+    let previous: Segment | null = null;
+    for (const segment of this.segments) {
+      if (px < segment.left) {
+        if (!previous) return segment.from;
+        return px - this.right(previous) < segment.left - px ? previous.to : segment.from;
+      }
+      if (px < this.right(segment)) return segment.from + Math.floor((px - segment.left) / (segment.weight * this.unit));
+      previous = segment;
+    }
+    return this.last;
+  }
+
+  inside(year: number): boolean {
+    return this.segments.some((s) => year >= s.from && year <= s.to);
+  }
+
+  breaks(): number[] {
+    return this.segments.slice(1).map((s) => s.left - BREAK_PX / 2);
+  }
+
+  missingRuns(): [number, number][] {
+    const runs: [number, number][] = [];
+    for (const segment of this.segments) {
+      let start: number | null = null;
+      for (let year = segment.from; year <= segment.to + 1; year++) {
+        const missing = year <= segment.to && !this.years.has(year);
+        if (missing) start ??= year;
+        else if (start !== null) {
+          if (year - start >= MIN_MISSING_RUN) runs.push([start, year - 1]);
+          start = null;
+        }
+      }
+    }
+    return runs;
+  }
+
+  labels(): number[] {
+    const major = this.segments.filter((s) => s.weight === 1);
+    const candidates = [
+      ...this.segments.map((s) => s.from),
+      ...major.map((s) => s.to),
+      ...major.flatMap((s) => range(s.from, s.to).filter((y) => y % 10 === 0)),
+      ...major.flatMap((s) => range(s.from, s.to).filter((y) => y % 5 === 0)),
+    ];
+    const accepted: number[] = [];
+    for (const year of candidates) {
+      if (accepted.includes(year)) continue;
+      const center = this.x(year) + this.slot(year) / 2;
+      if (accepted.every((other) => Math.abs(this.x(other) + this.slot(other) / 2 - center) >= LABEL_SPACING)) accepted.push(year);
+    }
+    return accepted.sort((a, b) => a - b);
+  }
+
+  private right(segment: Segment): number {
+    return segment.left + (segment.to - segment.from + 1) * segment.weight * this.unit;
+  }
+
+  private segmentOf(year: number): Segment {
+    for (let i = this.segments.length - 1; i >= 0; i--) if (year >= this.segments[i].from) return this.segments[i];
+    return this.segments[0];
+  }
+}
+
+function range(from: number, to: number): number[] {
+  return Array.from({ length: to - from + 1 }, (_, i) => from + i);
+}
+
+export function yearBars(axis: YearAxis, counts: Map<number, number>, window: [number, number], height: number, labelHeight = 14): string {
+  const plot = height - labelHeight;
+  const max = Math.max(1, ...counts.values());
+  const bars: string[] = [];
+  for (const [year, n] of counts) {
+    if (!n || !axis.inside(year)) continue;
+    const h = Math.max(1.5, Math.sqrt(n / max) * (plot - 4));
+    const slot = axis.slot(year);
+    const inWindow = year >= window[0] && year <= window[1];
+    bars.push(`<rect class="bar${inWindow ? " in" : ""}" x="${(axis.x(year) + slot * 0.14).toFixed(1)}" y="${(plot - h).toFixed(1)}" width="${Math.max(1, slot * 0.72).toFixed(1)}" height="${h.toFixed(1)}"><title>${year}: ${fmt(n)} Einträge</title></rect>`);
+  }
+  const missing = axis.missingRuns().map(([a, b]) => `<rect class="missing" x="${axis.x(a).toFixed(1)}" y="0" width="${(axis.end(b) - axis.x(a)).toFixed(1)}" height="${plot}"><title>${a}–${b}: keine Listen überliefert</title></rect>`);
+  const breaks = axis.breaks().map((x) => `<path class="break" d="M${x - 4} ${plot + 3} l4 -7 M${x} ${plot + 3} l4 -7"/>`);
+  const baselines = axis.segments.map((s) => `<line class="baseline" x1="${s.left}" x2="${axis.end(s.to)}" y1="${plot}" y2="${plot}"/>`);
+  const labels = axis.labels().map((year) => {
+    const center = axis.x(year) + axis.slot(year) / 2;
+    const [x, anchor] = center < EDGE ? [axis.x(year), "start"] : center > axis.width - EDGE ? [axis.end(year), "end"] : [center, "middle"];
+    return `<text x="${x.toFixed(1)}" y="${height - 2}" text-anchor="${anchor}">${year}</text>`;
+  });
+  return `<defs><pattern id="hatch" width="4" height="4" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="4" class="hatch"/></pattern></defs>${missing.join("")}${baselines.join("")}${breaks.join("")}${bars.join("")}${labels.join("")}`;
+}
 
 type Drag = { kind: "start" | "end" | "move" | "new"; anchor: number; from: [number, number] };
 
 export class Timeline {
   private svg: SVGSVGElement;
-  private label: HTMLElement;
+  private range: HTMLElement;
+  private count: HTMLElement;
+  private reset: HTMLButtonElement;
   private playButton: HTMLButtonElement;
   private counts = new Map<number, number>();
-  private gaps: [number, number][] = [];
-  private window: [number, number] = [FIRST_YEAR, LAST_YEAR];
-  private width = 800;
+  private axis: YearAxis;
+  private window: [number, number] = FULL_WINDOW;
   private drag: Drag | null = null;
   private timer: number | null = null;
-  private playYears: number[] = [];
+  private height = 58;
 
-  constructor(root: HTMLElement, private onChange: (window: [number, number], playing: boolean) => void) {
+  constructor(root: HTMLElement, private baseYears: Map<number, number>, private onChange: (window: [number, number], playing: boolean) => void) {
     root.innerHTML = `
-      <div class="timeline-controls">
-        <button type="button" class="button secondary" id="timeline-play">Abspielen</button>
-        <div class="timeline-window" id="timeline-label"></div>
+      <button type="button" class="play" id="timeline-play" aria-label="Jahre abspielen">${PLAY_ICON}</button>
+      <div class="timeline-text">
+        <div class="timeline-range" id="timeline-range"></div>
+        <div class="timeline-count"><span id="timeline-count"></span><button type="button" class="link-button" id="timeline-reset" hidden>alle Jahre</button></div>
       </div>
-      <svg class="timeline-svg" id="timeline-svg" role="slider" aria-label="Zeitfenster der Abfahrtsjahre" tabindex="0"></svg>`;
+      <svg class="timeline-svg" id="timeline-svg" role="slider" aria-label="Zeitraum der Abfahrtsjahre" tabindex="0"></svg>`;
     this.svg = root.querySelector("#timeline-svg")!;
-    this.label = root.querySelector("#timeline-label")!;
+    this.range = root.querySelector("#timeline-range")!;
+    this.count = root.querySelector("#timeline-count")!;
+    this.reset = root.querySelector("#timeline-reset")!;
     this.playButton = root.querySelector("#timeline-play")!;
+    this.axis = new YearAxis(baseYears, 800);
     this.playButton.addEventListener("click", () => (this.playing ? this.stop() : this.play()));
-    new ResizeObserver(() => {
-      this.width = this.svg.clientWidth || 800;
-      this.render();
-    }).observe(this.svg);
+    this.reset.addEventListener("click", () => this.emit(FULL_WINDOW, false));
+    new ResizeObserver(() => this.render()).observe(this.svg);
     this.bindPointer();
     this.svg.addEventListener("keydown", (e) => this.keyboard(e));
   }
@@ -50,30 +201,27 @@ export class Timeline {
     this.render();
   }
 
-  setGaps(gaps: [number, number][]): void {
-    this.gaps = gaps;
-    this.render();
-  }
-
   setWindow(window: [number, number]): void {
     this.window = window;
     this.render();
   }
 
-  play(years?: number[]): void {
+  play(): void {
     this.stop();
-    const withData = [...this.counts.entries()].filter(([, n]) => n > 0).map(([y]) => y).sort((a, b) => a - b);
-    this.playYears = years ?? withData.filter((y) => y >= this.window[0] && y <= this.window[1]);
-    if (this.playYears.length < 2) this.playYears = withData;
+    const withData = [...this.baseYears.keys()].sort((a, b) => a - b);
+    const inWindow = withData.filter((y) => y >= this.window[0] && y <= this.window[1]);
+    const years = inWindow.length > 1 ? inWindow : withData;
+    const restore: [number, number] = inWindow.length > 1 ? this.window : FULL_WINDOW;
     let index = 0;
-    this.playButton.textContent = "Anhalten";
+    this.playButton.innerHTML = PAUSE_ICON;
+    this.playButton.setAttribute("aria-label", "Anhalten");
     const step = () => {
-      if (index >= this.playYears.length) {
+      if (index >= years.length) {
         this.stop();
-        this.emit([this.playYears[0], this.playYears[this.playYears.length - 1]], false);
+        this.emit(restore, false);
         return;
       }
-      const year = this.playYears[index++];
+      const year = years[index++];
       this.emit([year, year], true);
     };
     step();
@@ -84,7 +232,8 @@ export class Timeline {
     const wasPlaying = this.timer !== null;
     if (this.timer !== null) window.clearInterval(this.timer);
     this.timer = null;
-    this.playButton.textContent = "Abspielen";
+    this.playButton.innerHTML = PLAY_ICON;
+    this.playButton.setAttribute("aria-label", "Jahre abspielen");
     if (wasPlaying) this.onChange(this.window, false);
   }
 
@@ -94,83 +243,55 @@ export class Timeline {
     this.onChange(window, playing);
   }
 
-  private x(year: number): number {
-    const step = (this.width - PAD_LEFT - PAD_RIGHT) / (LAST_YEAR - FIRST_YEAR + 1);
-    return PAD_LEFT + (year - FIRST_YEAR) * step;
-  }
-
-  private yearAt(clientX: number): number {
-    const rect = this.svg.getBoundingClientRect();
-    const step = (this.width - PAD_LEFT - PAD_RIGHT) / (LAST_YEAR - FIRST_YEAR + 1);
-    const year = FIRST_YEAR + Math.floor((clientX - rect.left - PAD_LEFT) / step);
-    return Math.max(FIRST_YEAR, Math.min(LAST_YEAR, year));
-  }
-
   private render(): void {
-    const w = this.width;
-    const plot = HEIGHT - AXIS;
-    const step = (w - PAD_LEFT - PAD_RIGHT) / (LAST_YEAR - FIRST_YEAR + 1);
-    const max = Math.max(1, ...this.counts.values());
-    const bars: string[] = [];
-    for (let year = FIRST_YEAR; year <= LAST_YEAR; year++) {
-      const n = this.counts.get(year) ?? 0;
-      if (!n) continue;
-      const h = Math.max(1.5, Math.sqrt(n / max) * (plot - 6));
-      const inside = year >= this.window[0] && year <= this.window[1];
-      bars.push(`<rect class="bar${inside ? " in" : ""}" x="${this.x(year) + step * 0.12}" y="${plot - h}" width="${Math.max(1, step * 0.76)}" height="${h}" rx="1"><title>${year}: ${fmt(n)} Einträge</title></rect>`);
-    }
-    const gaps = this.gaps.map(([a, b]) => {
-      const gx = this.x(a);
-      const gw = this.x(b + 1) - gx;
-      const text = gw > 90 ? `<text x="${gx + gw / 2}" y="${plot / 2 + 3}" text-anchor="middle">${a}–${b} keine Listen</text>` : "";
-      return `<rect class="gap" x="${gx}" y="2" width="${gw}" height="${plot - 2}"/>${text}`;
-    }).join("");
-    const bx = this.x(this.window[0]);
-    const bw = this.x(this.window[1] + 1) - bx;
-    const labelYears = w < 520 ? [FIRST_YEAR, 1870, 1910, LAST_YEAR] : LABEL_YEARS;
-    const labels = labelYears.map((year) => {
-      const anchor = year === FIRST_YEAR ? "start" : year === LAST_YEAR ? "end" : "middle";
-      const lx = year === LAST_YEAR ? this.x(year + 1) : this.x(year);
-      return `<text x="${lx}" y="${HEIGHT - 2}" text-anchor="${anchor}">${year}</text>`;
-    }).join("");
-    this.svg.setAttribute("viewBox", `0 0 ${w} ${HEIGHT}`);
+    const width = this.svg.clientWidth || 800;
+    if (width !== this.axis.width) this.axis = new YearAxis(this.baseYears, width);
+    const plot = this.height - 14;
+    const a = this.axis;
+    const left = a.x(Math.max(this.window[0], a.first));
+    const right = a.end(Math.min(this.window[1], a.last));
+    const full = isFullWindow(this.window);
+    this.svg.setAttribute("viewBox", `0 0 ${width} ${this.height}`);
     this.svg.innerHTML = `
-      <defs><pattern id="timeline-hatch" width="5" height="5" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="5" stroke="var(--rule)" stroke-width="1.5"/></pattern></defs>
-      ${gaps}
-      <line x1="${PAD_LEFT}" x2="${w - PAD_RIGHT}" y1="${plot}" y2="${plot}" stroke="var(--rule-strong)"/>
-      ${bars.join("")}
-      <rect class="brush" x="${bx}" y="0" width="${bw}" height="${plot}" rx="2" style="fill-opacity:${this.window[0] === FIRST_YEAR && this.window[1] === LAST_YEAR ? 0.03 : 0.12}"/>
-      <rect class="handle" x="${bx - 3}" y="${plot / 2 - 11}" width="6" height="22" rx="2"/>
-      <rect class="handle" x="${bx + bw - 3}" y="${plot / 2 - 11}" width="6" height="22" rx="2"/>
-      ${labels}`;
+      ${yearBars(a, this.counts, this.window, this.height)}
+      ${full ? "" : `<rect class="brush" x="${left}" y="0" width="${Math.max(2, right - left)}" height="${plot}" rx="3"/>
+      <rect class="handle" x="${left - 3}" y="${plot / 2 - 10}" width="6" height="20" rx="3"/>
+      <rect class="handle" x="${right - 3}" y="${plot / 2 - 10}" width="6" height="20" rx="3"/>`}`;
     this.svg.setAttribute("aria-valuetext", this.windowText());
     const total = [...this.counts.entries()].filter(([y]) => y >= this.window[0] && y <= this.window[1]).reduce((s, [, n]) => s + n, 0);
-    this.label.innerHTML = `<strong>${this.windowText()}</strong>${fmt(total)} Einträge`;
+    this.range.textContent = full ? `${a.first}–${a.last}` : this.windowText();
+    this.count.textContent = `${fmt(total)} Einträge`;
+    this.reset.hidden = full || this.playing;
   }
 
   private windowText(): string {
     return this.window[0] === this.window[1] ? String(this.window[0]) : `${this.window[0]}–${this.window[1]}`;
   }
 
+  private pointerYear(clientX: number): number {
+    const rect = this.svg.getBoundingClientRect();
+    return this.axis.yearAt(clientX - rect.left);
+  }
+
   private bindPointer(): void {
     this.svg.addEventListener("pointerdown", (e) => {
       this.stop();
-      const year = this.yearAt(e.clientX);
-      const rect = this.svg.getBoundingClientRect();
-      const px = e.clientX - rect.left;
-      const startX = this.x(this.window[0]);
-      const endX = this.x(this.window[1] + 1);
+      const year = this.pointerYear(e.clientX);
+      const px = e.clientX - this.svg.getBoundingClientRect().left;
+      const full = isFullWindow(this.window);
+      const startX = this.axis.x(Math.max(this.window[0], this.axis.first));
+      const endX = this.axis.end(Math.min(this.window[1], this.axis.last));
       let kind: Drag["kind"] = "new";
-      if (Math.abs(px - startX) < 8) kind = "start";
-      else if (Math.abs(px - endX) < 8) kind = "end";
-      else if (px > startX && px < endX && this.window[0] !== this.window[1]) kind = "move";
+      if (!full && Math.abs(px - startX) < 8) kind = "start";
+      else if (!full && Math.abs(px - endX) < 8) kind = "end";
+      else if (!full && px > startX && px < endX && this.window[0] !== this.window[1]) kind = "move";
       this.drag = { kind, anchor: year, from: [...this.window] as [number, number] };
       if (kind === "new") this.emit([year, year], false);
       this.svg.setPointerCapture(e.pointerId);
     });
     this.svg.addEventListener("pointermove", (e) => {
       if (!this.drag) return;
-      const year = this.yearAt(e.clientX);
+      const year = this.pointerYear(e.clientX);
       const [a, b] = this.drag.from;
       let next: [number, number] = [a, b];
       if (this.drag.kind === "start") next = [Math.min(year, b), b];
@@ -185,7 +306,7 @@ export class Timeline {
     const end = () => (this.drag = null);
     this.svg.addEventListener("pointerup", end);
     this.svg.addEventListener("pointercancel", end);
-    this.svg.addEventListener("dblclick", () => this.emit([FIRST_YEAR, LAST_YEAR], false));
+    this.svg.addEventListener("dblclick", () => this.emit(FULL_WINDOW, false));
   }
 
   private keyboard(e: KeyboardEvent): void {
@@ -195,6 +316,6 @@ export class Timeline {
       e.preventDefault();
       this.emit([a + shift, b + shift], false);
     }
-    if (e.key === "Home") this.emit([FIRST_YEAR, LAST_YEAR], false);
+    if (e.key === "Home" || e.key === "Escape") this.emit(FULL_WINDOW, false);
   }
 }

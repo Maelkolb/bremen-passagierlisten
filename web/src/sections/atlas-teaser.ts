@@ -16,7 +16,7 @@ export async function renderAtlasTeaser(root: HTMLElement): Promise<void> {
         <figcaption class="flex justify-between text-sm text-[var(--ink-3)] mt-2"><span>Herkunftsorte der Überfahrten, Jahr für Jahr</span><span id="atlas-teaser-year"></span></figcaption>
       </figure>
       <div>
-        <p class="lede m-0">Woher die Reisenden kamen, wohin sie wollten und welche Wege sich Jahr für Jahr wiederholten: als eigene Karte mit Zeitleiste, Filtern bis zum Nachnamen und Profilen für jeden Ort.</p>
+        <p class="lede m-0">Woher die Reisenden kamen, wohin sie wollten und welche Wege sich Jahr für Jahr wiederholten: als eigene Karte mit Zeitleiste, Namenssuche und Profilen für jeden Ort.</p>
         <dl class="facts mt-8 mb-0" style="grid-template-columns:repeat(3,minmax(0,1fr))">
           <div><dt>Herkunftsorte</dt><dd>${fmt(kapitel.alle.orte)}</dd></div>
           <div><dt>Reiseziele</dt><dd>${fmt(kapitel.alle.ziele)}</dd></div>
@@ -24,7 +24,7 @@ export async function renderAtlasTeaser(root: HTMLElement): Promise<void> {
         </dl>
         <h3 class="text-lg mt-8 mb-2">Rundgang</h3>
         <ol class="m-0 p-0 list-none">
-          ${CHAPTERS.slice(0, -1).map((c, i) => `<li class="border-b border-[var(--rule)] py-2"><a href="atlas.html#kapitel=${i + 1}" class="flex gap-3" style="text-decoration:none"><span class="text-[var(--ink-3)] w-5">${i + 1}</span><span class="serif text-[18px]">${c.title}</span></a></li>`).join("")}
+          ${CHAPTERS.map((c, i) => `<li class="border-b border-[var(--rule)] py-2"><a href="atlas.html#kapitel=${i + 1}" class="flex gap-3" style="text-decoration:none"><span class="text-[var(--ink-3)] w-5">${i + 1}</span><span class="serif text-[18px]">${c.title}</span></a></li>`).join("")}
         </ol>
         <div class="flex gap-3 mt-8">
           <a class="button" href="atlas.html" style="text-decoration:none">Atlas öffnen</a>
@@ -94,14 +94,17 @@ function animate(canvas: HTMLCanvasElement, label: HTMLElement, land: any, basis
   const draw = () => {
     drawLand();
     ctx.fillStyle = t.brass;
-    ctx.globalAlpha = 0.55;
+    ctx.strokeStyle = t.paper;
+    ctx.lineWidth = 0.5;
+    ctx.globalAlpha = 0.75;
     totals.forEach((n, i) => {
       if (!n) return;
       const [x, y] = project(basis.orte.lon[i], basis.orte.lat[i]);
       if (x < 0 || y < 0 || x > width || y > HEIGHT) return;
       ctx.beginPath();
-      ctx.arc(x, y, 0.8 + 9 * Math.sqrt(n / (max * 4)), 0, 2 * Math.PI);
+      ctx.arc(x, y, 0.7 + 9 * Math.sqrt(n / (max * 4)), 0, 2 * Math.PI);
       ctx.fill();
+      ctx.stroke();
     });
     ctx.globalAlpha = 1;
     ctx.fillStyle = t.ink;
