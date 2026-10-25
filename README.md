@@ -36,9 +36,11 @@ Die Anreicherung arbeitet offline gegen [GeoNames](https://download.geonames.org
 
 `run_all.py` lädt die Zenodo-Datei nach `data/raw/`, falls sie fehlt, und prüft die MD5-Summe. Danach rechnet es alle fünf Module, schreibt `analysis/output/`, `web/public/data/` und den Forschungsbericht. Laufzeit unter einer Minute.
 
-## Website lokal ansehen
+## Website
 
-Die Seite ist eine statische Website, die noch nirgends veröffentlicht ist. Die Werkbank lädt eine Datenbank als WebAssembly; das funktioniert nicht über `file://`, sondern nur über einen lokalen Webserver.
+Veröffentlicht über GitLab Pages: <https://bremen-passagierlisten-2aa903.pages.fim.uni-passau.de/> (Atlas: [`atlas.html`](https://bremen-passagierlisten-2aa903.pages.fim.uni-passau.de/atlas.html)). Jeder Push auf `main` im GitLab-Projekt [perschl/bremen-passagierlisten](https://git.fim.uni-passau.de/perschl/bremen-passagierlisten) baut die Seite neu (`.gitlab-ci.yml`).
+
+Die Werkbank lädt eine Datenbank als WebAssembly; das funktioniert nicht über `file://`, sondern nur über einen Webserver. Lokal:
 
 ```bash
 cd web
@@ -47,9 +49,7 @@ npm run build
 npm run preview        # http://localhost:4173
 ```
 
-Entwicklung mit automatischem Neuladen: `npm run dev`. Alternativ jeder statische Server im Ordner `web/dist`, z. B. `python -m http.server 8000 --directory web/dist`.
-
-Für eine spätere Veröffentlichung genügt es, den Inhalt von `web/dist` auf einen beliebigen statischen Host zu legen (GitHub Pages, Netlify, Vercel, eigener Server). Alle Pfade sind relativ.
+Entwicklung mit automatischem Neuladen: `npm run dev`. Alternativ jeder statische Server im Ordner `web/dist`, z. B. `python -m http.server 8000 --directory web/dist`. Alle Pfade sind relativ, `web/dist` läuft also auf jedem statischen Host.
 
 ## Atlas
 
