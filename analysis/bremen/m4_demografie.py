@@ -16,7 +16,7 @@ def age_bin(age: pl.Expr) -> pl.Expr:
 def pyramid(df: pl.DataFrame, by: str) -> pl.DataFrame:
     return (
         df.filter(pl.col("alter").is_not_null(), pl.col("geschlecht").is_not_null(), pl.col(by).is_not_null())
-        .group_by(by, age_bin(pl.col("alter")).alias("altersklasse"), "geschlecht")
+        .group_by(by, age_bin(pl.col("alter")).alias("altersklasse"), "geschlecht", maintain_order=True)
         .agg(pl.len().alias("n"))
         .sort(by, "altersklasse", "geschlecht")
     )
@@ -25,7 +25,7 @@ def pyramid(df: pl.DataFrame, by: str) -> pl.DataFrame:
 def yearly_profile(df: pl.DataFrame) -> pl.DataFrame:
     return (
         df.filter(pl.col("jahr").is_not_null())
-        .group_by("jahr")
+        .group_by("jahr", maintain_order=True)
         .agg(
             pl.len().alias("n"),
             (pl.col("geschlecht") == "m").sum().alias("maenner"),
@@ -43,7 +43,7 @@ def yearly_profile(df: pl.DataFrame) -> pl.DataFrame:
 def sector_profile(df: pl.DataFrame) -> pl.DataFrame:
     return (
         df.filter(pl.col("sektor").is_not_null(), pl.col("zeitraum").is_not_null())
-        .group_by("zeitraum", "sektor")
+        .group_by("zeitraum", "sektor", maintain_order=True)
         .agg(
             pl.len().alias("n"),
             pl.col("alter").median().alias("median_alter"),
@@ -60,21 +60,21 @@ def sector_profile(df: pl.DataFrame) -> pl.DataFrame:
 def marital_status(df: pl.DataFrame) -> pl.DataFrame:
     counts = (
         df.filter(pl.col("marital_status_cleaned").is_not_null(), pl.col("geschlecht").is_not_null(), pl.col("zeitraum").is_not_null(), pl.col("alter") >= 15)
-        .group_by("zeitraum", "geschlecht", "marital_status_cleaned")
+        .group_by("zeitraum", "geschlecht", "marital_status_cleaned", maintain_order=True)
         .agg(pl.len().alias("n"))
     )
     return counts.with_columns((pl.col("n") / pl.col("n").sum().over("zeitraum", "geschlecht")).alias("anteil")).sort("zeitraum", "geschlecht", "marital_status_cleaned")
 
 
 def persons_by_group_type(df: pl.DataFrame, by: str, type_column: str = "gruppe_typ") -> pl.DataFrame:
-    counts = df.filter(pl.col(by).is_not_null()).group_by(by, type_column).agg(pl.len().alias("personen"))
+    counts = df.filter(pl.col(by).is_not_null()).group_by(by, type_column, maintain_order=True).agg(pl.len().alias("personen"))
     return counts.with_columns((pl.col("personen") / pl.col("personen").sum().over(by)).alias("anteil")).sort(by, type_column)
 
 
 def groups_as_units(df: pl.DataFrame) -> pl.DataFrame:
     units = (
         df.filter(pl.col("zeitraum").is_not_null())
-        .group_by("gruppe_id")
+        .group_by("gruppe_id", maintain_order=True)
         .agg(
             pl.col("zeitraum").first(),
             pl.col("gruppe_typ").first(),
@@ -83,7 +83,7 @@ def groups_as_units(df: pl.DataFrame) -> pl.DataFrame:
         )
     )
     return (
-        units.group_by("zeitraum", "gruppe_typ")
+        units.group_by("zeitraum", "gruppe_typ", maintain_order=True)
         .agg(
             pl.len().alias("gruppen"),
             pl.col("gruppe_groesse").mean().alias("mittlere_groesse"),
@@ -101,7 +101,7 @@ def sensitivity(df: pl.DataFrame) -> pl.DataFrame:
 
 
 def group_type_by_nationality(df: pl.DataFrame) -> pl.DataFrame:
-    top = df.group_by("nationality_cleaned").len().drop_nulls().sort("len", descending=True).head(TOP_NATIONALITIES)["nationality_cleaned"]
+    top = df.group_by("nationality_cleaned", maintain_order=True).len().drop_nulls().sort("len", descending=True).head(TOP_NATIONALITIES)["nationality_cleaned"]
     subset = df.filter(pl.col("nationality_cleaned").is_in(top.implode()), pl.col("zeitraum").is_in(["1919–1929", "1930–1939"]))
     return persons_by_group_type(subset, "nationality_cleaned")
 
@@ -109,7 +109,7 @@ def group_type_by_nationality(df: pl.DataFrame) -> pl.DataFrame:
 def largest_groups(df: pl.DataFrame, n: int = 12) -> pl.DataFrame:
     return (
         df.filter(pl.col("gruppe_groesse") >= 8)
-        .group_by("gruppe_id")
+        .group_by("gruppe_id", maintain_order=True)
         .agg(
             pl.col("last_name").first().alias("nachname"),
             pl.len().alias("personen"),

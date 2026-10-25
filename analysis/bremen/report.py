@@ -72,7 +72,7 @@ def summary_section(df: pl.DataFrame, r: dict) -> str:
     families_before = lookup(d["persons_period"], "anteil", zeitraum="1907–1914", gruppe_typ="Familie/Gruppe 3+")
     families_after = lookup(d["persons_period"], "anteil", zeitraum="1930–1939", gruppe_typ="Familie/Gruppe 3+")
     ny = s["port_year"].filter(pl.col("hafen") == "New York")["n"].sum() / s["port_year"]["n"].sum()
-    kinds = df.group_by("reiseart").len()
+    kinds = df.group_by("reiseart", maintain_order=True).len()
     us_share = lookup(kinds, "len", reiseart="US-Staatsangehörige") / len(df)
     entropy = b["entropy_occ"]
     bullets = [
@@ -104,7 +104,7 @@ def section_quellen(df: pl.DataFrame, r: dict) -> str:
     q = r["quellen"]
     by_period = (
         df.filter(pl.col("zeitraum").is_not_null())
-        .group_by("zeitraum")
+        .group_by("zeitraum", maintain_order=True)
         .agg(
             pl.len().alias("n"),
             pl.col("jahr").n_unique().alias("jahrgaenge"),
@@ -119,7 +119,7 @@ def section_quellen(df: pl.DataFrame, r: dict) -> str:
     period_rows = [[period_label(p["zeitraum"]), n0(p["n"]), n0(p["jahrgaenge"]), n0(p["listen"]), n0(p["reisen"]), n0(p["ueberfahrt"]), n0(p["us"]), n0(p["kreuz"])] for p in by_period.iter_rows(named=True)]
     series = q["series"].with_columns(
         pl.when(pl.col("jahr") < 1870).then(pl.lit("1830–1869")).when(pl.col("jahr") < 1915).then(pl.lit("1907–1914")).otherwise(pl.lit("1919–1939")).alias("block")
-    ).group_by("serie", "block").agg(pl.col("n").sum()).pivot(on="block", index="serie", values="n").fill_null(0)
+    ).group_by("serie", "block", maintain_order=True).agg(pl.col("n").sum()).pivot(on="block", index="serie", values="n").fill_null(0)
     series = series.with_columns(pl.sum_horizontal([c for c in series.columns if c != "serie"]).alias("summe")).sort("summe", descending=True)
     blocks = [c for c in ["1830–1869", "1907–1914", "1919–1939"] if c in series.columns]
     series_rows = [[row["serie"], *[n0(row[b]) for b in blocks], n0(row["summe"])] for row in series.iter_rows(named=True)]
@@ -348,15 +348,15 @@ def section_schifffahrt(r: dict) -> str:
     s = r["schifffahrt"]
     ports = s["port_year"].with_columns(
         pl.when(pl.col("jahr") < 1870).then(pl.lit("1830–1869")).when(pl.col("jahr") < 1915).then(pl.lit("1907–1914")).when(pl.col("jahr") < 1930).then(pl.lit("1919–1929")).otherwise(pl.lit("1930–1939")).alias("zeitraum")
-    ).group_by("zeitraum", "hafen").agg(pl.col("n").sum())
+    ).group_by("zeitraum", "hafen", maintain_order=True).agg(pl.col("n").sum())
     ports = ports.with_columns((pl.col("n") / pl.col("n").sum().over("zeitraum")).alias("anteil"))
-    port_names = ports.group_by("hafen").agg(pl.col("n").sum()).sort("n", descending=True)["hafen"].to_list()
+    port_names = ports.group_by("hafen", maintain_order=True).agg(pl.col("n").sum()).sort("n", descending=True)["hafen"].to_list()
     port_rows = [[name, *[pct(lookup(ports, "anteil", zeitraum=p, hafen=name)) for p in ALL_PERIODS]] for name in port_names]
     agents = s["agent_year"].with_columns(
         pl.when(pl.col("jahr") < 1870).then(pl.lit("1830–1869")).when(pl.col("jahr") < 1915).then(pl.lit("1907–1914")).when(pl.col("jahr") < 1930).then(pl.lit("1919–1929")).otherwise(pl.lit("1930–1939")).alias("zeitraum")
-    ).group_by("zeitraum", "reederei").agg(pl.col("n").sum())
+    ).group_by("zeitraum", "reederei", maintain_order=True).agg(pl.col("n").sum())
     agents = agents.with_columns((pl.col("n") / pl.col("n").sum().over("zeitraum")).alias("anteil"))
-    agent_names = agents.group_by("reederei").agg(pl.col("n").sum()).sort("n", descending=True)["reederei"].to_list()
+    agent_names = agents.group_by("reederei", maintain_order=True).agg(pl.col("n").sum()).sort("n", descending=True)["reederei"].to_list()
     agent_rows = [[name, *[pct(lookup(agents, "anteil", zeitraum=p, reederei=name)) for p in ALL_PERIODS]] for name in agent_names]
     stats_rows = [[period_label(row["zeitraum"]), n0(row["reisen"]), n0(row["passagiere"]), n0(row["median"]), n0(row["mittel"]), n0(row["p90"]), n0(row["maximum"])] for row in s["stats"].iter_rows(named=True)]
     ship_rows = [[row["ship_cleaned"], n0(row["passagiere"]), n0(row["reisen"]), f"{row['erstes_jahr']}–{row['letztes_jahr']}", n0(row["groesste_reise"]), row["reederei"] or "–"] for row in s["ships"].head(15).iter_rows(named=True)]

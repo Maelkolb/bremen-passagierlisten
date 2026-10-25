@@ -24,28 +24,51 @@ def emigrants(df: pl.DataFrame) -> pl.DataFrame:
     return df.filter(pl.col("reiseart") == "Überfahrt", pl.col("jahr").is_between(1830, 1939))
 
 
-def place_year_counts(df: pl.DataFrame, name: str, lat: str, lon: str) -> tuple[dict, dict]:
-    rounded = df.with_columns(pl.col(lat).round(COORDINATE_DIGITS), pl.col(lon).round(COORDINATE_DIGITS))
+def year_counts(rows: pl.DataFrame, places: pl.DataFrame, key: list[str]) -> dict:
+    counts = rows.join(places.select(*key, "i"), on=key, nulls_equal=True).group_by("i", "jahr", maintain_order=True).agg(pl.len().alias("n")).sort("i", "jahr")
+    return {"i": counts["i"].to_list(), "jahr": counts["jahr"].to_list(), "n": counts["n"].to_list()}
+
+
+def origin_year_counts(df: pl.DataFrame) -> tuple[dict, dict]:
+    located = df.filter(pl.col("herkunft_geo_precision") == "ort").with_columns(
+        pl.col("herkunft_lat").round(COORDINATE_DIGITS).alias("lat"),
+        pl.col("herkunft_lon").round(COORDINATE_DIGITS).alias("lon"),
+    )
     places = (
-        rounded.group_by(lat, lon)
-        .agg(pl.col(name).mode().first().alias("name"), pl.len().alias("n"))
-        .sort("n", descending=True)
+        located.group_by("lat", "lon", maintain_order=True)
+        .agg(pl.col("herkunft_ort").mode().sort(nulls_last=True).first().alias("name"), pl.col("herkunft_land_heute").mode().sort(nulls_last=True).first().alias("land"), pl.len().alias("n"))
+        .sort(["n", "lat", "lon"], descending=[True, False, False])
         .with_row_index("i")
     )
-    counts = rounded.join(places.select(lat, lon, "i"), on=[lat, lon]).group_by("i", "jahr").agg(pl.len().alias("n")).sort("i", "jahr")
-    return (
-        {"name": places["name"].to_list(), "lat": places[lat].to_list(), "lon": places[lon].to_list()},
-        {"i": counts["i"].to_list(), "jahr": counts["jahr"].to_list(), "n": counts["n"].to_list()},
+    return places.select("name", "land", "lat", "lon").to_dict(as_series=False), year_counts(located, places, ["lat", "lon"])
+
+
+def destination_year_counts(df: pl.DataFrame) -> tuple[dict, dict]:
+    located = df.filter(pl.col("ziel_geo_precision") == "ort", pl.col("ziel_ort_gruppe").is_not_null()).with_columns(
+        pl.col("ziel_lat").round(0).alias("cell_lat"),
+        pl.col("ziel_lon").round(0).alias("cell_lon"),
     )
+    key = ["ziel_ort_gruppe", "ziel_land", "cell_lat", "cell_lon"]
+    places = (
+        located.group_by(key, maintain_order=True)
+        .agg(pl.col("ziel_lat").mean().round(COORDINATE_DIGITS).alias("lat"), pl.col("ziel_lon").mean().round(COORDINATE_DIGITS).alias("lon"), pl.len().alias("n"))
+        .sort(["n", *key], descending=[True, False, False, False, False], nulls_last=True)
+        .with_row_index("i")
+        .rename({"ziel_ort_gruppe": "name", "ziel_land": "land"})
+    )
+    rows = located.rename({"ziel_ort_gruppe": "name", "ziel_land": "land"})
+    return places.select("name", "land", "lat", "lon").to_dict(as_series=False), year_counts(rows, places, ["name", "land", "cell_lat", "cell_lon"])
 
 
 def baseline(df: pl.DataFrame) -> dict:
     base = emigrants(df)
-    origins, origin_counts = place_year_counts(base.filter(pl.col("herkunft_geo_precision") == "ort"), "herkunft_ort", "herkunft_lat", "herkunft_lon")
-    years = base.group_by("jahr").agg(pl.len().alias("n")).sort("jahr")
+    origins, origin_counts = origin_year_counts(base)
+    destinations, destination_counts = destination_year_counts(base)
+    years = base.group_by("jahr", maintain_order=True).agg(pl.len().alias("n")).sort("jahr")
     return {
         "orte": origins,
         "zaehlung": origin_counts,
+        "ziele": {"orte": destinations, "zaehlung": destination_counts},
         "jahre": {"jahr": years["jahr"].to_list(), "n": years["n"].to_list()},
     }
 
@@ -53,18 +76,27 @@ def baseline(df: pl.DataFrame) -> dict:
 def ports(df: pl.DataFrame) -> dict:
     located = df.filter(pl.col("ankunft_lat").is_not_null(), pl.col("port_of_arrival_cleaned").is_not_null())
     table = (
-        located.group_by("port_of_arrival_cleaned")
+        located.group_by("port_of_arrival_cleaned", maintain_order=True)
         .agg(
             pl.col("ankunft_lat").first().alias("lat"),
             pl.col("ankunft_lon").first().alias("lon"),
             pl.col("hafen_region").drop_nulls().first().alias("region") if "hafen_region" in df.columns else pl.lit(None).alias("region"),
             pl.len().alias("n"),
         )
-        .sort("n", descending=True)
+        .sort(["n", "port_of_arrival_cleaned"], descending=[True, False])
+        .with_row_index("i")
+    )
+    counts = (
+        emigrants(located)
+        .join(table.select("port_of_arrival_cleaned", "i"), on="port_of_arrival_cleaned")
+        .group_by("i", "jahr", maintain_order=True)
+        .agg(pl.len().alias("n"))
+        .sort("i", "jahr")
     )
     return {
         "bremen": BREMEN,
         "haefen": {"name": table["port_of_arrival_cleaned"].to_list(), "lat": table["lat"].to_list(), "lon": table["lon"].to_list(), "region": table["region"].to_list(), "n": table["n"].to_list()},
+        "zaehlung": {"i": counts["i"].to_list(), "jahr": counts["jahr"].to_list(), "n": counts["n"].to_list()},
     }
 
 
@@ -106,7 +138,7 @@ def share_in(df: pl.DataFrame, column: str, values: list[str], period: str) -> f
 
 def top_regions(df: pl.DataFrame, period: str, n: int = 3) -> list[dict]:
     part = df.filter(pl.col("zeitraum") == period, pl.col("state_or_province_cleaned").is_not_null())
-    counts = part.group_by("state_or_province_cleaned").len().sort("len", descending=True).head(n)
+    counts = part.group_by("state_or_province_cleaned", maintain_order=True).len().sort("len", descending=True).head(n)
     total = len(part)
     return [{"name": r["state_or_province_cleaned"], "anteil": r["len"] / total} for r in counts.iter_rows(named=True)]
 
@@ -158,7 +190,7 @@ def chapter_numbers(df: pl.DataFrame, results: dict) -> dict:
             "1939": len(shanghai.filter(pl.col("jahr") == 1939)),
             "mit_religion": len(with_religion),
             "mosaisch": len(with_religion.filter(pl.col("religion_cleaned") == "mosaisch")),
-            "herkunft": [{"name": r["herkunft_ort"], "n": r["len"]} for r in late.filter(pl.col("herkunft_ort").is_not_null(), pl.col("herkunft_ort") != "Shanghai").group_by("herkunft_ort").len().sort("len", descending=True).head(3).iter_rows(named=True)],
+            "herkunft": [{"name": r["herkunft_ort"], "n": r["len"]} for r in late.filter(pl.col("herkunft_ort").is_not_null(), pl.col("herkunft_ort") != "Shanghai").group_by("herkunft_ort", maintain_order=True).len().sort("len", descending=True).head(3).iter_rows(named=True)],
         },
         "schwerpunkt": {
             "von": {"jahr": first["jahr"], "lat": first["lat"], "lon": first["lon"]},

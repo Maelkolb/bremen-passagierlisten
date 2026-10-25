@@ -75,7 +75,7 @@ def kennzahlen(df: pl.DataFrame) -> dict:
         "herkunftsorte": places,
         "staatsangehoerigkeiten": df["nationality_cleaned"].n_unique(),
         "ankunftshaefen": df["port_of_arrival_cleaned"].n_unique(),
-        "reiseart": dict(df.group_by("reiseart").len().iter_rows()),
+        "reiseart": dict(df.group_by("reiseart", maintain_order=True).len().iter_rows()),
     }
 
 
@@ -85,7 +85,7 @@ def sankey(df: pl.DataFrame) -> dict:
         pl.col("sektor").replace_strict(KLDB_SECTORS_SHORT, return_dtype=pl.String).alias("sektor_name"),
         pl.col("niveau").replace_strict(TRAINING_LEVELS, default=None, return_dtype=pl.String).fill_null("ohne Angabe").alias("niveau_name"),
         pl.when(pl.col("port_of_arrival_cleaned").is_in(SANKEY_PORTS)).then(pl.col("port_of_arrival_cleaned")).otherwise(pl.lit("Sonstige Häfen")).alias("hafen"),
-    ).group_by("zeitraum", "sektor_name", "niveau_name", "hafen").agg(pl.len().alias("n")).sort("n", descending=True)
+    ).group_by("zeitraum", "sektor_name", "niveau_name", "hafen", maintain_order=True).agg(pl.len().alias("n")).sort("n", descending=True)
     return {
         "stufen": ["Zeitraum", "Berufsbereich", "Anforderungsniveau", "Zielhafen"],
         "fluesse": {"zeitraum": flows["zeitraum"].to_list(), "sektor": flows["sektor_name"].to_list(), "niveau": flows["niveau_name"].to_list(), "hafen": flows["hafen"].to_list(), "n": flows["n"].to_list()},

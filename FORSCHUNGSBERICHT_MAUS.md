@@ -144,7 +144,7 @@ Shannon-Entropie *H* der Verteilung über Berufsbezeichnungen bzw. HISCO-Codes. 
 | HISCO-Codes | Zwanziger Jahre 1919–1929 | 181.185 | 248 | 3,57 | 3,55 (3,52–3,58) | 35 |
 | HISCO-Codes | Dreißiger Jahre 1930–1939 | 105.218 | 223 | 3,35 | 3,34 (3,31–3,37) | 28 |
 
-Die Segelschiffzeit ist zu dünn belegt für einen Vergleich; die häufigsten Angaben dort sind Matrose (40), Landmann (32), Leichtmatrose (15), Ackersmann (15), Ökonom (12), Zimmermann (12), Schuhmacher (11), Tischler (11), Kaufmann (8), Schneider (8).
+Die Segelschiffzeit ist zu dünn belegt für einen Vergleich; die häufigsten Angaben dort sind Matrose (40), Landmann (32), Leichtmatrose (15), Ackersmann (15), Zimmermann (12), Ökonom (12), Schuhmacher (11), Tischler (11), Kaufmann (8), Schneider (8).
 
 ### Steigende und fallende Berufe
 
@@ -475,12 +475,12 @@ Die größten rekonstruierten Gruppen umfassen meist mehrere Familien gleichen N
 |---|---:|---|---|---|---|
 | Martin | 24 | Brandenburg | 31.10.1907 | Atmagea | Fessenden |
 | Schierholt | 18 | Sierra Cordoba | 13.03.1926 | Hausstette | Rio de Janeiro |
-| Döll | 17 | Darmstadt | 17.10.1908 | Deutsch Chaginsk | Buenos Aires |
-| Lind | 17 | Professor Woermann | 15.03.1907 | Dönhof | New Windsor |
 | Pein, von | 17 | Crefeld | 17.02.1927 | Pittsworth | Brisbane |
-| Posavad | 17 | Berlin | 19.05.1938 | Imsovci | Vinemount, ON |
 | Pein von | 17 | Sierra Ventana | 23.10.1926 | Ritzeberg | Buenos Aires |
-| Heinbichner | 16 | Aachen | 09.11.1908 | Karlsruh | Rio de Janeiro |
+| Posavad | 17 | Berlin | 19.05.1938 | Imsovci | Vinemount, ON |
+| Lind | 17 | Professor Woermann | 15.03.1907 | Dönhof | New Windsor |
+| Döll | 17 | Darmstadt | 17.10.1908 | Deutsch Chaginsk | Buenos Aires |
+| Vendtland | 16 | Köln | 06.01.1923 | Telspadren | Rio de Janeiro |
 
 ## 5 Schifffahrt und Routen
 
@@ -526,7 +526,7 @@ Eine Reise ist eine Kombination aus Schiff und Abfahrtsdatum.
 | Zwanziger Jahre 1919–1929 | 767 | 343.268 | 394 | 448 | 909 | 1.616 |
 | Dreißiger Jahre 1930–1939 | 2.240 | 292.099 | 10 | 130 | 469 | 1.749 |
 
-Der niedrige Median der Dreißigerjahre kommt von 1.371 Reisen mit weniger als 20 Einträgen (61 % aller Reisen, aber nur 2,7 % der Einträge). Es sind vor allem Fahrten kleinerer Schiffe in Nord- und Ostsee, nach West- und Südeuropa sowie Frachtschiffe nach Übersee; häufigste Ziele: Kingston upon Hull (97), San Francisco (76), Baltimore (58), Finnland (52), Valparaiso (46), Antwerpen (42). 56 % der Einträge dieser Jahre entfallen auf Reisen mit mindestens 500 Passagieren.
+Der niedrige Median der Dreißigerjahre kommt von 1.371 Reisen mit weniger als 20 Einträgen (61 % aller Reisen, aber nur 2,7 % der Einträge). Es sind vor allem Fahrten kleinerer Schiffe in Nord- und Ostsee, nach West- und Südeuropa sowie Frachtschiffe nach Übersee; häufigste Ziele: Kingston upon Hull (97), San Francisco (67), Baltimore (58), Finnland (52), Antwerpen (45), Los Angeles (42). 56 % der Einträge dieser Jahre entfallen auf Reisen mit mindestens 500 Passagieren.
 
 | Schiff | Einträge | Reisen | Jahre | größte Reise | Reederei |
 |---|---:|---:|---|---:|---|

@@ -10,26 +10,26 @@ VOYAGE_SIZE_BINS = [1, 10, 50, 100, 250, 500, 1000, 1500, 2000, 3000]
 
 
 def top_or_other(df: pl.DataFrame, column: str, n: int) -> pl.Expr:
-    top = df.group_by(column).len().drop_nulls().sort("len", descending=True).head(n)[column]
+    top = df.group_by(column, maintain_order=True).len().drop_nulls().sort("len", descending=True).head(n)[column]
     return pl.when(pl.col(column).is_in(top.implode())).then(pl.col(column)).otherwise(pl.lit("Sonstige"))
 
 
 def yearly_shares(df: pl.DataFrame, column: str, n: int, name: str) -> pl.DataFrame:
     grouped = df.filter(pl.col("jahr").is_not_null()).with_columns(top_or_other(df, column, n).alias(name))
-    counts = grouped.group_by("jahr", name).agg(pl.len().alias("n"))
+    counts = grouped.group_by("jahr", name, maintain_order=True).agg(pl.len().alias("n"))
     return counts.with_columns((pl.col("n") / pl.col("n").sum().over("jahr")).alias("anteil")).sort("jahr", name)
 
 
 def voyages(df: pl.DataFrame) -> pl.DataFrame:
     return (
         df.filter(pl.col("abfahrt").is_not_null(), pl.col("ship_cleaned").is_not_null())
-        .group_by("ship_cleaned", "abfahrt")
+        .group_by("ship_cleaned", "abfahrt", maintain_order=True)
         .agg(
             pl.len().alias("passagiere"),
             pl.col("zeitraum").first(),
             pl.col("jahr").first(),
-            pl.col("agent_cleaned").mode().first().alias("reederei"),
-            pl.col("port_of_arrival_cleaned").mode().first().alias("hafen"),
+            pl.col("agent_cleaned").mode().sort(nulls_last=True).first().alias("reederei"),
+            pl.col("port_of_arrival_cleaned").mode().sort(nulls_last=True).first().alias("hafen"),
             pl.col("ist_kreuzfahrt").any().alias("kreuzfahrt"),
         )
         .sort("abfahrt")
@@ -50,7 +50,7 @@ def voyage_size_histogram(trips: pl.DataFrame) -> pl.DataFrame:
 def voyage_stats(trips: pl.DataFrame) -> pl.DataFrame:
     return (
         trips.filter(pl.col("zeitraum").is_not_null())
-        .group_by("zeitraum")
+        .group_by("zeitraum", maintain_order=True)
         .agg(
             pl.len().alias("reisen"),
             pl.col("passagiere").sum().alias("passagiere"),
@@ -66,7 +66,7 @@ def voyage_stats(trips: pl.DataFrame) -> pl.DataFrame:
 def voyage_size_profile(trips: pl.DataFrame, small: int = 20, large: int = 500) -> pl.DataFrame:
     return (
         trips.filter(pl.col("zeitraum").is_not_null())
-        .group_by("zeitraum")
+        .group_by("zeitraum", maintain_order=True)
         .agg(
             (pl.col("passagiere") < small).sum().alias("kleine_reisen"),
             (pl.col("passagiere") < small).mean().alias("anteil_kleine_reisen"),
@@ -80,19 +80,19 @@ def voyage_size_profile(trips: pl.DataFrame, small: int = 20, large: int = 500) 
 def small_voyage_ports(trips: pl.DataFrame, small: int = 20) -> pl.DataFrame:
     return (
         trips.filter(pl.col("passagiere") < small, pl.col("zeitraum") == "1930–1939", pl.col("hafen").is_not_null())
-        .group_by("hafen").agg(pl.len().alias("reisen"))
+        .group_by("hafen", maintain_order=True).agg(pl.len().alias("reisen"))
         .sort("reisen", descending=True)
         .head(8)
     )
 
 
 def ships(df: pl.DataFrame, trips: pl.DataFrame) -> pl.DataFrame:
-    per_ship = trips.group_by("ship_cleaned").agg(
+    per_ship = trips.group_by("ship_cleaned", maintain_order=True).agg(
         pl.len().alias("reisen"),
         pl.col("passagiere").sum().alias("passagiere"),
         pl.col("jahr").min().alias("erstes_jahr"),
         pl.col("jahr").max().alias("letztes_jahr"),
-        pl.col("reederei").mode().first().alias("reederei"),
+        pl.col("reederei").mode().sort(nulls_last=True).first().alias("reederei"),
         pl.col("passagiere").max().alias("groesste_reise"),
     )
     return per_ship.sort("passagiere", descending=True).head(TOP_SHIPS)
@@ -101,19 +101,19 @@ def ships(df: pl.DataFrame, trips: pl.DataFrame) -> pl.DataFrame:
 def ship_years(df: pl.DataFrame, top_ships: pl.DataFrame) -> pl.DataFrame:
     return (
         df.filter(pl.col("ship_cleaned").is_in(top_ships["ship_cleaned"].implode()), pl.col("jahr").is_not_null())
-        .group_by("ship_cleaned", "jahr").agg(pl.len().alias("n"))
+        .group_by("ship_cleaned", "jahr", maintain_order=True).agg(pl.len().alias("n"))
         .sort("ship_cleaned", "jahr")
     )
 
 
 def month_heatmap(df: pl.DataFrame, trips: pl.DataFrame) -> pl.DataFrame:
-    persons = df.filter(pl.col("jahr").is_not_null()).group_by("jahr", "monat").agg(pl.len().alias("passagiere"))
-    departures = trips.group_by(pl.col("abfahrt").dt.year().alias("jahr"), pl.col("abfahrt").dt.month().alias("monat")).agg(pl.len().alias("abfahrten"))
+    persons = df.filter(pl.col("jahr").is_not_null()).group_by("jahr", "monat", maintain_order=True).agg(pl.len().alias("passagiere"))
+    departures = trips.group_by(pl.col("abfahrt").dt.year().alias("jahr"), pl.col("abfahrt").dt.month().alias("monat"), maintain_order=True).agg(pl.len().alias("abfahrten"))
     return persons.join(departures, on=["jahr", "monat"], how="left").sort("jahr", "monat")
 
 
 def month_by_period(df: pl.DataFrame) -> pl.DataFrame:
-    counts = df.filter(pl.col("zeitraum").is_not_null()).group_by("zeitraum", "reiseart", "monat").agg(pl.len().alias("n"))
+    counts = df.filter(pl.col("zeitraum").is_not_null()).group_by("zeitraum", "reiseart", "monat", maintain_order=True).agg(pl.len().alias("n"))
     return counts.with_columns((pl.col("n") / pl.col("n").sum().over("zeitraum", "reiseart")).alias("anteil")).sort("zeitraum", "reiseart", "monat")
 
 
@@ -125,7 +125,7 @@ def class_shares(df: pl.DataFrame) -> pl.DataFrame:
 def port_coordinates(df: pl.DataFrame) -> pl.DataFrame:
     return (
         df.filter(pl.col("ankunft_lat").is_not_null())
-        .group_by("port_of_arrival_cleaned")
+        .group_by("port_of_arrival_cleaned", maintain_order=True)
         .agg(pl.col("ankunft_lat").first().alias("lat"), pl.col("ankunft_lon").first().alias("lon"), pl.len().alias("n"))
         .sort("n", descending=True)
     )

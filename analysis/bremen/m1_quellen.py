@@ -39,7 +39,7 @@ STL_RANGE = (1930, 1938)
 
 def yearly_counts(df: pl.DataFrame) -> pl.DataFrame:
     dated = df.filter(pl.col("jahr").is_not_null())
-    totals = dated.group_by("jahr").agg(
+    totals = dated.group_by("jahr", maintain_order=True).agg(
         pl.len().alias("datensaetze"),
         pl.col("archive_id").n_unique().alias("listen"),
         pl.struct("ship_cleaned", "abfahrt").n_unique().alias("reisen"),
@@ -55,7 +55,7 @@ def yearly_counts(df: pl.DataFrame) -> pl.DataFrame:
 def monthly_counts(df: pl.DataFrame) -> pl.DataFrame:
     return (
         df.filter(pl.col("jahr").is_not_null())
-        .group_by("jahr", "monat").agg(pl.len().alias("n"))
+        .group_by("jahr", "monat", maintain_order=True).agg(pl.len().alias("n"))
         .sort("jahr", "monat")
     )
 
@@ -74,7 +74,7 @@ def gaps(yearly: pl.DataFrame) -> list[list[int]]:
 def missingness(df: pl.DataFrame, by: str) -> pl.DataFrame:
     return (
         df.filter(pl.col(by).is_not_null())
-        .group_by(by)
+        .group_by(by, maintain_order=True)
         .agg([pl.len().alias("n")] + [pl.col(c).is_not_null().mean().alias(label) for c, label in MISSINGNESS_COLUMNS.items()])
         .sort(by)
     )
@@ -87,14 +87,14 @@ def archive_series(df: pl.DataFrame) -> pl.DataFrame:
         series = pl.col("archive_id").str.extract(r"^([A-Za-z]+)")
     return (
         df.filter(pl.col("jahr").is_not_null())
-        .group_by(series.fill_null("ohne").alias("serie"), "jahr")
+        .group_by(series.fill_null("ohne").alias("serie"), "jahr", maintain_order=True)
         .agg(pl.len().alias("n"))
         .sort("serie", "jahr")
     )
 
 
 def seasonal_index(monthly: pl.DataFrame) -> dict:
-    coverage = monthly.group_by("jahr").agg(pl.len().alias("monate"))
+    coverage = monthly.group_by("jahr", maintain_order=True).agg(pl.len().alias("monate"))
     years = coverage.filter(pl.col("monate") >= MIN_MONTHS_FOR_SEASONALITY)["jahr"].to_list()
     grid = pl.DataFrame({"jahr": years}).join(pl.DataFrame({"monat": list(range(1, 13))}, schema={"monat": pl.Int8}), how="cross")
     grid = grid.with_columns(pl.col("jahr").cast(pl.Int32), pl.col("monat").cast(pl.Int8))
@@ -144,7 +144,7 @@ def date_conflicts(df: pl.DataFrame) -> pl.DataFrame | None:
     series = pl.col("archive_series") if "archive_series" in df.columns else pl.lit("?")
     return (
         df.filter(pl.col("date_archive_conflict").fill_null(False))
-        .group_by(series.alias("serie"))
+        .group_by(series.alias("serie"), maintain_order=True)
         .agg(pl.len().alias("n"), pl.col("archive_id").n_unique().alias("listen"))
         .sort("n", descending=True)
     )

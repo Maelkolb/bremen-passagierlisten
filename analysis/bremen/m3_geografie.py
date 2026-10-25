@@ -31,7 +31,7 @@ def emigrants(df: pl.DataFrame) -> pl.DataFrame:
 
 
 def precision_coverage(df: pl.DataFrame, column: str) -> pl.DataFrame:
-    counts = df.group_by("zeitraum", pl.col(column).fill_null("nicht zugeordnet").alias("genauigkeit")).agg(pl.len().alias("n"))
+    counts = df.group_by("zeitraum", pl.col(column).fill_null("nicht zugeordnet").alias("genauigkeit"), maintain_order=True).agg(pl.len().alias("n"))
     return counts.with_columns((pl.col("n") / pl.col("n").sum().over("zeitraum")).alias("anteil")).sort("zeitraum", "genauigkeit")
 
 
@@ -66,7 +66,7 @@ def haversine_km(lat: np.ndarray, lon: np.ndarray, lat0: float, lon0: float) -> 
 
 def centroids(points: pl.DataFrame, by: str) -> pl.DataFrame:
     rows = []
-    for key, part in points.group_by(by):
+    for key, part in points.group_by(by, maintain_order=True):
         if len(part) < MIN_YEARLY_POINTS:
             continue
         lat, lon, spread = spherical_centroid(part["herkunft_lat"].to_numpy(), part["herkunft_lon"].to_numpy())
@@ -75,9 +75,9 @@ def centroids(points: pl.DataFrame, by: str) -> pl.DataFrame:
 
 
 def shares_of(df: pl.DataFrame, column: str, top: int) -> pl.DataFrame:
-    counts = df.filter(pl.col(column).is_not_null()).group_by("zeitraum", column).agg(pl.len().alias("n"))
+    counts = df.filter(pl.col(column).is_not_null()).group_by("zeitraum", column, maintain_order=True).agg(pl.len().alias("n"))
     counts = counts.with_columns((pl.col("n") / pl.col("n").sum().over("zeitraum")).alias("anteil"))
-    return counts.sort("n", descending=True).group_by("zeitraum").head(top).sort("zeitraum", "n", descending=[False, True])
+    return counts.sort("n", descending=True).group_by("zeitraum", maintain_order=True).head(top).sort("zeitraum", "n", descending=[False, True])
 
 
 def group_units(df: pl.DataFrame) -> pl.DataFrame:
@@ -92,7 +92,7 @@ def group_units(df: pl.DataFrame) -> pl.DataFrame:
         ~pl.col("ziel_geo_ambiguous").fill_null(False),
         pl.col("herkunft_ort") != pl.col("ziel_ort_gruppe"),
     )
-    return located.group_by("gruppe_id").agg(
+    return located.group_by("gruppe_id", maintain_order=True).agg(
         pl.col("herkunft_ort").first(),
         pl.col("herkunft_land_heute").first(),
         pl.col("herkunft_lat").first(),
@@ -135,20 +135,20 @@ def log_odds_with_prior(pairs: pl.DataFrame, origin: str, target: str) -> pl.Dat
 
 
 def corridors(units: pl.DataFrame) -> pl.DataFrame:
-    pairs = units.group_by("herkunft_ort", "herkunft_land_heute", "ziel_ort_gruppe", "ziel_land").agg(
+    pairs = units.group_by("herkunft_ort", "herkunft_land_heute", "ziel_ort_gruppe", "ziel_land", maintain_order=True).agg(
         pl.len().alias("y"),
         pl.col("personen").sum(),
         pl.col("jahr").n_unique().alias("jahre"),
         pl.col("jahr").min().alias("erstes_jahr"),
         pl.col("jahr").max().alias("letztes_jahr"),
-        pl.col("herkunft_lat").first(),
-        pl.col("herkunft_lon").first(),
-        pl.col("ziel_lat").first(),
-        pl.col("ziel_lon").first(),
-        pl.col("beruf").drop_nulls().mode().first().alias("haeufigster_beruf"),
+        pl.col("herkunft_lat").mean().round(5),
+        pl.col("herkunft_lon").mean().round(5),
+        pl.col("ziel_lat").mean().round(5),
+        pl.col("ziel_lon").mean().round(5),
+        pl.col("beruf").drop_nulls().mode().sort(nulls_last=True).first().alias("haeufigster_beruf"),
         (pl.col("frauen").sum() / pl.col("personen").sum()).alias("frauenanteil"),
         (pl.col("ordensleute").sum() / pl.col("personen").sum()).alias("anteil_ordensleute"),
-        pl.col("sektoren").list.explode(keep_nulls=False, empty_as_null=False).mode().first().alias("haeufigster_sektor"),
+        pl.col("sektoren").list.explode(keep_nulls=False, empty_as_null=False).mode().sort(nulls_last=True).first().alias("haeufigster_sektor"),
         (pl.col("gruppe_groesse") >= 3).mean().alias("anteil_familiengruppen"),
         pl.col("jahr").alias("jahre_der_gruppen"),
     )
@@ -156,13 +156,13 @@ def corridors(units: pl.DataFrame) -> pl.DataFrame:
     pairs = pairs.with_columns(pl.concat_str(["herkunft_ort", "herkunft_land_heute"], separator="|").alias("origin_key"))
     scored = log_odds_with_prior(pairs, "origin_key", "ziel_ort_gruppe")
     chained = (pl.col("y") >= MIN_CORRIDOR_GROUPS) & (pl.col("jahre") >= MIN_CORRIDOR_YEARS) & (pl.col("z") >= MIN_Z)
-    return scored.with_columns(chained.alias("kettenmigration")).drop("origin_key").sort("z", descending=True)
+    return scored.with_columns(chained.alias("kettenmigration")).drop("origin_key").sort(["z", "herkunft_ort", "ziel_ort_gruppe"], descending=[True, False, False])
 
 
 def chain_share_by_period(units: pl.DataFrame, scored: pl.DataFrame) -> pl.DataFrame:
     chained = scored.filter("kettenmigration").select("herkunft_ort", "herkunft_land_heute", "ziel_ort_gruppe", pl.lit(True).alias("im_korridor"))
     marked = units.join(chained, on=["herkunft_ort", "herkunft_land_heute", "ziel_ort_gruppe"], how="left").with_columns(pl.col("im_korridor").fill_null(False))
-    return marked.group_by("zeitraum").agg(pl.len().alias("gruppen"), pl.col("im_korridor").mean().alias("anteil_in_korridoren")).sort("zeitraum")
+    return marked.group_by("zeitraum", maintain_order=True).agg(pl.len().alias("gruppen"), pl.col("im_korridor").mean().alias("anteil_in_korridoren")).sort("zeitraum")
 
 
 def region_countries() -> pl.DataFrame:
@@ -173,12 +173,12 @@ def region_countries() -> pl.DataFrame:
 
 
 def region_port_profile(df: pl.DataFrame) -> pl.DataFrame:
-    units = df.filter(pl.col("state_or_province_cleaned").is_not_null(), pl.col("port_of_arrival_cleaned").is_not_null()).group_by("gruppe_id").agg(
+    units = df.filter(pl.col("state_or_province_cleaned").is_not_null(), pl.col("port_of_arrival_cleaned").is_not_null()).group_by("gruppe_id", maintain_order=True).agg(
         pl.col("state_or_province_cleaned").first().alias("region"),
         pl.col("port_of_arrival_cleaned").first().alias("hafen"),
         pl.col("hafen_land").first(),
     )
-    pairs = units.group_by("region", "hafen").agg(pl.len().alias("y"), pl.col("hafen_land").first())
+    pairs = units.group_by("region", "hafen", maintain_order=True).agg(pl.len().alias("y"), pl.col("hafen_land").first())
     scored = log_odds_with_prior(pairs, "region", "hafen")
     scored = scored.join(region_countries().rename({"state_or_province_cleaned": "region"}), on="region", how="left")
     home_port = (pl.col("region_land") == pl.col("hafen_land")).fill_null(False)

@@ -27,12 +27,12 @@ def emigrants(df: pl.DataFrame) -> pl.DataFrame:
 
 
 def shares(df: pl.DataFrame, by: str, category: str) -> pl.DataFrame:
-    counts = df.filter(pl.col(category).is_not_null()).group_by(by, category).agg(pl.len().alias("n"))
+    counts = df.filter(pl.col(category).is_not_null()).group_by(by, category, maintain_order=True).agg(pl.len().alias("n"))
     return counts.with_columns((pl.col("n") / pl.col("n").sum().over(by)).alias("anteil")).sort(by, category)
 
 
 def coverage(df: pl.DataFrame, by: str) -> pl.DataFrame:
-    return df.group_by(by).agg(
+    return df.group_by(by, maintain_order=True).agg(
         pl.len().alias("personen"),
         pl.col("occupation").is_not_null().mean().alias("mit_beruf"),
         pl.col("sektor").is_not_null().mean().alias("mit_sektor"),
@@ -76,18 +76,18 @@ def entropy_table(df: pl.DataFrame, column: str) -> pl.DataFrame:
 def hisco_labels(df: pl.DataFrame) -> pl.DataFrame:
     return (
         df.filter(pl.col("hisco") >= 0, pl.col("occupation_cleaned").is_not_null())
-        .group_by("hisco", "occupation_cleaned").agg(pl.len().alias("n"))
-        .sort("n", descending=True)
-        .group_by("hisco").agg(pl.col("occupation_cleaned").first().alias("bezeichnung"), pl.col("n").sum().alias("gesamt"))
+        .group_by("hisco", "occupation_cleaned", maintain_order=True).agg(pl.len().alias("n"))
+        .sort(["n", "occupation_cleaned"], descending=[True, False])
+        .group_by("hisco", maintain_order=True).agg(pl.col("occupation_cleaned").first().alias("bezeichnung"), pl.col("n").sum().alias("gesamt"))
     )
 
 
 def code_change(df: pl.DataFrame, before: str, after: str, labels: pl.DataFrame) -> pl.DataFrame:
     coded = df.filter(pl.col("hisco") >= 0, pl.col("zeitraum").is_in([before, after]))
-    totals = coded.group_by("zeitraum").len()
+    totals = coded.group_by("zeitraum", maintain_order=True).len()
     n_before = int(totals.filter(pl.col("zeitraum") == before)["len"].item())
     n_after = int(totals.filter(pl.col("zeitraum") == after)["len"].item())
-    counts = coded.group_by("hisco").agg(
+    counts = coded.group_by("hisco", maintain_order=True).agg(
         (pl.col("zeitraum") == before).sum().alias("n_vorher"),
         (pl.col("zeitraum") == after).sum().alias("n_nachher"),
     ).filter((pl.col("n_vorher") + pl.col("n_nachher")) >= MIN_CODE_COUNT)
@@ -120,7 +120,7 @@ def rising_and_declining(change: pl.DataFrame, top: int = 12) -> tuple[pl.DataFr
 
 
 def crosstab(df: pl.DataFrame, row: str, col: str) -> dict:
-    table = df.filter(pl.col(row).is_not_null(), pl.col(col).is_not_null()).group_by(row, col).agg(pl.len().alias("n"))
+    table = df.filter(pl.col(row).is_not_null(), pl.col(col).is_not_null()).group_by(row, col, maintain_order=True).agg(pl.len().alias("n"))
     wide = table.pivot(on=col, index=row, values="n").fill_null(0).sort(row)
     col_names = [c for c in wide.columns if c != row]
     observed = wide.select(col_names).to_numpy().astype(float)
@@ -145,7 +145,7 @@ def crosstab(df: pl.DataFrame, row: str, col: str) -> dict:
 
 def sailing_era_occupations(df: pl.DataFrame) -> pl.DataFrame:
     early = df.filter(pl.col("zeitraum") == "1830–1869", pl.col("occupation_cleaned").is_not_null())
-    return early.group_by("occupation_cleaned").agg(pl.len().alias("n")).sort("n", descending=True).head(15)
+    return early.group_by("occupation_cleaned", maintain_order=True).agg(pl.len().alias("n")).sort("n", descending=True).head(15)
 
 
 def run(df: pl.DataFrame) -> dict:
@@ -161,9 +161,9 @@ def run(df: pl.DataFrame) -> dict:
     sector_year = shares(base, "jahr", "sektor")
     level_period = shares(base, "zeitraum", "niveau")
     level_year = shares(base, "jahr", "niveau")
-    sector_level = base.filter(pl.col("sektor").is_not_null(), pl.col("niveau").is_not_null()).group_by("zeitraum", "sektor", "niveau").agg(pl.len().alias("n")).sort("zeitraum", "sektor", "niveau")
-    women_by_sector = base.filter(pl.col("sektor").is_not_null(), pl.col("geschlecht").is_not_null()).group_by("zeitraum", "sektor").agg((pl.col("geschlecht") == "w").mean().alias("frauenanteil"), pl.len().alias("n")).sort("zeitraum", "sektor")
-    top_occupations = base.filter(pl.col("occupation_cleaned").is_not_null()).group_by("zeitraum", "occupation_cleaned").agg(pl.len().alias("n")).sort("n", descending=True).group_by("zeitraum").head(15).sort("zeitraum", "n", descending=[False, True])
+    sector_level = base.filter(pl.col("sektor").is_not_null(), pl.col("niveau").is_not_null()).group_by("zeitraum", "sektor", "niveau", maintain_order=True).agg(pl.len().alias("n")).sort("zeitraum", "sektor", "niveau")
+    women_by_sector = base.filter(pl.col("sektor").is_not_null(), pl.col("geschlecht").is_not_null()).group_by("zeitraum", "sektor", maintain_order=True).agg((pl.col("geschlecht") == "w").mean().alias("frauenanteil"), pl.len().alias("n")).sort("zeitraum", "sektor")
+    top_occupations = base.filter(pl.col("occupation_cleaned").is_not_null()).group_by("zeitraum", "occupation_cleaned", maintain_order=True).agg(pl.len().alias("n")).sort(["n", "occupation_cleaned"], descending=[True, False]).group_by("zeitraum", maintain_order=True).head(15).sort(["zeitraum", "n", "occupation_cleaned"], descending=[False, True, False])
     entropy_occ = entropy_table(base, "occupation_cleaned")
     entropy_hisco = entropy_table(base, "hisco")
     tabs = {
