@@ -7,7 +7,7 @@ import { assetUrl } from "../data";
 import { escapeHtml, fmt } from "../format";
 import { tokens, type Tokens } from "../theme";
 import { BREMEN } from "./geo";
-import type { AtlasView, CorridorView, HerkunftView, KettenView, PlacePoint, SelectionView, ZieleView } from "./views";
+import { journey, type AtlasView, type CorridorView, type HerkunftView, type KettenView, type PersonView, type PlacePoint, type SelectionView, type Stop, type ZieleView } from "./views";
 
 export type RGBA = [number, number, number, number];
 type Bounds = [[number, number], [number, number]];
@@ -56,6 +56,13 @@ export function placeRadius(n: number, max: number): number {
 
 export function viewColor(t: Tokens, kind: "herkunft" | "ziele"): string {
   return kind === "herkunft" ? t.brass : t.series[4];
+}
+
+export function stopColor(t: Tokens, stop: Stop): string {
+  if (stop.role === "herkunft") return viewColor(t, "herkunft");
+  if (stop.role === "hafen") return t.series[0];
+  if (stop.role === "ziel") return viewColor(t, "ziele");
+  return t.ink;
 }
 
 export interface MapHandlers {
@@ -120,15 +127,15 @@ export class MapView {
     this.map.fitBounds(FRAMES[frame], { padding: { top: narrow && besideCard ? 220 : 24, bottom: 24, left: 24, right }, duration, essential: true });
   }
 
-  reveal(points: [number, number][]): void {
+  reveal(points: [number, number][], always = false): void {
     if (!points.length) return;
     const bounds = this.map.getBounds();
-    if (points.every(([lon, lat]) => bounds.contains([lon, lat]))) return;
+    if (!always && points.every(([lon, lat]) => bounds.contains([lon, lat]))) return;
     const lons = points.map((p) => p[0]);
     const lats = points.map((p) => p[1]);
     const narrow = this.map.getContainer().clientWidth < 700;
     this.map.fitBounds([[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]], {
-      padding: { top: 90, bottom: 60, left: narrow ? 30 : 60, right: narrow ? 30 : 60 },
+      padding: { top: 90, bottom: 60, left: narrow ? 48 : 60, right: narrow ? 48 : 60 },
       maxZoom: FIT_MAX_ZOOM,
       duration: 1200,
       essential: true,
@@ -153,6 +160,7 @@ export class MapView {
       ...(view.kind === "herkunft" ? this.herkunft(view, t) : []),
       ...(view.kind === "ziele" ? this.ziele(view, t) : []),
       ...(view.kind === "ketten" ? this.ketten(view, t) : []),
+      ...(view.kind === "person" ? this.person(view, t) : []),
       ...this.bremen(t),
     ];
     this.overlay.setProps({ layers });
@@ -381,5 +389,40 @@ export class MapView {
       );
     }
     return layers;
+  }
+
+  private person(view: PersonView, t: Tokens) {
+    const stops = journey(view.person).filter((s) => s.position);
+    const legs = stops.slice(1).map((to, i) => ({ from: stops[i], to, tip: `<strong>${escapeHtml(stops[i].name)} → ${escapeHtml(to.name)}</strong>${escapeHtml(to.detail)}` }));
+    const away = stops.filter((s) => s.role !== "abfahrt");
+    return [
+      new ArcLayer<any>({
+        id: "reise",
+        data: legs,
+        getSourcePosition: (d: any) => d.from.position,
+        getTargetPosition: (d: any) => d.to.position,
+        getSourceColor: (d: any) => rgb(stopColor(t, d.from), 235),
+        getTargetColor: (d: any) => rgb(stopColor(t, d.to), 235),
+        getWidth: 3,
+        getHeight: (d: any) => (d.from.role === "abfahrt" ? 0.45 : 0.12),
+        pickable: true,
+        onHover: this.hover,
+      }),
+      new ScatterplotLayer<Stop>({
+        id: "reise-halte",
+        data: away.map((s) => ({ ...s, tip: `<strong>${escapeHtml(s.name)}</strong>${escapeHtml(s.detail)}` })),
+        getPosition: (d) => d.position!,
+        getRadius: (d) => (d.role === "hafen" ? 5 : 7),
+        radiusUnits: "pixels",
+        getFillColor: (d) => rgb(stopColor(t, d)),
+        getLineColor: rgb(t.paper),
+        stroked: true,
+        lineWidthUnits: "pixels",
+        getLineWidth: 2,
+        pickable: true,
+        onHover: this.hover,
+      }),
+      this.labels("reise-labels", away.map((s) => ({ name: s.name, land: null, lat: s.position![1], lon: s.position![0], n: 1 })), t, 4, 13),
+    ];
   }
 }

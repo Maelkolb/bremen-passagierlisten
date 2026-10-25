@@ -7,7 +7,7 @@ import type { Timeline } from "./timeline";
 
 const CLOSE_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 4.5 7 7m0-7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 
-const RESET: Partial<State> = { name: "", similar: false, window: FULL_WINDOW, selection: null, corridor: null, category: "" };
+const RESET: Partial<State> = { name: "", similar: false, window: FULL_WINDOW, selection: null, corridor: null, category: "", person: null };
 
 export class Tour {
   private card: HTMLElement;

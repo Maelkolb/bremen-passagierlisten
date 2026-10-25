@@ -1,10 +1,10 @@
 import { escapeHtml, fmt, pct } from "../format";
 import { tokens, type Tokens } from "../theme";
-import { categoryColor, css, placeRadius, rgb, viewColor } from "./mapview";
-import type { AtlasData, Corridor, Member } from "./source";
+import { categoryColor, css, placeRadius, rgb, stopColor, viewColor } from "./mapview";
+import type { AtlasData, Corridor, Entry } from "./source";
 import { FULL_WINDOW, isFullWindow, store, type Selection, type State, type View } from "./state";
 import { YearAxis, yearBars } from "./timeline";
-import { countryName, type AtlasView, type HerkunftView, type KettenView, type PlacePoint, type SelectionView, type Share, type ZieleView } from "./views";
+import { countryName, journey, type AtlasView, type EntryBlock, type HerkunftView, type KettenView, type PersonView, type PlacePoint, type SelectionView, type Share, type ZieleView } from "./views";
 
 interface Row {
   label: string;
@@ -15,10 +15,14 @@ interface Row {
   color?: string;
 }
 
+type Route = "herkunft" | "ziel" | "beide" | "keine";
+
 const SEARCH_DELAY = 450;
+const NAMED_PLACES = 5;
 const BACK_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const SEARCH_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m10.5 10.5 3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 const CLEAR_ICON = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 4.5 7 7m0-7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+const SEX: Record<string, string> = { m: "männlich", w: "weiblich" };
 
 function rows(items: Row[], color: string, max?: number): string {
   const top = max ?? Math.max(Number.EPSILON, ...items.map((r) => r.n));
@@ -41,8 +45,8 @@ function stats(items: [string, string][]): string {
   return `<dl class="stats">${items.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}</dl>`;
 }
 
-function block(title: string, content: string): string {
-  return `<section class="block"><h3>${title}</h3>${content}</section>`;
+function block(title: string, content: string, id = ""): string {
+  return `<section class="block"${id ? ` id="${id}"` : ""}><h3>${title}</h3>${content}</section>`;
 }
 
 function windowText(window: [number, number]): string {
@@ -52,6 +56,34 @@ function windowText(window: [number, number]): string {
 function niceFloor(value: number): number {
   const power = 10 ** Math.floor(Math.log10(value));
   return [5, 2, 1].map((m) => m * power).find((v) => v <= value) ?? power;
+}
+
+function fullName(e: { vorname: string | null; nachname: string | null }): string {
+  return [e.vorname, e.nachname].filter(Boolean).join(" ") || "ohne Namen";
+}
+
+function route(e: Entry, shown: Route): string {
+  const from = shown === "herkunft" || shown === "beide" ? e.herkunft : null;
+  const to = shown === "ziel" || shown === "beide" ? e.ziel : null;
+  return [from && `aus ${from}`, to && `nach ${to}`].filter(Boolean).join(" ");
+}
+
+function entryItems(items: Entry[], shown: Route, current?: number): string {
+  return items.map((e, i) => {
+    const grouped = e.gruppe_groesse > 1;
+    const before = grouped && items[i - 1]?.gruppe === e.gruppe;
+    const after = grouped && items[i + 1]?.gruppe === e.gruppe;
+    const link = before || after ? ` linked${before ? "" : " link-start"}${after ? "" : " link-end"}` : "";
+    const facts = [e.alter != null ? `${e.alter} Jahre` : null, e.beruf].filter(Boolean).join(", ");
+    const path = route(e, shown);
+    const self = e.id === current;
+    return `<li class="entry-item${link}"><${self ? "div" : "button type=\"button\""} class="entry${self ? " current" : ""}" data-person="${e.id}"${self ? ` aria-current="true"` : ""}>
+      <span class="entry-name">${escapeHtml(fullName(e))}</span>
+      <span class="entry-year">${e.jahr ?? ""}</span>
+      ${facts ? `<span class="entry-sub">${escapeHtml(facts)}</span>` : ""}
+      ${path ? `<span class="entry-sub">${escapeHtml(path)}</span>` : ""}
+    </${self ? "div" : "button"}></li>`;
+  }).join("");
 }
 
 export class Panel {
@@ -65,8 +97,11 @@ export class Panel {
   private similarRow: HTMLElement;
   private progress: HTMLElement;
   private loadShare = 0;
+  private key = "";
+  private shownKey = "";
+  private scrolls = new Map<string, number>();
 
-  constructor(private data: AtlasData, private baseYears: Map<number, number>) {
+  constructor(private data: AtlasData, private baseYears: Map<number, number>, private onMore: (key: string) => void) {
     this.root = document.getElementById("panel")!;
     this.body = document.getElementById("panel-body")!;
     this.handle = document.getElementById("panel-handle")!;
@@ -87,6 +122,10 @@ export class Panel {
     this.progress = search.querySelector("#search-progress")!;
     this.bindSearch();
     this.handle.addEventListener("click", () => this.toggleSheet());
+    this.body.addEventListener("click", (e) => {
+      const target = (e.target as HTMLElement).closest<HTMLElement>("button[data-person]");
+      if (target) store.set({ person: Number(target.dataset.person) });
+    });
     this.sync(store.state);
   }
 
@@ -95,7 +134,7 @@ export class Panel {
     const apply = () => {
       window.clearTimeout(timer);
       const name = this.input.value.trim();
-      if (name !== store.state.name) store.set({ name, selection: null, corridor: null });
+      if (name !== store.state.name) store.set({ name, selection: null, corridor: null, person: null });
     };
     this.input.addEventListener("input", () => {
       this.clear.hidden = !this.input.value;
@@ -110,12 +149,12 @@ export class Panel {
       this.setName("");
       this.input.focus();
     });
-    this.similar.addEventListener("change", () => store.set({ similar: this.similar.checked, selection: null, corridor: null }));
+    this.similar.addEventListener("change", () => store.set({ similar: this.similar.checked, selection: null, corridor: null, person: null }));
   }
 
   setName(name: string): void {
     this.input.value = name;
-    store.set({ name, selection: null, corridor: null });
+    store.set({ name, selection: null, corridor: null, person: null });
   }
 
   focusSearch(): void {
@@ -148,10 +187,12 @@ export class Panel {
 
   render(view: AtlasView, state: State): void {
     const t = tokens();
+    this.key = JSON.stringify([view.kind, state.view, state.name, state.similar, state.window, state.selection, state.corridor, state.category, state.person]);
     if (view.kind === "loading") this.loadingView(state);
     if (view.kind === "herkunft") this.herkunft(view, state, t);
     if (view.kind === "ziele") this.ziele(view, state, t);
     if (view.kind === "ketten") this.ketten(view, state, t);
+    if (view.kind === "person") this.person(view, t);
     this.renderLegend(view, t);
   }
 
@@ -177,19 +218,42 @@ export class Panel {
   }
 
   private show(html: string): void {
+    if (this.shownKey) this.scrolls.set(this.shownKey, this.body.scrollTop);
+    const top = this.key === this.shownKey ? this.body.scrollTop : this.scrolls.get(this.key) ?? 0;
     this.body.innerHTML = html;
-    this.body.scrollTop = 0;
+    this.body.scrollTop = top;
+    this.shownKey = this.key;
     this.body.querySelector("[data-similar]")?.addEventListener("click", () => store.set({ similar: true }));
     this.body.querySelector("[data-all-years]")?.addEventListener("click", () => store.set({ window: FULL_WINDOW }));
+    this.body.querySelectorAll<HTMLElement>("[data-more]").forEach((button) => button.addEventListener("click", () => this.onMore(button.dataset.more!)));
   }
 
   private onRows(selector: string, handler: (key: string) => void): void {
     this.body.querySelectorAll<HTMLElement>(`${selector} [data-key]`).forEach((row) => row.addEventListener("click", () => handler(row.dataset.key!)));
   }
 
+  private waiting(text: string): string {
+    return `<p class="note">${this.data.ready ? `${text} …` : `Erscheint, sobald die Datenbank geladen ist (${Math.round(this.loadShare * 100)} %).`}</p>`;
+  }
+
   private loadingView(state: State): void {
-    this.handle.innerHTML = `<span>Suche nach ${escapeHtml(state.name)} …</span>`;
-    this.show(`<div class="headline"><p class="headline-text">Die Namenssuche wird vorbereitet, ${Math.round(this.loadShare * 100)} % geladen. Danach erscheinen hier alle Einträge namens ${escapeHtml(state.name)}.</p></div>`);
+    const person = state.person !== null;
+    this.handle.innerHTML = `<span>${person ? "Eintrag wird geladen …" : `Suche nach ${escapeHtml(state.name)} …`}</span>`;
+    const text = person ? "Der Eintrag erscheint" : `Danach erscheinen hier alle Einträge namens ${escapeHtml(state.name)}`;
+    this.show(`<div class="headline"><p class="headline-text">Die Datenbank wird geladen, ${Math.round(this.loadShare * 100)} %. ${text}${person ? ", sobald sie bereit ist." : "."}</p></div>`);
+  }
+
+  private entries(block: EntryBlock | null, title: string, shown: Route): string {
+    if (!block) return "";
+    const list = block.list;
+    if (!list) return `<section class="block entries"><h3>${title}</h3>${this.waiting("Einträge werden geladen")}</section>`;
+    if (!list.total) return "";
+    const more = list.items.length < list.total;
+    const pending = more && list.items.length < block.limit;
+    return `<section class="block entries"><h3>${title}</h3>
+      <ol class="entry-list">${entryItems(list.items, shown)}</ol>
+      ${more ? `<div class="entries-more"><span>${fmt(list.items.length)} von ${fmt(list.total)}</span><button type="button" class="button secondary" data-more="${escapeHtml(block.key)}"${pending ? " disabled" : ""}>${pending ? "wird geladen …" : "Weitere anzeigen"}</button></div>` : ""}
+    </section>`;
   }
 
   private placeRows(list: PlacePoint[], color: string): string {
@@ -197,28 +261,46 @@ export class Panel {
   }
 
   private herkunft(view: HerkunftView, state: State, t: Tokens): void {
-    if (view.selected) return this.profile(view.selected, state, t);
-    if (!view.total) return this.show(this.empty(state));
+    if (view.selected) return this.profile(view.selected, view.entries, state, t);
+    if (!view.count || (!state.name && !view.total)) return this.show(this.empty(state));
     const color = viewColor(t, "herkunft");
+    if (state.name) {
+      const top = view.points.slice(0, NAMED_PLACES);
+      this.show(`
+        ${this.headline(fmt(view.count), `${this.subject(state)}, davon ${fmt(view.total)} mit Herkunftsort in ${fmt(view.points.length)} Orten`, state)}
+        ${top.length ? block("Häufigste Herkunftsorte", this.placeRows(top, color), "top-places") : ""}
+        ${this.entries(view.entries, "Einträge", "beide")}`);
+      this.onRows("#top-places", (i) => this.select("herkunft", top[Number(i)]));
+      return;
+    }
     const top = view.points.slice(0, 10);
     this.show(`
       ${this.headline(fmt(view.total), `${this.subject(state)} mit Herkunftsort, aus ${fmt(view.points.length)} Orten`, state)}
       ${block("Heutige Staaten", shareRows(view.countries, view.total, color))}
-      <section class="block" id="top-places"><h3>Häufigste Herkunftsorte</h3>${this.placeRows(top, color)}</section>`);
+      ${block("Häufigste Herkunftsorte", this.placeRows(top, color), "top-places")}`);
     this.onRows("#top-places", (i) => this.select("herkunft", top[Number(i)]));
   }
 
   private ziele(view: ZieleView, state: State, t: Tokens): void {
-    if (view.selected) return this.profile(view.selected, state, t);
-    if (!view.total) return this.show(this.empty(state));
+    if (view.selected) return this.profile(view.selected, view.entries, state, t);
+    if (!view.count || (!state.name && !view.total)) return this.show(this.empty(state));
     const color = viewColor(t, "ziele");
+    if (state.name) {
+      const top = view.points.slice(0, NAMED_PLACES);
+      this.show(`
+        ${this.headline(fmt(view.count), `${this.subject(state)}, davon ${fmt(view.total)} mit Reiseziel in ${fmt(view.points.length)} Orten`, state)}
+        ${top.length ? block("Häufigste Reiseziele", this.placeRows(top, color), "top-places") : ""}
+        ${this.entries(view.entries, "Einträge", "beide")}`);
+      this.onRows("#top-places", (i) => this.select("ziel", top[Number(i)]));
+      return;
+    }
     const top = view.points.slice(0, 10);
     const portTotal = view.ports.reduce((s, p) => s + p.n, 0);
     this.show(`
       ${this.headline(fmt(view.total), `${this.subject(state)} mit Reiseziel, in ${fmt(view.points.length)} Orten`, state)}
       ${block("Weltregionen", shareRows(view.regions, view.total, color))}
       ${block("Ankunftshäfen", rows(view.ports.slice(0, 5).map((p) => ({ label: p.name, n: p.n, value: pct(p.n / Math.max(1, portTotal)) })), t.series[0]))}
-      <section class="block" id="top-places"><h3>Häufigste Reiseziele</h3>${this.placeRows(top, color)}</section>`);
+      ${block("Häufigste Reiseziele", this.placeRows(top, color), "top-places")}`);
     this.onRows("#top-places", (i) => this.select("ziel", top[Number(i)]));
   }
 
@@ -240,7 +322,11 @@ export class Panel {
     return `index.html?${search.toString()}#werkbank`;
   }
 
-  private profile(selected: SelectionView, state: State, t: Tokens): void {
+  private werkbank(link: string): string {
+    return `<a class="button secondary wide" href="${link}">In der Werkbank filtern und herunterladen</a>`;
+  }
+
+  private profile(selected: SelectionView, entries: EntryBlock | null, state: State, t: Tokens): void {
     const { selection, profile } = selected;
     const outward = selection.kind === "herkunft";
     const ownColor = viewColor(t, outward ? "herkunft" : "ziele");
@@ -251,12 +337,12 @@ export class Panel {
       <h2 class="title">${escapeHtml(selection.name)}</h2>
       <p class="subtitle"><i class="dot" style="background:${ownColor}"></i>${outward ? "Herkunftsort" : "Reiseziel"}${selection.land ? `, ${escapeHtml(countryName(selection.land))}` : ""}${isFullWindow(state.window) ? "" : `, ${windowText(state.window)}`}</p>`;
     if (!profile) {
-      const waiting = this.data.ready ? "Profil wird berechnet …" : `Das Profil erscheint, sobald die Datenbank geladen ist (${Math.round(this.loadShare * 100)} %).`;
-      this.show(`${head}<p class="note">${waiting}</p>`);
+      this.show(`${head}${this.waiting("Profil wird berechnet")}`);
       this.bindBack(() => store.set({ selection: null }));
       return;
     }
     const counterparts = profile.counterparts.slice(0, 6);
+    const list = this.entries(entries, state.name ? `Einträge namens ${escapeHtml(state.name)}` : "Einträge", outward ? "ziel" : "herkunft");
     const link = this.werkbankLink({ [outward ? "herkunft" : "ziel"]: `"${selection.name}"` });
     this.show(`${head}
       ${stats([
@@ -264,11 +350,13 @@ export class Panel {
         ["Frauen", profile.women == null ? "–" : pct(profile.women)],
         ["Medianalter", profile.medianAge == null ? "–" : fmt(profile.medianAge)],
       ])}
+      ${state.name ? list : ""}
       ${block("Einträge je Jahr", `<svg class="mini-years" id="profile-years"></svg>`)}
-      <section class="block" id="counterparts"><h3>${outward ? "Wohin sie wollten" : "Woher sie kamen"}</h3>${rows(counterparts.map((c, i) => ({ label: c.name, sub: countryName(c.land), n: c.n, key: String(i) })), otherColor)}</section>
-      <section class="block" id="surnames"><h3>Häufigste Nachnamen</h3>${rows(profile.surnames.map((s) => ({ label: s.name, n: s.n, key: s.name })), t.ink3)}</section>
+      ${block(outward ? "Wohin sie wollten" : "Woher sie kamen", rows(counterparts.map((c, i) => ({ label: c.name, sub: countryName(c.land), n: c.n, key: String(i) })), otherColor), "counterparts")}
+      ${state.name ? "" : block("Häufigste Nachnamen", rows(profile.surnames.map((s) => ({ label: s.name, n: s.n, key: s.name })), t.ink3), "surnames")}
       ${block("Häufigste Berufe", rows(profile.occupations.map((o) => ({ label: o.name, n: o.n })), t.ink3))}
-      <a class="button wide" href="${link}">Einträge in der Werkbank ansehen</a>`);
+      ${state.name ? "" : list}
+      ${this.werkbank(link)}`);
     this.bindBack(() => store.set({ selection: null }));
     this.miniYears("#profile-years", profile.years, state.window);
     this.onRows("#counterparts", (i) => {
@@ -294,7 +382,7 @@ export class Panel {
   }
 
   private ketten(view: KettenView, state: State, t: Tokens): void {
-    if (view.selected) return this.corridor(view.selected, view.members, state, t);
+    if (view.selected) return this.corridor(view.selected, view.entries, state, t);
     if (!view.corridors.length && !view.categories.length) return this.show(this.empty(state));
     const top = view.corridors.slice(0, 12);
     const groups = view.corridors.reduce((s, c) => s + c.inWindow, 0);
@@ -324,13 +412,11 @@ export class Panel {
     this.onRows("#top-corridors", (id) => store.set({ corridor: Number(id) }));
   }
 
-  private corridor(c: Corridor & { inWindow: number; hits: number | null }, members: Member[] | null, state: State, t: Tokens): void {
+  private corridor(c: Corridor & { inWindow: number; hits: number | null }, entries: EntryBlock | null, state: State, t: Tokens): void {
     const color = css(categoryColor(t, c.kategorie));
     const link = this.werkbankLink({ herkunft: `"${c.herkunft}"`, ziel: `"${c.ziel}"` });
     this.handle.innerHTML = `<span><strong>${escapeHtml(c.herkunft)} → ${escapeHtml(c.ziel)}</strong></span>`;
-    const people = members
-      ? `<ol class="people">${members.map((m) => `<li><span class="person">${escapeHtml([m.vorname, m.nachname].filter(Boolean).join(" "))}<span class="row-sub">${escapeHtml([m.beruf, m.alter != null ? `${m.alter} Jahre` : null].filter(Boolean).join(", "))}</span></span><span class="row-value">${m.jahr}</span></li>`).join("")}</ol>`
-      : `<p class="note">${this.data.ready ? "Einträge werden geladen …" : `Die Einträge erscheinen, sobald die Datenbank geladen ist (${Math.round(this.loadShare * 100)} %).`}</p>`;
+    const title = state.name ? `Reisende namens ${escapeHtml(state.name)}` : "Reisende";
     this.show(`
       <button type="button" class="back" id="back">${BACK_ICON}Alle Korridore</button>
       <h2 class="title">${escapeHtml(c.herkunft)} → ${escapeHtml(c.ziel)}</h2>
@@ -341,16 +427,75 @@ export class Panel {
         ["Frauen", pct(c.frauenanteil)],
       ])}
       ${block("Reisegruppen je Jahr", `<svg class="mini-years" id="corridor-years"></svg>`)}
-      ${block(state.name ? `Reisende namens ${escapeHtml(state.name)}` : "Reisende", people)}
-      <a class="button wide" href="${link}">Einträge in der Werkbank ansehen</a>`);
+      ${this.entries(entries, isFullWindow(state.window) ? title : `${title}, ${windowText(state.window)}`, "keine")}
+      ${this.werkbank(link)}`);
     this.bindBack(() => store.set({ corridor: null }));
     this.miniYears("#corridor-years", new Map(c.jahre), state.window);
+  }
+
+  private person(view: PersonView, t: Tokens): void {
+    const { record: r, group, relatives } = view.person;
+    const name = fullName(r as any);
+    this.handle.innerHTML = `<span><strong>${escapeHtml(name)}</strong> ${r.jahr ?? ""}</span>`;
+    const identity = [r.alter != null ? `${r.alter} Jahre` : null, r.beruf_norm ?? r.beruf].filter(Boolean).join(", ");
+    const stops = journey(view.person);
+    const itinerary = `<ol class="journey">${stops.map((s) => `
+      <li data-role="${s.role}" style="--stop:${stopColor(t, s)}"><span class="journey-name">${escapeHtml(s.name)}</span><span class="journey-detail">${escapeHtml(s.detail)}</span></li>`).join("")}</ol>`;
+    const facts: [string, unknown][] = [
+      ["Nachname", r.nachname],
+      ["Vorname", r.vorname],
+      ["Geschlecht", SEX[r.geschlecht] ?? r.geschlecht],
+      ["Alter", r.alter != null ? `${r.alter} Jahre` : null],
+      ["Familienstand", r.familienstand],
+      ["Staatsangehörigkeit", r.staatsangehoerigkeit],
+      ["Religion", r.religion],
+      ["Beruf", r.beruf],
+      ["Beruf vereinheitlicht", r.beruf_norm && r.beruf_norm !== r.beruf ? r.beruf_norm : null],
+      ["Wohnort", r.wohnort],
+      ["Region", r.region],
+      ["Reiseziel", r.ziel],
+      ["Reederei", r.reederei],
+      ["Klasse", r.klasse === "ohne Angabe" ? null : r.klasse],
+      ["Angehörige", r.angehoerige],
+      ["Kontaktperson", r.kontaktperson],
+      ["Bemerkung", r.bemerkung],
+    ];
+    const source: [string, unknown][] = [
+      ["Liste", r.liste],
+      ["Nummer", r.nr],
+      ["Datensatz", r.id],
+    ];
+    const dl = (items: [string, unknown][]) => `<dl class="record-facts">${items
+      .filter(([, value]) => value != null && value !== "")
+      .map(([label, value]) => `<div><dt>${label}</dt><dd>${escapeHtml(String(value))}</dd></div>`).join("")}</dl>`;
+    const groupBlock = group && group.total > 1 ? `<section class="block entries"><h3>Reisegruppe<span class="h3-count">${fmt(group.total)} Personen</span></h3>
+      <ol class="entry-list">${entryItems(group.items, "keine", r.id)}</ol>
+      <p class="note">Erschlossen aus gleichem Nachnamen und aufeinanderfolgender Nummer auf derselben Liste. Verwandtschaft ist damit wahrscheinlich, nicht belegt.</p></section>` : "";
+    const relativesBlock = relatives ? `<section class="block entries"><h3>Weitere Einträge namens ${escapeHtml(r.nachname)} aus ${escapeHtml(r.herkunft_ort)}${relatives.total > relatives.items.length ? `<span class="h3-count">${fmt(relatives.items.length)} von ${fmt(relatives.total)}</span>` : ""}</h3>
+      <ol class="entry-list">${entryItems(relatives.items, "ziel")}</ol></section>` : "";
+    this.show(`
+      <button type="button" class="back" id="back">${BACK_ICON}Zurück</button>
+      <h2 class="title">${escapeHtml(name)}</h2>
+      ${identity ? `<p class="subtitle">${escapeHtml(identity)}</p>` : ""}
+      ${itinerary}
+      ${block("Angaben auf der Liste", dl(facts))}
+      ${groupBlock}
+      ${relativesBlock}
+      ${block("Quelle", dl(source))}`);
+    this.bindBack(() => store.set({ person: null }));
   }
 
   private renderLegend(view: AtlasView, t: Tokens): void {
     const dot = (color: string, label: string) => `<div class="legend-row"><i class="dot" style="background:${color}"></i>${label}</div>`;
     const line = (color: string, label: string) => `<div class="legend-row"><i class="line" style="background:${color}"></i>${label}</div>`;
-    if ((view.kind === "herkunft" || view.kind === "ziele") && view.selected) {
+    if (view.kind === "person") {
+      const roles = new Set(journey(view.person).filter((s) => s.position).map((s) => s.role));
+      this.legend.innerHTML = [
+        roles.has("herkunft") ? dot(viewColor(t, "herkunft"), "Herkunft") : "",
+        roles.has("hafen") ? dot(t.series[0], "Ankunftshafen") : "",
+        roles.has("ziel") ? dot(viewColor(t, "ziele"), "Reiseziel") : "",
+      ].join("");
+    } else if ((view.kind === "herkunft" || view.kind === "ziele") && view.selected) {
       const outward = view.selected.selection.kind === "herkunft";
       this.legend.innerHTML = `${dot(viewColor(t, "herkunft"), outward ? escapeHtml(view.selected.selection.name) : "Herkunftsorte")}${dot(viewColor(t, "ziele"), outward ? "Reiseziele" : escapeHtml(view.selected.selection.name))}`;
     } else if (view.kind === "herkunft" && view.points.length) {

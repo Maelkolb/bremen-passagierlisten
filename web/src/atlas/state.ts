@@ -16,6 +16,7 @@ export interface State {
   selection: Selection | null;
   category: string;
   corridor: number | null;
+  person: number | null;
 }
 
 export const FIRST_YEAR = 1830;
@@ -37,6 +38,7 @@ const DEFAULT_STATE: State = {
   selection: null,
   category: "",
   corridor: null,
+  person: null,
 };
 
 export function isFullWindow(window: [number, number]): boolean {
@@ -75,6 +77,8 @@ function readHash(): Partial<State> & { kapitel?: number } {
   if (from >= FIRST_YEAR && to <= LAST_YEAR && from <= to) result.window = [from, to];
   if (params.get("nachname")) result.name = params.get("nachname")!.trim();
   if (params.get("aehnlich") === "1") result.similar = true;
+  const person = Number(params.get("eintrag"));
+  if (Number.isInteger(person) && person > 0) result.person = person;
   if (params.has("kapitel")) result.kapitel = Number(params.get("kapitel"));
   return result;
 }
@@ -92,6 +96,7 @@ function writeHash(state: State): void {
     }
     if (state.name) params.set("nachname", state.name);
     if (state.name && state.similar) params.set("aehnlich", "1");
+    if (state.person !== null) params.set("eintrag", String(state.person));
     history.replaceState(null, "", `#${params.toString()}`);
   }, 250);
 }

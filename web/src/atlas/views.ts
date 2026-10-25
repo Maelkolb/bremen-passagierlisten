@@ -1,5 +1,5 @@
-import { inEurope } from "./geo";
-import { totals, type Corridor, type Member, type Profile, type Series } from "./source";
+import { BREMEN, inEurope } from "./geo";
+import { totals, type Corridor, type EntryList, type PersonRecord, type Profile, type Series } from "./source";
 import type { Selection, State } from "./state";
 
 export interface PlacePoint {
@@ -15,6 +15,12 @@ export interface Share {
   n: number;
 }
 
+export interface EntryBlock {
+  key: string;
+  list: EntryList | null;
+  limit: number;
+}
+
 export interface SelectionView {
   selection: Selection;
   profile: Profile | null;
@@ -24,8 +30,10 @@ export interface HerkunftView {
   kind: "herkunft";
   points: PlacePoint[];
   total: number;
+  count: number;
   countries: Share[];
   selected: SelectionView | null;
+  entries: EntryBlock | null;
 }
 
 export interface ZieleView {
@@ -33,8 +41,10 @@ export interface ZieleView {
   points: PlacePoint[];
   ports: PlacePoint[];
   total: number;
+  count: number;
   regions: Share[];
   selected: SelectionView | null;
+  entries: EntryBlock | null;
 }
 
 export interface CorridorView extends Corridor {
@@ -47,14 +57,19 @@ export interface KettenView {
   corridors: CorridorView[];
   categories: { name: string; corridors: number; groups: number }[];
   selected: CorridorView | null;
-  members: Member[] | null;
+  entries: EntryBlock | null;
+}
+
+export interface PersonView {
+  kind: "person";
+  person: PersonRecord;
 }
 
 export interface LoadingView {
   kind: "loading";
 }
 
-export type AtlasView = HerkunftView | ZieleView | KettenView | LoadingView;
+export type AtlasView = HerkunftView | ZieleView | KettenView | PersonView | LoadingView;
 
 const COUNTRY_ROWS = 6;
 const MIN_SHARE = 0.005;
@@ -79,6 +94,43 @@ const REGIONS: [string, (lat: number, lon: number) => boolean][] = [
   ["Australien und Ozeanien", (lat, lon) => lat < -10 && lon > 110],
 ];
 
+export interface Stop {
+  role: "herkunft" | "abfahrt" | "hafen" | "ziel";
+  name: string;
+  detail: string;
+  position: [number, number] | null;
+}
+
+export function journey(person: PersonRecord): Stop[] {
+  const r = person.record;
+  const stops: Stop[] = [];
+  const origin: string | null = r.herkunft_ort ?? r.wohnort ?? r.region;
+  if (origin) {
+    stops.push({
+      role: "herkunft",
+      name: origin,
+      detail: ["Herkunft", countryName(r.herkunft_land)].filter(Boolean).join(", "),
+      position: r.herkunft_genauigkeit === "ort" ? [r.herkunft_lon, r.herkunft_lat] : null,
+    });
+  }
+  stops.push({
+    role: "abfahrt",
+    name: "Bremen",
+    detail: `Abfahrt ${r.datum ?? r.jahr}${r.schiff ? ` mit der ${r.schiff}` : ""}`,
+    position: BREMEN,
+  });
+  const destination: string | null = r.ziel_ort_gruppe ?? r.ziel_ort ?? r.ziel ?? r.us_staat;
+  const place = (label: string) => [label, countryName(r.ziel_land)].filter(Boolean).join(", ");
+  const destinationPosition: [number, number] | null = r.ziel_genauigkeit === "ort" ? [r.ziel_lon, r.ziel_lat] : null;
+  if (r.ankunftshafen && r.ankunftshafen === destination) {
+    stops.push({ role: "ziel", name: r.ankunftshafen, detail: place("Ankunftshafen und Reiseziel"), position: destinationPosition ?? person.port });
+    return stops;
+  }
+  if (r.ankunftshafen) stops.push({ role: "hafen", name: r.ankunftshafen, detail: "Ankunftshafen", position: person.port });
+  if (destination) stops.push({ role: "ziel", name: destination, detail: place("Reiseziel"), position: destinationPosition });
+  return stops;
+}
+
 export function points(series: Series, window: [number, number]): PlacePoint[] {
   const sums = totals(series, window);
   const out: PlacePoint[] = [];
@@ -96,7 +148,7 @@ function shares(groups: Map<string, number>, rows: number): Share[] {
   return rest > 0 ? [...shown, { label: "übrige", n: rest }] : shown;
 }
 
-export function herkunftView(series: Series, state: State, selected: SelectionView | null): HerkunftView {
+export function herkunftView(series: Series, count: number, state: State, selected: SelectionView | null, entries: EntryBlock | null): HerkunftView {
   const list = points(series, state.window);
   const countries = new Map<string, number>();
   for (const p of list) {
@@ -107,12 +159,14 @@ export function herkunftView(series: Series, state: State, selected: SelectionVi
     kind: "herkunft",
     points: list,
     total: list.reduce((s, p) => s + p.n, 0),
+    count,
     countries: shares(countries, COUNTRY_ROWS),
     selected,
+    entries,
   };
 }
 
-export function zieleView(destinations: Series, ports: Series, state: State, selected: SelectionView | null): ZieleView {
+export function zieleView(destinations: Series, ports: Series, count: number, state: State, selected: SelectionView | null, entries: EntryBlock | null): ZieleView {
   const list = points(destinations, state.window);
   const regions = new Map<string, number>();
   for (const p of list) {
@@ -124,12 +178,14 @@ export function zieleView(destinations: Series, ports: Series, state: State, sel
     points: list,
     ports: points(ports, state.window),
     total: list.reduce((s, p) => s + p.n, 0),
+    count,
     regions: shares(regions, COUNTRY_ROWS),
     selected,
+    entries,
   };
 }
 
-export function kettenView(corridors: Corridor[], categories: string[], state: State, hits: Map<number, number> | null, members: Member[] | null): KettenView {
+export function kettenView(corridors: Corridor[], categories: string[], state: State, hits: Map<number, number> | null, entries: EntryBlock | null): KettenView {
   const [from, to] = state.window;
   const inWindow = (c: Corridor) => c.jahre.reduce((s, [y, n]) => s + (y >= from && y <= to ? n : 0), 0);
   const all = corridors
@@ -147,6 +203,6 @@ export function kettenView(corridors: Corridor[], categories: string[], state: S
       })
       .filter((c) => c.corridors > 0),
     selected: selected ? { ...selected, inWindow: inWindow(selected), hits: hits?.get(selected.id) ?? null } : null,
-    members,
+    entries,
   };
 }

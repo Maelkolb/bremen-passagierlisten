@@ -60,12 +60,36 @@ export interface Profile {
   occupations: Ranked[];
 }
 
-export interface Member {
-  vorname: string | null;
+export interface Entry {
+  id: number;
   nachname: string | null;
+  vorname: string | null;
   alter: number | null;
-  jahr: number;
   beruf: string | null;
+  herkunft: string | null;
+  ziel: string | null;
+  jahr: number | null;
+  gruppe: number;
+  gruppe_groesse: number;
+}
+
+export interface EntryList {
+  total: number;
+  items: Entry[];
+}
+
+export interface Scope {
+  search: Search;
+  window: [number, number];
+  selection: Selection | null;
+  corridor: Corridor | null;
+}
+
+export interface PersonRecord {
+  record: Record<string, any>;
+  group: EntryList | null;
+  relatives: EntryList | null;
+  port: [number, number] | null;
 }
 
 interface Columns {
@@ -99,6 +123,23 @@ function placeClause(sel: Selection): string {
   }
   const land = sel.land ? `ziel_land = ${literal(sel.land)}` : "ziel_land IS NULL";
   return `ziel_genauigkeit = 'ort' AND ziel_ort_gruppe = ${literal(sel.name)} AND ${land} AND abs(ziel_lat - ${sel.lat}) < 1 AND abs(ziel_lon - ${sel.lon}) < 1`;
+}
+
+function corridorClause(c: Corridor): string {
+  return `herkunft_sicher AND ziel_sicher
+    AND herkunft_ort = ${literal(c.herkunft)} AND herkunft_land = ${literal(c.herkunft_land)}
+    AND ziel_ort_gruppe = ${literal(c.ziel)} AND ziel_land = ${literal(c.ziel_land)}`;
+}
+
+function scopeClause(scope: Scope): string {
+  const parts = [where(scope.search), windowClause(scope.window)];
+  if (scope.selection) parts.push(placeClause(scope.selection));
+  if (scope.corridor) parts.push(corridorClause(scope.corridor));
+  return parts.join(" AND ");
+}
+
+export function scopeKey(scope: Scope): string {
+  return JSON.stringify([searchKey(scope.search), scope.window, scope.selection, scope.corridor?.id ?? null]);
 }
 
 function seriesFrom(places: Columns, counts: Counts): Series {
@@ -298,12 +339,43 @@ export class AtlasData {
     });
   }
 
-  members(c: Corridor, search: Search): Promise<Member[]> {
-    return this.cached(`members|${c.id}|${searchKey(search)}`, () => queryRows<Member>(this.db!, `
-      SELECT vorname, nachname, alter, jahr::INTEGER AS jahr, beruf_norm AS beruf
-      FROM p WHERE ${where(search)} AND herkunft_sicher AND ziel_sicher
-        AND herkunft_ort = ${literal(c.herkunft)} AND herkunft_land = ${literal(c.herkunft_land)}
-        AND ziel_ort_gruppe = ${literal(c.ziel)} AND ziel_land = ${literal(c.ziel_land)}
-      ORDER BY abfahrt, liste, id LIMIT 80`));
+  portPosition(name: string | null): [number, number] | null {
+    const point = name ? this.portCoordinates.get(name) : undefined;
+    return point ? [point[1], point[0]] : null;
+  }
+
+  private list(condition: string, limit: number): Promise<EntryList> {
+    return this.cached(`list|${condition}|${limit}`, async () => {
+      const items = await queryRows<Entry & { total: number }>(this.db!, `
+        SELECT id, nachname, vorname, alter, coalesce(beruf_norm, beruf) AS beruf,
+               coalesce(herkunft_ort, wohnort) AS herkunft, coalesce(ziel_ort_gruppe, ziel_ort, ziel) AS ziel,
+               jahr::INTEGER AS jahr, gruppe_id AS gruppe, gruppe_groesse::INTEGER AS gruppe_groesse,
+               count(*) OVER ()::INTEGER AS total
+        FROM p WHERE ${condition}
+        ORDER BY abfahrt NULLS LAST, liste, id LIMIT ${limit}`);
+      return { total: items[0]?.total ?? 0, items };
+    });
+  }
+
+  entries(scope: Scope, limit: number): Promise<EntryList> {
+    return this.list(scopeClause(scope), limit);
+  }
+
+  record(id: number): Promise<PersonRecord | null> {
+    return this.cached(`record|${id}`, async () => {
+      const [record] = await queryRows<Record<string, any>>(this.db!, `
+        SELECT * EXCLUDE (abfahrt), strftime(abfahrt, '%d.%m.%Y') AS datum FROM p WHERE id = ${Math.round(id)}`);
+      if (!record) return null;
+      const placed = record.herkunft_genauigkeit === "ort" && record.nachname_norm;
+      const [group, relatives] = await Promise.all([
+        record.gruppe_groesse > 1 ? this.list(`gruppe_id = ${record.gruppe_id}`, 40) : null,
+        placed
+          ? this.list(`${where({ name: "", similar: false })} AND nachname_norm = ${literal(record.nachname_norm)} AND herkunft_genauigkeit = 'ort'
+              AND abs(herkunft_lat - ${record.herkunft_lat}) < 0.0006 AND abs(herkunft_lon - ${record.herkunft_lon}) < 0.0006
+              AND gruppe_id <> ${record.gruppe_id}`, 12)
+          : null,
+      ]);
+      return { record, group, relatives: relatives?.total ? relatives : null, port: this.portPosition(record.ankunftshafen) };
+    });
   }
 }
