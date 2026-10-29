@@ -38,9 +38,9 @@ Die Anreicherung arbeitet offline gegen [GeoNames](https://download.geonames.org
 
 ## Website
 
-Veröffentlicht über GitLab Pages: <https://bremen-passagierlisten-2aa903.pages.fim.uni-passau.de/> (Atlas: [`atlas.html`](https://bremen-passagierlisten-2aa903.pages.fim.uni-passau.de/atlas.html)). Jeder Push auf `main` im GitLab-Projekt [perschl/bremen-passagierlisten](https://git.fim.uni-passau.de/perschl/bremen-passagierlisten) baut die Seite neu (`.gitlab-ci.yml`).
+Veröffentlicht über GitHub Pages: <https://maelkolb.github.io/bremen-passagierlisten/> (Atlas: [`atlas.html`](https://maelkolb.github.io/bremen-passagierlisten/atlas.html)). Jeder Push auf `main` baut die Seite neu (`.github/workflows/pages.yml`). Die ältere Fassung auf GitLab Pages (`.gitlab-ci.yml`) bleibt bis auf Weiteres unter <https://bremen-passagierlisten-2aa903.pages.fim.uni-passau.de/> erreichbar.
 
-Die Werkbank lädt eine Datenbank als WebAssembly; das funktioniert nicht über `file://`, sondern nur über einen Webserver. Lokal:
+Die Suche und der Atlas laden eine Datenbank als WebAssembly; das funktioniert nicht über `file://`, sondern nur über einen Webserver. Lokal:
 
 ```bash
 cd web
