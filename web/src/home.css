@@ -566,10 +566,6 @@
   }
 }
 
-.table-scroll {
-  overflow-x: auto;
-}
-
 .results-table td {
   max-width: 220px;
 }

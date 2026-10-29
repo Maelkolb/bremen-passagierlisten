@@ -493,6 +493,10 @@ a:hover {
   border-right: 0;
 }
 
+.table-scroll {
+  overflow-x: auto;
+}
+
 .progress {
   height: 2px;
   background: var(--rule);
