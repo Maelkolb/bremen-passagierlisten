@@ -6,6 +6,9 @@ from .paths import WEB_DATA
 
 SANKEY_PORTS = ["New York", "Buenos Aires", "Baltimore", "Halifax", "Rio de Janeiro", "Santos", "Galveston"]
 PARQUET_ROW_GROUP = 64_000
+EXCERPT_ERAS = [(1830, 1860), (1907, 1914), (1920, 1929), (1930, 1937), (1938, 1939)]
+EXCERPTS_PER_ERA = 2
+EXCERPT_ROWS = 12
 
 WERKBANK_COLUMNS = {
     "id": "id",
@@ -104,7 +107,7 @@ def certainty(prefix: str) -> pl.Expr:
     ).fill_null(False).alias(f"{prefix}_sicher")
 
 
-def werkbank_parquet(df: pl.DataFrame) -> tuple[int, int]:
+def werkbank_table(df: pl.DataFrame) -> pl.DataFrame:
     df = df.with_columns([certainty(prefix) for prefix in ["herkunft", "ziel"] if f"{prefix}_geo_method" in df.columns])
     present = {source: target for source, target in WERKBANK_COLUMNS.items() if source in df.columns}
     table = df.select([pl.col(s).alias(t) for s, t in present.items()]).with_columns(
@@ -117,16 +120,60 @@ def werkbank_parquet(df: pl.DataFrame) -> tuple[int, int]:
     for column in ["herkunft_lat", "herkunft_lon", "ziel_lat", "ziel_lon"]:
         if column in table.columns:
             table = table.with_columns(pl.col(column).cast(pl.Float32))
-    table = table.sort(["abfahrt", "liste", "id"], nulls_last=True)
+    return table.sort(["abfahrt", "liste", "id"], nulls_last=True)
+
+
+def werkbank_parquet(table: pl.DataFrame) -> tuple[int, int]:
     path = WEB_DATA / "passagiere.parquet"
     WEB_DATA.mkdir(parents=True, exist_ok=True)
     table.write_parquet(path, compression="zstd", compression_level=19, row_group_size=PARQUET_ROW_GROUP, statistics=True)
     return path.stat().st_size, len(table.columns)
 
 
+def list_excerpts(table: pl.DataFrame) -> list[dict]:
+    complete = ["vorname", "alter", "beruf", "wohnort", "ziel"]
+    crossings = table.filter(pl.col("reiseart") == "Überfahrt")
+    candidates = (
+        crossings.group_by("liste", maintain_order=True)
+        .agg(
+            pl.len().alias("n"),
+            pl.col("jahr").first(),
+            pl.mean_horizontal([pl.col(c).is_not_null().mean() for c in complete]).alias("vollstaendig"),
+            (pl.col("gruppe_groesse") > 1).any().alias("gruppen"),
+            pl.col("wohnort").n_unique().alias("orte"),
+        )
+        .filter((pl.col("n") >= EXCERPT_ROWS + 2) & pl.col("gruppen"))
+        .sort(["vollstaendig", "orte", "liste"], descending=[True, True, False])
+    )
+    chosen = [
+        name
+        for first, last in EXCERPT_ERAS
+        for name in candidates.filter(pl.col("jahr").is_between(first, last))["liste"].head(EXCERPTS_PER_ERA).to_list()
+    ]
+    excerpts = []
+    for name in chosen:
+        rows = crossings.filter(pl.col("liste") == name).sort("id")
+        head = rows.row(0, named=True)
+        excerpts.append({
+            "liste": name,
+            "schiff": head["schiff"],
+            "abfahrt": head["abfahrt"].isoformat() if head["abfahrt"] else None,
+            "jahr": head["jahr"],
+            "hafen": head["ankunftshafen"],
+            "eintraege": len(rows),
+            "zeilen": rows.head(EXCERPT_ROWS).select(
+                "id", "nr", "nachname", "vorname", "alter", "geschlecht", "beruf", "wohnort", "ziel",
+                pl.when(pl.col("gruppe_groesse") > 1).then(pl.col("gruppe_id")).alias("gruppe"),
+            ).to_dicts(),
+        })
+    return excerpts
+
+
 def run(df: pl.DataFrame) -> dict:
     figures = kennzahlen(df)
     write_web_json("kennzahlen", figures)
     write_web_json("sankey", sankey(df))
-    size, columns = werkbank_parquet(df)
+    table = werkbank_table(df)
+    size, columns = werkbank_parquet(table)
+    write_web_json("listen", list_excerpts(table))
     return {"kennzahlen": figures, "parquet_bytes": size, "parquet_columns": columns}

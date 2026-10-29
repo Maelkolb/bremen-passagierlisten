@@ -55,12 +55,12 @@ export function placeRadius(n: number, max: number): number {
 }
 
 export function viewColor(t: Tokens, kind: "herkunft" | "ziele"): string {
-  return kind === "herkunft" ? t.brass : t.series[4];
+  return kind === "herkunft" ? t.origin : t.destination;
 }
 
 export function stopColor(t: Tokens, stop: Stop): string {
   if (stop.role === "herkunft") return viewColor(t, "herkunft");
-  if (stop.role === "hafen") return t.series[0];
+  if (stop.role === "hafen") return t.ink;
   if (stop.role === "ziel") return viewColor(t, "ziele");
   return t.ink;
 }
@@ -135,7 +135,7 @@ export class MapView {
     const lats = points.map((p) => p[1]);
     const narrow = this.map.getContainer().clientWidth < 700;
     this.map.fitBounds([[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]], {
-      padding: { top: 90, bottom: 60, left: narrow ? 48 : 60, right: narrow ? 48 : 60 },
+      padding: { top: 90, bottom: 60, left: narrow ? 48 : 60, right: narrow ? 72 : 110 },
       maxZoom: FIT_MAX_ZOOM,
       duration: 1200,
       essential: true,
@@ -212,7 +212,7 @@ export class MapView {
       getSize: size,
       getColor: rgb(t.ink, 235),
       getPixelOffset: [0, -10],
-      fontFamily: "Inter Variable, Inter, sans-serif",
+      fontFamily: "Archivo Variable, sans-serif",
       fontWeight: 500,
       characterSet: "auto",
       fontSettings: { sdf: true },
@@ -227,7 +227,7 @@ export class MapView {
     const data = [{ position: BREMEN, name: "Bremen" }];
     return [
       new ScatterplotLayer({ id: "bremen", data, getPosition: (d: any) => d.position, getRadius: 5, radiusUnits: "pixels", getFillColor: rgb(t.ink), getLineColor: rgb(t.paper), stroked: true, lineWidthUnits: "pixels", getLineWidth: 2 }),
-      new TextLayer({ id: "bremen-label", data, getPosition: (d: any) => d.position, getText: (d: any) => d.name, getSize: 14, getColor: rgb(t.ink), getPixelOffset: [10, 0], getTextAnchor: "start", getAlignmentBaseline: "center", fontFamily: "Newsreader Variable, Georgia, serif", fontWeight: 600, characterSet: "auto", fontSettings: { sdf: true }, outlineWidth: 4, outlineColor: rgb(t.paper, 230) }),
+      new TextLayer({ id: "bremen-label", data, getPosition: (d: any) => d.position, getText: (d: any) => d.name, getSize: 14, getColor: rgb(t.ink), getPixelOffset: [10, 0], getTextAnchor: "start", getAlignmentBaseline: "center", fontFamily: "Literata Variable, Georgia, serif", fontWeight: 600, characterSet: "auto", fontSettings: { sdf: true }, outlineWidth: 4, outlineColor: rgb(t.paper, 230) }),
     ];
   }
 
@@ -325,12 +325,12 @@ export class MapView {
         getSourcePosition: () => BREMEN,
         getTargetPosition: (d) => [d.lon, d.lat],
         getWidth: (d) => 0.8 + 7 * share(d),
-        getSourceColor: (d) => rgb(t.series[0], dim ? 25 : 40 + Math.round(150 * share(d))),
-        getTargetColor: (d) => rgb(t.series[0], dim ? 25 : 40 + Math.round(150 * share(d))),
+        getSourceColor: (d) => rgb(t.ink, dim ? 20 : 30 + Math.round(130 * share(d))),
+        getTargetColor: (d) => rgb(t.ink, dim ? 20 : 30 + Math.round(130 * share(d))),
         getHeight: 0.5,
         pickable: !dim,
         onHover: this.hover,
-        updateTriggers: { getWidth: [portMax], getSourceColor: [portMax, dim, t.series[0]], getTargetColor: [portMax, dim, t.series[0]] },
+        updateTriggers: { getWidth: [portMax], getSourceColor: [portMax, dim, t.ink], getTargetColor: [portMax, dim, t.ink] },
       }),
       this.places("ziele", view.points, color, view.selected, t, (p) => this.handlers.selectPlace("ziel", p)),
       new ScatterplotLayer<PlacePoint>({
@@ -339,7 +339,7 @@ export class MapView {
         getPosition: (d) => [d.lon, d.lat],
         getRadius: 3.5,
         radiusUnits: "pixels",
-        getFillColor: rgb(t.series[0], dim ? 80 : 255),
+        getFillColor: rgb(t.ink, dim ? 80 : 255),
         getLineColor: rgb(t.paper),
         stroked: true,
         lineWidthUnits: "pixels",

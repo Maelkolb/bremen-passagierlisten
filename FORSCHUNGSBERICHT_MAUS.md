@@ -1,6 +1,6 @@
 # Forschungsbericht: 735.545 Einträge der Bremer Passagierlisten 1830–1939
 
-Stand 25.10.2026. Erzeugt von `analysis/run_all.py` aus Perschl, Schmidt, Gassner, Rehbein (2025), *A Dataset of 735,000 Migration Records (Bremen, 1830-1939)*, Zenodo, [10.5281/zenodo.17977460](https://doi.org/10.5281/zenodo.17977460), CC BY 4.0.
+Stand 29.10.2026. Erzeugt von `analysis/run_all.py` aus Perschl, Schmidt, Gassner, Rehbein (2025), *A Dataset of 735,000 Migration Records (Bremen, 1830-1939)*, Zenodo, [10.5281/zenodo.17977460](https://doi.org/10.5281/zenodo.17977460), CC BY 4.0.
 
 Die Einträge wurden von Ehrenamtlichen der *MAUS – Gesellschaft für Familienforschung e. V. Bremen* gemeinsam mit der Handelskammer Bremen und dem Staatsarchiv Bremen transkribiert ([passagierlisten.de](https://passagierlisten.de/)). Alle Zahlen dieses Berichts beruhen auf ihrer Arbeit.
 

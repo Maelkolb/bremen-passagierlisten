@@ -43,7 +43,6 @@ export class Tour {
     document.body.classList.add("touring");
     this.card.hidden = false;
     this.card.innerHTML = `
-      <div class="tour-progress" aria-hidden="true">${CHAPTERS.map((_, i) => `<i class="${i <= index ? "done" : ""}"></i>`).join("")}</div>
       <button type="button" class="tour-close" id="tour-end" aria-label="Rundgang beenden">${CLOSE_ICON}</button>
       <h2>${escapeHtml(chapter.title)}</h2>
       <p>${escapeHtml(chapter.text(this.data.kapitel))}</p>

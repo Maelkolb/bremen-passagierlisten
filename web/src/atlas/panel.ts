@@ -204,7 +204,7 @@ export class Panel {
   private headline(number: string, text: string, state: State): string {
     const period = isFullWindow(state.window) ? "" : `, ${windowText(state.window)}`;
     this.handle.innerHTML = `<span><strong>${number}</strong> ${text}${period}</span>`;
-    return `<div class="headline"><div class="headline-number">${number}</div><p class="headline-text">${text}${period}</p></div>`;
+    return `<p class="headline"><span class="headline-number">${number}</span> ${text}${period}</p>`;
   }
 
   private empty(state: State): string {
@@ -240,7 +240,7 @@ export class Panel {
     const person = state.person !== null;
     this.handle.innerHTML = `<span>${person ? "Eintrag wird geladen …" : `Suche nach ${escapeHtml(state.name)} …`}</span>`;
     const text = person ? "Der Eintrag erscheint" : `Danach erscheinen hier alle Einträge namens ${escapeHtml(state.name)}`;
-    this.show(`<div class="headline"><p class="headline-text">Die Datenbank wird geladen, ${Math.round(this.loadShare * 100)} %. ${text}${person ? ", sobald sie bereit ist." : "."}</p></div>`);
+    this.show(`<p class="headline-text">Die Datenbank wird geladen, ${Math.round(this.loadShare * 100)} %. ${text}${person ? ", sobald sie bereit ist." : "."}</p>`);
   }
 
   private entries(block: EntryBlock | null, title: string, shown: Route): string {
@@ -299,7 +299,7 @@ export class Panel {
     this.show(`
       ${this.headline(fmt(view.total), `${this.subject(state)} mit Reiseziel, in ${fmt(view.points.length)} Orten`, state)}
       ${block("Weltregionen", shareRows(view.regions, view.total, color))}
-      ${block("Ankunftshäfen", rows(view.ports.slice(0, 5).map((p) => ({ label: p.name, n: p.n, value: pct(p.n / Math.max(1, portTotal)) })), t.series[0]))}
+      ${block("Ankunftshäfen", rows(view.ports.slice(0, 5).map((p) => ({ label: p.name, n: p.n, value: pct(p.n / Math.max(1, portTotal)) })), t.ink))}
       ${block("Häufigste Reiseziele", this.placeRows(top, color), "top-places")}`);
     this.onRows("#top-places", (i) => this.select("ziel", top[Number(i)]));
   }
@@ -323,7 +323,7 @@ export class Panel {
   }
 
   private werkbank(link: string): string {
-    return `<a class="button secondary wide" href="${link}">In der Werkbank filtern und herunterladen</a>`;
+    return `<a class="button secondary wide" href="${link}">In der Suche öffnen und herunterladen</a>`;
   }
 
   private profile(selected: SelectionView, entries: EntryBlock | null, state: State, t: Tokens): void {
@@ -492,7 +492,7 @@ export class Panel {
       const roles = new Set(journey(view.person).filter((s) => s.position).map((s) => s.role));
       this.legend.innerHTML = [
         roles.has("herkunft") ? dot(viewColor(t, "herkunft"), "Herkunft") : "",
-        roles.has("hafen") ? dot(t.series[0], "Ankunftshafen") : "",
+        roles.has("hafen") ? dot(t.ink, "Ankunftshafen") : "",
         roles.has("ziel") ? dot(viewColor(t, "ziele"), "Reiseziel") : "",
       ].join("");
     } else if ((view.kind === "herkunft" || view.kind === "ziele") && view.selected) {
@@ -501,7 +501,7 @@ export class Panel {
     } else if (view.kind === "herkunft" && view.points.length) {
       this.legend.innerHTML = this.sizeLegend(view.points[0].n, viewColor(t, "herkunft"), "Einträge je Herkunftsort");
     } else if (view.kind === "ziele" && view.points.length) {
-      this.legend.innerHTML = `${this.sizeLegend(view.points[0].n, viewColor(t, "ziele"), "Einträge je Reiseziel")}${line(t.series[0], "Seeweg zum Ankunftshafen")}`;
+      this.legend.innerHTML = `${this.sizeLegend(view.points[0].n, viewColor(t, "ziele"), "Einträge je Reiseziel")}${line(t.ink, "Seeweg zum Ankunftshafen")}`;
     } else {
       this.legend.innerHTML = "";
     }

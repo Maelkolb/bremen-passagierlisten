@@ -5,20 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Forschungsbericht Passagierlisten</title>
     <meta name="description" content="Forschungsbericht zu 735.545 Einträgen der Bremer Passagierlisten 1830–1939: Quellenkritik, Berufsstruktur, Geografie, Demografie, Schifffahrt." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314213d'/%3E%3Cpath d='M6 21h20l-3 5H9z' fill='%23c87d55'/%3E%3Cpath d='M15 5v14h-8z' fill='%23f9f6f0'/%3E%3Cpath d='M17 8v11h7z' fill='%23f9f6f0'/%3E%3C/svg%3E" />
+    <meta name="theme-color" content="#f3f3ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#161b22" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3f3ef'/%3E%3Cpath d='M6 9h20M6 15h20M6 21h20M6 27h20' stroke='%239fb3bf' stroke-width='1.5'/%3E%3Cpath d='M10 4v28M13 4v28' stroke='%23b8352d' stroke-width='1.5'/%3E%3C/svg%3E" />
   </head>
   <body>
+    <a class="skip-link" href="#bericht">Zum Bericht springen</a>
     <header class="topbar">
-      <div class="wrap flex items-center justify-between gap-6 h-14">
-        <a href="index.html" class="serif text-lg no-underline whitespace-nowrap">Bremer Passagierlisten</a>
-        <nav class="flex gap-6">
-          <a href="index.html#reportage">Reportage</a>
-          <a href="index.html#werkbank">Werkbank</a>
+      <div class="wrap topbar-inner">
+        <a href="index.html" class="brand">Bremer Passagierlisten</a>
+        <nav class="nav" aria-label="Seiten">
+          <a href="index.html#reportage" class="wide-only">Reportage</a>
+          <a href="atlas.html">Atlas</a>
+          <a href="index.html#werkbank">Suche</a>
         </nav>
       </div>
     </header>
-    <main class="wrap py-12">
-      <article id="bericht" class="prose"></article>
+    <main class="wrap report-layout">
+      <nav class="report-toc" id="toc" aria-label="Inhalt"></nav>
+      <article id="bericht" class="report"></article>
     </main>
     <script type="module" src="/src/bericht.ts"></script>
   </body>

@@ -12,21 +12,21 @@ export async function renderQuellen(root: HTMLElement): Promise<void> {
   const duplicates = quellen.dubletten;
 
   root.innerHTML = `
-    <div class="grid gap-10 lg:grid-cols-[1fr_320px]">
-      <figure class="m-0">
-        <figcaption class="text-sm text-[var(--ink-2)] mb-2">Füllgrad der Felder je Jahrgang (Jahrgänge mit mindestens 100 Einträgen)</figcaption>
-        <div class="h-[620px]" id="quellen-heatmap" role="img" aria-label="Füllgrad der Felder je Jahrgang"></div>
+    <div class="sources-grid">
+      <figure class="sources-figure">
+        <figcaption class="chart-title">Ausgefüllte Felder je Jahrgang, Jahrgänge mit mindestens 100 Einträgen</figcaption>
+        <div class="heatmap" id="quellen-heatmap" role="img" aria-label="Anteil ausgefüllter Felder je Jahrgang"></div>
       </figure>
-      <div class="text-[15px] flow">
-        <p>Die Listen wurden zu verschiedenen Zeiten nach verschiedenen Formularen geführt. Was fehlt, fehlt meist für ganze Jahrgänge: Berufe werden nach 1914 seltener notiert, Lese- und Schreibfähigkeit, Bargeld und Angehörige nur auf den Formularen der US-Einwanderungsbehörde der Jahre 1935 bis 1937.</p>
-        <p>${conflicts ? `Bei ${fmt(conflicts.zeilen)} Einträgen widerspricht das Abfahrtsdatum dem Datum im Archivkürzel; ${fmt(conflicts.korrigiert)} davon, eine Liste der <em>Merkur</em> vom Februar 1945, lassen sich sicher korrigieren.` : ""}
-        ${duplicates ? ` ${fmt(duplicates.zeilen)} Einträge in ${fmt(duplicates.gruppen)} Gruppen stimmen in Name, Alter, Schiff und Datum überein, oft weil dieselbe Reise auf den Listen mehrerer Agenturen steht.` : ""}</p>
-        <p><a href="bericht.html">Forschungsbericht</a> mit allen Methoden, Tests und Tabellen.</p>
+      <div class="sources-text">
+        <p>Die Listen wurden zu verschiedenen Zeiten auf verschiedenen Formularen geführt. Was fehlt, fehlt meist für ganze Jahrgänge: Berufe werden nach 1914 seltener notiert, Lese- und Schreibfähigkeit, Bargeld und Angehörige nur auf den Formularen der US-Einwanderungsbehörde 1935 bis 1937.</p>
+        ${conflicts ? `<p>Bei ${fmt(conflicts.zeilen)} Einträgen widerspricht das Abfahrtsdatum dem Datum im Archivkürzel. ${fmt(conflicts.korrigiert)} davon, eine Liste der <em>Merkur</em> vom Februar 1945, lassen sich sicher korrigieren.</p>` : ""}
+        ${duplicates ? `<p>${fmt(duplicates.zeilen)} Einträge in ${fmt(duplicates.gruppen)} Gruppen stimmen in Name, Alter, Schiff und Datum überein, oft weil dieselbe Reise auf den Listen mehrerer Agenturen steht.</p>` : ""}
+        <p><a href="bericht.html">Forschungsbericht</a> mit allen Verfahren, Tests und Tabellen</p>
       </div>
     </div>
-    <figure class="m-0 mt-12">
-      <figcaption class="text-sm text-[var(--ink-2)] mb-2">Einträge je Jahr nach Archivserie</figcaption>
-      <div class="h-[320px]" id="quellen-series" role="img" aria-label="Einträge je Jahr nach Archivserie"></div>
+    <figure class="sources-series">
+      <figcaption class="chart-title">Einträge je Jahr nach Archivserie</figcaption>
+      <div class="series-chart" id="quellen-series" role="img" aria-label="Einträge je Jahr nach Archivserie"></div>
     </figure>
   `;
 
@@ -39,12 +39,12 @@ export async function renderQuellen(root: HTMLElement): Promise<void> {
     years.forEach((y, xi) => fields.forEach((f, yi) => cells.push([xi, yi, y[f]])));
     heatmap.setOption({
       ...baseOption(t),
-      grid: { left: 150, right: 16, top: 8, bottom: 72 },
+      grid: { left: 150, right: 8, top: 4, bottom: 72 },
       tooltip: { trigger: "item", formatter: (p: any) => `${years[p.value[0]].jahr}, ${fields[p.value[1]]}<br><strong>${pct(p.value[2])}</strong> gefüllt (${fmt(years[p.value[0]].n)} Einträge)` },
       xAxis: { type: "category", data: years.map((y) => String(y.jahr)), ...ax, splitLine: { show: false }, axisLabel: { ...ax.axisLabel, rotate: 90, fontSize: 10 } },
       yAxis: { type: "category", data: fields, inverse: true, ...ax, splitLine: { show: false } },
       visualMap: { min: 0, max: 1, orient: "horizontal", left: 150, bottom: 0, itemWidth: 10, itemHeight: 160, inRange: { color: t.sequential }, text: ["100 %", "0 %"], textStyle: { color: t.ink2, fontSize: 11 }, calculable: false },
-      series: [{ type: "heatmap", data: cells, itemStyle: { borderColor: t.paper, borderWidth: 1 }, emphasis: { itemStyle: { borderColor: t.ink, borderWidth: 1 } } }],
+      series: [{ type: "heatmap", data: cells, itemStyle: { borderColor: t.paper, borderWidth: 1.5 }, emphasis: { itemStyle: { borderColor: t.ink, borderWidth: 1 } } }],
     }, { notMerge: true });
 
     const names = [...new Set(series.map((s) => s.serie))];
@@ -65,7 +65,7 @@ export async function renderQuellen(root: HTMLElement): Promise<void> {
         stack: "s",
         name,
         data: allYears.map((y) => series.filter((s) => s.jahr === y && (name === "übrige" ? !main.includes(s.serie) : s.serie === name)).reduce((a, s) => a + s.n, 0)),
-        itemStyle: { color: name === "übrige" ? t.ruleStrong : t.series[i] },
+        itemStyle: { color: name === "übrige" ? t.ruleStrong : t.series[i], borderColor: t.paper, borderWidth: 0.5 },
         barCategoryGap: "15%",
       })),
     }, { notMerge: true });

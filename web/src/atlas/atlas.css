@@ -6,17 +6,12 @@
   grid-template-rows: auto 1fr;
 }
 
-.atlas-page .button {
-  border-radius: 8px;
-  text-decoration: none;
-}
-
 .atlas-bar {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 16px;
-  height: 64px;
+  height: 60px;
   padding: 0 20px;
   border-bottom: 1px solid var(--rule);
   background: var(--paper);
@@ -41,7 +36,8 @@
 }
 
 .atlas-title {
-  font-size: 21px;
+  font-size: 20px;
+  font-weight: 450;
   line-height: 1.2;
   margin: 0;
   white-space: nowrap;
@@ -49,24 +45,21 @@
 
 .view-switch {
   display: inline-flex;
-  padding: 3px;
-  gap: 2px;
-  border-radius: 10px;
-  background: var(--paper-deep);
-  border: 1px solid var(--rule);
+  gap: 28px;
+  height: 100%;
 }
 
 .view-switch button {
   font: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 18px;
-  border: 1px solid transparent;
-  border-radius: 7px;
+  font-size: 15px;
+  padding: 0 2px;
+  margin-bottom: -1px;
+  border: 0;
+  border-bottom: 2px solid transparent;
   background: transparent;
   color: var(--ink-2);
   cursor: pointer;
-  transition: background 150ms ease, color 150ms ease;
+  transition: color 150ms ease, border-color 150ms ease;
 }
 
 .view-switch button:hover {
@@ -74,39 +67,14 @@
 }
 
 .view-switch button[aria-selected="true"] {
-  background: var(--surface);
-  border-color: var(--rule);
   color: var(--ink);
-  box-shadow: 0 1px 2px rgb(20 33 61 / 0.08);
+  font-weight: 500;
+  border-bottom-color: var(--accent);
 }
 
 .tour-button {
   justify-self: end;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 6px 14px 6px 8px;
-  border: 1px solid var(--rule-strong);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--ink);
-  cursor: pointer;
-}
-
-.tour-button svg {
-  width: 22px;
-  height: 22px;
-  padding: 5px 4px 5px 6px;
-  border-radius: 50%;
-  background: var(--brass);
-  color: var(--surface);
-}
-
-.tour-button:hover {
-  border-color: var(--ink-2);
+  padding: 7px 14px;
 }
 
 .atlas-body {
@@ -137,18 +105,18 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 44px;
-  padding: 0 8px 0 14px;
+  height: 42px;
+  padding: 0 6px 0 12px;
   border: 1px solid var(--rule-strong);
-  border-radius: 10px;
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--ink-3);
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .search-field:focus-within {
-  border-color: var(--ink-2);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 18%, transparent);
+  border-color: var(--focus);
+  box-shadow: 0 0 0 1px var(--focus);
 }
 
 .search-field svg {
@@ -183,7 +151,7 @@
   width: 28px;
   height: 28px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 2px;
   background: transparent;
   color: var(--ink-3);
   cursor: pointer;
@@ -212,7 +180,7 @@
   display: block;
   width: 0;
   height: 100%;
-  background: var(--brass);
+  background: var(--ink);
   transition: width 300ms ease;
 }
 
@@ -239,19 +207,24 @@
 
 .panel-body {
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 22px 20px 36px;
 }
 
-.headline-number {
+.headline {
+  margin: 0;
   font-family: var(--font-serif);
-  font-size: 46px;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-size: 21px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.headline-number {
   font-variant-numeric: tabular-nums;
 }
 
 .headline-text {
-  margin: 8px 0 0;
+  margin: 0;
   font-size: 15px;
   color: var(--ink-2);
 }
@@ -286,7 +259,7 @@
   width: 100%;
   padding: 7px 8px 8px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 2px;
   background: transparent;
   color: var(--ink);
   font: inherit;
@@ -345,7 +318,7 @@ button.row:hover {
   padding: 4px 8px 4px 2px;
   margin-left: -4px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 2px;
   background: transparent;
   font: inherit;
   font-size: 13px;
@@ -364,7 +337,8 @@ button.row:hover {
 }
 
 .title {
-  font-size: 32px;
+  font-size: 30px;
+  font-weight: 450;
   line-height: 1.1;
   margin: 14px 0 6px;
 }
@@ -403,9 +377,9 @@ button.row:hover {
 
 .stats dd {
   margin: 2px 0 0;
-  font-family: var(--font-serif);
-  font-size: 25px;
-  line-height: 1.1;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
   font-variant-numeric: tabular-nums;
 }
 
@@ -530,7 +504,7 @@ button.row:hover {
   width: 100%;
   padding: 8px 8px 9px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 2px;
   background: transparent;
   color: var(--ink);
   font: inherit;
@@ -733,7 +707,7 @@ button.entry:hover,
 .atlas-map .maplibregl-ctrl-group {
   background: var(--surface);
   border: 1px solid var(--rule-strong);
-  border-radius: 8px;
+  border-radius: var(--radius);
   box-shadow: none;
   overflow: hidden;
 }
@@ -787,8 +761,8 @@ button.entry:hover,
   left: 14px;
   bottom: 14px;
   padding: 10px 12px;
-  border: 1px solid var(--rule);
-  border-radius: 8px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   font-size: 12px;
   color: var(--ink-2);
@@ -800,7 +774,7 @@ button.entry:hover,
 }
 
 .legend-title {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink);
   margin-bottom: 6px;
 }
@@ -838,18 +812,18 @@ button.entry:hover,
   max-width: 280px;
   padding: 8px 11px;
   border: 1px solid var(--rule-strong);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--surface);
   font-size: 13px;
   line-height: 1.45;
   color: var(--ink-2);
   pointer-events: none;
-  box-shadow: 0 4px 14px rgb(20 33 61 / 0.08);
+  box-shadow: 0 6px 18px -8px rgb(0 0 0 / 0.18);
 }
 
 .map-tooltip strong {
   display: block;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--ink);
 }
 
@@ -922,16 +896,16 @@ button.entry:hover,
 }
 
 .timeline-svg .brush {
-  fill: var(--brass);
-  fill-opacity: 0.12;
-  stroke: var(--brass);
+  fill: var(--accent);
+  fill-opacity: 0.08;
+  stroke: var(--accent);
   stroke-width: 1;
   cursor: grab;
 }
 
 .timeline-svg .handle {
   fill: var(--surface);
-  stroke: var(--brass);
+  stroke: var(--accent);
   stroke-width: 1.5;
   cursor: ew-resize;
 }
@@ -943,27 +917,10 @@ button.entry:hover,
   width: min(368px, calc(100% - 32px));
   padding: 18px 20px 16px;
   border: 1px solid var(--rule-strong);
-  border-radius: 12px;
+  border-radius: 4px;
   background: var(--surface);
-  box-shadow: 0 12px 32px rgb(20 33 61 / 0.12);
+  box-shadow: 0 20px 48px -24px rgb(0 0 0 / 0.3);
   z-index: 8;
-}
-
-.tour-progress {
-  display: flex;
-  gap: 4px;
-  margin: 0 36px 16px 0;
-}
-
-.tour-progress i {
-  flex: 1;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--rule);
-}
-
-.tour-progress i.done {
-  background: var(--brass);
 }
 
 .tour-close {
@@ -975,7 +932,7 @@ button.entry:hover,
   width: 30px;
   height: 30px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 2px;
   background: transparent;
   color: var(--ink-3);
   cursor: pointer;
@@ -992,14 +949,16 @@ button.entry:hover,
 }
 
 .tour-card h2 {
-  margin: 0 0 8px;
+  margin: 0 36px 8px 0;
   font-size: 25px;
+  font-weight: 450;
   line-height: 1.15;
 }
 
 .tour-card p {
   margin: 0;
-  font-size: 15px;
+  font-family: var(--font-serif);
+  font-size: 15.5px;
   line-height: 1.55;
   color: var(--ink-2);
 }
@@ -1040,11 +999,12 @@ button.entry:hover,
   .view-switch {
     grid-column: 1 / -1;
     grid-row: 2;
+    height: 34px;
+    gap: 24px;
   }
 
   .view-switch button {
-    flex: 1;
-    padding: 6px 8px;
+    padding: 0 2px;
   }
 
   .atlas-body {
@@ -1059,8 +1019,8 @@ button.entry:hover,
     max-height: 74dvh;
     border-right: 0;
     border-top: 1px solid var(--rule-strong);
-    border-radius: 14px 14px 0 0;
-    box-shadow: 0 -8px 24px rgb(20 33 61 / 0.1);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -10px 30px -12px rgb(0 0 0 / 0.25);
     transform: translateY(calc(100% - 56px));
     transition: transform 260ms ease;
     z-index: 30;

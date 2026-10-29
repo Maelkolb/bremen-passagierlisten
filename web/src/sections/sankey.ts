@@ -13,6 +13,9 @@ interface Flow {
 
 const FOLDED_SECTORS = ["Verkehr", "Naturwissenschaft", "Militär"];
 const OTHER_SECTORS = "übrige Bereiche";
+const SANKEY_LEFT = 0;
+const SANKEY_RIGHT = 132;
+const NODE_WIDTH = 10;
 const LEVEL_ORDER = ["Helfer", "Fachkraft", "Spezialist", "Experte", "ohne Angabe"];
 
 export async function renderSankey(root: HTMLElement): Promise<void> {
@@ -23,44 +26,30 @@ export async function renderSankey(root: HTMLElement): Promise<void> {
     niveau: data.fluesse.niveau[i],
     hafen: data.fluesse.hafen[i],
     n,
-  }));
-  const periods = [...new Set(flows.map((f) => f.zeitraum))].sort();
+  })).filter((f: Flow) => f.zeitraum !== "1830–1869");
   const sectorTotals = new Map<string, number>();
   flows.forEach((f) => sectorTotals.set(f.sektor, (sectorTotals.get(f.sektor) ?? 0) + f.n));
   const sectorOrder = [...sectorTotals.entries()].filter(([s]) => s !== OTHER_SECTORS).sort((a, b) => b[1] - a[1]).map(([s]) => s).concat([OTHER_SECTORS]);
 
   root.innerHTML = `
-    <div class="control-row mb-4">
-      <div class="segmented flex-wrap" role="group" aria-label="Zeitraum">
-        <button type="button" data-period="" aria-pressed="true">alle Zeiträume</button>
-        ${periods.map((p) => `<button type="button" data-period="${p}" aria-pressed="false">${PERIOD_LABELS[p] ?? p}</button>`).join("")}
-      </div>
-      <span class="muted text-sm" id="sankey-n"></span>
-    </div>
-    <div class="overflow-x-auto"><div class="h-[640px] min-w-[760px]" id="sankey-chart" role="img" aria-label="Flussdiagramm Zeitraum, Berufsbereich, Anforderungsniveau, Zielhafen"></div></div>
-    <p class="muted text-sm mt-2 mb-0">Auswanderer und übrige Reisende ohne US-Staatsangehörigkeit, mit Berufsangabe und KldB-2010-Klassifikation. Bewegen Sie den Zeiger über einen Knoten, um seine Verbindungen hervorzuheben.</p>
+    <div class="sankey-scroll"><div class="sankey-chart" id="sankey-chart" role="img" aria-label="Flussdiagramm vom Zeitraum über Berufsbereich und Anforderungsniveau zum Ankunftshafen"></div></div>
+    <p class="caption">${fmt(flows.reduce((s, f) => s + f.n, 0))} Reisende 1907–1939 mit Berufsangabe, ohne US-Staatsangehörige. Berufsbereiche nach der Klassifikation der Berufe 2010. Ein Knoten unter dem Zeiger hebt seine Verbindungen hervor.</p>
   `;
-  const chart = echarts.init(root.querySelector<HTMLElement>("#sankey-chart")!);
-  let selected = "";
+  const element = root.querySelector<HTMLElement>("#sankey-chart")!;
+  const chart = echarts.init(element);
   const draw = () => {
     const t = tokens();
-    const subset = selected ? flows.filter((f) => f.zeitraum === selected) : flows;
-    root.querySelector("#sankey-n")!.textContent = `${fmt(subset.reduce((s, f) => s + f.n, 0))} Personen`;
-    chart.setOption({ ...baseOption(t), ...option(subset, sectorOrder, t) }, { notMerge: true });
+    chart.setOption({ ...baseOption(t), ...option(flows, sectorOrder, t, element.clientWidth) }, { notMerge: true });
   };
-  root.querySelectorAll<HTMLButtonElement>(".segmented button").forEach((button) =>
-    button.addEventListener("click", () => {
-      selected = button.dataset.period ?? "";
-      root.querySelectorAll(".segmented button").forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
-      draw();
-    }),
-  );
   draw();
-  new ResizeObserver(() => chart.resize()).observe(root.querySelector("#sankey-chart")!);
+  new ResizeObserver(() => {
+    chart.resize();
+    draw();
+  }).observe(element);
   onThemeChange(draw);
 }
 
-function option(flows: Flow[], sectorOrder: string[], t: Tokens) {
+function option(flows: Flow[], sectorOrder: string[], t: Tokens, width: number) {
   const colorOf = new Map(sectorOrder.map((s) => [s, sectorColor(s, t)]));
   const links = new Map<string, { source: string; target: string; value: number }>();
   const add = (source: string, target: string, value: number) => {
@@ -90,7 +79,7 @@ function option(flows: Flow[], sectorOrder: string[], t: Tokens) {
   ];
   const linkList = [...links.values()].map((l) => ({
     ...l,
-    lineStyle: { color: colorOf.get(l.target) ?? colorOf.get(l.source) ?? t.ruleStrong, opacity: 0.32 },
+    lineStyle: { color: colorOf.get(l.target) ?? colorOf.get(l.source) ?? t.ruleStrong, opacity: 0.28 },
   }));
   return {
     tooltip: {
@@ -101,25 +90,25 @@ function option(flows: Flow[], sectorOrder: string[], t: Tokens) {
     },
     series: [{
       type: "sankey",
-      left: 8,
-      right: 150,
-      top: 28,
-      bottom: 12,
-      nodeWidth: 12,
+      left: SANKEY_LEFT,
+      right: SANKEY_RIGHT,
+      top: 30,
+      bottom: 8,
+      nodeWidth: NODE_WIDTH,
       nodeGap: 10,
       layoutIterations: 0,
       draggable: false,
-      emphasis: { focus: "adjacency", lineStyle: { opacity: 0.6 } },
-      label: { color: t.ink, fontSize: 12, fontFamily: t.sans },
+      emphasis: { focus: "adjacency", lineStyle: { opacity: 0.62 } },
+      label: { color: t.ink, fontSize: 12.5, fontFamily: t.sans },
       levels: [0, 1, 2, 3].map((depth) => ({ depth, label: { position: depth === 3 ? "right" : "right" } })),
       data: nodes,
       links: linkList,
     }],
-    graphic: ["Zeitraum", "Berufsbereich", "Anforderungsniveau", "Zielhafen"].map((text, i) => ({
+    graphic: ["Zeitraum", "Berufsbereich", "Anforderungsniveau", "Ankunftshafen"].map((text, i) => ({
       type: "text",
-      left: `${2 + i * 26}%`,
-      top: 4,
-      style: { text, fill: t.ink3, font: `12px ${t.sans}` },
+      left: SANKEY_LEFT + (i * (width - SANKEY_LEFT - SANKEY_RIGHT - NODE_WIDTH)) / 3,
+      top: 0,
+      style: { text, fill: t.ink2, font: `500 12.5px ${t.sans}` },
     })),
   };
 }

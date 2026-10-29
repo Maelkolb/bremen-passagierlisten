@@ -1,6 +1,6 @@
 import * as echarts from "echarts";
 import type { EChartsOption } from "echarts";
-import { assetUrl, load, PERIOD_LABELS, rows } from "../data";
+import { load, PERIOD_LABELS, rows } from "../data";
 import { fmt, fmt1, pct } from "../format";
 import { axisStyle, baseOption, onThemeChange, sectorColor, tokens, type Tokens } from "../theme";
 
@@ -9,11 +9,9 @@ interface Data {
   berufe: any;
   demografie: any;
   schifffahrt: any;
-  geografie: any | null;
 }
 
 interface Step {
-  era: string;
   title: string;
   text: (d: Data) => string;
   chart: (d: Data, t: Tokens) => EChartsOption;
@@ -22,7 +20,6 @@ interface Step {
 const MIN_YEAR_SIZE = 1000;
 const STEPS: Step[] = [
   {
-    era: "1830–1939",
     title: "Was überliefert ist",
     text: (d) => {
       const years = rows<any>(d.quellen.jahre).filter((y) => y.datensaetze > 0);
@@ -33,7 +30,6 @@ const STEPS: Step[] = [
     chart: (d, t) => yearlyBars(d, t, [1830, 1939]),
   },
   {
-    era: "Segelschiffzeit 1830–1869",
     title: "Einzelne Listen",
     text: (d) => {
       const early = rows<any>(d.quellen.jahre).filter((y) => y.jahr < 1870 && y.datensaetze > 0);
@@ -43,7 +39,6 @@ const STEPS: Step[] = [
     chart: (d, t) => yearlyBars(d, t, [1830, 1869]),
   },
   {
-    era: "Vorkriegsjahre 1907–1914",
     title: "Landarbeit über den Atlantik",
     text: (d) => {
       const share = sectorShare(d, "1907–1914", 1);
@@ -53,7 +48,6 @@ const STEPS: Step[] = [
     chart: (d, t) => sectorBars(d, t),
   },
   {
-    era: "1907–1939",
     title: "Erst die Männer, dann die Frauen",
     text: (d) => {
       const years = rows<any>(d.demografie.jahre).filter((y) => y.n >= MIN_YEAR_SIZE);
@@ -64,7 +58,6 @@ const STEPS: Step[] = [
     chart: (d, t) => sexRatio(d, t),
   },
   {
-    era: "Zwanziger Jahre 1919–1929",
     title: "New York und Buenos Aires",
     text: (d) => {
       const ports = rows<any>(d.schifffahrt.haefen_jahr).filter((r) => r.jahr >= 1919);
@@ -77,7 +70,6 @@ const STEPS: Step[] = [
     chart: (d, t) => portArea(d, t),
   },
   {
-    era: "Jahreslauf",
     title: "Rückreise im Spätsommer",
     text: (d) => {
       const us = d.quellen.saison_nach_reiseart["US-Staatsangehörige"].monate;
@@ -87,7 +79,6 @@ const STEPS: Step[] = [
     chart: (d, t) => seasonLines(d, t),
   },
   {
-    era: "Dreißiger Jahre 1930–1939",
     title: "Älter, und seltener mit Kindern",
     text: (d) => {
       const years = rows<any>(d.demografie.jahre).filter((y) => y.n >= MIN_YEAR_SIZE && y.jahr >= 1920 && y.median_alter != null);
@@ -97,59 +88,24 @@ const STEPS: Step[] = [
     },
     chart: (d, t) => medianAge(d, t),
   },
-  {
-    era: "Reisegruppen",
-    title: "Familien an Bord",
-    text: (d) => {
-      const g = rows<any>(d.demografie.gruppen_zeitraum).filter((r) => r.gruppe_typ === "Familie/Gruppe 3+");
-      const at = (p: string) => g.find((r) => r.zeitraum === p)?.anteil;
-      return `Reisende in Gruppen ab drei Personen mit gleichem Namen, direkt hintereinander auf der Liste: ${pct(at("1907–1914"))} vor dem Krieg, ${pct(at("1930–1939"))} in den Dreißigern.`;
-    },
-    chart: (d, t) => groupBars(d, t),
-  },
-  {
-    era: "Herkunft",
-    title: "Der Schwerpunkt wandert",
-    text: (d) => {
-      const c = rows<any>(d.geografie?.schwerpunkte_jahr);
-      if (c.length < 2) return "Die Herkunftsorte werden geokodiert.";
-      const first = c[0];
-      const last = c[c.length - 1];
-      const km = distanceKm(first.lat, first.lon, last.lat, last.lon);
-      const direction = last.lon < first.lon ? "Westen" : "Osten";
-      return `Der Mittelpunkt aller Herkunftsorte in Europa verschob sich zwischen ${first.jahr} und ${last.jahr} um ${fmt(km)} km nach ${direction}.`;
-    },
-    chart: (d, t) => centroidMap(d, t),
-  },
 ];
 
 const MONTHS = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
 const MONTHS_SHORT = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
 
 export async function renderReportage(root: HTMLElement): Promise<void> {
-  const [quellen, berufe, demografie, schifffahrt, geografie, land] = await Promise.all([
-    load("quellen"),
-    load("berufe"),
-    load("demografie"),
-    load("schifffahrt"),
-    load("geografie").catch(() => null),
-    fetch(assetUrl("geo/land.json")).then((r) => r.json()),
-  ]);
-  echarts.registerMap("land", land);
-  const data: Data = { quellen, berufe, demografie, schifffahrt, geografie };
-  const steps = STEPS.filter((s) => s.era !== "Herkunft" || geografie);
+  const [quellen, berufe, demografie, schifffahrt] = await Promise.all([load("quellen"), load("berufe"), load("demografie"), load("schifffahrt")]);
+  const data: Data = { quellen, berufe, demografie, schifffahrt };
+  const steps = STEPS;
 
   root.innerHTML = `
     <div class="scrolly">
-      <div class="scrolly-stage"><p class="stage-title" id="stage-title"></p><div class="stage-chart" id="stage" role="img"></div></div>
+      <div class="scrolly-stage"><p class="chart-title" id="stage-title"></p><div class="stage-chart" id="stage" role="img"></div></div>
       <div class="scrolly-steps">
         ${steps.map((s, i) => `
           <div class="step" data-step="${i}">
-            <div class="step-card">
-              <div class="step-era">${s.era}</div>
-              <h3>${s.title}</h3>
-              <p>${s.text(data)}</p>
-            </div>
+            <h3>${s.title}</h3>
+            <p>${s.text(data)}</p>
           </div>`).join("")}
       </div>
     </div>`;
@@ -348,76 +304,4 @@ function medianAge(d: Data, t: Tokens): EChartsOption {
       step: "middle",
     }],
   };
-}
-
-function groupBars(d: Data, t: Tokens): EChartsOption {
-  const list = rows<any>(d.demografie.gruppen_zeitraum).filter((r) => r.zeitraum !== "1830–1869");
-  const periods = ["1907–1914", "1919–1929", "1930–1939"];
-  const types: [string, string][] = [["allein", "allein"], ["zu zweit", "zu zweit"], ["Familie/Gruppe 3+", "Gruppe ab drei"]];
-  return {
-    title: title("Anteil der Auswanderer nach rekonstruierter Reisegruppe", t),
-    grid: { left: 120, right: 24, top: 24, bottom: 56 },
-    legend: { bottom: 0, left: 0, itemWidth: 10, itemHeight: 10, textStyle: { color: t.ink2, fontSize: 12 } },
-    tooltip: { trigger: "item", formatter: (p: any) => `${p.seriesName}<br>${p.name.replace("\n", " ")}: ${pct(p.value, 1)}` },
-    xAxis: { type: "value", max: 1, ...axisStyle(t), axisLabel: { ...axisStyle(t).axisLabel, formatter: (v: number) => pct(v) } },
-    yAxis: { type: "category", data: periods.map((p) => `${PERIOD_LABELS[p]}\n${p}`), inverse: true, ...axisStyle(t), splitLine: { show: false } },
-    series: types.map(([key, label], i) => ({
-      type: "bar",
-      stack: "g",
-      name: label,
-      data: periods.map((p) => list.find((r) => r.zeitraum === p && r.gruppe_typ === key)?.anteil ?? 0),
-      barWidth: "56%",
-      itemStyle: { color: [t.ruleStrong, t.series[2], t.series[1]][i], borderColor: t.paper, borderWidth: 1 },
-      label: { show: true, color: i === 0 ? t.ink : "#fff", formatter: (p: any) => (p.value > 0.08 ? pct(p.value) : ""), fontSize: 12 },
-    })),
-  };
-}
-
-function centroidMap(d: Data, t: Tokens): EChartsOption {
-  const c = rows<any>(d.geografie?.schwerpunkte_jahr);
-  return {
-    title: title("Mittelpunkt der Herkunftsorte in Europa je Jahr", t),
-    geo: {
-      map: "land",
-      roam: false,
-      center: [15, 50],
-      zoom: 15,
-      silent: true,
-      itemStyle: { areaColor: t.land, borderColor: t.landLine, borderWidth: 0.6 },
-    },
-    visualMap: {
-      type: "continuous",
-      min: c.length ? c[0].jahr : 1907,
-      max: c.length ? c[c.length - 1].jahr : 1939,
-      dimension: 2,
-      inRange: { color: [t.sequential[2], t.sequential[5]] },
-      text: ["später", "früher"],
-      textStyle: { color: t.ink2 },
-      right: 0,
-      bottom: 0,
-      itemHeight: 90,
-      calculable: false,
-    },
-    tooltip: { trigger: "item", formatter: (p: any) => `${p.value[2]}<br>${fmt(p.value[3])} geokodierte Einträge` },
-    series: [
-      {
-        type: "scatter",
-        coordinateSystem: "geo",
-        data: c.map((r) => [r.lon, r.lat, r.jahr, r.n]),
-        symbolSize: 9,
-        itemStyle: { borderColor: t.paper, borderWidth: 2 },
-        label: { show: true, formatter: (p: any) => ([c[0]?.jahr, c[c.length - 1]?.jahr].includes(p.value[2]) ? String(p.value[2]) : ""), position: "right", color: t.ink, fontSize: 12 },
-      },
-    ],
-  };
-}
-
-function distanceKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const r = 6371;
-  const p1 = (lat1 * Math.PI) / 180;
-  const p2 = (lat2 * Math.PI) / 180;
-  const dp = p2 - p1;
-  const dl = ((lon2 - lon1) * Math.PI) / 180;
-  const a = Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2;
-  return 2 * r * Math.asin(Math.sqrt(a));
 }

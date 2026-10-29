@@ -8,7 +8,9 @@ export interface Tokens {
   ink3: string;
   rule: string;
   ruleStrong: string;
-  brass: string;
+  accent: string;
+  origin: string;
+  destination: string;
   sea: string;
   land: string;
   landLine: string;
@@ -30,7 +32,9 @@ export function tokens(): Tokens {
     ink3: read("--ink-3"),
     rule: read("--rule"),
     ruleStrong: read("--rule-strong"),
-    brass: read("--brass"),
+    accent: read("--accent"),
+    origin: read("--origin"),
+    destination: read("--destination"),
     sea: read("--sea"),
     land: read("--land"),
     landLine: read("--land-line"),
@@ -55,7 +59,7 @@ export function baseOption(t: Tokens): EChartsOption {
       borderWidth: 1,
       padding: [6, 10],
       textStyle: { color: t.ink, fontSize: 13, fontFamily: t.sans },
-      extraCssText: "border-radius:4px;box-shadow:none;",
+      extraCssText: "border-radius:3px;box-shadow:none;",
     },
   };
 }
@@ -64,7 +68,7 @@ export function axisStyle(t: Tokens) {
   return {
     axisLine: { lineStyle: { color: t.ruleStrong, width: 1 } },
     axisTick: { show: false },
-    axisLabel: { color: t.ink3, fontSize: 12, fontFamily: t.sans },
+    axisLabel: { color: t.ink3, fontSize: 11.5, fontFamily: t.sans },
     splitLine: { lineStyle: { color: t.rule, width: 1 } },
     nameTextStyle: { color: t.ink3, fontSize: 12 },
   };
